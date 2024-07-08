@@ -1,7 +1,10 @@
+import { gql, useQuery } from "@apollo/client";
 import { Form, Formik, FormikValues } from "formik";
 import React from "react";
 
 import * as yup from "yup";
+import { handleSubmitLogin } from "../api/submitActions";
+import { useRouter } from "next/navigation";
 
 type FormLoginProps = {
   validationSchemas: any;
@@ -15,16 +18,44 @@ const FormLogin: React.FC<FormLoginProps> = ({
   validationSchemas,
   initialValues,
   formComponents,
-  handleSubmit,
 }) => {
+  const router = useRouter();
   const FormComp = formComponents;
+  const { data } = useQuery(gql`
+    query q1 {
+      users {
+        id
+        email
+        username
+      }
+    }
+  `);
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={yup.object().shape(validationSchemas)}
-      onSubmit={(values, { setSubmitting, setFieldTouched }) => {
-        setSubmitting(false);
-        handleSubmit(values);
+      onSubmit={async (values, { setSubmitting, setFieldError }) => {
+        try {
+          setSubmitting(false);
+
+          const { users } = data;
+          console.log(users);
+
+          for (let u of users) {
+            if (u.email == values.email) {
+              let err = await handleSubmitLogin(values);
+              console.log(err);
+
+              if (err) {
+                setFieldError("password", err);
+              }
+              return;
+            }
+          }
+          setFieldError("email", "User not found");
+        } catch (error) {
+          console.error(error);
+        }
       }}
     >
       <Form noValidate method="POST">
@@ -35,6 +66,9 @@ const FormLogin: React.FC<FormLoginProps> = ({
           <button
             className="btn btn-block dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white"
             type={"submit"}
+            onClick={(e) => {
+              console.log("clicked", e.detail);
+            }}
           >
             Login
           </button>

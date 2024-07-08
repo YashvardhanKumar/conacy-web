@@ -44,7 +44,7 @@ export default function IntroPage() {
           <div className="text-4xl sm:text-6xl text-center">
             Where privacy is priority.
           </div>
-          <div className="text-lg sm:text-2xl text-center w-1/2 ">
+          <div className="text-lg sm:text-2xl text-center ">
             At <span className={pottaone.className}>Conacy</span>, we understand
             the importance of connecting with friends and family in your own
             unique way. Our customizable visibility settings empower you to
@@ -91,11 +91,11 @@ export default function IntroPage() {
 const GetStartedButton = () => {
   return (
     <Link
-      className="btn group max-sm:btn-block border-none transition-all duration-300 bg-gradient-to-br dark:from-blue-200 dark:to-white from-blue-950 to-sky-700 bg-sky-400 dark:bg-slate-400 bg-size-200 hover:to-black hover:dark:to-white bg-[0%] hover:bg-[100%] flex justify-between "
+      className="btn max-sm:btn-block border-none transition-all duration-300 bg-gradient-to-br dark:from-blue-200 dark:to-white from-blue-950 to-sky-700 bg-sky-400 dark:bg-slate-400 bg-size-200 hover:to-black hover:dark:to-white bg-[0%] hover:bg-[100%] flex justify-between "
       href={"/register"}
     >
       <span className="text-2xl text-white dark:text-black">Get Started</span>
-      <ArrowForward className="h-8" />
+      <ArrowForward className="h-8 dark:fill-black fill-white" />
     </Link>
   );
 };

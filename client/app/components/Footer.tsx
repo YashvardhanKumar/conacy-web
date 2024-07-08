@@ -34,12 +34,12 @@ const pottaone = Potta_One({ weight: ["400"], subsets: ["latin-ext"] });
 const Footer = () => {
   return (
     <footer className="text-gray-900 bg-gray-300 dark:bg-black dark:text-gray-300 py-12">
-      <div className="container flex flex-wrap justify-between items-start px-5">
-      <div className="w-full md:w-2/5 p-5 md:pb-0 flex flex-col items-center">
-          <div className="flex">
+      <div className="container w-full flex flex-wrap justify-between items-start px-5">
+          <div className="flex m-5">
             <Image src={logo} alt="" className="h-16 w-16"></Image>
             <span className={pottaone.className + " text-5xl"}>onacy</span>
           </div>
+        <div className="w-full md:w-1/5 mb-8 md:mb-0 p-5">
           <h2 className="text-lg font-semibold mb-4">Follow Us</h2>
           <ul className="flex space-x-4 dark:text-gray-300 text-gray-900">
             <li>
@@ -59,13 +59,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        {/* <div className="w-full md:w-1/5 mb-8 md:mb-0 p-5 md:pb-0">
-          <h2 className="text-lg font-semibold mb-4">About Conacy</h2>
-          <p className="text-sm">
-            Conacy prioritizes your privacy. Customize your social experience
-            with our visibility settings.
-          </p>
-        </div> */}
         <div className="w-full md:w-1/5 mb-8 md:mb-0 p-5">
           <h2 className="text-lg font-semibold mb-4 md:pb-0">Quick Links</h2>
           <ul className="text-sm">
@@ -96,7 +89,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 border-t border-gray-700 pt-6 text-sm text-center">
-        <p>&copy; {new Date().getFullYear()} Conacy. All rights reserved.</p>
+        <div>&copy; {new Date().getFullYear()} Conacy. All rights reserved.</div>
       </div>
     </footer>
   );

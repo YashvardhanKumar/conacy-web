@@ -13,13 +13,13 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
   required,
 }) => {
   const [field, meta, helpers] = useField(name);
-  useEffect(() => {
-    console.log(field.value);
-    console.log(field.name);
-  }, [field.value]);
   return (
-    <>
-      <label htmlFor={name} className="border self-stretch rounded-lg flex flex-col p-2">
+    <div className="w-full flex flex-col gap-1">
+      <label htmlFor={name} className={`border self-stretch rounded-lg flex flex-col p-2 ${
+        meta.error && meta.touched
+          ? "border-pink-500 invalid:text-pink-600 active:ring-pink-500 focus:border-pink-500 focus:ring-pink-500"
+          : ""
+      }`}>
         <textarea
           name={name}
           rows={8}
@@ -36,11 +36,12 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
         >
           {field.value ? field.value.length : 0}/1000
         </div>
-        {meta.error && (
-        <p className="text-red-700 text-xs">{meta.error}</p>
-      )}
+      
       </label>
-    </>
+      {meta.error && (
+        <div className="self-start px-1 text-red-700 text-xs">{meta.error}</div>
+      )}
+    </div>
   );
 };
 

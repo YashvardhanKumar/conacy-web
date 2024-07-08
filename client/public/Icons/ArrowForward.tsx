@@ -5,7 +5,6 @@ const ArrowForward: FC<IconProps> = ({className}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      stroke="currentColor"
       className={`h-6 w-6 fill-white dark:fill-black ${className}`}
       viewBox="0 -960 960 960"
     >

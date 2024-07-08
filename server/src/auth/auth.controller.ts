@@ -1,27 +1,23 @@
-import { Body, Controller, Post, Put, Req, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Put,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
 import { USERS } from './decorator/email.decorator';
+import { CustomAuthGuard } from './auth.guard';
+import { AuthGuard } from '@nestjs/passport';
+import { LocalStrategy } from './local.strategy';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  // @Post('sign')
-  // async sign(
-  //   @Res({ passthrough: true }) res: Response,
-  //   @Body() createUserDTO: CreateUserDTO,
-  // ) {
-  //   const { email, id } = createUserDTO;
-  //   const data = await this.authService.sign(id, email);
-  //   const options = {
-  //     httpOnly: true,
-  //     secure: true,
-  //   };
-  //   res
-  //     .cookie('accessToken', data.accessToken, options)
-  //     .cookie('refreshToken', data.refreshToken, options);
-  // }
 
   @Post('signUp')
   async signUp(
@@ -30,7 +26,7 @@ export class AuthController {
   ) {
     const { id, email, hash, dob, name, username } = createUserDTO;
     console.log(createUserDTO);
-    
+
     const a = await this.authService.signUp(
       id,
       email,
@@ -44,21 +40,25 @@ export class AuthController {
       secure: true,
     };
     if (!a.error) {
-      const { data, accessToken, refreshToken } = a;
+      const { accessToken, refreshToken } = a;
       res
         .cookie('accessToken', accessToken, options)
         .cookie('refreshToken', refreshToken, options);
-      return { data, accessToken, refreshToken };
+      return;
     }
-    return { error: 'User Already Exists!' };
+    return a;
   }
 
+  @UseGuards(AuthGuard('local'))
   @Put('login')
-  async login(@Res({ passthrough: true }) res: Response, @Body() body: any) {
-    const a = await this.authService.login(
-      body.email,
-      body.password,
-    );
+  async login(
+    @Res({ passthrough: true }) res: Response,
+    @Body() body: any,
+    @Req() req: Request,
+  ) {
+    console.log(body, req.user);
+
+    const a = await this.authService.login(body.email, req.user);
 
     const options = {
       httpOnly: true,
@@ -70,9 +70,9 @@ export class AuthController {
       res
         .cookie('accessToken', accessToken, options)
         .cookie('refreshToken', refreshToken, options);
-      return { accessToken, refreshToken };
+      return;
     }
-    return { error: 'User Not Found' };
+    return a;
   }
 
   @Post('verify')
@@ -80,33 +80,27 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
     @Req() request: Request,
   ) {
-    const incomingRefreshToken =
-      request.cookies?.refreshToken || request.body.refreshToken;
-    const accessToken =
-      request.cookies?.accessToken ||
-      request.header('Authorization')?.replace('Bearer ', '');
-    const data = await this.authService.verify(
-      request.body.email,
-      accessToken,
-      incomingRefreshToken,
-    );
+    // const incomingRefreshToken = request.cookies?.refreshToken ?? request.body.refreshToken;
+    console.log(request.cookies);
+
+    const accessToken = request.header('Authorization')?.replace('Bearer ', '');
+    const data = await this.authService.verify(accessToken);
     const options = {
       httpOnly: true,
       secure: true,
     };
     if (data.isAuthenticated) {
-      res.cookie('accessToken', data.token.accessToken, options);
-      res.cookie('refreshToken', data.token.refreshToken, options);
+      const { isAuthenticated, token } = data;
+      res.cookie('accessToken', token, options);
+      // res.cookie('refreshToken', token.refreshToken, options);
+      return { isAuthenticated };
     }
     return data;
   }
 
+  @UseGuards(CustomAuthGuard)
   @Put('logout')
-  async logout(
-    @Res({ passthrough: true }) res: Response,
-    @USERS() users,
-  ) {
-    
+  async logout(@Res({ passthrough: true }) res: Response, @USERS() users: any) {
     await this.authService.logout(users.email);
     const options = {
       httpOnly: true,
@@ -116,6 +110,6 @@ export class AuthController {
       .status(200)
       .cookie('accessToken', options)
       .cookie('refreshToken', options);
-    return { user: {}, message: "Logged out successfully" };
+    return { message: 'Logged out successfully' };
   }
 }

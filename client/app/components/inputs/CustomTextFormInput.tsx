@@ -37,9 +37,9 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
       />
 
       {meta.touched && meta.error && (
-        <p className="text-red-700 text-xs mt-1 bg-red-300 py-0.5 px-2 rounded-full">
+        <div className="text-red-700 text-xs mt-1 bg-red-300 py-0.5 px-2 rounded-full">
           {meta.error}
-        </p>
+        </div>
       )}
     </label>
   );

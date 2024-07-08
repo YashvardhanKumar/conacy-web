@@ -20,7 +20,7 @@ import { CREATE_USERS } from "@/gql/mutations/users.mutation";
 import { v4 as uuidv4 } from "uuid";
 import { cookies } from "next/headers";
 import axios from "axios";
-import { handleSubmitRegister } from "./submitActions";
+import { handleSubmitRegister } from "../api/submitActions";
 
 const CombineSteps = () => {
   const { page } = usePageChange();
@@ -29,37 +29,6 @@ const CombineSteps = () => {
 
   const stepsTitle = ["Details", "Choose Username", "Date of Birth"];
   
-  // 'use server'
-  // const handleSubmit = async (value: any) => {
-  //   const url = process.env.NEXT_PUBLIC_SERVER_URL;
-  //   console.log(url);
-
-  //   const { email, password, name, username, dob } = value;
-  //   const date = new Date(dob);
-  //   const id = uuidv4();
-  //   alert("SUBMITTED FORM \n" + JSON.stringify(value, null, 2));
-  //   if (url) {
-  //     const res = await fetch(`${url}/auth/signUp`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         id,
-  //         email,
-  //         hash: password,
-  //         name,
-  //         username,
-  //         dob: date,
-  //       }),
-  //     });
-  //     console.log(await res.json());
-  //     const result = await res.json();
-  //     cookies()
-  //       .set("accessToken", result.accessToken)
-  //       .set("refreshToken", result.refreshToken);
-  //   }
-  //   // router.push("/");
-  // };
-
   return (
     <div className="card-body flex sm:flex-row md:gap-5">
       <div className="flex flex-col sm:p-5">
@@ -67,7 +36,7 @@ const CombineSteps = () => {
           <Link href={"/"}>
             <Image src={logo} alt="" className="h-10 w-10" />
           </Link>
-          <div className="w-[1px] h-10 dark:bg-white bg-black"></div>
+          <div className="w-[0.5px] h-7 dark:bg-slate-600 bg-slate-400"></div>
           <div>Register</div>
         </div>
         <StepsTracker steps={stepsTitle} page={page} />

@@ -26,15 +26,7 @@ const FormRegister: React.FC<FormRegisterProps> = ({
   handleSubmit,
 }) => {
   const { page, setPage } = usePageChange();
-  const {
-    error,
-    refetch,
-    subscribeToMore,
-    data,
-    fetchMore,
-    client,
-    networkStatus,
-  } = useQuery(gql`
+  const { data, error } = useQuery(gql`
     query q1 {
       users {
         id
@@ -51,10 +43,13 @@ const FormRegister: React.FC<FormRegisterProps> = ({
       validationSchema={yup.object().shape(validationSchemas[page])}
       onSubmit={(values, { setSubmitting, setFieldTouched, setFieldError }) => {
         setSubmitting(false);
+        console.log(error);
+        
         if (page === lastStep) {
           handleSubmit(values);
         } else {
           const { users } = data;
+
           switch (page) {
             case 0:
               for (let u of users) {
@@ -64,14 +59,14 @@ const FormRegister: React.FC<FormRegisterProps> = ({
                 }
               }
               break;
-              case 1:
-                for (let u of users) {
-                  if (u.username == values.username) {
-                    setFieldError("username", "Username already exists");
-                    return;
-                  }
+            case 1:
+              for (let u of users) {
+                if (u.username == values.username) {
+                  setFieldError("username", "Username already exists");
+                  return;
                 }
-                break;
+              }
+              break;
             default:
               break;
           }

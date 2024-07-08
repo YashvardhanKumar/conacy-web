@@ -18,70 +18,69 @@ import { OgmModule } from '../ogm/ogm.module';
 import { OGMConstructor } from '@neo4j/graphql-ogm/dist/classes/OGM';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-const resolvers = (ogm: OGM) => {
-  return {
-    Mutation: {
-      createUsers: async (
-        object: any,
-        params: any,
-        ctx: any,
-        resolverInfo: any,
-      ) => {
-        const dat = JSON.parse(JSON.stringify(params.input[0]));
+// const resolvers = (ogm: OGM) => {
+//   return {
+//     Mutation: {
+//       createUsers: async (
+//         object: any,
+//         params: any,
+//         ctx: any,
+//         resolverInfo: any,
+//       ) => {
+//         const dat = JSON.parse(JSON.stringify(params.input[0]));
 
-        const selectionSet = gql`
-          {
-            users {
-              id
-              name
-              email
-              username
-              hash
-            }
-            info {
-              bookmark
-              nodesCreated
-              relationshipsCreated
-            }
-          }
-        `;
-        dat.hash = await argon2.hash(dat.hash);
-        try {
-          return(
-            await ogm
-              .model('User')
-              .create({ input: dat, selectionSet, context: ctx }));
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    },
-  };
-};
+//         const selectionSet = gql`
+//           {
+//             users {
+//               id
+//               name
+//               email
+//               username
+//               hash
+//             }
+//             info {
+//               bookmark
+//               nodesCreated
+//               relationshipsCreated
+//             }
+//           }
+//         `;
+//         dat.hash = await argon2.hash(dat.hash);
+//         try {
+//           return(
+//             await ogm
+//               .model('User')
+//               .create({ input: dat, selectionSet, context: ctx }));
+//         } catch (error) {
+//           console.log(error);
+//         }
+//       },
+//     },
+//   };
+// };
 
 export const gqlProviderFactory = async () => {
-  const { NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD } = process.env;
-
+  const { NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, CLIENT_URL } = process.env;
+  console.log(CLIENT_URL);
   const driver = neo4j.driver(
     NEO4J_URI,
     neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD),
   );
+
   const ogm = new OGM({
     driver,
     typeDefs,
-    // debug: true,
     database: 'neo4j',
   });
   ogm.init();
   const neoSchema = new Neo4jGraphQL({
     typeDefs,
     driver,
-    // debug: true,
-    resolvers: resolvers(ogm),
+    // resolvers: resolvers(ogm),
     features: {
       authorization: {
         key: {
-          url: 'http://localhost:3000/.well-known/jwks.json',
+          url: `http://192.168.1.4:3000/.well-known/jwks.json`,
         },
         verifyOptions: {
           algorithms: ['RS256'],
@@ -97,7 +96,7 @@ export const gqlProviderFactory = async () => {
   });
 
   return {
-    playground: true,
+    // playground: true,
     schema,
     context: async ({ req }) => ({
       token: req.headers.authorization,

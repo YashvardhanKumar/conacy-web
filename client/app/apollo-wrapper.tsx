@@ -10,7 +10,7 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "http://localhost:4000/graphql",
+    uri: `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/graphql`,
     fetchOptions: { cache: "no-store" },
   });
 

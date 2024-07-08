@@ -22,10 +22,8 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
   const [date, setDate] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     field.onChange(e);
-    console.log(field.value);
     var input = e.target.value;
     if (/\D\/$/.test(input)) input = input.slice(0, input.length - 3);
-    console.log(input);
 
     var values = input.split("/").map(function (v) {
       return v.replace(/\D/g, "");
@@ -41,7 +39,6 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
         values[0] = checkValue(values[0], 31);
       }
     }
-    console.log(values);
 
     if (values[2] && values[2].length == 4) {
       if (Number(values[1]).valueOf() == 2) {
@@ -51,7 +48,6 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
       }
     }
     var output = values.map(function (v, i) {
-      console.log([v, i]);
       return v.length == 2 && i < 2 ? v + " / " : v;
     });
     setDate((d) => output.join("").slice(0, 14));
@@ -86,9 +82,9 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
       />
 
       {meta.error && meta.touched && (
-        <p className="text-red-700 text-xs mt-1 bg-red-300 py-0.5 px-2 rounded-full">
+        <div className="text-red-700 text-xs mt-1 bg-red-300 py-0.5 px-2 rounded-full">
           {meta.error}
-        </p>
+        </div>
       )}
     </label>
   );

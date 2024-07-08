@@ -1,4 +1,4 @@
-import { LocalDateTime } from "neo4j-driver";
+import { LocalDateTime } from 'neo4j-driver';
 
 export class CreateUserDTO {
   id: string;
