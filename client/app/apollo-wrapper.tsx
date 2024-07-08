@@ -1,5 +1,4 @@
-"use client";
-
+'use client'
 import { ApolloLink, HttpLink } from "@apollo/client";
 import {
     ApolloClient,
@@ -9,8 +8,10 @@ import {
 } from "@apollo/experimental-nextjs-app-support";
 
 function makeClient() {
+
   const httpLink = new HttpLink({
-    uri: `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/graphql`,
+    uri: `/api/graphql`,
+    credentials: 'same-origin',
     fetchOptions: { cache: "no-store" },
   });
 

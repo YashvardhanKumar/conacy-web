@@ -1,92 +1,129 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import { Neo4jGraphQL } from '@neo4j/graphql';
 import { gql } from 'apollo-server';
-import neo4j from 'neo4j-driver';
 
 export const typeDefs = gql`
-  interface Comment {
-    id: ID!
-    text: String!
-    author: User! @declareRelationship
-    replies: [Comment!]! @declareRelationship
+  # interface Comment {
+  #   id: ID!
+  #   text: String!
+  #   likes: [User!]! @declareRelationship
+  #   author: User! @declareRelationship
+  #   replies: [Comment!]! @declareRelationship
+  # }
+
+  enum RelationType {
+    STRANGER
+    FRIEND
+    CLOSE_FRIEND
+    BEST_FRIEND
+    RELATIVE
+    ACQUAINTANCE
   }
 
   type JwtPayload @jwt {
-    id: ID!
+    username: ID!
     email: String!
   }
-
-  type Post
-    @authorization(
-      validate: [
-        {
-          requireAuthentication: true
-          operations: [UPDATE, DELETE, CREATE]
-          where: { node: { creatorOfPost: { id: "$jwt.id" } } }
-        }
-      ]
-    ) {
-    id: ID!
-    url: String!
-    description: String
-    creatorOfPost: User! @relationship(type: "POSTED_BY", direction: IN)
-    comments: [Comment!]! @relationship(type: "COMMENTED_AT", direction: IN)
-  }
-
-  type PostComment implements Comment
-    @authorization(
-      validate: [
-        {
-          requireAuthentication: true
-          operations: [UPDATE, DELETE, CREATE]
-          where: { node: { author: { id: "$jwt.id" } } }
-        }
-      ]
-    ) {
-    id: ID!
-    text: String!
-    author: User! @relationship(type: "COMMENTED_BY", direction: IN)
-    commentOfPost: Post! @relationship(type: "COMMENTED_AT", direction: OUT)
-    replies: [Comment!]! @relationship(type: "REPLIED_ON", direction: IN)
-  }
-
-  type ReplyComment implements Comment
-    @authorization(
-      validate: [
-        {
-          requireAuthentication: true
-          operations: [UPDATE, DELETE, CREATE]
-          where: { node: { author: { id: "$jwt.id" } } }
-        }
-      ]
-    ) {
-    id: ID!
-    text: String!
-    author: User! @relationship(type: "COMMENTED_BY", direction: IN)
-    replyOfComment: Comment! @relationship(type: "REPLIED_ON", direction: OUT)
-    replies: [Comment!]! @relationship(type: "REPLIED_ON", direction: IN)
-  }
-
   type User
     @authorization(
       validate: [
         {
           requireAuthentication: true
           operations: [UPDATE, DELETE]
-          where: { node: { id: "$jwt.id", email: "$jwt.email" } }
+          where: { node: { username: "$jwt.username", email: "$jwt.email" } }
         }
       ]
     ) {
-    id: ID!
+    id: ID! @id
     name: String!
-    email: String!
+    email: String! @unique
     hash: String! @private
-    username: ID!
+    username: ID! @unique
     dob: Date
     refreshToken: String @private
+    blackList: [String!] @private
+    relations: [User!]!
+      @relationship(
+        type: "RELATIONS_WITH"
+        properties: "Relation"
+        direction: IN
+      )
+    relationWith: [User!]!
+      @relationship(
+        type: "RELATIONS_WITH"
+        properties: "Relation"
+        direction: OUT
+      )
     posts: [Post!]! @relationship(type: "POSTED_BY", direction: OUT)
+    likedPosts: [Post!]! @relationship(type: "LIKED_BY", direction: OUT)
+    likedComments: [Comment!]!
+      @relationship(type: "COMMENT_LIKED_BY", direction: OUT)
     authorOfComments: [Comment!]!
       @relationship(type: "COMMENTED_BY", direction: OUT)
+    createdAt: DateTime @timestamp(operations: [CREATE])
+    updatedAt: DateTime @timestamp(operations: [UPDATE])
   }
+
+  type Relation @relationshipProperties {
+    type: RelationType! @default(value: STRANGER)
+  }
+  type Post
+    @authorization(
+      filter: [
+        {
+          requireAuthentication: true
+          where: { node: { creatorOfPost: { username: "$jwt.username" } } }
+        }
+      ]
+    ) {
+    id: ID! @id
+    url: String!
+    description: String
+    visibility: [RelationType!]
+    likes: [User!]! @relationship(type: "LIKED_BY", direction: IN)
+    creatorOfPost: User! @relationship(type: "POSTED_BY", direction: IN)
+    comments: [Comment!]! @relationship(type: "COMMENTED_AT", direction: IN)
+    createdAt: DateTime @timestamp(operations: [CREATE])
+    updatedAt: DateTime @timestamp(operations: [UPDATE])
+  }
+
+  type Comment
+    @authorization(
+      validate: [
+        {
+          requireAuthentication: true
+          operations: [UPDATE, DELETE]
+          where: { node: { author: { username: "$jwt.username" } } }
+        }
+      ]
+    ) {
+    id: ID! @id
+    text: String!
+    indent: Int! @default(value: 0)
+    likes: [User!]! @relationship(type: "COMMENT_LIKED_BY", direction: IN)
+    author: User! @relationship(type: "COMMENTED_BY", direction: IN)
+    commentOfPost: Post! @relationship(type: "COMMENTED_AT", direction: OUT)
+    replyOfComment: Comment @relationship(type: "REPLIED_ON", direction: OUT)
+    replies: [Comment!]! @relationship(type: "REPLIED_ON", direction: IN)
+    createdAt: DateTime @timestamp(operations: [CREATE])
+    updatedAt: DateTime @timestamp(operations: [UPDATE])
+  }
+
+  # type ReplyComment implements Comment
+  #   @authorization(
+  #     validate: [
+  #       {
+  #         requireAuthentication: true
+  #         operations: [UPDATE, DELETE, CREATE]
+  #         where: { node: { author: { username: "$jwt.username" } } }
+  #       }
+  #     ]
+  #   ) {
+  #   id: ID! @id
+  #   text: String!
+  #   likes: [User!]! @relationship(type: "COMMENT_LIKED_BY", direction: IN)
+  #   author: User! @relationship(type: "COMMENTED_BY", direction: IN)
+  #   replyOfComment: Comment! @relationship(type: "REPLIED_ON", direction: OUT)
+  #   replies: [Comment!]! @relationship(type: "REPLIED_ON", direction: IN)
+  #   createdAt: DateTime @timestamp(operations: [CREATE])
+  #   updatedAt: DateTime @timestamp(operations: [UPDATE])
+  # }
 `;

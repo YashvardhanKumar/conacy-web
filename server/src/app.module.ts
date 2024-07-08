@@ -12,7 +12,7 @@ import { CloudinaryModule } from './custom/cloudinary/cloudinary.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    Neo4jModule.forRootAsync(typeDefs),
+    Neo4jModule.forRootAsync(),
     OgmModule.register({
       typeDefs,
       neo4jUrl: process.env.NEO4J_URI,

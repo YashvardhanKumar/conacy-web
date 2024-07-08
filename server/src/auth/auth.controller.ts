@@ -1,15 +1,18 @@
 import {
   Body,
   Controller,
+  HttpCode,
+  HttpStatus,
   Post,
   Put,
   Req,
   Res,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { AuthService } from './auth.service';
-import { Request, Response } from 'express';
+import { CookieOptions, Request, Response } from 'express';
 import { USERS } from './decorator/email.decorator';
 import { CustomAuthGuard } from './auth.guard';
 import { AuthGuard } from '@nestjs/passport';
@@ -18,37 +21,44 @@ import { LocalStrategy } from './local.strategy';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-
+  private optionsAccess: CookieOptions = {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  };
+  private optionsRefresh: CookieOptions = {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  };
+  @HttpCode(HttpStatus.OK)
   @Post('signUp')
   async signUp(
     @Body() createUserDTO: CreateUserDTO,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const { id, email, hash, dob, name, username } = createUserDTO;
+    const { email, hash, dob, name, username } = createUserDTO;
     console.log(createUserDTO);
 
     const a = await this.authService.signUp(
-      id,
       email,
       name,
       username,
       hash,
       dob,
     );
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
-    if (!a.error) {
-      const { accessToken, refreshToken } = a;
-      res
-        .cookie('accessToken', accessToken, options)
-        .cookie('refreshToken', refreshToken, options);
-      return;
-    }
-    return a;
-  }
 
+    if (a.isAuthenticated) {
+      const { accessToken, refreshToken, isAuthenticated, username } = a;
+      res
+        .status(200)
+        .cookie('accessToken', accessToken, this.optionsAccess)
+        .cookie('refreshToken', refreshToken, this.optionsRefresh)
+        .cookie('username', username, this.optionsAccess);
+      return { isAuthenticated, username };
+    }
+  }
+  @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard('local'))
   @Put('login')
   async login(
@@ -56,60 +66,83 @@ export class AuthController {
     @Body() body: any,
     @Req() req: Request,
   ) {
-    console.log(body, req.user);
+    console.log(body, req.user, req.cookies);
 
-    const a = await this.authService.login(body.email, req.user);
+    const { accessToken, refreshToken, isAuthenticated, username } =
+      await this.authService.login(body.email, req.user);
 
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
 
-    if (!a.error) {
-      const { accessToken, refreshToken } = a;
+    if (isAuthenticated) {
       res
-        .cookie('accessToken', accessToken, options)
-        .cookie('refreshToken', refreshToken, options);
-      return;
+        .cookie('accessToken', accessToken, this.optionsAccess)
+        .cookie('refreshToken', refreshToken, this.optionsRefresh)
+        .cookie('username', username, this.optionsAccess);
     }
-    return a;
+    return { isAuthenticated, username };
   }
-
   @Post('verify')
   async verify(
     @Res({ passthrough: true }) res: Response,
     @Req() request: Request,
   ) {
-    // const incomingRefreshToken = request.cookies?.refreshToken ?? request.body.refreshToken;
-    console.log(request.cookies);
+    const accessToken = request.cookies['accessToken'];
+    const refreshToken = request.cookies['refreshToken'];
+    
 
-    const accessToken = request.header('Authorization')?.replace('Bearer ', '');
-    const data = await this.authService.verify(accessToken);
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
-    if (data.isAuthenticated) {
-      const { isAuthenticated, token } = data;
-      res.cookie('accessToken', token, options);
-      // res.cookie('refreshToken', token.refreshToken, options);
-      return { isAuthenticated };
+    const { isAuthenticated, token, message, username } = await this.authService.verify(
+      accessToken,
+      refreshToken,
+    );
+    if (isAuthenticated) {
+      console.log("verify is authenticated");
+      
+      res.status(200).cookie('accessToken', token, this.optionsAccess);
+      return { isAuthenticated, username };
     }
-    return data;
+    res
+      .status(401)
+      .clearCookie('accessToken', this.optionsAccess)
+      .clearCookie('refreshToken', this.optionsRefresh)
+      .clearCookie('username', this.optionsAccess);
+    throw new UnauthorizedException({ isAuthenticated, message });
   }
 
+  // @Post('refresh_access_token')
+  // async refreshAccessToken(
+  //   @Res({ passthrough: true }) res: Response,
+  //   @Req() request: Request,
+  // ) {
+  //   const refreshToken = request.cookies['refreshToken'];
+  //   console.log(refreshToken);
+
+  //   const data = await this.authService.refreshUserToken(refreshToken);
+  //   const { accessToken } = data;
+
+  //   if (accessToken) {
+  //     res.cookie('accessToken', accessToken, this.options);
+  //     return;
+  //   }
+  //   res
+  //     .clearCookie('accessToken', this.options)
+  //     .clearCookie('refreshToken', this.options)
+  //     .clearCookie('uid', this.options);
+  //   return data;
+  // }
+
+  @HttpCode(HttpStatus.OK)
   @UseGuards(CustomAuthGuard)
   @Put('logout')
-  async logout(@Res({ passthrough: true }) res: Response, @USERS() users: any) {
-    await this.authService.logout(users.email);
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
+  async logout(
+    @Res({ passthrough: true }) res: Response,
+    @USERS() users: any,
+    @Req() req: Request,
+  ) {
+    const token = req.cookies['accessToken'];
+    await this.authService.logout(users.email, token);
     res
-      .status(200)
-      .cookie('accessToken', options)
-      .cookie('refreshToken', options);
-    return { message: 'Logged out successfully' };
+      .clearCookie('accessToken', this.optionsAccess)
+      .clearCookie('refreshToken', this.optionsRefresh)
+      .clearCookie('username', this.optionsAccess);
+    return { isAuthenticated: false, message: 'Logged out successfully' };
   }
 }

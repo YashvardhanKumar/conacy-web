@@ -26,13 +26,11 @@ export const handleSubmitRegister = async (value: any) => {
   const result = await res.json();
   const set_cache = res.headers.getSetCookie()?.map((v) => v.split("; "));
   if (set_cache && set_cache.length > 0) {
-    cookies()
-      .set("accessToken", set_cache[0][0].split("=")[1], {
-        // secure: true,
-        // httpOnly: true,
-        maxAge: 5 * 60,
-        path: "/",
-      })
+    cookies().set("accessToken", set_cache[0][0].split("=")[1], {
+      // secure: true,
+      // httpOnly: true,
+      path: "/",
+    });
   }
 
   redirect("/");
@@ -71,16 +69,13 @@ export const handleSubmitLogin = async (
     });
     const set_cache = res.headers.getSetCookie()?.map((v) => v.split("; "));
     if (set_cache && set_cache.length > 0) {
-      cookies()
-        .set("accessToken", set_cache[0][0].split("=")[1], {
-          // secure: true,
-          // httpOnly: true,
-          maxAge: 5 * 60,
-          path: "/",
-        })
+      cookies().set("accessToken", set_cache[0][0].split("=")[1], {
+        // secure: true,
+        // httpOnly: true,
+        path: "/",
+      });
     }
     console.log(cookies().getAll());
-
   } catch (e) {
     console.log(e);
 
@@ -102,21 +97,21 @@ export const handleValid = async () => {
       headers: header,
     });
     const result = await res.json();
-    
+
     const set_cache = res.headers.getSetCookie()?.map((v) => v.split("; "));
     if (set_cache && set_cache.length > 0) {
-      cookies() 
-        .set("accessToken", set_cache[0][0].split("=")[1], {
-          // secure: true,
-          // httpOnly: true,
-          path: "/",
-        })
+      cookies().set("accessToken", set_cache[0][0].split("=")[1], {
+        // secure: true,
+        // httpOnly: true,
+        path: "/",
+      });
+    } else {
+      cookies().delete("accessToken");
     }
     console.log(cookies().getAll());
     console.log(cookies().getAll());
     return result;
   } else {
-    return {error: "Server error"};
+    return { error: "Server error" };
   }
-  redirect("/");
 };

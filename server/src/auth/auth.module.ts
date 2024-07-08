@@ -14,6 +14,7 @@ import { JwtStrategy } from './jwt.strategy';
       useFactory: (config: ConfigService) => ({
         privateKey: config.get('PRIVATE_KEY'),
         publicKey: config.get('PUBLIC_KEY'),
+        // secret: 'secret',
         signOptions: {
           algorithm: 'RS256',
         },

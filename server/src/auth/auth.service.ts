@@ -1,4 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
 import { OgmService } from 'src/custom/ogm/ogm.service';
@@ -6,10 +11,10 @@ import * as argon2 from 'argon2';
 import { gql } from 'apollo-server';
 import { DocumentNode } from 'graphql';
 import { JwtService } from '@nestjs/jwt';
+import { Model } from '@neo4j/graphql-ogm';
 @Injectable()
 export class AuthService {
-  private User: any;
-  private selectionSet: DocumentNode = gql`
+  private selectionSet = `
     {
       id
       name
@@ -18,13 +23,12 @@ export class AuthService {
     }
   `;
   constructor(
-    private readonly ogm: OgmService,
+    private readonly ogmService: OgmService,
     private readonly jwtService: JwtService,
-  ) {
-    this.User = this.ogm.model('User');
-  }
-  async sign(id: string, email: string) {
-    const payload = { id, email };
+    private readonly config: ConfigService,
+  ) {}
+  async sign(username: string, email: string) {
+    const payload = { username, email };
     const accessToken = this.jwtService.sign(payload, {
       expiresIn: 5 * 60,
     });
@@ -35,121 +39,196 @@ export class AuthService {
   }
 
   async signUp(
-    id: string,
     email: string,
     name: string,
     username: string,
     hash: string,
     dob: Date,
   ) {
-    const { accessToken, refreshToken } = await this.sign(id, email);
+    const User = this.ogmService.ogm.model('User');
     if (
-      (
-        await this.ogm
-          .model('User')
-          .find({ where: { OR: [{ id }, { email }, { username }] } })
-      ).length === 0
+      (await User.find({ where: { OR: [{ email }, { username }] } })).length ===
+      0
     ) {
       const hsh = await argon2.hash(hash);
-      console.log({ id, email, name, username, hash: hsh, dob, refreshToken });
+      console.log({ email, name, username, hash: hsh, dob });
 
-      const data = await this.ogm.model('User').create({
-        input: { id, email, name, username, hash: hsh, dob, refreshToken },
-        selectionSet: this.selectionSet,
+      const data = await User.create({
+        input: [{ email, name, username, hash: hsh, dob }],
       });
-
-      return { data, accessToken, refreshToken };
+      const { accessToken, refreshToken } = await this.sign(
+        data.users[0].username,
+        email,
+      );
+      await User.update({ where: { username }, update: { refreshToken } });
+      return {
+        accessToken,
+        refreshToken,
+        isAuthenticated: true,
+        username: data.users[0].username,
+      };
     }
-    return { error: 'User Already Exists' };
+    throw new UnauthorizedException({
+      error: 'User Already Exists',
+      isAuthenticated: false,
+    });
   }
 
   async validateUser(email: string, password: string) {
-    const data = await this.ogm.model('User').find({
+    const User = this.ogmService.ogm.model('User');
+    const data = await User.find({
       where: { email },
     });
-    console.log(data);
     if (data) {
       const verifyPass = await argon2.verify(data[0].hash, password);
       if (!verifyPass) {
-        throw new UnauthorizedException("Invalid email or password");
+        throw new UnauthorizedException('Invalid email or password');
       }
-      console.log(verifyPass);
       const { hash, refreshToken, ...res } = data[0];
       return { ...res, verifyPass };
     } else {
-      throw new UnauthorizedException("Invalid email or password");
+      throw new UnauthorizedException('Invalid email or password');
     }
   }
 
   async login(email: string, data: any) {
-    console.log(data);
+    const User = this.ogmService.ogm.model('User');
 
     // const data = await this.validateUser(email, password);
     if (!data.error && data.verifyPass) {
-      const { accessToken, refreshToken } = await this.sign(data.id, email);
-      console.log({ accessToken, refreshToken });
+      const { accessToken, refreshToken } = await this.sign(
+        data.username,
+        email,
+      );
 
-      await this.ogm.model('User').update({
+      await User.update({
         where: { email },
         update: { refreshToken },
       });
-      return { accessToken, refreshToken };
-    }
-    return data;
-  }
-
-  async logout(email: string) {
-    await this.ogm
-      .model('User')
-      .update({ where: { email }, update: { refreshToken: null } });
-  }
-
-  async verify(accessToken: string) {
-    let { id, email, ...other } = this.jwtService.decode(accessToken, {
-      complete: true,
-      json: true,
-    }) as jwt.JwtPayload;
-
-    const { refreshToken, ...data } = (
-      await this.ogm.model('User').find({
-        where: { id },
-      })
-    )[0];
-
-    console.log({ id, email, ...other });
-
-    const refreshTokenData: jwt.JwtPayload =
-      this.jwtService.verify(refreshToken);
-
-    console.log(refreshTokenData);
-
-    const time = Date.now() / 1000;
-
-    if (refreshTokenData.id != data.id || refreshTokenData.exp <= time) {
-      await this.ogm.model('User').update({
-        where: { email },
-        update: { refreshToken: null },
-      });
-    } else if (refreshTokenData.id == id) {
-      if (other.exp <= time) {
-        const { id, email } = refreshTokenData;
-        const payload = { id, email };
-
-        accessToken = this.jwtService.sign(payload, {
-          expiresIn: 5 * 60,
-        });
-      }
-
       return {
+        accessToken,
+        refreshToken,
         isAuthenticated: true,
-        token: accessToken,
+        username: data.username,
       };
     }
+    throw new UnauthorizedException({ isAuthenticated: false });
+  }
 
-    throw new UnauthorizedException({
-      message: 'Login Needed',
-      isAuthenticated: false,
+  async logout(email: string, refreshToken: string) {
+    const User = this.ogmService.ogm.model('User');
+    await User.update({
+      where: { email },
+      update: { refreshToken: null, blackList_PUSH: [refreshToken] },
     });
+  }
+
+  // async refreshUserToken(refreshToken: string) {
+  //   const User = this.ogmService.ogm.model('User');
+  //   const { id, email } = await this.jwtService
+  //     .verifyAsync(refreshToken)
+  //     .catch((e) => {
+  //       if (e.message === 'jwt expired') {
+  //         User.update({
+  //           where: { id },
+  //           update: { blackList_PUSH: [refreshToken] },
+  //         });
+  //       }
+  //       throw new UnauthorizedException({
+  //         message: 'Login Needed',
+  //         isAuthenticated: false,
+  //       });
+  //     });
+  //   const user = await User.find({
+  //     where: { id, NOT: { blackList_INCLUDES: refreshToken } },
+  //   });
+  //   if (user.length && user[0].refreshToken === refreshToken) {
+  //     const accessToken = await this.jwtService.signAsync(
+  //       { id, email },
+  //       {
+  //         expiresIn: 5 * 60,
+  //       },
+  //     );
+  //     return { accessToken };
+  //   } else {
+  //     throw new UnauthorizedException({
+  //       message: 'Invalid Request',
+  //       isAuthenticated: false,
+  //     });
+  //   }
+  // }
+
+  async verify(accessToken: string, _refreshToken: string) {
+    const User = this.ogmService.ogm.model('User');
+    if (!_refreshToken) {
+      return { isAuthenticated: false, message: 'Invalid Request' };
+    }
+    let { username, email, exp } =
+      this.jwtService.decode(_refreshToken, {
+        complete: true,
+        json: true,
+      }).payload ?? {};
+
+    const [u] = await User.find({
+      where: { username, email },
+      selectionSet: gql`
+        {
+          username
+          email
+          refreshToken
+        }
+      `,
+    });
+    console.log(
+      _refreshToken &&
+        u?.refreshToken &&
+        u?.refreshToken == _refreshToken &&
+        u?.username == username,
+    );
+
+    if (
+      _refreshToken &&
+      u?.refreshToken &&
+      u?.refreshToken == _refreshToken &&
+      u?.username == username
+    ) {
+      const time = Date.now() / 1000;
+
+      if (exp <= time) {
+        await User.update({
+          where: { email },
+          update: { refreshToken: null },
+        });
+
+        return {
+          message: 'Login Required',
+          isAuthenticated: false,
+        };
+      }
+
+      try {
+        const { exp } = await this.jwtService.verifyAsync(accessToken);
+        console.log(exp - time);
+      } catch (e) {
+        if (e.message !== 'invalid signature') {
+          accessToken = this.jwtService.sign(
+            { username: u.username, email },
+            { expiresIn: 5 * 60 },
+          );
+        }
+      } finally {
+        return {
+          isAuthenticated: true,
+          token: accessToken,
+          username: u.username,
+        };
+      }
+    }
+
+    return {
+      message: 'Login Required',
+      isAuthenticated: false,
+    };
   }
 
   // generateToken(payload: jwt.JwtPayload, jwt_expire: number) {
