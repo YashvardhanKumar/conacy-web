@@ -1,37 +1,13 @@
-import {
-  ApolloCache,
-  DefaultContext,
-  MutationTuple,
-  useMutation,
-} from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import { graphql } from "../gql";
-import {
-  CreatePostsMutation,
-  Exact,
-  RelationType,
-  Scalars,
-} from "../gql/graphql";
+import { useNavigate } from "react-router-dom";
+import { graphql } from "../../../gql";
+import * as yup from "yup";
+import { RelationType } from "../../../gql/graphql";
 import { FormikHelpers } from "formik";
-import { handleUploadImage } from "../pages/create/utils";
-
-interface CreatePostContextType {
-  image: File | null;
-  imageUrl: string;
-  handleImageChange: () => (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (values: CreateFormProps, formikHelpers: FormikHelpers<CreateFormProps>) => void | Promise<any>;
-  loading: boolean;
-}
-
-type CreatePostProps = {
-  children: React.ReactNode;
-};
-
-type CreateFormProps = {
-    caption: string;
-    image: undefined;
-}
+/**
+ * GraphQL Queries
+ */
 
 const createPost = graphql(/*graphql */ `
   mutation CreatePosts(
@@ -64,17 +40,27 @@ const createPost = graphql(/*graphql */ `
   }
 `);
 
-const CreatePostContext = createContext<CreatePostContextType | undefined>(
-  undefined
-);
+/**
+ * Post Context
+ */
 
-export const usePageChange = () => {
+const CreatePostContext = createContext<CreatePostContextType | undefined>(undefined);
+
+/**
+ * Custom hook for Post Context
+ */
+
+export const useCreatePostContext = () => {
   const context = useContext(CreatePostContext);
   if (!context) {
-    throw new Error("usePageChange must be used within a PageProvider");
+    throw new Error(`${useCreatePostContext.name} must be used within a ${CreatePostProvider.name}`);
   }
   return context;
 };
+
+/**
+ * Create Post Provider Element
+ */
 
 export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const nav = useNavigate();
@@ -83,9 +69,33 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const [createMutation] = useMutation(createPost);
   const [loading, setLoading] = useState(false);
   const [visibility, setVisibility] = useState(0);
-  useEffect(() => {}, [image]);
 
-  const handleImageChange = () => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const initialValues: CreateFormProps = {
+    caption: "",
+    image: undefined,
+  };
+
+  const validationSchema = yup.object().shape({
+    caption: yup
+      .string()
+      .max(1000, "Your caption should not exceed 1000 characters"),
+  });
+
+  const handleUploadImage = async (file: File) => {
+    const formdata = new FormData();
+    formdata.append("file", file, file.name);
+
+    return fetch(`/api/upload`, {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+    })
+      .then((response) => response.json())
+      .then((result) => result)
+      .catch((error) => console.error(error));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileReader = new FileReader();
     const file = e.target.files;
 
@@ -97,13 +107,16 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
       };
     }
   };
-  const handleSubmit = async (values: CreateFormProps, h: FormikHelpers<CreateFormProps>) => {
+
+  const handleSubmit = async (
+    values: CreateFormProps,
+    h: FormikHelpers<CreateFormProps>
+  ) => {
     h.setSubmitting(false);
     setLoading(true);
 
     if (image) {
       const { secure_url } = await handleUploadImage(image);
-
       if (secure_url) {
         try {
           const res = await createMutation({
@@ -146,8 +159,10 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
         image,
         imageUrl,
         loading,
+        initialValues,
+        validationSchema,
         handleImageChange,
-        handleSubmit: handleSubmit
+        handleSubmit: handleSubmit,
       }}
     >
       {children}

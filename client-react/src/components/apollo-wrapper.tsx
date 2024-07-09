@@ -22,13 +22,15 @@ const wsLink = new GraphQLWsLink(
 const authLink = setContext(async (_, { headers }) => {
   // get the authentication token from local storage if it exists
   // console.log(_, headers);
-  await handleValid();
+  if (localStorage.getItem("isAuthenticated") == "Yes") {
+    await handleValid();
+  }
   // console.log(_, headers);
-  
+
   // return the headers to the context so httpLink can read them
   return {
     headers: {
-      ...headers
+      ...headers,
     },
   };
 });
@@ -56,10 +58,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: from([authLink,errorLink,splitLink]),
+  link: from([authLink, errorLink, splitLink]),
 });
-
-
 
 export function ApolloWrapper(props: any) {
   return <ApolloProvider client={client}>{props.children}</ApolloProvider>;

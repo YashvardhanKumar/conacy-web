@@ -86,6 +86,8 @@ const LikeForm: React.FC<Post> = ({ id, likes }) => {
   const [liked, setLiked] = useState(false);
   const [likesNo, setLikesNo] = useState(likes.length);
   async function handleChange() {
+    if (liked) setLikesNo(likesNo - 1);
+    else setLikesNo(likesNo + 1);
     setLiked(!liked);
     // console.log(liked);
     if (!liked) {
@@ -122,8 +124,7 @@ const LikeForm: React.FC<Post> = ({ id, likes }) => {
         }}
         transition={{ duration: .1 }}
         onClick={async () => {
-          if (liked) setLikesNo(likesNo - 1);
-          else setLikesNo(likesNo + 1);
+
           handleChange();
         }}
       >

@@ -1,16 +1,13 @@
-// import { FormValidationProvider } from "../../lib/provider/FormProvider";
 import CombineSteps from "./components/CombineSteps";
-// import { PageProvider } from "@/lib/provider/PageProvider";
-
-import { PageProvider } from "../../contextAPI/PageProvider";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import RegisterProvider from "./RegisterProvider/RegisterProvider";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if(localStorage.getItem("isAuthenticated") == "Yes") {
-      navigate('/');
+    if (localStorage.getItem("isAuthenticated") == "Yes") {
+      navigate("/");
     }
   });
   return (
@@ -18,9 +15,9 @@ const RegisterPage = () => {
       <div className=" animate-pulse h-[450px] sm:w-[450px] w-screen absolute bg-web-color blur-3xl"></div>
       <div className=" animate-pulse h-10 w-10 absolute left-0 top-0 z-10 bg-orange-500 blur-3xl"></div>
       <div className="card flex bg-base-200 shadow-xl sm:w-[600px] w-[90vw] relative">
-        <PageProvider>
-          <CombineSteps />
-        </PageProvider>
+        <RegisterProvider>
+            <CombineSteps />
+        </RegisterProvider>
       </div>
     </div>
   );

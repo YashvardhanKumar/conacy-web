@@ -101,6 +101,7 @@ const commentSubscription = graphql(/*graphql*/ `
     }
   }
 `);
+
 type CommentTileProps = {
   comment: Comment;
   setReplier: React.Dispatch<
@@ -299,7 +300,6 @@ const CommentTile: React.FC<CommentTileProps> = ({
 export default CommentTile;
 
 import React from "react";
-import ShortLike from "../../../../assets/Icons/ShortLike";
 import Like from "../../../../assets/Icons/Like";
 import { motion } from "framer-motion";
 

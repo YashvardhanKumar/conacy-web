@@ -1,8 +1,6 @@
-import { useEffect } from "react";
-import { Post } from "../../gql/graphql";
-import PostCardImage from "./components/PostCardImage";
+import { createContext, useContext, useEffect } from "react";
+import { graphql } from "../../../gql";
 import { useSuspenseQuery } from "@apollo/client";
-import { graphql } from "../../gql";
 
 export const getPosts = graphql(/* GraphQL */ `
   query Posts {
@@ -78,16 +76,26 @@ export const subsPostUpdate = graphql(/* graphql */ `
   }
 `);
 
-const PostsList = () => {
+
+const PostContext = createContext<PostContextProps | undefined>(undefined);
+
+export const usePostContext = () => {
+  const context = useContext(PostContext);
+  if (!context) {
+    throw new Error(
+      `${usePostContext.name} must be used within a ${PostProvider.name}`
+    );
+  }
+  return context;
+};
+
+const PostProvider: React.FC<PostProps> = ({ children }) => {
   const { data, subscribeToMore } = useSuspenseQuery(getPosts);
   useEffect(() => {
     subscribeToMore({
       document: subsPostCreate,
       updateQuery: (prev, { subscriptionData }) => {
-        // console.log(subscriptionData.data.postCreated);
-
         if (!subscriptionData.data) return prev;
-
         const newFeedItem = subscriptionData.data.postCreated.createdPost;
         return Object.assign({}, prev, {
           posts: [newFeedItem],
@@ -105,12 +113,7 @@ const PostsList = () => {
       },
     });
   });
-  if (data?.posts.length) {
-    return data?.posts.map(
-      (e, i) => e && <PostCardImage {...(e as Post)} key={`posts-${i}`} />
-    );
-  }
-  return <div className="content-center" children="No Posts Found" />;
+  return <PostContext.Provider value={{posts: data.posts}} children={children} />;
 };
 
-export default PostsList;
+export default PostProvider;

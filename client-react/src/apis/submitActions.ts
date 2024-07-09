@@ -1,22 +1,3 @@
-import { redirect } from "react-router-dom";
-
-// export const handleImageUpload = async (value: any) => {
-//   const url = process.env.NEXT_PUBLIC_CLIENT_URL;
-
-//   const { image } = value;
-//   console.log(image)
-// //   const res = await axios.post(`${url}/api/upload`, {
-// //     file:image
-// //   },
-// // {
-// //   headers: {
-// //     "Content-Type": "multipart/form-data",
-// //   },
-// // });
-// //   const result = await res.data;
-// //   return result;
-// };
-
 export const handleSubmitLogin = async (
   value: any
 ): Promise<any> => {
@@ -34,8 +15,7 @@ export const handleSubmitLogin = async (
       localStorage.setItem("isAuthenticated", "Yes");
       localStorage.setItem("username", result.username);
     }
-    redirect("/");
-    // return result ;
+    return result;
   } catch (e) {
     console.log(e);
     return {isAuthenticated: false,error: "Wrong credentials"};

@@ -179,9 +179,6 @@ const CommentForm: React.FC<CommentFormProps> = ({
       setComment("");
     }
   };
-
-  // const [replier, setReplier] = useState<string | null>();
-  // const [replyID, setReplyID] = useState<string | null>();
   return (
     <>
       <img
@@ -205,7 +202,6 @@ const CommentForm: React.FC<CommentFormProps> = ({
                 onClick={() => {
                   if (replier?.username.length) {
                     setReplier(null);
-                    // setReplyID(null);
                   }
                 }}
                 className="dark:bg-gray-700 bg-gray-200 p-0.5 text-xs -top-1.5 right-0 rounded-full"

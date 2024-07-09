@@ -7,11 +7,12 @@ import CommentIcon from "../../../assets/Icons/CommentIcon";
 import LikeForm from "./LikeForm";
 import { Post } from "../../../gql/graphql";
 import CommentButton from "./CommentButton";
+import SinglePostProvider from "../SinglePostProvider/SinglePostProvider";
 
 const PostCardImage: FC<Post> = ({ ...e }) => {
   const [seeMore, setSeeMore] = useState(false);
   return (
-    <>
+    <SinglePostProvider id={e.id}>
       <div className="w-[390px] max-_390:w-[95vw]">
         <div className="p-1 font-bold h-12 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
@@ -88,7 +89,6 @@ const PostCardImage: FC<Post> = ({ ...e }) => {
                       @{e.comments[0].author.username}
                     </div>
                     <div className="px-2">{e.comments[0].text}</div>
-                    
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@ const PostCardImage: FC<Post> = ({ ...e }) => {
           </div>
         </div>
       </div>
-    </>
+    </SinglePostProvider>
   );
 };
 
