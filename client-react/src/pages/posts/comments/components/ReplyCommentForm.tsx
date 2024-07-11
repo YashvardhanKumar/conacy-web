@@ -1,15 +1,18 @@
-
 import person from "../../../../assets/person.png";
 import { motion } from "framer-motion";
-import { useParams } from "react-router-dom";
 import CircularLoader from "../../../../components/CircularLoader";
-import { useCommentContext } from "../Providers/CommentProvider/CommentProvider";
+import { useReplyCommentContext } from "../Providers/ReplyCommentProvider/ReplyCommentProvider";
 
-const CommentForm = ({
-}) => {
-  const params = useParams();
-  const { handleCancelReply, replier, pointerRef, handleCommentChange, comment, handleClick,ccrm } =
-    useCommentContext();
+const ReplyCommentForm = ({}) => {
+  const {
+    handleCancelReply,
+    replier,
+    pointerRef,
+    handleCommentChange,
+    reply,
+    handleClick,
+    ccrm,
+  } = useReplyCommentContext();
   return (
     <>
       <img
@@ -57,7 +60,7 @@ const CommentForm = ({
         <input
           type="text"
           ref={pointerRef}
-          value={comment}
+          value={reply}
           className="bg-transparent h-10 outline-none w-full"
           placeholder="Type Comments"
           onChange={handleCommentChange}
@@ -72,4 +75,4 @@ const CommentForm = ({
   );
 };
 
-export default CommentForm;
+export default ReplyCommentForm;

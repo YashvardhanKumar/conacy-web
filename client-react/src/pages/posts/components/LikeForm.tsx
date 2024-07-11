@@ -1,17 +1,17 @@
-import  {useEffect, useState } from "react";
 import { graphql } from "../../../gql";
-import { useMutation } from "@apollo/client";
 
 import Like from "../../../assets/Icons/Like";
-import { Post } from "../../../gql/graphql";
-import { motion } from "framer-motion";
 
+import { motion } from "framer-motion";
+import { useSinglePostContext } from "../SinglePostProvider/SinglePostProvider";
 
 const unLikeQuery = graphql(/* graphql */ `
   mutation UnLikeQuery($id: ID!, $username: ID!) {
     updatePosts(
       where: { id: $id }
-      update: { likes: { disconnect: { where: { node: { username: $username } } } } }
+      update: {
+        likes: { disconnect: { where: { node: { username: $username } } } }
+      }
     ) {
       posts {
         id
@@ -46,7 +46,9 @@ const unLikeQuery = graphql(/* graphql */ `
 const likeQuery = graphql(/* graphql */ `
   mutation LikeQuery($username: ID!, $id: ID!) {
     updatePosts(
-      update: { likes: { connect: { where: { node: { username: $username } } } } }
+      update: {
+        likes: { connect: { where: { node: { username: $username } } } }
+      }
       where: { id: $id }
     ) {
       posts {
@@ -79,40 +81,8 @@ const likeQuery = graphql(/* graphql */ `
   }
 `);
 
-
-const LikeForm: React.FC<Post> = ({ id, likes }) => {
-  const [likeFunc] = useMutation(likeQuery);
-  const [unlikeFunc] = useMutation(unLikeQuery);
-  const [liked, setLiked] = useState(false);
-  const [likesNo, setLikesNo] = useState(likes.length);
-  async function handleChange() {
-    if (liked) setLikesNo(likesNo - 1);
-    else setLikesNo(likesNo + 1);
-    setLiked(!liked);
-    // console.log(liked);
-    if (!liked) {
-      await likeFunc({
-        variables: {
-          id: id,
-          username: localStorage.getItem("username") ?? "",
-        },
-      });
-    } else {
-      await unlikeFunc({
-        variables: {
-          id: id,
-          username: localStorage.getItem("username") ?? "",
-        },
-      });
-    }
-  }
-  useEffect(() => {
-    setLikesNo(likes.length);
-    setLiked(
-      likes?.filter((like) => like.username == localStorage.getItem("username")).length !=
-        0 ?? false
-    );
-  }, [likes]);
+const LikeForm = () => {
+  const { liked, likesNo, handleLike } = useSinglePostContext();
   return (
     <div className="inline-flex items-center">
       <motion.button
@@ -120,17 +90,13 @@ const LikeForm: React.FC<Post> = ({ id, likes }) => {
         name="likes"
         type="button"
         whileTap={{
-          scale: [null, 0.7, 0.8]
+          scale: [null, 0.7, 0.8],
         }}
-        transition={{ duration: .1 }}
-        onClick={async () => {
-
-          handleChange();
-        }}
-      >
-        <Like liked={liked} />
-      </motion.button>
-      <div>{likesNo}</div>
+        transition={{ duration: 0.1 }}
+        onClick={handleLike}
+        children={<Like liked={liked} />}
+      />
+      <div children={likesNo} />
     </div>
   );
 };

@@ -1,44 +1,14 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, Suspense, useContext, useEffect } from "react";
 import { graphql } from "../../../gql";
 import { useSuspenseQuery } from "@apollo/client";
+import { PostContextProps, PostProps } from "./types";
+import { Post } from "../../../gql/graphql";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 export const getPosts = graphql(/* GraphQL */ `
-  query Posts {
+  query Posts2 {
     posts {
       id
-      url
-      description
-      creatorOfPost {
-        id
-        name
-        email
-        username
-        dob
-      }
-      likes {
-        id
-        name
-        email
-        username
-        dob
-        createdAt
-        updatedAt
-      }
-      comments {
-        id
-        text
-        author {
-          id
-          name
-          email
-          username
-          dob
-        }
-        replies {
-          id
-          text
-        }
-      }
     }
   }
 `);
@@ -76,7 +46,6 @@ export const subsPostUpdate = graphql(/* graphql */ `
   }
 `);
 
-
 const PostContext = createContext<PostContextProps | undefined>(undefined);
 
 export const usePostContext = () => {
@@ -108,12 +77,22 @@ const PostProvider: React.FC<PostProps> = ({ children }) => {
         if (!subscriptionData.data) return prev;
         const newFeedItem = subscriptionData.data.postUpdated.updatedPost;
         return Object.assign({}, prev, {
-          posts: [newFeedItem],
+          posts: [...(prev.posts)],
         });
       },
     });
   });
-  return <PostContext.Provider value={{posts: data.posts}} children={children} />;
+  return (
+    <Suspense
+      fallback={<LoadingSpinner />}
+      children={
+        <PostContext.Provider
+          value={{ posts: data.posts as Post[] }}
+          children={children}
+        />
+      }
+    />
+  );
 };
 
 export default PostProvider;

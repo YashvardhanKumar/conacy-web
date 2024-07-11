@@ -1,8 +1,15 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useMutation, useQuery, useSuspenseQuery } from "@apollo/client";
+import {
+  createContext,
+  Suspense,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { graphql } from "../../../gql";
 import { SinglePostContextProps, SinglePostProps } from "./types";
 import { Post } from "../../../gql/graphql";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const singlePostQuery = graphql(/* graphql */ `
   query SinglePosts($pid: ID!) {
@@ -137,7 +144,7 @@ export const useSinglePostContext = () => {
 const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
   const [likeFunc] = useMutation(likeQuery);
   const [unlikeFunc] = useMutation(unLikeQuery);
-  const spq = useQuery(singlePostQuery, {
+  const spq = useSuspenseQuery(singlePostQuery, {
     variables: {
       pid: id,
     },
@@ -174,16 +181,21 @@ const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
     );
   }, [spq.data?.posts[0].likes]);
   return (
-    <SinglePostContext.Provider
-      value={{
-        post: spq.data?.posts[0] as Post,
-        likeFunc,
-        unlikeFunc,
-        liked,
-        likesNo,
-        handleLike,
-      }}
-      children={children}
+    <Suspense
+      fallback={<LoadingSpinner />}
+      children={
+        <SinglePostContext.Provider
+          value={{
+            post: spq.data!.posts[0] as Post,
+            likeFunc,
+            unlikeFunc,
+            liked,
+            likesNo,
+            handleLike,
+          }}
+          children={children}
+        />
+      }
     />
   );
 };
