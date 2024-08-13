@@ -13,6 +13,9 @@ import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../..', 'client','dist'),
+    }),
     ConfigModule.forRoot({ isGlobal: true }),
     Neo4jModule.forRootAsync(),
     OgmModule.registerAsync({
@@ -25,10 +28,7 @@ import { join } from 'path';
         neo4jPassword: configService.get("NEO4J_PASSWORD"),
       })
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'client','dist'),
-      
-    }),
+
     AuthModule,
     PostsModule,
     CloudinaryModule.forRootAsync({
