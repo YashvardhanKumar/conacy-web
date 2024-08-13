@@ -13,9 +13,9 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'client','dist'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '../..', 'client','dist'),
+    // }),
     ConfigModule.forRoot({ isGlobal: true }),
     Neo4jModule.forRootAsync(),
     OgmModule.registerAsync({

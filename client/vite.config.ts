@@ -6,16 +6,18 @@ export default defineConfig({
   plugins: [react()],
   server: {
     // host: '0.0.0.0', // Allows external access to the dev server.
-    // port: 3000,
-    proxy: {
-      '/api': {
-        target: 'https://conacy-web-1.onrender.com/',
-        changeOrigin: true,
-      },
-    },
-    hmr: {
-      overlay: false,
-    },
+    port: 3000,
+    // proxy: {
+    //   '/api': {
+    //     target: "https://conacy-web-1.onrender.com/",
+    //     rewrite: (path) => path.replace(/^\/api/, ''),
+    //     // target: 'https://conacy-web-1.onrender.com/',
+    //     changeOrigin: true,
+    //   },
+    // },
+    // hmr: {
+    //   overlay: false,
+    // },
   }
   // server: {
   //   // host: '0.0.0.0', // Allows external access to the dev server.

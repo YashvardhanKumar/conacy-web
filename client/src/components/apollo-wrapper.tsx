@@ -8,14 +8,14 @@ import { handleValid } from "../apis/submitActions";
 import { onError } from "@apollo/client/link/error";
 
 const httpLink = createHttpLink({
-  uri: `/api/graphql`,
-  credentials: "same-origin",
+  uri: `${import.meta.env.VITE_SERVER_URL}/graphql`,
+  credentials: "include",
   fetchOptions: { cache: "no-store" },
 });
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:3001/graphql",
+    url: `${import.meta.env.VITE_WS}/graphql`,
   })
 );
 

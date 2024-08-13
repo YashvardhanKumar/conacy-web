@@ -3,8 +3,10 @@ export const handleSubmitLogin = async (
 ): Promise<any> => {
   const { email, password } = value;
   try {
-    const res = await fetch("/api/auth/login", {
+  let url = import.meta.env.VITE_SERVER_URL;
+    const res = await fetch(url + "/auth/login", {
       method: "PUT",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,9 +25,13 @@ export const handleSubmitLogin = async (
 };
 
 export const handleValid = async () => {
+  let url = import.meta.env.VITE_SERVER_URL;
+  console.log(import.meta.env.VITE_SERVER_URL);
+
   try {
-    const res = await fetch("/api/auth/verify", {
+    const res = await fetch(url + "/auth/verify", {
       method: "POST",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

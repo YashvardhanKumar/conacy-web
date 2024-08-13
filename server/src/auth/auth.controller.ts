@@ -24,12 +24,12 @@ export class AuthController {
   private optionsAccess: CookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'strict',
+    // sameSite: 'strict',
   };
   private optionsRefresh: CookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'strict',
+    // sameSite: 'strict',
   };
   @HttpCode(HttpStatus.OK)
   @Post('signUp')
