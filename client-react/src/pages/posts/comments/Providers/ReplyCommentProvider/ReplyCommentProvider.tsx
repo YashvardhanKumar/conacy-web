@@ -1,7 +1,10 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
-import { Comment, Post } from "../../../../../gql/graphql";
+import { Comment } from "../../../../../gql/graphql";
+import { CommentReplyPageSkeleton } from "../../../components/Skeleton";
+import { ReplyCommentContextProps, ReplyCommentProps } from "./types";
+import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
 
 const commentSubscription = graphql(/*graphql*/ `
   subscription CommentCreated {
@@ -109,14 +112,12 @@ export const useReplyCommentContext = () => {
 };
 
 const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({ children, params }) => {
-  const inputRef = useRef<HTMLDivElement | null>(null);
-  const pointerRef = useRef<HTMLInputElement | null>(null);
+  const { inputRef, pointerRef, replier, setReplier } = useCommentInputContext();
   const { data, subscribeToMore } = useQuery(getSingleComment, {
     variables: {
       cid: params?.cid ?? null,
     },
   });
-  const [replier, setReplier] = useState<ReplyReplierProps | null>(null);
   const ccrm = useMutation(commentReplyMutation);
   const [comment, setComment] = useState("");
 
@@ -183,7 +184,7 @@ const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({ children, params })
     });
   }, [data]);
   if (!data) {
-    return <CommentPageSkeleton />;
+    return <CommentReplyPageSkeleton />;
   }
   return (
     <ReplyCommentContext.Provider
@@ -203,35 +204,4 @@ const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({ children, params })
     />
   );
 };
-
 export default ReplyCommentProvider;
-
-import React from "react";
-import { CommentTileSkeleton } from "../../../components/Skeleton";
-import { ReplyCommentContextProps, ReplyCommentProps, ReplyReplierProps } from "./types";
-
-export const CommentPageSkeleton = () => {
-  return (
-    <div className="flex flex-col  w-full md:w-3/5 lg:w-2/5 max-_390:w-[95vw]">
-      <div className="flex items-center gap-3 w-full p-3">
-        <div className="skeleton sm:h-14 sm:w-14 w-10 h-10" />
-        <div className="flex flex-col w-full sm:gap-1">
-          <div className="skeleton w-1/2 h-5" />
-          <div className="skeleton h-4 w-1/2"></div>
-        </div>
-      </div>
-      <div className="p-3">
-        <div className="skeleton h-[520px] w-full" />
-      </div>
-      <div className="p-3">
-        <div className="skeleton w-full flex items-center p-3 h-10" />
-      </div>
-      <div className="p-3">
-        <div className="skeleton p-4 w-40 h-5" />
-      </div>
-      <CommentTileSkeleton />
-      <CommentTileSkeleton />
-      <CommentTileSkeleton />
-    </div>
-  );
-};

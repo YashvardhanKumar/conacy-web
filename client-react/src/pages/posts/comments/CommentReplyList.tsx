@@ -3,10 +3,8 @@ import SingleCommentProvider, {
   useSingleCommentContext,
 } from "./Providers/SingleCommentProvider/SingleCommentProvider";
 import { CommentTileSkeleton } from "../components/Skeleton";
-import { useCommentContext } from "./Providers/CommentProvider/CommentProvider";
 
 const CommentReplyList = () => {
-  const { pointerRef, inputRef, setReplier } = useCommentContext();
   const { replyList } = useSingleCommentContext();
   if (!replyList) return <CommentTileSkeleton />;
   return (
@@ -29,17 +27,7 @@ const CommentReplyList = () => {
           <SingleCommentProvider
             id={reply.id}
             key={reply.id}
-            pointerRef={pointerRef}
-            inputRef={inputRef}
-            setReplier={setReplier}
-            children={
-              <CommentTile
-                id={reply.id}
-                pointerRef={pointerRef}
-                inputRef={inputRef}
-                setReplier={setReplier}
-              />
-            }
+            children={<CommentTile />}
           />
         </>
       ))}

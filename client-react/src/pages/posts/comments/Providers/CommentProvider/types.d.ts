@@ -4,12 +4,7 @@ interface CommentProps {
   children: React.ReactNode;
   params: Readonly<Params<string>>
 }
-interface ReplierProps {
-  username: string;
-  cid: string?;
-  indent: number;
-  parentsOfComment: string[];
-}
+
 interface CommentContextProps {
   inputRef: React.MutableRefObject<HTMLDivElement | null>;
   pointerRef: React.MutableRefObject<HTMLInputElement | null>;

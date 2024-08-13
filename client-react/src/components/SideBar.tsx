@@ -25,7 +25,7 @@ const NavBar = () => {
             <ToggleSettings />
           </Link>
           <Link
-            to={"/profile/:username"}
+            to={`/profile/${localStorage.getItem('username')}`}
             className="btn btn-ghost w-12 p-0 group"
           >
             <PersonIcon />
@@ -59,11 +59,11 @@ const NavBar = () => {
           <Link to={"/create"} className="btn btn-ghost w-12 p-0 group">
             <AddCircle />
           </Link>
-          <Link to={"/usersettings"} className="btn btn-ghost w-12 p-0 group">
+          <Link to={"/settings"} className="btn btn-ghost w-12 p-0 group">
             <ToggleSettings />
           </Link>
           <Link
-            to={"/profile/:username"}
+            to={`/profile/${localStorage.getItem('username')}`}
             className="btn btn-ghost w-12 p-0 group"
           >
             <PersonIcon />

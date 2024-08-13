@@ -6,14 +6,8 @@ import { useParams } from "react-router-dom";
 import SingleCommentProvider from "../Providers/SingleCommentProvider/SingleCommentProvider";
 
 export const CommentList = () => {
-  const {
-    comments,
-    post,
-    inputRef,
-    pointerRef,
-    commentCount,
-    setReplier,
-  } = useCommentContext();
+  const { comments, post, inputRef, pointerRef, commentCount, setReplier } =
+    useCommentContext();
   return (
     <div className="flex flex-col  w-full md:w-3/5 lg:w-2/5 max-_390:w-[95vw]">
       <div className="flex items-center gap-3 p-3 border-b-[0.5px] border-t-[0.5px] border-slate-400">
@@ -40,20 +34,7 @@ export const CommentList = () => {
       </div>
       <div className="p-4 text-xl ">Comments ({commentCount})</div>
       {comments.map((comment) => (
-        <SingleCommentProvider
-          id={comment.id}
-          pointerRef={pointerRef}
-          inputRef={inputRef}
-          setReplier={setReplier}
-          children={
-            <CommentTile
-              id={comment.id}
-              pointerRef={pointerRef}
-              inputRef={inputRef}
-              setReplier={setReplier}
-            />
-          }
-        />
+        <SingleCommentProvider id={comment.id} children={<CommentTile />} />
       ))}
     </div>
   );

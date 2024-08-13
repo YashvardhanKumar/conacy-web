@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
-import { CommentContextProps, CommentProps, ReplierProps } from "./types";
+import { CommentContextProps, CommentProps } from "./types";
 import { Comment, Post } from "../../../../../gql/graphql";
+import { CommentPageSkeleton } from "../../../components/Skeleton";
+import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
 
 const getPostComments = graphql(/* GraphQL */ `
   query PostComments($pid: ID!) {
@@ -111,8 +113,7 @@ export const useCommentContext = () => {
 };
 
 const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
-  const inputRef = useRef<HTMLDivElement | null>(null);
-  const pointerRef = useRef<HTMLInputElement | null>(null);
+  const {inputRef, pointerRef, replier, setReplier} = useCommentInputContext();
   const { data, subscribeToMore } = useQuery(
     getPostComments,
     {
@@ -121,7 +122,7 @@ const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
       },
     }
   );
-  const [replier, setReplier] = useState<ReplierProps | null>(null);
+  // const [replier, setReplier] = useState<ReplierProps | null>(null);
   const ccrm = useMutation(commentReplyMutation);
   const [comment, setComment] = useState("");
 
@@ -211,34 +212,4 @@ const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
     />
   );
 };
-
 export default CommentProvider;
-
-import React from "react";
-import { CommentTileSkeleton } from "../../../components/Skeleton";
-
-export const CommentPageSkeleton = () => {
-  return (
-    <div className="flex flex-col  w-full md:w-3/5 lg:w-2/5 max-_390:w-[95vw]">
-      <div className="flex items-center gap-3 w-full p-3">
-        <div className="skeleton sm:h-14 sm:w-14 w-10 h-10" />
-        <div className="flex flex-col w-full sm:gap-1">
-          <div className="skeleton w-1/2 h-5" />
-          <div className="skeleton h-4 w-1/2"></div>
-        </div>
-      </div>
-      <div className="p-3">
-        <div className="skeleton h-[520px] w-full" />
-      </div>
-      <div className="p-3">
-        <div className="skeleton w-full flex items-center p-3 h-10" />
-      </div>
-      <div className="p-3">
-        <div className="skeleton p-4 w-40 h-5" />
-      </div>
-      <CommentTileSkeleton />
-      <CommentTileSkeleton />
-      <CommentTileSkeleton />
-    </div>
-  );
-};

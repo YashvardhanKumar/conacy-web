@@ -2,17 +2,37 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
   enum RelationType {
-    STRANGER
+    NONE
+    ACQUAINTANCE
     FRIEND
     CLOSE_FRIEND
     BEST_FRIEND
-    RELATIVE
-    ACQUAINTANCE
+  }
+  enum MessageType {
+    GROUP
+    CHAT
+    NETWORK
   }
 
+  enum MessageFormat {
+    TEXT
+    VIDEO
+    AUDIO
+    GIF
+    STICKER
+    IMAGES
+  }
   type JwtPayload @jwt {
     username: ID!
     email: String!
+  }
+  type PrivacySettings {
+    chatVisibility: [RelationType!] @default(value: [NONE])
+    profileVisibility: [RelationType!] @default(value: [NONE])
+    whoCanSendMessageRequest: [RelationType!] @default(value: [NONE])
+    seenReceipts: Boolean!
+    onlineStatus: [RelationType!] @default(value: [NONE])
+    isTyping: Boolean!
   }
   type User
     @authorization(
@@ -32,6 +52,7 @@ export const typeDefs = gql`
     dob: Date
     refreshToken: String @private
     blackList: [String!] @private
+    profileUrl: String
     relations: [User!]!
       @relationship(
         type: "RELATIONS_WITH"
@@ -55,7 +76,7 @@ export const typeDefs = gql`
   }
 
   type Relation @relationshipProperties {
-    type: RelationType! @default(value: STRANGER)
+    type: RelationType! @default(value: NONE)
   }
   type Post
     @authorization(
@@ -96,6 +117,18 @@ export const typeDefs = gql`
     parentsOfComment: [ID!]!
     replyOfComment: Comment @relationship(type: "REPLIED_ON", direction: OUT)
     replies: [Comment!]! @relationship(type: "REPLIED_ON", direction: IN)
+    createdAt: DateTime @timestamp(operations: [CREATE])
+    updatedAt: DateTime @timestamp(operations: [UPDATE])
+  }
+
+  type Message {
+    id: ID! @id
+    text: String
+    file: String
+    type: MessageType!
+    format: MessageFormat!
+    sender: User! @relationship(type: "MESSAGE_SENT_BY", direction: IN)
+    receiver: User! @relationship(type: "MESSAGE_RECEIVED_BY", direction: IN),
     createdAt: DateTime @timestamp(operations: [CREATE])
     updatedAt: DateTime @timestamp(operations: [UPDATE])
   }

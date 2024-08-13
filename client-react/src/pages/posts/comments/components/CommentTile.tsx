@@ -1,22 +1,10 @@
 import Like from "../../../../assets/Icons/Like";
 import person from "../../../../assets/person.png";
-import { ReplierProps } from "../Providers/CommentProvider/types";
 import CommentReplyList from "../CommentReplyList";
 import { useSingleCommentContext } from "../Providers/SingleCommentProvider/SingleCommentProvider";
 import { motion } from "framer-motion";
-interface CommentTileProps {
-  id: string;
-  pointerRef: React.MutableRefObject<HTMLInputElement | null>;
-  inputRef: React.MutableRefObject<HTMLDivElement | null>;
-  setReplier: React.Dispatch<React.SetStateAction<ReplierProps | null>>;
-}
 
-const CommentTile: React.FC<CommentTileProps> = ({
-  id,
-  pointerRef,
-  inputRef,
-  setReplier,
-}) => {
+const CommentTile = () => {
   const {
     comment,
     like,
@@ -107,16 +95,7 @@ const CommentTile: React.FC<CommentTileProps> = ({
                   </div>
                 </div>
                 {showReplies && (
-                  <CommentReplyList
-                    key={"replylist" + comment.id}
-                    {...{
-                      setReplier,
-                      pointerRef,
-                      inputRef,
-                      data: comment,
-                      replyList
-                    }}
-                  />
+                  <CommentReplyList key={"replylist" + comment.id} />
                 )}
               </div>
             </div>

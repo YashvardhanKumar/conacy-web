@@ -17,6 +17,7 @@ import Messages from "./pages/messages/Messages.tsx";
 import CommentsPage from "./pages/posts/comments/CommentsPage.tsx";
 import NavBar from "./components/SideBar.tsx";
 import CommentReplyPage from "./pages/posts/comments/CommentReplyPage.tsx";
+import ProfilePage from "./pages/profile/ProfilePage.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,7 @@ function Root() {
           <Route path="" element={<CommentsPage />} />
           <Route path=":cid" element={<CommentReplyPage />} />
         </Route>
+        <Route path="/profile/:username" element={<ProfilePage />} />
       </Routes>
     </>
   );

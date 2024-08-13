@@ -1,16 +1,12 @@
-import {
-  createContext,
-  Suspense,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
 import { Comment } from "../../../../../gql/graphql";
 import { SingleCommentContextProps, SingleCommentProps } from "./types";
 import { CommentTileSkeleton } from "../../../components/Skeleton";
 import { useCommentContext } from "../CommentProvider/CommentProvider";
+import { useNavigate, useParams } from "react-router-dom";
+import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
 
 const likeComment = graphql(/* GraphQL */ `
   mutation LikeComment($username: ID!, $cid: ID!) {
@@ -18,6 +14,21 @@ const likeComment = graphql(/* GraphQL */ `
       where: { id: $cid }
       update: {
         likes: { connect: { where: { node: { username: $username } } } }
+      }
+    ) {
+      comments {
+        id
+      }
+    }
+  }
+`);
+
+const unlikeComment = graphql(/* GraphQL */ `
+  mutation unLikeComment($username: ID!, $cid: ID!) {
+    updateComments(
+      where: { id: $cid }
+      update: {
+        likes: { disconnect: { where: { node: { username: $username } } } }
       }
     ) {
       comments {
@@ -66,14 +77,6 @@ const getSingleComment = graphql(/*graphql*/ `
         createdAt
         updatedAt
       }
-      commentOfPost {
-        id
-        url
-        description
-        visibility
-        createdAt
-        updatedAt
-      }
       replyOfComment {
         id
         text
@@ -89,9 +92,6 @@ const getSingleComment = graphql(/*graphql*/ `
           createdAt
           updatedAt
         }
-      }
-      replies {
-        id
       }
     }
   }
@@ -136,6 +136,61 @@ const commentSubscription = graphql(/*graphql*/ `
     }
   }
 `);
+
+const commentLikeRelnSubs = graphql(/*graphql*/ `
+  subscription ReplyLikeCommentRelationshipDeleted($username: ID!) {
+    commentRelationshipCreated(
+      where: {
+        createdRelationship: { likes: { node: { username: $username } } }
+      }
+    ) {
+      event
+      timestamp
+      relationshipFieldName
+      comment {
+        id
+        text
+        indent
+        createdAt
+        updatedAt
+      }
+      createdRelationship {
+        likes {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+`);
+const commentunLikeRelnSubs = graphql(/*graphql*/ `
+  subscription ReplyunLikeCommentRelationshipDeleted($username: ID!) {
+    commentRelationshipDeleted(
+      where: {
+        deletedRelationship: { likes: { node: { username: $username } } }
+      }
+    ) {
+      event
+      timestamp
+      relationshipFieldName
+      comment {
+        id
+        text
+        indent
+        createdAt
+        updatedAt
+      }
+      deletedRelationship {
+        likes {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+`);
 const commentDeleteSub = graphql(`
   subscription CommentDeleted {
     commentDeleted {
@@ -171,8 +226,10 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
   children,
   id,
 }) => {
-  const {pointerRef, inputRef, setReplier} = useCommentContext();
-  const { data } = useQuery(getSingleComment, {
+  const nav = useNavigate();
+  const { cid } = useParams();
+  const { pointerRef, setReplier, inputRef } = useCommentInputContext();
+  const { data, subscribeToMore } = useQuery(getSingleComment, {
     variables: {
       cid: id,
     },
@@ -188,8 +245,23 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
   const [showReplies, setShowReplies] = useState(false);
   const [like, setLike] = useState(false);
   const [likeCommentFunc] = useMutation(likeComment);
+  const [unlikeCommentFunc] = useMutation(unlikeComment);
   const [deleteCommentFunc] = useMutation(deleteComment);
-  const toggleReplies = () => setShowReplies(!showReplies);
+  const toggleReplies = () => {
+    if (
+      !showReplies &&
+      data?.comments[0].indent &&
+      data.comments[0].indent % 3 == 0
+    ) {
+      if (cid) {
+        nav(`../${id}`, { relative: "path" });
+      } else {
+        nav(`./${id}`, { relative: "path" });
+      }
+    }
+    setShowReplies(!showReplies);
+  };
+
   useEffect(() => {
     pointerRef.current?.focus({ preventScroll: true });
   });
@@ -201,16 +273,55 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
           cid: id,
         },
       });
+    } else {
+      unlikeCommentFunc({
+        variables: {
+          username: localStorage?.getItem("username") ?? "",
+          cid: id,
+        },
+      });
     }
   }, [like]);
   useEffect(() => {
-    console.log(data?.comments);
+    console.log(data?.comments[0].likes.length);
     if (!data) return;
     setLike(
       data.comments[0]?.likes?.filter(
         (like) => like.username == localStorage.getItem("username")
       ).length != 0 ?? false
     );
+    subscribeToMore({
+      document: commentLikeRelnSubs,
+      variables: { username: localStorage.getItem("username")! },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+        const d = subscriptionData.data.commentRelationshipCreated;
+        return Object.assign({}, prev, {
+          comments: [
+            {
+              ...d.comment,
+              likes: [d.createdRelationship.likes!.node],
+            },
+          ],
+        });
+      },
+    });
+    subscribeToMore({
+      document: commentunLikeRelnSubs,
+      variables: { username: localStorage.getItem("username")! },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+        const d = subscriptionData.data.commentRelationshipDeleted;
+        return Object.assign({}, prev, {
+          comments: [
+            {
+              ...d.comment,
+              likes: [d.deletedRelationship.likes!.node],
+            },
+          ],
+        });
+      },
+    });
   }, [data]);
   useEffect(() => {
     replySub({
@@ -224,6 +335,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
         });
       },
     });
+
     replySub({
       document: commentDeleteSub,
       updateQuery: (prev, { subscriptionData }) => {
@@ -260,6 +372,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
       parentsOfComment: [...data!.comments[0].parentsOfComment, id],
     });
   };
+
   if (!data) {
     return <CommentTileSkeleton />;
   }
