@@ -177,7 +177,7 @@ const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
     setLiked(
       spq.data?.posts[0].likes?.filter(
         (like) => like.username == localStorage.getItem("username")
-      ).length != 0 ?? false
+      ).length != 0
     );
   }, [spq.data?.posts[0].likes]);
   return (

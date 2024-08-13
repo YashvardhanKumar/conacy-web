@@ -73,8 +73,7 @@ const CommentTile = () => {
                       children="Reply"
                     />
                     {(comment.author.username ==
-                      localStorage?.getItem("username") ??
-                      "") && (
+                      localStorage?.getItem("username")) && (
                       <button
                         className=" text-gray-400 text-xs w-fit p-1"
                         children="Delete"

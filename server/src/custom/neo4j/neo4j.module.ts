@@ -4,15 +4,15 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import neo4j from 'neo4j-driver';
 import { typeDefs } from 'src/gql/type-defs';
 import { Neo4jGraphQL } from '@neo4j/graphql';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
-export async function gqlProviderFactory(): Promise<
+export async function gqlProviderFactory(configService: ConfigService): Promise<
   Omit<ApolloDriverConfig, 'driver'>
 > {
-  const { NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, CLIENT_URL } = process.env;
-
+  
   const driver = neo4j.driver(
-    NEO4J_URI,
-    neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD),
+    configService.get<string>("NEO4J_URI"),
+    neo4j.auth.basic(configService.get("NEO4J_USERNAME"), configService.get("NEO4J_PASSWORD")),
   );
 
   const neoSchema = new Neo4jGraphQL({
@@ -102,7 +102,9 @@ export class Neo4jModule {
         // Ensure you have your config module set up
         GraphQLModule.forRootAsync<ApolloDriverConfig>({
           driver: ApolloDriver,
-          useFactory: gqlProviderFactory,
+          imports: [ConfigModule],
+          useFactory: async (configService: ConfigService)=> await gqlProviderFactory(configService),
+          inject: [ConfigService]
         }),
       ],
     };
