@@ -1,6 +1,6 @@
 import feed from "../assets/feed.png";
 
-const ScreenshotPhone = (props: any) => {
+const ScreenshotPhone = () => {
   return (
     <div className="h-[480px] w-[240px] relative flex-shrink-0">
       <div className="absolute">

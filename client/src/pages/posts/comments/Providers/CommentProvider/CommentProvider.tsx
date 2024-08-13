@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
 import { CommentContextProps, CommentProps } from "./types";

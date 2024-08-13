@@ -18,7 +18,6 @@ const CustomFileInput: FC<CustomFileFieldProps> = ({
   label,
   imageUrl,
   content,
-  value,
   onChange,
 }) => {
   const [field, meta, helpers] = useField(name);

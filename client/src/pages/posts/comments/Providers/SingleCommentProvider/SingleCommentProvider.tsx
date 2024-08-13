@@ -4,7 +4,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Comment } from "../../../../../gql/graphql";
 import { SingleCommentContextProps, SingleCommentProps } from "./types";
 import { CommentTileSkeleton } from "../../../components/Skeleton";
-import { useCommentContext } from "../CommentProvider/CommentProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
 
@@ -288,7 +287,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
     setLike(
       data.comments[0]?.likes?.filter(
         (like) => like.username == localStorage.getItem("username")
-      ).length != 0 ?? false
+      ).length != 0
     );
     subscribeToMore({
       document: commentLikeRelnSubs,

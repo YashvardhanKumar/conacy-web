@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IconProps } from "./IconProps";
 
-const NotificationIcon : FC<IconProps> = ({className}) => {
+const NotificationIcon : FC<IconProps> = () => {
   return (
     <svg
       className="dark:*:stroke-white h-8 w-8"

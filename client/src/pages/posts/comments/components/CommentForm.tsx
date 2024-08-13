@@ -7,7 +7,6 @@ import { useCommentContext } from "../Providers/CommentProvider/CommentProvider"
 
 const CommentForm = ({
 }) => {
-  const params = useParams();
   const { handleCancelReply, replier, pointerRef, handleCommentChange, comment, handleClick,ccrm } =
     useCommentContext();
   return (

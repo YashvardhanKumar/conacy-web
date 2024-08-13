@@ -3,7 +3,6 @@ import CustomTextArea from "../../components/inputs/CustomTextAreaInput";
 import CustomFileInput from "../../components/inputs/CustomFileInput";
 import CircularLoader from "../../components/CircularLoader";
 import {
-  CreatePostProvider,
   useCreatePostContext,
 } from "./CreatePostProvider/CreatePostProvider";
 

@@ -2,11 +2,10 @@ import { useCommentContext } from "../Providers/CommentProvider/CommentProvider"
 import CommentForm from "./CommentForm";
 import CommentTile from "./CommentTile";
 import person from "../../../../assets/person.png";
-import { useParams } from "react-router-dom";
 import SingleCommentProvider from "../Providers/SingleCommentProvider/SingleCommentProvider";
 
 export const CommentList = () => {
-  const { comments, post, inputRef, pointerRef, commentCount, setReplier } =
+  const { comments, post, inputRef, commentCount } =
     useCommentContext();
   return (
     <div className="flex flex-col  w-full md:w-3/5 lg:w-2/5 max-_390:w-[95vw]">
