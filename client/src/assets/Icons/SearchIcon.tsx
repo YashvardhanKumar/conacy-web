@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IconProps } from "./IconProps";
 
-const SearchIcon: FC<IconProps> = ({className}) => {
+const SearchIcon: FC<IconProps> = () => {
   return (
     <svg
       className="dark:*:fill-white h-8 w-8"

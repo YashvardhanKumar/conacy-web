@@ -14,7 +14,6 @@ type CustomDateTimePickerProps = {
 const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
   label,
   name,
-  hint,
   required,
   //   value,
 }) => {
@@ -50,7 +49,7 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
     var output = values.map(function (v, i) {
       return v.length == 2 && i < 2 ? v + " / " : v;
     });
-    setDate((d) => output.join("").slice(0, 14));
+    setDate(() => output.join("").slice(0, 14));
   };
 
   const checkValue = (str: string, max: number) => {

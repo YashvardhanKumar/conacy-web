@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IconProps } from "./IconProps";
 
-const GroupIcon: FC<IconProps> = ({className}) => {
+const GroupIcon: FC<IconProps> = () => {
   return (
     <svg
       viewBox="0 0 24 24"

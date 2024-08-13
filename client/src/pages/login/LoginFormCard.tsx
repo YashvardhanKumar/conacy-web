@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/conacylogo.svg";
 import FormLogin from "./components/FormLogin";
-import { useLoginContext } from "./LoginProvider/LoginProvider";
-import CircularLoader from "../../components/CircularLoader";
 
 const LoginFormCard = () => {
 

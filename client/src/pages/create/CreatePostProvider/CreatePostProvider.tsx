@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { graphql } from "../../../gql";
 import * as yup from "yup";
@@ -68,7 +68,6 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [createMutation] = useMutation(createPost);
   const [loading, setLoading] = useState(false);
-  const [visibility, setVisibility] = useState(0);
 
   const initialValues: CreateFormProps = {
     caption: "",

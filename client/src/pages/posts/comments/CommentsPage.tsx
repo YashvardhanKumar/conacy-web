@@ -1,4 +1,3 @@
-import { graphql } from "../../../gql";
 import { Navigate, useParams } from "react-router-dom";
 import CommentProvider from "./Providers/CommentProvider/CommentProvider";
 import { CommentList } from "./components/CommentList";
