@@ -1,11 +1,13 @@
 {
-  "name": "client-react",
+  "name": "client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "build": "tsc -b && vite build",
+    "check-types": "tsc --noEmit",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config codegen.ts"
@@ -35,6 +37,7 @@
     "react-router-dom": "^6.24.0",
     "redux": "^5.0.1",
     "uuid": "^10.0.0",
+    "vite-plugin-vercel": "^8.0.1",
     "yup": "^1.4.0",
     "yup-password": "^0.4.0"
   },

@@ -4,7 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import { startStandaloneServer } from '@apollo/server/dist/esm/standalone';
 import { ApolloServer } from '@apollo/server';
 import { gqlProviderFactory } from './custom/neo4j/neo4j.module';
-
+import * as dotenv from 'dotenv'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
@@ -17,8 +17,9 @@ async function bootstrap() {
       // maxAge: 3600,
     },
   });
-
-  app.use(cookieParser())
+  app.setGlobalPrefix('api');
+  app.use(cookieParser());
+  dotenv.config();
   await app.listen(3001);
 }
 bootstrap();
