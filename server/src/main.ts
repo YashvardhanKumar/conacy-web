@@ -1,20 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import * as cookieParser from 'cookie-parser';
+import { startStandaloneServer } from '@apollo/server/dist/esm/standalone';
+import { ApolloServer } from '@apollo/server';
+import { gqlProviderFactory } from './custom/neo4j/neo4j.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    // cors: {
-    //   origin: ['http://localhost:3000'],
-    //   credentials: true,
-    //   // allowedHeaders: ['Content-Type', 'Authorization'],
-    //   // exposedHeaders: ['Content-Type', 'Authorization'],
-    //   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    //   // preflightContinue: false,
-    //   // optionsSuccessStatus: 204,
-    //   maxAge: 3600,
-    // },
+    cors: {
+      credentials: true,
+      origin: 'http://localhost:3000',
+      // exposedHeaders: ['Content-Type', 'Authorization'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      // preflightContinue: false,
+      // optionsSuccessStatus: 204,
+      // maxAge: 3600,
+    },
   });
 
+  app.use(cookieParser())
   await app.listen(3001);
 }
 bootstrap();

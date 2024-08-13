@@ -1,84 +1,26 @@
-import { ConfigurableModuleAsyncOptions, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import neo4j, { LocalDateTime } from 'neo4j-driver';
-import { OGM } from '@neo4j/graphql-ogm';
+import neo4j from 'neo4j-driver';
 import { typeDefs } from 'src/gql/type-defs';
 import { Neo4jGraphQL } from '@neo4j/graphql';
-import * as argon2 from 'argon2';
-import { ApolloError, gql } from 'apollo-server';
-import {
-  CreateInfo,
-  CreateUsersMutationResponse,
-  User,
-} from '../../generated/graphql';
-import { DocumentNode, graphql } from 'graphql';
-import { log } from 'console';
-import { OgmModule } from '../ogm/ogm.module';
-import { OGMConstructor } from '@neo4j/graphql-ogm/dist/classes/OGM';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 
-const resolvers = (ogm: OGM) => {
-  return {
-    Mutation: {
-      createUsers: async (
-        object: any,
-        params: any,
-        ctx: any,
-        resolverInfo: any,
-      ) => {
-        const dat = JSON.parse(JSON.stringify(params.input[0]));
-
-        const selectionSet = gql`
-          {
-            users {
-              id
-              name
-              email
-              username
-              hash
-            }
-            info {
-              bookmark
-              nodesCreated
-              relationshipsCreated
-            }
-          }
-        `;
-        dat.hash = await argon2.hash(dat.hash);
-        try {
-          return(
-            await ogm
-              .model('User')
-              .create({ input: dat, selectionSet, context: ctx }));
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    },
-  };
-};
-
-export const gqlProviderFactory = async () => {
-  const { NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD } = process.env;
+export async function gqlProviderFactory(): Promise<
+  Omit<ApolloDriverConfig, 'driver'>
+> {
+  const { NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, CLIENT_URL } = process.env;
 
   const driver = neo4j.driver(
     NEO4J_URI,
     neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD),
   );
-  const ogm = new OGM({
-    driver,
-    typeDefs,
-    // debug: true,
-    database: 'neo4j',
-  });
-  ogm.init();
+
   const neoSchema = new Neo4jGraphQL({
     typeDefs,
     driver,
-    // debug: true,
-    resolvers: resolvers(ogm),
+    // resolvers: resolvers(),
     features: {
+      subscriptions: true,
       authorization: {
         key: {
           url: 'http://localhost:3000/.well-known/jwks.json',
@@ -99,16 +41,61 @@ export const gqlProviderFactory = async () => {
   return {
     playground: true,
     schema,
-    context: async ({ req }) => ({
-      token: req.headers.authorization,
-      sessionConfig: { database: 'neo4j' },
-    }),
+    installSubscriptionHandlers: true,
+    subscriptions: {
+      'graphql-ws': {
+        path: '/graphql',
+        connectionInitWaitTimeout: Infinity,
+        onConnect: (ctx) => {
+          console.log('connected!');
+          return true;
+          // console.log(ctx.extra);
+        },
+        onDisconnect(ctx, code, reason) {
+          console.log('disconnected!');
+          // console.log(ctx, code, reason);
+        },
+        onSubscribe(ctx, message) {
+          console.log('subscribed!');
+          // console.log(ctx, message);
+        },
+        onClose(ctx, code, reason) {
+          console.log('closed!');
+          // console.log(ctx, code, reason);
+        },
+        onNext(ctx, message, args, result) {
+          console.log('next!');
+          console.log(message.payload.data, args, result);
+        },
+      },
+    },
+    context: async ({ req, extra, ...rest }) => {
+      // console.log(rest);
+      let list: any = {};
+
+      const cookieHeader = extra?.request.headers.cookie;
+      if (cookieHeader)
+        cookieHeader.split(`;`).forEach(function (cookie) {
+          let [name, ...rest] = cookie.split(`=`);
+          name = name?.trim();
+          if (!name) return;
+          const value = rest.join(`=`).trim();
+          if (!value) return;
+          list[name] = decodeURIComponent(value);
+        });
+        let token = list?.accessToken ?? req?.cookies.accessToken;
+      // console.log(list.accessToken);
+      return {
+        token: token ? `Bearer ${token}`: '',
+        sessionConfig: { database: 'neo4j' },
+      };
+    },
   };
-};
+}
 
 @Module({})
 export class Neo4jModule {
-  static forRootAsync(typeDefs: any) {
+  static forRootAsync() {
     return {
       module: Neo4jModule,
       imports: [
@@ -120,4 +107,37 @@ export class Neo4jModule {
       ],
     };
   }
+}
+function cookieParser(cookieString) {
+  // Return an empty object if cookieString
+  // is empty
+  if (cookieString === '') return {};
+
+  // Get each individual key-value pairs
+  // from the cookie string
+  // This returns a new array
+  let pairs = cookieString.split(';');
+
+  // Separate keys from values in each pair string
+  // Returns a new array which looks like
+  // [[key1,value1], [key2,value2], ...]
+  let splittedPairs = pairs.map((cookie) => cookie.split('='));
+
+  // Create an object with all key-value pairs
+  const cookieObj = splittedPairs.reduce(function (obj, cookie) {
+    // cookie[0] is the key of cookie
+    // cookie[1] is the value of the cookie
+    // decodeURIComponent() decodes the cookie
+    // string, to handle cookies with special
+    // characters, e.g. '$'.
+    // string.trim() trims the blank spaces
+    // auround the key and value.
+    obj[decodeURIComponent(cookie[0].trim())] = decodeURIComponent(
+      cookie[1].trim(),
+    );
+
+    return obj;
+  }, {});
+
+  return cookieObj;
 }

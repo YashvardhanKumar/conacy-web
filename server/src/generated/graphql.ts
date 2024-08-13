@@ -1,22 +1,43 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import {
+  GraphQLResolveInfo,
+  GraphQLScalarType,
+  GraphQLScalarTypeConfig,
+} from 'graphql';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = {
+  [_ in K]?: never;
+};
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & {
+  [P in K]-?: NonNullable<T[P]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  DateTime: { input: any; output: any; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  DateTime: { input: any; output: any };
 };
 
 export type Comment = {
@@ -28,12 +49,10 @@ export type Comment = {
   text: Scalars['String']['output'];
 };
 
-
 export type CommentAuthorArgs = {
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
-
 
 export type CommentAuthorConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -42,12 +61,10 @@ export type CommentAuthorConnectionArgs = {
   where?: InputMaybe<CommentAuthorConnectionWhere>;
 };
 
-
 export type CommentRepliesArgs = {
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type CommentRepliesConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -241,7 +258,7 @@ export type CommentEdge = {
 
 export enum CommentImplementation {
   PostComment = 'PostComment',
-  ReplyComment = 'ReplyComment'
+  ReplyComment = 'ReplyComment',
 }
 
 export type CommentOptions = {
@@ -479,57 +496,47 @@ export type Mutation = {
   updateUsers: UpdateUsersMutationResponse;
 };
 
-
 export type MutationCreatePostCommentsArgs = {
   input: Array<PostCommentCreateInput>;
 };
-
 
 export type MutationCreatePostsArgs = {
   input: Array<PostCreateInput>;
 };
 
-
 export type MutationCreateReplyCommentsArgs = {
   input: Array<ReplyCommentCreateInput>;
 };
 
-
 export type MutationCreateUsersArgs = {
   input: Array<UserCreateInput>;
 };
-
 
 export type MutationDeletePostCommentsArgs = {
   delete?: InputMaybe<PostCommentDeleteInput>;
   where?: InputMaybe<PostCommentWhere>;
 };
 
-
 export type MutationDeletePostsArgs = {
   delete?: InputMaybe<PostDeleteInput>;
   where?: InputMaybe<PostWhere>;
 };
-
 
 export type MutationDeleteReplyCommentsArgs = {
   delete?: InputMaybe<ReplyCommentDeleteInput>;
   where?: InputMaybe<ReplyCommentWhere>;
 };
 
-
 export type MutationDeleteUsersArgs = {
   delete?: InputMaybe<UserDeleteInput>;
   where?: InputMaybe<UserWhere>;
 };
-
 
 export type MutationSignInArgs = {
   email: Scalars['String']['input'];
   id: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
-
 
 export type MutationUpdatePostCommentsArgs = {
   connect?: InputMaybe<PostCommentConnectInput>;
@@ -540,7 +547,6 @@ export type MutationUpdatePostCommentsArgs = {
   where?: InputMaybe<PostCommentWhere>;
 };
 
-
 export type MutationUpdatePostsArgs = {
   connect?: InputMaybe<PostConnectInput>;
   create?: InputMaybe<PostRelationInput>;
@@ -550,7 +556,6 @@ export type MutationUpdatePostsArgs = {
   where?: InputMaybe<PostWhere>;
 };
 
-
 export type MutationUpdateReplyCommentsArgs = {
   connect?: InputMaybe<ReplyCommentConnectInput>;
   create?: InputMaybe<ReplyCommentRelationInput>;
@@ -559,7 +564,6 @@ export type MutationUpdateReplyCommentsArgs = {
   update?: InputMaybe<ReplyCommentUpdateInput>;
   where?: InputMaybe<ReplyCommentWhere>;
 };
-
 
 export type MutationUpdateUsersArgs = {
   connect?: InputMaybe<UserConnectInput>;
@@ -592,19 +596,16 @@ export type Post = {
   url: Scalars['String']['output'];
 };
 
-
 export type PostCommentsArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type PostCommentsAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type PostCommentsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -614,19 +615,16 @@ export type PostCommentsConnectionArgs = {
   where?: InputMaybe<PostCommentsConnectionWhere>;
 };
 
-
 export type PostCreatorOfPostArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
-
 export type PostCreatorOfPostAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
-
 
 export type PostCreatorOfPostConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -659,19 +657,16 @@ export type PostComment = Comment & {
   text: Scalars['String']['output'];
 };
 
-
 export type PostCommentAuthorArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
-
 export type PostCommentAuthorAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
-
 
 export type PostCommentAuthorConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -681,19 +676,16 @@ export type PostCommentAuthorConnectionArgs = {
   where?: InputMaybe<CommentAuthorConnectionWhere>;
 };
 
-
 export type PostCommentCommentOfPostArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
-
 export type PostCommentCommentOfPostAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PostWhere>;
 };
-
 
 export type PostCommentCommentOfPostConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -703,19 +695,16 @@ export type PostCommentCommentOfPostConnectionArgs = {
   where?: InputMaybe<PostCommentCommentOfPostConnectionWhere>;
 };
 
-
 export type PostCommentRepliesArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type PostCommentRepliesAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type PostCommentRepliesConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1618,17 +1607,14 @@ export type Query = {
   usersConnection: UsersConnection;
 };
 
-
 export type QueryCommentsArgs = {
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type QueryCommentsAggregateArgs = {
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type QueryCommentsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1637,17 +1623,14 @@ export type QueryCommentsConnectionArgs = {
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type QueryPostCommentsArgs = {
   options?: InputMaybe<PostCommentOptions>;
   where?: InputMaybe<PostCommentWhere>;
 };
 
-
 export type QueryPostCommentsAggregateArgs = {
   where?: InputMaybe<PostCommentWhere>;
 };
-
 
 export type QueryPostCommentsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1656,17 +1639,14 @@ export type QueryPostCommentsConnectionArgs = {
   where?: InputMaybe<PostCommentWhere>;
 };
 
-
 export type QueryPostsArgs = {
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
-
 export type QueryPostsAggregateArgs = {
   where?: InputMaybe<PostWhere>;
 };
-
 
 export type QueryPostsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1675,17 +1655,14 @@ export type QueryPostsConnectionArgs = {
   where?: InputMaybe<PostWhere>;
 };
 
-
 export type QueryReplyCommentsArgs = {
   options?: InputMaybe<ReplyCommentOptions>;
   where?: InputMaybe<ReplyCommentWhere>;
 };
 
-
 export type QueryReplyCommentsAggregateArgs = {
   where?: InputMaybe<ReplyCommentWhere>;
 };
-
 
 export type QueryReplyCommentsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1694,17 +1671,14 @@ export type QueryReplyCommentsConnectionArgs = {
   where?: InputMaybe<ReplyCommentWhere>;
 };
 
-
 export type QueryUsersArgs = {
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
-
 export type QueryUsersAggregateArgs = {
   where?: InputMaybe<UserWhere>;
 };
-
 
 export type QueryUsersConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1728,19 +1702,16 @@ export type ReplyComment = Comment & {
   text: Scalars['String']['output'];
 };
 
-
 export type ReplyCommentAuthorArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
-
 export type ReplyCommentAuthorAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
-
 
 export type ReplyCommentAuthorConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1750,19 +1721,16 @@ export type ReplyCommentAuthorConnectionArgs = {
   where?: InputMaybe<CommentAuthorConnectionWhere>;
 };
 
-
 export type ReplyCommentRepliesArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type ReplyCommentRepliesAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type ReplyCommentRepliesConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1772,19 +1740,16 @@ export type ReplyCommentRepliesConnectionArgs = {
   where?: InputMaybe<CommentRepliesConnectionWhere>;
 };
 
-
 export type ReplyCommentReplyOfCommentArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type ReplyCommentReplyOfCommentAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type ReplyCommentReplyOfCommentConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2265,7 +2230,7 @@ export enum SortDirection {
   /** Sort by field values in ascending order. */
   Asc = 'ASC',
   /** Sort by field values in descending order. */
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type StringAggregateSelection = {
@@ -2324,19 +2289,16 @@ export type User = {
   username: Scalars['String']['output'];
 };
 
-
 export type UserAuthorOfCommentsArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
-
 export type UserAuthorOfCommentsAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
-
 
 export type UserAuthorOfCommentsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2346,19 +2308,16 @@ export type UserAuthorOfCommentsConnectionArgs = {
   where?: InputMaybe<UserAuthorOfCommentsConnectionWhere>;
 };
 
-
 export type UserPostsArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
-
 export type UserPostsAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PostWhere>;
 };
-
 
 export type UserPostsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2524,7 +2483,9 @@ export type UserDeleteInput = {
 };
 
 export type UserDisconnectInput = {
-  authorOfComments?: InputMaybe<Array<UserAuthorOfCommentsDisconnectFieldInput>>;
+  authorOfComments?: InputMaybe<
+    Array<UserAuthorOfCommentsDisconnectFieldInput>
+  >;
   posts?: InputMaybe<Array<UserPostsDisconnectFieldInput>>;
 };
 
@@ -2777,40 +2738,55 @@ export type UsersConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
-
-
 export type ResolverTypeWrapper<T> = Promise<T> | T;
-
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
+export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
+  | ResolverFn<TResult, TParent, TContext, TArgs>
+  | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
 
 export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Promise<TResult> | TResult;
 
 export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => AsyncIterable<TResult> | Promise<AsyncIterable<TResult>>;
 
 export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
-export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
-  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
+export interface SubscriptionSubscriberObject<
+  TResult,
+  TKey extends string,
+  TParent,
+  TContext,
+  TArgs,
+> {
+  subscribe: SubscriptionSubscribeFn<
+    { [key in TKey]: TResult },
+    TParent,
+    TContext,
+    TArgs
+  >;
+  resolve?: SubscriptionResolveFn<
+    TResult,
+    { [key in TKey]: TResult },
+    TContext,
+    TArgs
+  >;
 }
 
 export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
@@ -2818,42 +2794,72 @@ export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
   resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
 }
 
-export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
+export type SubscriptionObject<
+  TResult,
+  TKey extends string,
+  TParent,
+  TContext,
+  TArgs,
+> =
   | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
   | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
 
-export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
-  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
+export type SubscriptionResolver<
+  TResult,
+  TKey extends string,
+  TParent = {},
+  TContext = {},
+  TArgs = {},
+> =
+  | ((
+      ...args: any[]
+    ) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
   | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
 
 export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   parent: TParent,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
+  obj: T,
+  context: TContext,
+  info: GraphQLResolveInfo,
+) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
-export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
+export type DirectiveResolverFn<
+  TResult = {},
+  TParent = {},
+  TContext = {},
+  TArgs = {},
+> = (
   next: NextResolverFn<TResult>,
   parent: TParent,
   args: TArgs,
   context: TContext,
-  info: GraphQLResolveInfo
+  info: GraphQLResolveInfo,
 ) => TResult | Promise<TResult>;
 
-
 /** Mapping of interface types */
-export type ResolversInterfaceTypes<_RefType extends Record<string, unknown>> = {
-  Comment: ( Omit<PostComment, 'replies'> & { replies: Array<_RefType['Comment']> } ) | ( Omit<ReplyComment, 'replies' | 'replyOfComment'> & { replies: Array<_RefType['Comment']>, replyOfComment: _RefType['Comment'] } );
-};
+export type ResolversInterfaceTypes<_RefType extends Record<string, unknown>> =
+  {
+    Comment:
+      | (Omit<PostComment, 'replies'> & { replies: Array<_RefType['Comment']> })
+      | (Omit<ReplyComment, 'replies' | 'replyOfComment'> & {
+          replies: Array<_RefType['Comment']>;
+          replyOfComment: _RefType['Comment'];
+        });
+  };
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Comment: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Comment']>;
+  Comment: ResolverTypeWrapper<
+    ResolversInterfaceTypes<ResolversTypes>['Comment']
+  >;
   CommentAggregateSelection: ResolverTypeWrapper<CommentAggregateSelection>;
   CommentAuthorAggregateInput: CommentAuthorAggregateInput;
   CommentAuthorConnectFieldInput: CommentAuthorConnectFieldInput;
@@ -2872,7 +2878,9 @@ export type ResolversTypes = {
   CommentCreateInput: CommentCreateInput;
   CommentDeleteInput: CommentDeleteInput;
   CommentDisconnectInput: CommentDisconnectInput;
-  CommentEdge: ResolverTypeWrapper<Omit<CommentEdge, 'node'> & { node: ResolversTypes['Comment'] }>;
+  CommentEdge: ResolverTypeWrapper<
+    Omit<CommentEdge, 'node'> & { node: ResolversTypes['Comment'] }
+  >;
   CommentImplementation: CommentImplementation;
   CommentOptions: CommentOptions;
   CommentRepliesAggregateInput: CommentRepliesAggregateInput;
@@ -2884,7 +2892,11 @@ export type ResolversTypes = {
   CommentRepliesDeleteFieldInput: CommentRepliesDeleteFieldInput;
   CommentRepliesDisconnectFieldInput: CommentRepliesDisconnectFieldInput;
   CommentRepliesNodeAggregationWhereInput: CommentRepliesNodeAggregationWhereInput;
-  CommentRepliesRelationship: ResolverTypeWrapper<Omit<CommentRepliesRelationship, 'node'> & { node: ResolversTypes['Comment'] }>;
+  CommentRepliesRelationship: ResolverTypeWrapper<
+    Omit<CommentRepliesRelationship, 'node'> & {
+      node: ResolversTypes['Comment'];
+    }
+  >;
   CommentRepliesUpdateConnectionInput: CommentRepliesUpdateConnectionInput;
   CommentRepliesUpdateFieldInput: CommentRepliesUpdateFieldInput;
   CommentSort: CommentSort;
@@ -2903,9 +2915,13 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   PageInfo: ResolverTypeWrapper<PageInfo>;
-  Post: ResolverTypeWrapper<Omit<Post, 'comments'> & { comments: Array<ResolversTypes['Comment']> }>;
+  Post: ResolverTypeWrapper<
+    Omit<Post, 'comments'> & { comments: Array<ResolversTypes['Comment']> }
+  >;
   PostAggregateSelection: ResolverTypeWrapper<PostAggregateSelection>;
-  PostComment: ResolverTypeWrapper<Omit<PostComment, 'replies'> & { replies: Array<ResolversTypes['Comment']> }>;
+  PostComment: ResolverTypeWrapper<
+    Omit<PostComment, 'replies'> & { replies: Array<ResolversTypes['Comment']> }
+  >;
   PostCommentAggregateSelection: ResolverTypeWrapper<PostCommentAggregateSelection>;
   PostCommentAuthorAggregateInput: PostCommentAuthorAggregateInput;
   PostCommentAuthorConnectFieldInput: PostCommentAuthorConnectFieldInput;
@@ -2964,7 +2980,9 @@ export type ResolversTypes = {
   PostCommentsDisconnectFieldInput: PostCommentsDisconnectFieldInput;
   PostCommentsFieldInput: PostCommentsFieldInput;
   PostCommentsNodeAggregationWhereInput: PostCommentsNodeAggregationWhereInput;
-  PostCommentsRelationship: ResolverTypeWrapper<Omit<PostCommentsRelationship, 'node'> & { node: ResolversTypes['Comment'] }>;
+  PostCommentsRelationship: ResolverTypeWrapper<
+    Omit<PostCommentsRelationship, 'node'> & { node: ResolversTypes['Comment'] }
+  >;
   PostCommentsUpdateConnectionInput: PostCommentsUpdateConnectionInput;
   PostCommentsUpdateFieldInput: PostCommentsUpdateFieldInput;
   PostConnectInput: PostConnectInput;
@@ -2995,7 +3013,12 @@ export type ResolversTypes = {
   PostWhere: PostWhere;
   PostsConnection: ResolverTypeWrapper<PostsConnection>;
   Query: ResolverTypeWrapper<{}>;
-  ReplyComment: ResolverTypeWrapper<Omit<ReplyComment, 'replies' | 'replyOfComment'> & { replies: Array<ResolversTypes['Comment']>, replyOfComment: ResolversTypes['Comment'] }>;
+  ReplyComment: ResolverTypeWrapper<
+    Omit<ReplyComment, 'replies' | 'replyOfComment'> & {
+      replies: Array<ResolversTypes['Comment']>;
+      replyOfComment: ResolversTypes['Comment'];
+    }
+  >;
   ReplyCommentAggregateSelection: ResolverTypeWrapper<ReplyCommentAggregateSelection>;
   ReplyCommentAuthorAggregateInput: ReplyCommentAuthorAggregateInput;
   ReplyCommentAuthorConnectFieldInput: ReplyCommentAuthorConnectFieldInput;
@@ -3034,7 +3057,11 @@ export type ResolversTypes = {
   ReplyCommentReplyOfCommentDisconnectFieldInput: ReplyCommentReplyOfCommentDisconnectFieldInput;
   ReplyCommentReplyOfCommentFieldInput: ReplyCommentReplyOfCommentFieldInput;
   ReplyCommentReplyOfCommentNodeAggregationWhereInput: ReplyCommentReplyOfCommentNodeAggregationWhereInput;
-  ReplyCommentReplyOfCommentRelationship: ResolverTypeWrapper<Omit<ReplyCommentReplyOfCommentRelationship, 'node'> & { node: ResolversTypes['Comment'] }>;
+  ReplyCommentReplyOfCommentRelationship: ResolverTypeWrapper<
+    Omit<ReplyCommentReplyOfCommentRelationship, 'node'> & {
+      node: ResolversTypes['Comment'];
+    }
+  >;
   ReplyCommentReplyOfCommentUpdateConnectionInput: ReplyCommentReplyOfCommentUpdateConnectionInput;
   ReplyCommentReplyOfCommentUpdateFieldInput: ReplyCommentReplyOfCommentUpdateFieldInput;
   ReplyCommentSort: ReplyCommentSort;
@@ -3051,7 +3078,11 @@ export type ResolversTypes = {
   UpdatePostsMutationResponse: ResolverTypeWrapper<UpdatePostsMutationResponse>;
   UpdateReplyCommentsMutationResponse: ResolverTypeWrapper<UpdateReplyCommentsMutationResponse>;
   UpdateUsersMutationResponse: ResolverTypeWrapper<UpdateUsersMutationResponse>;
-  User: ResolverTypeWrapper<Omit<User, 'authorOfComments'> & { authorOfComments: Array<ResolversTypes['Comment']> }>;
+  User: ResolverTypeWrapper<
+    Omit<User, 'authorOfComments'> & {
+      authorOfComments: Array<ResolversTypes['Comment']>;
+    }
+  >;
   UserAggregateSelection: ResolverTypeWrapper<UserAggregateSelection>;
   UserAuthorOfCommentsAggregateInput: UserAuthorOfCommentsAggregateInput;
   UserAuthorOfCommentsConnectFieldInput: UserAuthorOfCommentsConnectFieldInput;
@@ -3063,7 +3094,11 @@ export type ResolversTypes = {
   UserAuthorOfCommentsDisconnectFieldInput: UserAuthorOfCommentsDisconnectFieldInput;
   UserAuthorOfCommentsFieldInput: UserAuthorOfCommentsFieldInput;
   UserAuthorOfCommentsNodeAggregationWhereInput: UserAuthorOfCommentsNodeAggregationWhereInput;
-  UserAuthorOfCommentsRelationship: ResolverTypeWrapper<Omit<UserAuthorOfCommentsRelationship, 'node'> & { node: ResolversTypes['Comment'] }>;
+  UserAuthorOfCommentsRelationship: ResolverTypeWrapper<
+    Omit<UserAuthorOfCommentsRelationship, 'node'> & {
+      node: ResolversTypes['Comment'];
+    }
+  >;
   UserAuthorOfCommentsUpdateConnectionInput: UserAuthorOfCommentsUpdateConnectionInput;
   UserAuthorOfCommentsUpdateFieldInput: UserAuthorOfCommentsUpdateFieldInput;
   UserCommentAuthorOfCommentsAggregationSelection: ResolverTypeWrapper<UserCommentAuthorOfCommentsAggregationSelection>;
@@ -3119,7 +3154,9 @@ export type ResolversParentTypes = {
   CommentCreateInput: CommentCreateInput;
   CommentDeleteInput: CommentDeleteInput;
   CommentDisconnectInput: CommentDisconnectInput;
-  CommentEdge: Omit<CommentEdge, 'node'> & { node: ResolversParentTypes['Comment'] };
+  CommentEdge: Omit<CommentEdge, 'node'> & {
+    node: ResolversParentTypes['Comment'];
+  };
   CommentOptions: CommentOptions;
   CommentRepliesAggregateInput: CommentRepliesAggregateInput;
   CommentRepliesConnectFieldInput: CommentRepliesConnectFieldInput;
@@ -3130,7 +3167,9 @@ export type ResolversParentTypes = {
   CommentRepliesDeleteFieldInput: CommentRepliesDeleteFieldInput;
   CommentRepliesDisconnectFieldInput: CommentRepliesDisconnectFieldInput;
   CommentRepliesNodeAggregationWhereInput: CommentRepliesNodeAggregationWhereInput;
-  CommentRepliesRelationship: Omit<CommentRepliesRelationship, 'node'> & { node: ResolversParentTypes['Comment'] };
+  CommentRepliesRelationship: Omit<CommentRepliesRelationship, 'node'> & {
+    node: ResolversParentTypes['Comment'];
+  };
   CommentRepliesUpdateConnectionInput: CommentRepliesUpdateConnectionInput;
   CommentRepliesUpdateFieldInput: CommentRepliesUpdateFieldInput;
   CommentSort: CommentSort;
@@ -3149,9 +3188,13 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']['output'];
   Mutation: {};
   PageInfo: PageInfo;
-  Post: Omit<Post, 'comments'> & { comments: Array<ResolversParentTypes['Comment']> };
+  Post: Omit<Post, 'comments'> & {
+    comments: Array<ResolversParentTypes['Comment']>;
+  };
   PostAggregateSelection: PostAggregateSelection;
-  PostComment: Omit<PostComment, 'replies'> & { replies: Array<ResolversParentTypes['Comment']> };
+  PostComment: Omit<PostComment, 'replies'> & {
+    replies: Array<ResolversParentTypes['Comment']>;
+  };
   PostCommentAggregateSelection: PostCommentAggregateSelection;
   PostCommentAuthorAggregateInput: PostCommentAuthorAggregateInput;
   PostCommentAuthorConnectFieldInput: PostCommentAuthorConnectFieldInput;
@@ -3210,7 +3253,9 @@ export type ResolversParentTypes = {
   PostCommentsDisconnectFieldInput: PostCommentsDisconnectFieldInput;
   PostCommentsFieldInput: PostCommentsFieldInput;
   PostCommentsNodeAggregationWhereInput: PostCommentsNodeAggregationWhereInput;
-  PostCommentsRelationship: Omit<PostCommentsRelationship, 'node'> & { node: ResolversParentTypes['Comment'] };
+  PostCommentsRelationship: Omit<PostCommentsRelationship, 'node'> & {
+    node: ResolversParentTypes['Comment'];
+  };
   PostCommentsUpdateConnectionInput: PostCommentsUpdateConnectionInput;
   PostCommentsUpdateFieldInput: PostCommentsUpdateFieldInput;
   PostConnectInput: PostConnectInput;
@@ -3241,7 +3286,10 @@ export type ResolversParentTypes = {
   PostWhere: PostWhere;
   PostsConnection: PostsConnection;
   Query: {};
-  ReplyComment: Omit<ReplyComment, 'replies' | 'replyOfComment'> & { replies: Array<ResolversParentTypes['Comment']>, replyOfComment: ResolversParentTypes['Comment'] };
+  ReplyComment: Omit<ReplyComment, 'replies' | 'replyOfComment'> & {
+    replies: Array<ResolversParentTypes['Comment']>;
+    replyOfComment: ResolversParentTypes['Comment'];
+  };
   ReplyCommentAggregateSelection: ReplyCommentAggregateSelection;
   ReplyCommentAuthorAggregateInput: ReplyCommentAuthorAggregateInput;
   ReplyCommentAuthorConnectFieldInput: ReplyCommentAuthorConnectFieldInput;
@@ -3280,7 +3328,12 @@ export type ResolversParentTypes = {
   ReplyCommentReplyOfCommentDisconnectFieldInput: ReplyCommentReplyOfCommentDisconnectFieldInput;
   ReplyCommentReplyOfCommentFieldInput: ReplyCommentReplyOfCommentFieldInput;
   ReplyCommentReplyOfCommentNodeAggregationWhereInput: ReplyCommentReplyOfCommentNodeAggregationWhereInput;
-  ReplyCommentReplyOfCommentRelationship: Omit<ReplyCommentReplyOfCommentRelationship, 'node'> & { node: ResolversParentTypes['Comment'] };
+  ReplyCommentReplyOfCommentRelationship: Omit<
+    ReplyCommentReplyOfCommentRelationship,
+    'node'
+  > & {
+    node: ResolversParentTypes['Comment'];
+  };
   ReplyCommentReplyOfCommentUpdateConnectionInput: ReplyCommentReplyOfCommentUpdateConnectionInput;
   ReplyCommentReplyOfCommentUpdateFieldInput: ReplyCommentReplyOfCommentUpdateFieldInput;
   ReplyCommentSort: ReplyCommentSort;
@@ -3296,7 +3349,9 @@ export type ResolversParentTypes = {
   UpdatePostsMutationResponse: UpdatePostsMutationResponse;
   UpdateReplyCommentsMutationResponse: UpdateReplyCommentsMutationResponse;
   UpdateUsersMutationResponse: UpdateUsersMutationResponse;
-  User: Omit<User, 'authorOfComments'> & { authorOfComments: Array<ResolversParentTypes['Comment']> };
+  User: Omit<User, 'authorOfComments'> & {
+    authorOfComments: Array<ResolversParentTypes['Comment']>;
+  };
   UserAggregateSelection: UserAggregateSelection;
   UserAuthorOfCommentsAggregateInput: UserAuthorOfCommentsAggregateInput;
   UserAuthorOfCommentsConnectFieldInput: UserAuthorOfCommentsConnectFieldInput;
@@ -3308,7 +3363,12 @@ export type ResolversParentTypes = {
   UserAuthorOfCommentsDisconnectFieldInput: UserAuthorOfCommentsDisconnectFieldInput;
   UserAuthorOfCommentsFieldInput: UserAuthorOfCommentsFieldInput;
   UserAuthorOfCommentsNodeAggregationWhereInput: UserAuthorOfCommentsNodeAggregationWhereInput;
-  UserAuthorOfCommentsRelationship: Omit<UserAuthorOfCommentsRelationship, 'node'> & { node: ResolversParentTypes['Comment'] };
+  UserAuthorOfCommentsRelationship: Omit<
+    UserAuthorOfCommentsRelationship,
+    'node'
+  > & {
+    node: ResolversParentTypes['Comment'];
+  };
   UserAuthorOfCommentsUpdateConnectionInput: UserAuthorOfCommentsUpdateConnectionInput;
   UserAuthorOfCommentsUpdateFieldInput: UserAuthorOfCommentsUpdateFieldInput;
   UserCommentAuthorOfCommentsAggregationSelection: UserCommentAuthorOfCommentsAggregationSelection;
@@ -3342,529 +3402,1440 @@ export type ResolversParentTypes = {
   UsersConnection: UsersConnection;
 };
 
-export type CommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Comment'] = ResolversParentTypes['Comment']> = {
-  __resolveType: TypeResolveFn<'PostComment' | 'ReplyComment', ParentType, ContextType>;
-  author?: Resolver<ResolversTypes['User'], ParentType, ContextType, Partial<CommentAuthorArgs>>;
-  authorConnection?: Resolver<ResolversTypes['CommentAuthorConnection'], ParentType, ContextType, Partial<CommentAuthorConnectionArgs>>;
+export type CommentResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['Comment'] = ResolversParentTypes['Comment'],
+> = {
+  __resolveType: TypeResolveFn<
+    'PostComment' | 'ReplyComment',
+    ParentType,
+    ContextType
+  >;
+  author?: Resolver<
+    ResolversTypes['User'],
+    ParentType,
+    ContextType,
+    Partial<CommentAuthorArgs>
+  >;
+  authorConnection?: Resolver<
+    ResolversTypes['CommentAuthorConnection'],
+    ParentType,
+    ContextType,
+    Partial<CommentAuthorConnectionArgs>
+  >;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  replies?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, Partial<CommentRepliesArgs>>;
-  repliesConnection?: Resolver<ResolversTypes['CommentRepliesConnection'], ParentType, ContextType, Partial<CommentRepliesConnectionArgs>>;
+  replies?: Resolver<
+    Array<ResolversTypes['Comment']>,
+    ParentType,
+    ContextType,
+    Partial<CommentRepliesArgs>
+  >;
+  repliesConnection?: Resolver<
+    ResolversTypes['CommentRepliesConnection'],
+    ParentType,
+    ContextType,
+    Partial<CommentRepliesConnectionArgs>
+  >;
   text?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
-export type CommentAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentAggregateSelection'] = ResolversParentTypes['CommentAggregateSelection']> = {
+export type CommentAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentAggregateSelection'] = ResolversParentTypes['CommentAggregateSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CommentAuthorConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentAuthorConnection'] = ResolversParentTypes['CommentAuthorConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['CommentAuthorRelationship']>, ParentType, ContextType>;
+export type CommentAuthorConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentAuthorConnection'] = ResolversParentTypes['CommentAuthorConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['CommentAuthorRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CommentAuthorRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentAuthorRelationship'] = ResolversParentTypes['CommentAuthorRelationship']> = {
+export type CommentAuthorRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentAuthorRelationship'] = ResolversParentTypes['CommentAuthorRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CommentEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentEdge'] = ResolversParentTypes['CommentEdge']> = {
+export type CommentEdgeResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentEdge'] = ResolversParentTypes['CommentEdge'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CommentRepliesConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentRepliesConnection'] = ResolversParentTypes['CommentRepliesConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['CommentRepliesRelationship']>, ParentType, ContextType>;
+export type CommentRepliesConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentRepliesConnection'] = ResolversParentTypes['CommentRepliesConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['CommentRepliesRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CommentRepliesRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentRepliesRelationship'] = ResolversParentTypes['CommentRepliesRelationship']> = {
+export type CommentRepliesRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentRepliesRelationship'] = ResolversParentTypes['CommentRepliesRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CommentsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CommentsConnection'] = ResolversParentTypes['CommentsConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['CommentEdge']>, ParentType, ContextType>;
+export type CommentsConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CommentsConnection'] = ResolversParentTypes['CommentsConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['CommentEdge']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CreateInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateInfo'] = ResolversParentTypes['CreateInfo']> = {
+export type CreateInfoResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CreateInfo'] = ResolversParentTypes['CreateInfo'],
+> = {
   bookmark?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   nodesCreated?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  relationshipsCreated?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  relationshipsCreated?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CreatePostCommentsMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreatePostCommentsMutationResponse'] = ResolversParentTypes['CreatePostCommentsMutationResponse']> = {
+export type CreatePostCommentsMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CreatePostCommentsMutationResponse'] = ResolversParentTypes['CreatePostCommentsMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
-  postComments?: Resolver<Array<ResolversTypes['PostComment']>, ParentType, ContextType>;
+  postComments?: Resolver<
+    Array<ResolversTypes['PostComment']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CreatePostsMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreatePostsMutationResponse'] = ResolversParentTypes['CreatePostsMutationResponse']> = {
+export type CreatePostsMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CreatePostsMutationResponse'] = ResolversParentTypes['CreatePostsMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
   posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CreateReplyCommentsMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateReplyCommentsMutationResponse'] = ResolversParentTypes['CreateReplyCommentsMutationResponse']> = {
+export type CreateReplyCommentsMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CreateReplyCommentsMutationResponse'] = ResolversParentTypes['CreateReplyCommentsMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
-  replyComments?: Resolver<Array<ResolversTypes['ReplyComment']>, ParentType, ContextType>;
+  replyComments?: Resolver<
+    Array<ResolversTypes['ReplyComment']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CreateUsersMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateUsersMutationResponse'] = ResolversParentTypes['CreateUsersMutationResponse']> = {
+export type CreateUsersMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['CreateUsersMutationResponse'] = ResolversParentTypes['CreateUsersMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+export interface DateTimeScalarConfig
+  extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
   name: 'DateTime';
 }
 
-export type DateTimeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['DateTimeAggregateSelection'] = ResolversParentTypes['DateTimeAggregateSelection']> = {
+export type DateTimeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['DateTimeAggregateSelection'] = ResolversParentTypes['DateTimeAggregateSelection'],
+> = {
   max?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   min?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type DeleteInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteInfo'] = ResolversParentTypes['DeleteInfo']> = {
+export type DeleteInfoResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['DeleteInfo'] = ResolversParentTypes['DeleteInfo'],
+> = {
   bookmark?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   nodesDeleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  relationshipsDeleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  relationshipsDeleted?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createPostComments?: Resolver<ResolversTypes['CreatePostCommentsMutationResponse'], ParentType, ContextType, RequireFields<MutationCreatePostCommentsArgs, 'input'>>;
-  createPosts?: Resolver<ResolversTypes['CreatePostsMutationResponse'], ParentType, ContextType, RequireFields<MutationCreatePostsArgs, 'input'>>;
-  createReplyComments?: Resolver<ResolversTypes['CreateReplyCommentsMutationResponse'], ParentType, ContextType, RequireFields<MutationCreateReplyCommentsArgs, 'input'>>;
-  createUsers?: Resolver<ResolversTypes['CreateUsersMutationResponse'], ParentType, ContextType, RequireFields<MutationCreateUsersArgs, 'input'>>;
-  deletePostComments?: Resolver<ResolversTypes['DeleteInfo'], ParentType, ContextType, Partial<MutationDeletePostCommentsArgs>>;
-  deletePosts?: Resolver<ResolversTypes['DeleteInfo'], ParentType, ContextType, Partial<MutationDeletePostsArgs>>;
-  deleteReplyComments?: Resolver<ResolversTypes['DeleteInfo'], ParentType, ContextType, Partial<MutationDeleteReplyCommentsArgs>>;
-  deleteUsers?: Resolver<ResolversTypes['DeleteInfo'], ParentType, ContextType, Partial<MutationDeleteUsersArgs>>;
-  signIn?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'email' | 'id' | 'password'>>;
-  updatePostComments?: Resolver<ResolversTypes['UpdatePostCommentsMutationResponse'], ParentType, ContextType, Partial<MutationUpdatePostCommentsArgs>>;
-  updatePosts?: Resolver<ResolversTypes['UpdatePostsMutationResponse'], ParentType, ContextType, Partial<MutationUpdatePostsArgs>>;
-  updateReplyComments?: Resolver<ResolversTypes['UpdateReplyCommentsMutationResponse'], ParentType, ContextType, Partial<MutationUpdateReplyCommentsArgs>>;
-  updateUsers?: Resolver<ResolversTypes['UpdateUsersMutationResponse'], ParentType, ContextType, Partial<MutationUpdateUsersArgs>>;
+export type MutationResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation'],
+> = {
+  createPostComments?: Resolver<
+    ResolversTypes['CreatePostCommentsMutationResponse'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationCreatePostCommentsArgs, 'input'>
+  >;
+  createPosts?: Resolver<
+    ResolversTypes['CreatePostsMutationResponse'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationCreatePostsArgs, 'input'>
+  >;
+  createReplyComments?: Resolver<
+    ResolversTypes['CreateReplyCommentsMutationResponse'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationCreateReplyCommentsArgs, 'input'>
+  >;
+  createUsers?: Resolver<
+    ResolversTypes['CreateUsersMutationResponse'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationCreateUsersArgs, 'input'>
+  >;
+  deletePostComments?: Resolver<
+    ResolversTypes['DeleteInfo'],
+    ParentType,
+    ContextType,
+    Partial<MutationDeletePostCommentsArgs>
+  >;
+  deletePosts?: Resolver<
+    ResolversTypes['DeleteInfo'],
+    ParentType,
+    ContextType,
+    Partial<MutationDeletePostsArgs>
+  >;
+  deleteReplyComments?: Resolver<
+    ResolversTypes['DeleteInfo'],
+    ParentType,
+    ContextType,
+    Partial<MutationDeleteReplyCommentsArgs>
+  >;
+  deleteUsers?: Resolver<
+    ResolversTypes['DeleteInfo'],
+    ParentType,
+    ContextType,
+    Partial<MutationDeleteUsersArgs>
+  >;
+  signIn?: Resolver<
+    ResolversTypes['String'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationSignInArgs, 'email' | 'id' | 'password'>
+  >;
+  updatePostComments?: Resolver<
+    ResolversTypes['UpdatePostCommentsMutationResponse'],
+    ParentType,
+    ContextType,
+    Partial<MutationUpdatePostCommentsArgs>
+  >;
+  updatePosts?: Resolver<
+    ResolversTypes['UpdatePostsMutationResponse'],
+    ParentType,
+    ContextType,
+    Partial<MutationUpdatePostsArgs>
+  >;
+  updateReplyComments?: Resolver<
+    ResolversTypes['UpdateReplyCommentsMutationResponse'],
+    ParentType,
+    ContextType,
+    Partial<MutationUpdateReplyCommentsArgs>
+  >;
+  updateUsers?: Resolver<
+    ResolversTypes['UpdateUsersMutationResponse'],
+    ParentType,
+    ContextType,
+    Partial<MutationUpdateUsersArgs>
+  >;
 };
 
-export type PageInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']> = {
-  endCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type PageInfoResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo'],
+> = {
+  endCursor?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  hasPreviousPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  startCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  hasPreviousPage?: Resolver<
+    ResolversTypes['Boolean'],
+    ParentType,
+    ContextType
+  >;
+  startCursor?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostResolvers<ContextType = any, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
-  comments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, RequireFields<PostCommentsArgs, 'directed'>>;
-  commentsAggregate?: Resolver<Maybe<ResolversTypes['PostCommentCommentsAggregationSelection']>, ParentType, ContextType, RequireFields<PostCommentsAggregateArgs, 'directed'>>;
-  commentsConnection?: Resolver<ResolversTypes['PostCommentsConnection'], ParentType, ContextType, RequireFields<PostCommentsConnectionArgs, 'directed'>>;
-  creatorOfPost?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<PostCreatorOfPostArgs, 'directed'>>;
-  creatorOfPostAggregate?: Resolver<Maybe<ResolversTypes['PostUserCreatorOfPostAggregationSelection']>, ParentType, ContextType, RequireFields<PostCreatorOfPostAggregateArgs, 'directed'>>;
-  creatorOfPostConnection?: Resolver<ResolversTypes['PostCreatorOfPostConnection'], ParentType, ContextType, RequireFields<PostCreatorOfPostConnectionArgs, 'directed'>>;
-  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type PostResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['Post'] = ResolversParentTypes['Post'],
+> = {
+  comments?: Resolver<
+    Array<ResolversTypes['Comment']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentsArgs, 'directed'>
+  >;
+  commentsAggregate?: Resolver<
+    Maybe<ResolversTypes['PostCommentCommentsAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentsAggregateArgs, 'directed'>
+  >;
+  commentsConnection?: Resolver<
+    ResolversTypes['PostCommentsConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentsConnectionArgs, 'directed'>
+  >;
+  creatorOfPost?: Resolver<
+    ResolversTypes['User'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCreatorOfPostArgs, 'directed'>
+  >;
+  creatorOfPostAggregate?: Resolver<
+    Maybe<ResolversTypes['PostUserCreatorOfPostAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCreatorOfPostAggregateArgs, 'directed'>
+  >;
+  creatorOfPostConnection?: Resolver<
+    ResolversTypes['PostCreatorOfPostConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCreatorOfPostConnectionArgs, 'directed'>
+  >;
+  description?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostAggregateSelection'] = ResolversParentTypes['PostAggregateSelection']> = {
+export type PostAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostAggregateSelection'] = ResolversParentTypes['PostAggregateSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  description?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  url?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+  description?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  url?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostComment'] = ResolversParentTypes['PostComment']> = {
-  author?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<PostCommentAuthorArgs, 'directed'>>;
-  authorAggregate?: Resolver<Maybe<ResolversTypes['PostCommentUserAuthorAggregationSelection']>, ParentType, ContextType, RequireFields<PostCommentAuthorAggregateArgs, 'directed'>>;
-  authorConnection?: Resolver<ResolversTypes['CommentAuthorConnection'], ParentType, ContextType, RequireFields<PostCommentAuthorConnectionArgs, 'directed'>>;
-  commentOfPost?: Resolver<ResolversTypes['Post'], ParentType, ContextType, RequireFields<PostCommentCommentOfPostArgs, 'directed'>>;
-  commentOfPostAggregate?: Resolver<Maybe<ResolversTypes['PostCommentPostCommentOfPostAggregationSelection']>, ParentType, ContextType, RequireFields<PostCommentCommentOfPostAggregateArgs, 'directed'>>;
-  commentOfPostConnection?: Resolver<ResolversTypes['PostCommentCommentOfPostConnection'], ParentType, ContextType, RequireFields<PostCommentCommentOfPostConnectionArgs, 'directed'>>;
+export type PostCommentResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostComment'] = ResolversParentTypes['PostComment'],
+> = {
+  author?: Resolver<
+    ResolversTypes['User'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentAuthorArgs, 'directed'>
+  >;
+  authorAggregate?: Resolver<
+    Maybe<ResolversTypes['PostCommentUserAuthorAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentAuthorAggregateArgs, 'directed'>
+  >;
+  authorConnection?: Resolver<
+    ResolversTypes['CommentAuthorConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentAuthorConnectionArgs, 'directed'>
+  >;
+  commentOfPost?: Resolver<
+    ResolversTypes['Post'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentCommentOfPostArgs, 'directed'>
+  >;
+  commentOfPostAggregate?: Resolver<
+    Maybe<ResolversTypes['PostCommentPostCommentOfPostAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentCommentOfPostAggregateArgs, 'directed'>
+  >;
+  commentOfPostConnection?: Resolver<
+    ResolversTypes['PostCommentCommentOfPostConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentCommentOfPostConnectionArgs, 'directed'>
+  >;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  replies?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, RequireFields<PostCommentRepliesArgs, 'directed'>>;
-  repliesAggregate?: Resolver<Maybe<ResolversTypes['PostCommentCommentRepliesAggregationSelection']>, ParentType, ContextType, RequireFields<PostCommentRepliesAggregateArgs, 'directed'>>;
-  repliesConnection?: Resolver<ResolversTypes['CommentRepliesConnection'], ParentType, ContextType, RequireFields<PostCommentRepliesConnectionArgs, 'directed'>>;
+  replies?: Resolver<
+    Array<ResolversTypes['Comment']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentRepliesArgs, 'directed'>
+  >;
+  repliesAggregate?: Resolver<
+    Maybe<ResolversTypes['PostCommentCommentRepliesAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentRepliesAggregateArgs, 'directed'>
+  >;
+  repliesConnection?: Resolver<
+    ResolversTypes['CommentRepliesConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<PostCommentRepliesConnectionArgs, 'directed'>
+  >;
   text?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentAggregateSelection'] = ResolversParentTypes['PostCommentAggregateSelection']> = {
+export type PostCommentAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentAggregateSelection'] = ResolversParentTypes['PostCommentAggregateSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentCommentOfPostConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentCommentOfPostConnection'] = ResolversParentTypes['PostCommentCommentOfPostConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['PostCommentCommentOfPostRelationship']>, ParentType, ContextType>;
+export type PostCommentCommentOfPostConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentCommentOfPostConnection'] = ResolversParentTypes['PostCommentCommentOfPostConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['PostCommentCommentOfPostRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentCommentOfPostRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentCommentOfPostRelationship'] = ResolversParentTypes['PostCommentCommentOfPostRelationship']> = {
+export type PostCommentCommentOfPostRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentCommentOfPostRelationship'] = ResolversParentTypes['PostCommentCommentOfPostRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentCommentRepliesAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'] = ResolversParentTypes['PostCommentCommentRepliesAggregationSelection']> = {
+export type PostCommentCommentRepliesAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'] = ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['PostCommentCommentRepliesNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['PostCommentCommentRepliesNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentCommentRepliesNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'] = ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection']> = {
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type PostCommentCommentRepliesNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'] = ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'],
+> = {
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentCommentsAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentCommentsAggregationSelection'] = ResolversParentTypes['PostCommentCommentsAggregationSelection']> = {
+export type PostCommentCommentsAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentCommentsAggregationSelection'] = ResolversParentTypes['PostCommentCommentsAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['PostCommentCommentsNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['PostCommentCommentsNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentCommentsNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'] = ResolversParentTypes['PostCommentCommentsNodeAggregateSelection']> = {
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type PostCommentCommentsNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'] = ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'],
+> = {
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentEdge'] = ResolversParentTypes['PostCommentEdge']> = {
+export type PostCommentEdgeResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentEdge'] = ResolversParentTypes['PostCommentEdge'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['PostComment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentPostCommentOfPostAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'] = ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection']> = {
+export type PostCommentPostCommentOfPostAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'] = ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['PostCommentPostCommentOfPostNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['PostCommentPostCommentOfPostNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentPostCommentOfPostNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'] = ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection']> = {
-  description?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  url?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type PostCommentPostCommentOfPostNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'] = ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'],
+> = {
+  description?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  url?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentUserAuthorAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentUserAuthorAggregationSelection'] = ResolversParentTypes['PostCommentUserAuthorAggregationSelection']> = {
+export type PostCommentUserAuthorAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentUserAuthorAggregationSelection'] = ResolversParentTypes['PostCommentUserAuthorAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['PostCommentUserAuthorNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['PostCommentUserAuthorNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentUserAuthorNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'] = ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection']> = {
-  dob?: Resolver<ResolversTypes['DateTimeAggregateSelection'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  username?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type PostCommentUserAuthorNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'] = ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'],
+> = {
+  dob?: Resolver<
+    ResolversTypes['DateTimeAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  email?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  name?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  username?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentsConnection'] = ResolversParentTypes['PostCommentsConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['PostCommentsRelationship']>, ParentType, ContextType>;
+export type PostCommentsConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentsConnection'] = ResolversParentTypes['PostCommentsConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['PostCommentsRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCommentsRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCommentsRelationship'] = ResolversParentTypes['PostCommentsRelationship']> = {
+export type PostCommentsRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCommentsRelationship'] = ResolversParentTypes['PostCommentsRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCreatorOfPostConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCreatorOfPostConnection'] = ResolversParentTypes['PostCreatorOfPostConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['PostCreatorOfPostRelationship']>, ParentType, ContextType>;
+export type PostCreatorOfPostConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCreatorOfPostConnection'] = ResolversParentTypes['PostCreatorOfPostConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['PostCreatorOfPostRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostCreatorOfPostRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostCreatorOfPostRelationship'] = ResolversParentTypes['PostCreatorOfPostRelationship']> = {
+export type PostCreatorOfPostRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostCreatorOfPostRelationship'] = ResolversParentTypes['PostCreatorOfPostRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostEdge'] = ResolversParentTypes['PostEdge']> = {
+export type PostEdgeResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostEdge'] = ResolversParentTypes['PostEdge'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostUserCreatorOfPostAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'] = ResolversParentTypes['PostUserCreatorOfPostAggregationSelection']> = {
+export type PostUserCreatorOfPostAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'] = ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['PostUserCreatorOfPostNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['PostUserCreatorOfPostNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostUserCreatorOfPostNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'] = ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection']> = {
-  dob?: Resolver<ResolversTypes['DateTimeAggregateSelection'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  username?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type PostUserCreatorOfPostNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'] = ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'],
+> = {
+  dob?: Resolver<
+    ResolversTypes['DateTimeAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  email?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  name?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  username?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PostsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['PostsConnection'] = ResolversParentTypes['PostsConnection']> = {
+export type PostsConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['PostsConnection'] = ResolversParentTypes['PostsConnection'],
+> = {
   edges?: Resolver<Array<ResolversTypes['PostEdge']>, ParentType, ContextType>;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  comments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, Partial<QueryCommentsArgs>>;
-  commentsAggregate?: Resolver<ResolversTypes['CommentAggregateSelection'], ParentType, ContextType, Partial<QueryCommentsAggregateArgs>>;
-  commentsConnection?: Resolver<ResolversTypes['CommentsConnection'], ParentType, ContextType, Partial<QueryCommentsConnectionArgs>>;
-  postComments?: Resolver<Array<ResolversTypes['PostComment']>, ParentType, ContextType, Partial<QueryPostCommentsArgs>>;
-  postCommentsAggregate?: Resolver<ResolversTypes['PostCommentAggregateSelection'], ParentType, ContextType, Partial<QueryPostCommentsAggregateArgs>>;
-  postCommentsConnection?: Resolver<ResolversTypes['PostCommentsConnection'], ParentType, ContextType, Partial<QueryPostCommentsConnectionArgs>>;
-  posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType, Partial<QueryPostsArgs>>;
-  postsAggregate?: Resolver<ResolversTypes['PostAggregateSelection'], ParentType, ContextType, Partial<QueryPostsAggregateArgs>>;
-  postsConnection?: Resolver<ResolversTypes['PostsConnection'], ParentType, ContextType, Partial<QueryPostsConnectionArgs>>;
-  replyComments?: Resolver<Array<ResolversTypes['ReplyComment']>, ParentType, ContextType, Partial<QueryReplyCommentsArgs>>;
-  replyCommentsAggregate?: Resolver<ResolversTypes['ReplyCommentAggregateSelection'], ParentType, ContextType, Partial<QueryReplyCommentsAggregateArgs>>;
-  replyCommentsConnection?: Resolver<ResolversTypes['ReplyCommentsConnection'], ParentType, ContextType, Partial<QueryReplyCommentsConnectionArgs>>;
-  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, Partial<QueryUsersArgs>>;
-  usersAggregate?: Resolver<ResolversTypes['UserAggregateSelection'], ParentType, ContextType, Partial<QueryUsersAggregateArgs>>;
-  usersConnection?: Resolver<ResolversTypes['UsersConnection'], ParentType, ContextType, Partial<QueryUsersConnectionArgs>>;
+export type QueryResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['Query'] = ResolversParentTypes['Query'],
+> = {
+  comments?: Resolver<
+    Array<ResolversTypes['Comment']>,
+    ParentType,
+    ContextType,
+    Partial<QueryCommentsArgs>
+  >;
+  commentsAggregate?: Resolver<
+    ResolversTypes['CommentAggregateSelection'],
+    ParentType,
+    ContextType,
+    Partial<QueryCommentsAggregateArgs>
+  >;
+  commentsConnection?: Resolver<
+    ResolversTypes['CommentsConnection'],
+    ParentType,
+    ContextType,
+    Partial<QueryCommentsConnectionArgs>
+  >;
+  postComments?: Resolver<
+    Array<ResolversTypes['PostComment']>,
+    ParentType,
+    ContextType,
+    Partial<QueryPostCommentsArgs>
+  >;
+  postCommentsAggregate?: Resolver<
+    ResolversTypes['PostCommentAggregateSelection'],
+    ParentType,
+    ContextType,
+    Partial<QueryPostCommentsAggregateArgs>
+  >;
+  postCommentsConnection?: Resolver<
+    ResolversTypes['PostCommentsConnection'],
+    ParentType,
+    ContextType,
+    Partial<QueryPostCommentsConnectionArgs>
+  >;
+  posts?: Resolver<
+    Array<ResolversTypes['Post']>,
+    ParentType,
+    ContextType,
+    Partial<QueryPostsArgs>
+  >;
+  postsAggregate?: Resolver<
+    ResolversTypes['PostAggregateSelection'],
+    ParentType,
+    ContextType,
+    Partial<QueryPostsAggregateArgs>
+  >;
+  postsConnection?: Resolver<
+    ResolversTypes['PostsConnection'],
+    ParentType,
+    ContextType,
+    Partial<QueryPostsConnectionArgs>
+  >;
+  replyComments?: Resolver<
+    Array<ResolversTypes['ReplyComment']>,
+    ParentType,
+    ContextType,
+    Partial<QueryReplyCommentsArgs>
+  >;
+  replyCommentsAggregate?: Resolver<
+    ResolversTypes['ReplyCommentAggregateSelection'],
+    ParentType,
+    ContextType,
+    Partial<QueryReplyCommentsAggregateArgs>
+  >;
+  replyCommentsConnection?: Resolver<
+    ResolversTypes['ReplyCommentsConnection'],
+    ParentType,
+    ContextType,
+    Partial<QueryReplyCommentsConnectionArgs>
+  >;
+  users?: Resolver<
+    Array<ResolversTypes['User']>,
+    ParentType,
+    ContextType,
+    Partial<QueryUsersArgs>
+  >;
+  usersAggregate?: Resolver<
+    ResolversTypes['UserAggregateSelection'],
+    ParentType,
+    ContextType,
+    Partial<QueryUsersAggregateArgs>
+  >;
+  usersConnection?: Resolver<
+    ResolversTypes['UsersConnection'],
+    ParentType,
+    ContextType,
+    Partial<QueryUsersConnectionArgs>
+  >;
 };
 
-export type ReplyCommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyComment'] = ResolversParentTypes['ReplyComment']> = {
-  author?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<ReplyCommentAuthorArgs, 'directed'>>;
-  authorAggregate?: Resolver<Maybe<ResolversTypes['ReplyCommentUserAuthorAggregationSelection']>, ParentType, ContextType, RequireFields<ReplyCommentAuthorAggregateArgs, 'directed'>>;
-  authorConnection?: Resolver<ResolversTypes['CommentAuthorConnection'], ParentType, ContextType, RequireFields<ReplyCommentAuthorConnectionArgs, 'directed'>>;
+export type ReplyCommentResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyComment'] = ResolversParentTypes['ReplyComment'],
+> = {
+  author?: Resolver<
+    ResolversTypes['User'],
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentAuthorArgs, 'directed'>
+  >;
+  authorAggregate?: Resolver<
+    Maybe<ResolversTypes['ReplyCommentUserAuthorAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentAuthorAggregateArgs, 'directed'>
+  >;
+  authorConnection?: Resolver<
+    ResolversTypes['CommentAuthorConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentAuthorConnectionArgs, 'directed'>
+  >;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  replies?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, RequireFields<ReplyCommentRepliesArgs, 'directed'>>;
-  repliesAggregate?: Resolver<Maybe<ResolversTypes['ReplyCommentCommentRepliesAggregationSelection']>, ParentType, ContextType, RequireFields<ReplyCommentRepliesAggregateArgs, 'directed'>>;
-  repliesConnection?: Resolver<ResolversTypes['CommentRepliesConnection'], ParentType, ContextType, RequireFields<ReplyCommentRepliesConnectionArgs, 'directed'>>;
-  replyOfComment?: Resolver<ResolversTypes['Comment'], ParentType, ContextType, RequireFields<ReplyCommentReplyOfCommentArgs, 'directed'>>;
-  replyOfCommentAggregate?: Resolver<Maybe<ResolversTypes['ReplyCommentCommentReplyOfCommentAggregationSelection']>, ParentType, ContextType, RequireFields<ReplyCommentReplyOfCommentAggregateArgs, 'directed'>>;
-  replyOfCommentConnection?: Resolver<ResolversTypes['ReplyCommentReplyOfCommentConnection'], ParentType, ContextType, RequireFields<ReplyCommentReplyOfCommentConnectionArgs, 'directed'>>;
+  replies?: Resolver<
+    Array<ResolversTypes['Comment']>,
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentRepliesArgs, 'directed'>
+  >;
+  repliesAggregate?: Resolver<
+    Maybe<ResolversTypes['ReplyCommentCommentRepliesAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentRepliesAggregateArgs, 'directed'>
+  >;
+  repliesConnection?: Resolver<
+    ResolversTypes['CommentRepliesConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentRepliesConnectionArgs, 'directed'>
+  >;
+  replyOfComment?: Resolver<
+    ResolversTypes['Comment'],
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentReplyOfCommentArgs, 'directed'>
+  >;
+  replyOfCommentAggregate?: Resolver<
+    Maybe<
+      ResolversTypes['ReplyCommentCommentReplyOfCommentAggregationSelection']
+    >,
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentReplyOfCommentAggregateArgs, 'directed'>
+  >;
+  replyOfCommentConnection?: Resolver<
+    ResolversTypes['ReplyCommentReplyOfCommentConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<ReplyCommentReplyOfCommentConnectionArgs, 'directed'>
+  >;
   text?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentAggregateSelection'] = ResolversParentTypes['ReplyCommentAggregateSelection']> = {
+export type ReplyCommentAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentAggregateSelection'] = ResolversParentTypes['ReplyCommentAggregateSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentCommentRepliesAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'] = ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection']> = {
+export type ReplyCommentCommentRepliesAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'] = ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['ReplyCommentCommentRepliesNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['ReplyCommentCommentRepliesNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentCommentRepliesNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection']> = {
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type ReplyCommentCommentRepliesNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'],
+> = {
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentCommentReplyOfCommentAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'] = ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection']> = {
+export type ReplyCommentCommentReplyOfCommentAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'] = ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<
+      ResolversTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection']
+    >,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentCommentReplyOfCommentNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection']> = {
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type ReplyCommentCommentReplyOfCommentNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'],
+> = {
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentEdge'] = ResolversParentTypes['ReplyCommentEdge']> = {
+export type ReplyCommentEdgeResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentEdge'] = ResolversParentTypes['ReplyCommentEdge'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['ReplyComment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentReplyOfCommentConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentReplyOfCommentConnection'] = ResolversParentTypes['ReplyCommentReplyOfCommentConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['ReplyCommentReplyOfCommentRelationship']>, ParentType, ContextType>;
+export type ReplyCommentReplyOfCommentConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentReplyOfCommentConnection'] = ResolversParentTypes['ReplyCommentReplyOfCommentConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['ReplyCommentReplyOfCommentRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentReplyOfCommentRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'] = ResolversParentTypes['ReplyCommentReplyOfCommentRelationship']> = {
+export type ReplyCommentReplyOfCommentRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'] = ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentUserAuthorAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'] = ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection']> = {
+export type ReplyCommentUserAuthorAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'] = ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['ReplyCommentUserAuthorNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['ReplyCommentUserAuthorNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentUserAuthorNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection']> = {
-  dob?: Resolver<ResolversTypes['DateTimeAggregateSelection'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  username?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type ReplyCommentUserAuthorNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'],
+> = {
+  dob?: Resolver<
+    ResolversTypes['DateTimeAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  email?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  name?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  username?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ReplyCommentsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReplyCommentsConnection'] = ResolversParentTypes['ReplyCommentsConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['ReplyCommentEdge']>, ParentType, ContextType>;
+export type ReplyCommentsConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['ReplyCommentsConnection'] = ResolversParentTypes['ReplyCommentsConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['ReplyCommentEdge']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type StringAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['StringAggregateSelection'] = ResolversParentTypes['StringAggregateSelection']> = {
+export type StringAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['StringAggregateSelection'] = ResolversParentTypes['StringAggregateSelection'],
+> = {
   longest?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   shortest?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UpdateInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateInfo'] = ResolversParentTypes['UpdateInfo']> = {
+export type UpdateInfoResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UpdateInfo'] = ResolversParentTypes['UpdateInfo'],
+> = {
   bookmark?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   nodesCreated?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   nodesDeleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  relationshipsCreated?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  relationshipsDeleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  relationshipsCreated?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
+  relationshipsDeleted?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UpdatePostCommentsMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdatePostCommentsMutationResponse'] = ResolversParentTypes['UpdatePostCommentsMutationResponse']> = {
+export type UpdatePostCommentsMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UpdatePostCommentsMutationResponse'] = ResolversParentTypes['UpdatePostCommentsMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
-  postComments?: Resolver<Array<ResolversTypes['PostComment']>, ParentType, ContextType>;
+  postComments?: Resolver<
+    Array<ResolversTypes['PostComment']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UpdatePostsMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdatePostsMutationResponse'] = ResolversParentTypes['UpdatePostsMutationResponse']> = {
+export type UpdatePostsMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UpdatePostsMutationResponse'] = ResolversParentTypes['UpdatePostsMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
   posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UpdateReplyCommentsMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateReplyCommentsMutationResponse'] = ResolversParentTypes['UpdateReplyCommentsMutationResponse']> = {
+export type UpdateReplyCommentsMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UpdateReplyCommentsMutationResponse'] = ResolversParentTypes['UpdateReplyCommentsMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
-  replyComments?: Resolver<Array<ResolversTypes['ReplyComment']>, ParentType, ContextType>;
+  replyComments?: Resolver<
+    Array<ResolversTypes['ReplyComment']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UpdateUsersMutationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateUsersMutationResponse'] = ResolversParentTypes['UpdateUsersMutationResponse']> = {
+export type UpdateUsersMutationResponseResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UpdateUsersMutationResponse'] = ResolversParentTypes['UpdateUsersMutationResponse'],
+> = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  authorOfComments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, RequireFields<UserAuthorOfCommentsArgs, 'directed'>>;
-  authorOfCommentsAggregate?: Resolver<Maybe<ResolversTypes['UserCommentAuthorOfCommentsAggregationSelection']>, ParentType, ContextType, RequireFields<UserAuthorOfCommentsAggregateArgs, 'directed'>>;
-  authorOfCommentsConnection?: Resolver<ResolversTypes['UserAuthorOfCommentsConnection'], ParentType, ContextType, RequireFields<UserAuthorOfCommentsConnectionArgs, 'directed'>>;
+export type UserResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['User'] = ResolversParentTypes['User'],
+> = {
+  authorOfComments?: Resolver<
+    Array<ResolversTypes['Comment']>,
+    ParentType,
+    ContextType,
+    RequireFields<UserAuthorOfCommentsArgs, 'directed'>
+  >;
+  authorOfCommentsAggregate?: Resolver<
+    Maybe<ResolversTypes['UserCommentAuthorOfCommentsAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<UserAuthorOfCommentsAggregateArgs, 'directed'>
+  >;
+  authorOfCommentsConnection?: Resolver<
+    ResolversTypes['UserAuthorOfCommentsConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<UserAuthorOfCommentsConnectionArgs, 'directed'>
+  >;
   dob?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<UserPostsArgs, 'directed'>>;
-  postsAggregate?: Resolver<Maybe<ResolversTypes['UserPostPostsAggregationSelection']>, ParentType, ContextType, RequireFields<UserPostsAggregateArgs, 'directed'>>;
-  postsConnection?: Resolver<ResolversTypes['UserPostsConnection'], ParentType, ContextType, RequireFields<UserPostsConnectionArgs, 'directed'>>;
+  posts?: Resolver<
+    Array<ResolversTypes['Post']>,
+    ParentType,
+    ContextType,
+    RequireFields<UserPostsArgs, 'directed'>
+  >;
+  postsAggregate?: Resolver<
+    Maybe<ResolversTypes['UserPostPostsAggregationSelection']>,
+    ParentType,
+    ContextType,
+    RequireFields<UserPostsAggregateArgs, 'directed'>
+  >;
+  postsConnection?: Resolver<
+    ResolversTypes['UserPostsConnection'],
+    ParentType,
+    ContextType,
+    RequireFields<UserPostsConnectionArgs, 'directed'>
+  >;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserAggregateSelection'] = ResolversParentTypes['UserAggregateSelection']> = {
+export type UserAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserAggregateSelection'] = ResolversParentTypes['UserAggregateSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  dob?: Resolver<ResolversTypes['DateTimeAggregateSelection'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  username?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+  dob?: Resolver<
+    ResolversTypes['DateTimeAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  email?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  name?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  username?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserAuthorOfCommentsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserAuthorOfCommentsConnection'] = ResolversParentTypes['UserAuthorOfCommentsConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['UserAuthorOfCommentsRelationship']>, ParentType, ContextType>;
+export type UserAuthorOfCommentsConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserAuthorOfCommentsConnection'] = ResolversParentTypes['UserAuthorOfCommentsConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['UserAuthorOfCommentsRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserAuthorOfCommentsRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserAuthorOfCommentsRelationship'] = ResolversParentTypes['UserAuthorOfCommentsRelationship']> = {
+export type UserAuthorOfCommentsRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserAuthorOfCommentsRelationship'] = ResolversParentTypes['UserAuthorOfCommentsRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserCommentAuthorOfCommentsAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'] = ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection']> = {
+export type UserCommentAuthorOfCommentsAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'] = ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['UserCommentAuthorOfCommentsNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['UserCommentAuthorOfCommentsNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserCommentAuthorOfCommentsNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'] = ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection']> = {
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  text?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type UserCommentAuthorOfCommentsNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'] = ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'],
+> = {
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  text?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserEdge'] = ResolversParentTypes['UserEdge']> = {
+export type UserEdgeResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserEdge'] = ResolversParentTypes['UserEdge'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserPostPostsAggregationSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserPostPostsAggregationSelection'] = ResolversParentTypes['UserPostPostsAggregationSelection']> = {
+export type UserPostPostsAggregationSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserPostPostsAggregationSelection'] = ResolversParentTypes['UserPostPostsAggregationSelection'],
+> = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  node?: Resolver<Maybe<ResolversTypes['UserPostPostsNodeAggregateSelection']>, ParentType, ContextType>;
+  node?: Resolver<
+    Maybe<ResolversTypes['UserPostPostsNodeAggregateSelection']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserPostPostsNodeAggregateSelectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserPostPostsNodeAggregateSelection'] = ResolversParentTypes['UserPostPostsNodeAggregateSelection']> = {
-  description?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
-  url?: Resolver<ResolversTypes['StringAggregateSelection'], ParentType, ContextType>;
+export type UserPostPostsNodeAggregateSelectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserPostPostsNodeAggregateSelection'] = ResolversParentTypes['UserPostPostsNodeAggregateSelection'],
+> = {
+  description?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
+  url?: Resolver<
+    ResolversTypes['StringAggregateSelection'],
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserPostsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserPostsConnection'] = ResolversParentTypes['UserPostsConnection']> = {
-  edges?: Resolver<Array<ResolversTypes['UserPostsRelationship']>, ParentType, ContextType>;
+export type UserPostsConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserPostsConnection'] = ResolversParentTypes['UserPostsConnection'],
+> = {
+  edges?: Resolver<
+    Array<ResolversTypes['UserPostsRelationship']>,
+    ParentType,
+    ContextType
+  >;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UserPostsRelationshipResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserPostsRelationship'] = ResolversParentTypes['UserPostsRelationship']> = {
+export type UserPostsRelationshipResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UserPostsRelationship'] = ResolversParentTypes['UserPostsRelationship'],
+> = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type UsersConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UsersConnection'] = ResolversParentTypes['UsersConnection']> = {
+export type UsersConnectionResolvers<
+  ContextType = any,
+  ParentType extends
+    ResolversParentTypes['UsersConnection'] = ResolversParentTypes['UsersConnection'],
+> = {
   edges?: Resolver<Array<ResolversTypes['UserEdge']>, ParentType, ContextType>;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -3945,4 +4916,3 @@ export type Resolvers<ContextType = any> = {
   UserPostsRelationship?: UserPostsRelationshipResolvers<ContextType>;
   UsersConnection?: UsersConnectionResolvers<ContextType>;
 };
-
