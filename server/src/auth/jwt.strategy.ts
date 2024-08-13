@@ -11,13 +11,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get("PUBLIC_KEY"),
-      // secretOrKeyProvider: passportJwtSecret({
-      //   cache: true,
-      //   rateLimit: true,
-      //   jwksRequestsPerMinute: 5,
-      //   jwksUri: configService.get<string>('jwksUri'),
-      // }),
+      // secretOrKey: configService.get("PUBLIC_KEY"),
+      secretOrKeyProvider: passportJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: configService.get<string>('jwksUri'),
+      }),
       algorithms: ['RS256'],
     });
   }
