@@ -25,7 +25,7 @@ export default defineConfig({
       '/api': {
         target: 'https://conacy-web-1.onrender.com/',
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
     hmr: {
