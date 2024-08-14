@@ -56,16 +56,16 @@ export async function gqlProviderFactory(configService: ConfigService): Promise<
           // console.log(ctx, code, reason);
         },
         onSubscribe(ctx, message) {
-          console.log('subscribed!');
+          // console.log('subscribed!');
           // console.log(ctx, message);
         },
         onClose(ctx, code, reason) {
-          console.log('closed!');
+          // console.log('closed!');
           // console.log(ctx, code, reason);
         },
         onNext(ctx, message, args, result) {
-          console.log('next!');
-          console.log(message.payload.data, args, result);
+          // console.log('next!');
+          // console.log(message.payload.data, args, result);
         },
       },
     },

@@ -51,7 +51,7 @@ export class AuthService {
       0
     ) {
       const hsh = await argon2.hash(hash);
-      console.log({ email, name, username, hash: hsh, dob });
+      // console.log({ email, name, username, hash: hsh, dob });
 
       const data = await User.create({
         input: [{ email, name, username, hash: hsh, dob }],
@@ -179,12 +179,12 @@ export class AuthService {
         }
       `,
     });
-    console.log(
-      _refreshToken &&
-        u?.refreshToken &&
-        u?.refreshToken == _refreshToken &&
-        u?.username == username,
-    );
+    // console.log(
+    //   _refreshToken &&
+    //     u?.refreshToken &&
+    //     u?.refreshToken == _refreshToken &&
+    //     u?.username == username,
+    // );
 
     if (
       _refreshToken &&
@@ -208,7 +208,7 @@ export class AuthService {
 
       try {
         const { exp } = await this.jwtService.verifyAsync(accessToken);
-        console.log(exp - time);
+        // console.log(exp - time);
       } catch (e) {
         if (e.message !== 'invalid signature') {
           accessToken = this.jwtService.sign(
