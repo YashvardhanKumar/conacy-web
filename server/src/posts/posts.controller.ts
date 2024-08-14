@@ -24,7 +24,7 @@ export class PostsController {
     //   .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
     : Express.Multer.File,
   ) {
-    console.log(file);
+    // console.log(file);
     // return file;
     return this.postsService.uploadImageToCloudinary(file);
   }

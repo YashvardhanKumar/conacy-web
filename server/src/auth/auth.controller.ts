@@ -38,7 +38,7 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const { email, hash, dob, name, username } = createUserDTO;
-    console.log(createUserDTO);
+    // console.log(createUserDTO);
 
     const a = await this.authService.signUp(
       email,
@@ -66,7 +66,7 @@ export class AuthController {
     @Body() body: any,
     @Req() req: Request,
   ) {
-    console.log(body, req.user, req.cookies);
+    // console.log(body, req.user, req.cookies);
 
     const { accessToken, refreshToken, isAuthenticated, username } =
       await this.authService.login(body.email, req.user);
@@ -94,7 +94,7 @@ export class AuthController {
       refreshToken,
     );
     if (isAuthenticated) {
-      console.log("verify is authenticated");
+      // console.log("verify is authenticated");
       
       res.status(200).cookie('accessToken', token, this.optionsAccess);
       return { isAuthenticated, username };

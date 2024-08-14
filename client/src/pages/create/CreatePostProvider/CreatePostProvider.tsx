@@ -83,9 +83,11 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const handleUploadImage = async (file: File) => {
     const formdata = new FormData();
     formdata.append("file", file, file.name);
-
-    return fetch(`/api/upload`, {
+    let url = import.meta.env.VITE_SERVER_URL;
+    console.log(import.meta.env.VITE_SERVER_URL);
+    return fetch(`${url}/upload`, {
       method: "POST",
+      credentials: 'include',
       body: formdata,
       redirect: "follow",
     })
