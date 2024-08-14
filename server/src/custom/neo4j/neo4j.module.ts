@@ -18,13 +18,12 @@ export async function gqlProviderFactory(configService: ConfigService): Promise<
   const neoSchema = new Neo4jGraphQL({
     typeDefs,
     driver,
-    debug: true,
     // resolvers: resolvers(),
     features: {
       subscriptions: true,
       authorization: {
         key: {
-          url: 'http://localhost:3000/.well-known/jwks.json',
+          url: configService.get("jwksUri"),
         },
         verifyOptions: {
           algorithms: ['RS256'],
