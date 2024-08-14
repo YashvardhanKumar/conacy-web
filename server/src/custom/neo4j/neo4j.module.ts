@@ -18,6 +18,7 @@ export async function gqlProviderFactory(configService: ConfigService): Promise<
   const neoSchema = new Neo4jGraphQL({
     typeDefs,
     driver,
+    debug: true,
     // resolvers: resolvers(),
     features: {
       subscriptions: true,
