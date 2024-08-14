@@ -61,6 +61,7 @@ export const usePostContext = () => {
 const PostProvider: React.FC<PostProps> = ({ children }) => {
   const { data, subscribeToMore } = useSuspenseQuery(getPosts);
   useEffect(() => {
+    console.log(data.posts);
     subscribeToMore({
       document: subsPostCreate,
       updateQuery: (prev, { subscriptionData }) => {
