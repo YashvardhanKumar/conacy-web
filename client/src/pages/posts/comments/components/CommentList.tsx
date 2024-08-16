@@ -1,7 +1,7 @@
 import { useCommentContext } from "../Providers/CommentProvider/CommentProvider";
 import CommentForm from "./CommentForm";
 import CommentTile from "./CommentTile";
-import person from "../../../../assets/person.png";
+import person from "../../../../assets/avatar.png";
 import SingleCommentProvider from "../Providers/SingleCommentProvider/SingleCommentProvider";
 
 export const CommentList = () => {

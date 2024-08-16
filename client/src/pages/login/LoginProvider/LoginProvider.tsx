@@ -69,7 +69,10 @@ const LoginProvider: React.FC<LoginProps> = ({ children }) => {
           setLoading(false);
 
           if (!data?.isAuthenticated) {
-            alert(data);
+            console.log(data);
+            setLoading(false);
+            h.setFieldError("email", data.message);
+            return;
           } else {
             nav("/");
           }

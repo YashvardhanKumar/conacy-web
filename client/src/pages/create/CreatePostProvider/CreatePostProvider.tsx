@@ -66,7 +66,9 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const nav = useNavigate();
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState("");
-  const [createMutation] = useMutation(createPost);
+  const [createMutation] = useMutation(createPost, {
+    refetchQueries: ['Posts2']
+  });
   const [loading, setLoading] = useState(false);
 
   const initialValues: CreateFormProps = {

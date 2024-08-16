@@ -37,41 +37,6 @@ const getPostComments = graphql(/* GraphQL */ `
   }
 `);
 
-
-
-const commentSubscription = graphql(/*graphql*/ `
-  subscription CommentCreated {
-    commentCreated {
-      event
-      timestamp
-      createdComment {
-        id
-        text
-        indent
-        parentsOfComment
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`);
-const commentDeleteSub = graphql(`
-  subscription CommentDeleted {
-    commentDeleted {
-      event
-      timestamp
-      deletedComment {
-        id
-        text
-        indent
-        parentsOfComment
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`);
-
 const commentReplyMutation = graphql(/*graphql*/ `
   mutation CreateComments(
     $comment: String!
@@ -114,16 +79,22 @@ export const useCommentContext = () => {
 
 const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
   const {inputRef, pointerRef, replier, setReplier} = useCommentInputContext();
-  const { data, subscribeToMore } = useQuery(
+  const { data } = useQuery(
     getPostComments,
     {
       variables: {
         pid: params?.pid ?? null,
       },
+      pollInterval: 10000
     }
   );
   // const [replier, setReplier] = useState<ReplierProps | null>(null);
-  const ccrm = useMutation(commentReplyMutation);
+  const ccrm = useMutation(commentReplyMutation,{
+    refetchQueries: [
+      getPostComments,
+      (replier) ? 'Comments' : ''
+    ]
+  });
   const [comment, setComment] = useState("");
 
   const handleCancelReply = () => {
@@ -162,33 +133,6 @@ const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
     }
   };
 
-  useEffect(() => {
-    if (!data) return;
-    subscribeToMore({
-      document: commentSubscription,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const d = subscriptionData.data.commentCreated;
-        console.log(d);
-        return Object.assign({}, prev, {
-          comments: [d, ...prev.comments],
-        });
-      },
-    });
-    subscribeToMore({
-      document: commentDeleteSub,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-
-        const newFeedItem = subscriptionData.data.commentDeleted.deletedComment;
-        console.log(newFeedItem);
-        return Object.assign({}, prev, {
-          comments: [...prev.comments.filter((p) => p.id !== newFeedItem.id)],
-          commentsConnection: prev.commentsConnection.totalCount - 1,
-        });
-      },
-    });
-  }, [data]);
   if (!data) {
     return <CommentPageSkeleton />;
   }

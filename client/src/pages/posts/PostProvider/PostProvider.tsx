@@ -7,41 +7,9 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 
 export const getPosts = graphql(/* GraphQL */ `
   query Posts2 {
-    posts {
-      id
-    }
-  }
-`);
-export const subsPostCreate = graphql(/* graphql */ `
-  subscription PostCreated {
-    postCreated {
-      event
-      timestamp
-      createdPost {
+    posts(options: { sort: {createdAt: DESC}}) {
         id
-        url
-        description
-        visibility
         createdAt
-        updatedAt
-      }
-    }
-  }
-`);
-
-export const subsPostUpdate = graphql(/* graphql */ `
-  subscription PostUpdated {
-    postUpdated {
-      event
-      timestamp
-      updatedPost {
-        id
-        url
-        description
-        visibility
-        createdAt
-        updatedAt
-      }
     }
   }
 `);
@@ -59,30 +27,8 @@ export const usePostContext = () => {
 };
 
 const PostProvider: React.FC<PostProps> = ({ children }) => {
-  const { data, subscribeToMore } = useSuspenseQuery(getPosts);
-  useEffect(() => {
-    console.log(data.posts);
-    subscribeToMore({
-      document: subsPostCreate,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const newFeedItem = subscriptionData.data.postCreated.createdPost;
-        return Object.assign({}, prev, {
-          posts: [newFeedItem],
-        });
-      },
-    });
-    subscribeToMore({
-      document: subsPostUpdate,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const newFeedItem = subscriptionData.data.postUpdated.updatedPost;
-        return Object.assign({}, prev, {
-          posts: [...(prev.posts)],
-        });
-      },
-    });
-  });
+
+  const { data } = useSuspenseQuery(getPosts);
   return (
     <Suspense
       fallback={<LoadingSpinner />}

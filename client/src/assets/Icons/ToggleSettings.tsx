@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { IconProps } from "./IconProps";
 
-const ToggleSettings : FC<IconProps> = () => {
+const ToggleSettings : FC<IconProps> = ({className}) => {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="dark:*:fill-white h-8 w-8"
+      className={`dark:*:fill-white h-8 w-8 ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -280,6 +280,21 @@ export type CommentAuthorNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -685,6 +700,21 @@ export type CommentLikesNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1164,6 +1194,7 @@ export type CommentUserAuthorNodeAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -1180,6 +1211,7 @@ export type CommentUserLikesNodeAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -1291,10 +1323,22 @@ export type CreateInfo = {
   relationshipsCreated: Scalars['Int']['output'];
 };
 
+export type CreateMessagesMutationResponse = {
+  __typename?: 'CreateMessagesMutationResponse';
+  info: CreateInfo;
+  messages: Array<Message>;
+};
+
 export type CreatePostsMutationResponse = {
   __typename?: 'CreatePostsMutationResponse';
   info: CreateInfo;
   posts: Array<Post>;
+};
+
+export type CreatePrivacySettingsMutationResponse = {
+  __typename?: 'CreatePrivacySettingsMutationResponse';
+  info: CreateInfo;
+  privacySettings: Array<PrivacySettings>;
 };
 
 export type CreateUsersMutationResponse = {
@@ -1340,16 +1384,712 @@ export type IntAggregateSelection = {
   sum?: Maybe<Scalars['Int']['output']>;
 };
 
+export type Message = {
+  __typename?: 'Message';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  file?: Maybe<Scalars['String']['output']>;
+  format: MessageFormat;
+  id: Scalars['ID']['output'];
+  receiver: User;
+  receiverAggregate?: Maybe<MessageUserReceiverAggregationSelection>;
+  receiverConnection: MessageReceiverConnection;
+  sender: User;
+  senderAggregate?: Maybe<MessageUserSenderAggregationSelection>;
+  senderConnection: MessageSenderConnection;
+  text?: Maybe<Scalars['String']['output']>;
+  type: MessageType;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type MessageReceiverArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<UserOptions>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type MessageReceiverAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type MessageReceiverConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<MessageReceiverConnectionSort>>;
+  where?: InputMaybe<MessageReceiverConnectionWhere>;
+};
+
+
+export type MessageSenderArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<UserOptions>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type MessageSenderAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type MessageSenderConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<MessageSenderConnectionSort>>;
+  where?: InputMaybe<MessageSenderConnectionWhere>;
+};
+
+export type MessageAggregateSelection = {
+  __typename?: 'MessageAggregateSelection';
+  count: Scalars['Int']['output'];
+  createdAt: DateTimeAggregateSelection;
+  file: StringAggregateSelection;
+  id: IdAggregateSelection;
+  text: StringAggregateSelection;
+  updatedAt: DateTimeAggregateSelection;
+};
+
+export type MessageConnectInput = {
+  receiver?: InputMaybe<MessageReceiverConnectFieldInput>;
+  sender?: InputMaybe<MessageSenderConnectFieldInput>;
+};
+
+export type MessageConnectOrCreateInput = {
+  receiver?: InputMaybe<MessageReceiverConnectOrCreateFieldInput>;
+  sender?: InputMaybe<MessageSenderConnectOrCreateFieldInput>;
+};
+
+export type MessageConnectedRelationships = {
+  __typename?: 'MessageConnectedRelationships';
+  receiver?: Maybe<MessageReceiverConnectedRelationship>;
+  sender?: Maybe<MessageSenderConnectedRelationship>;
+};
+
+export type MessageCreateInput = {
+  file?: InputMaybe<Scalars['String']['input']>;
+  format: MessageFormat;
+  receiver?: InputMaybe<MessageReceiverFieldInput>;
+  sender?: InputMaybe<MessageSenderFieldInput>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  type: MessageType;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type MessageCreatedEvent = {
+  __typename?: 'MessageCreatedEvent';
+  createdMessage: MessageEventPayload;
+  event: EventType;
+  timestamp: Scalars['Float']['output'];
+};
+
+export type MessageDeleteInput = {
+  receiver?: InputMaybe<MessageReceiverDeleteFieldInput>;
+  sender?: InputMaybe<MessageSenderDeleteFieldInput>;
+};
+
+export type MessageDeletedEvent = {
+  __typename?: 'MessageDeletedEvent';
+  deletedMessage: MessageEventPayload;
+  event: EventType;
+  timestamp: Scalars['Float']['output'];
+};
+
+export type MessageDisconnectInput = {
+  receiver?: InputMaybe<MessageReceiverDisconnectFieldInput>;
+  sender?: InputMaybe<MessageSenderDisconnectFieldInput>;
+};
+
+export type MessageEdge = {
+  __typename?: 'MessageEdge';
+  cursor: Scalars['String']['output'];
+  node: Message;
+};
+
+export type MessageEventPayload = {
+  __typename?: 'MessageEventPayload';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  file?: Maybe<Scalars['String']['output']>;
+  format: MessageFormat;
+  id: Scalars['ID']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+  type: MessageType;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export enum MessageFormat {
+  Audio = 'AUDIO',
+  Gif = 'GIF',
+  Images = 'IMAGES',
+  Sticker = 'STICKER',
+  Text = 'TEXT',
+  Video = 'VIDEO'
+}
+
+export type MessageOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more MessageSort objects to sort Messages by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<MessageSort>>;
+};
+
+export type MessageReceiverAggregateInput = {
+  AND?: InputMaybe<Array<MessageReceiverAggregateInput>>;
+  NOT?: InputMaybe<MessageReceiverAggregateInput>;
+  OR?: InputMaybe<Array<MessageReceiverAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<MessageReceiverNodeAggregationWhereInput>;
+};
+
+export type MessageReceiverConnectFieldInput = {
+  connect?: InputMaybe<UserConnectInput>;
+  /** Whether or not to overwrite any matching relationship with the new properties. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<UserConnectWhere>;
+};
+
+export type MessageReceiverConnectOrCreateFieldInput = {
+  onCreate: MessageReceiverConnectOrCreateFieldInputOnCreate;
+  where: UserConnectOrCreateWhere;
+};
+
+export type MessageReceiverConnectOrCreateFieldInputOnCreate = {
+  node: UserOnCreateInput;
+};
+
+export type MessageReceiverConnectedRelationship = {
+  __typename?: 'MessageReceiverConnectedRelationship';
+  node: UserEventPayload;
+};
+
+export type MessageReceiverConnection = {
+  __typename?: 'MessageReceiverConnection';
+  edges: Array<MessageReceiverRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type MessageReceiverConnectionSort = {
+  node?: InputMaybe<UserSort>;
+};
+
+export type MessageReceiverConnectionWhere = {
+  AND?: InputMaybe<Array<MessageReceiverConnectionWhere>>;
+  NOT?: InputMaybe<MessageReceiverConnectionWhere>;
+  OR?: InputMaybe<Array<MessageReceiverConnectionWhere>>;
+  node?: InputMaybe<UserWhere>;
+};
+
+export type MessageReceiverCreateFieldInput = {
+  node: UserCreateInput;
+};
+
+export type MessageReceiverDeleteFieldInput = {
+  delete?: InputMaybe<UserDeleteInput>;
+  where?: InputMaybe<MessageReceiverConnectionWhere>;
+};
+
+export type MessageReceiverDisconnectFieldInput = {
+  disconnect?: InputMaybe<UserDisconnectInput>;
+  where?: InputMaybe<MessageReceiverConnectionWhere>;
+};
+
+export type MessageReceiverFieldInput = {
+  connect?: InputMaybe<MessageReceiverConnectFieldInput>;
+  connectOrCreate?: InputMaybe<MessageReceiverConnectOrCreateFieldInput>;
+  create?: InputMaybe<MessageReceiverCreateFieldInput>;
+};
+
+export type MessageReceiverNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<MessageReceiverNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<MessageReceiverNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<MessageReceiverNodeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type MessageReceiverRelationship = {
+  __typename?: 'MessageReceiverRelationship';
+  cursor: Scalars['String']['output'];
+  node: User;
+};
+
+export type MessageReceiverRelationshipSubscriptionWhere = {
+  node?: InputMaybe<UserSubscriptionWhere>;
+};
+
+export type MessageReceiverUpdateConnectionInput = {
+  node?: InputMaybe<UserUpdateInput>;
+};
+
+export type MessageReceiverUpdateFieldInput = {
+  connect?: InputMaybe<MessageReceiverConnectFieldInput>;
+  connectOrCreate?: InputMaybe<MessageReceiverConnectOrCreateFieldInput>;
+  create?: InputMaybe<MessageReceiverCreateFieldInput>;
+  delete?: InputMaybe<MessageReceiverDeleteFieldInput>;
+  disconnect?: InputMaybe<MessageReceiverDisconnectFieldInput>;
+  update?: InputMaybe<MessageReceiverUpdateConnectionInput>;
+  where?: InputMaybe<MessageReceiverConnectionWhere>;
+};
+
+export type MessageRelationInput = {
+  receiver?: InputMaybe<MessageReceiverCreateFieldInput>;
+  sender?: InputMaybe<MessageSenderCreateFieldInput>;
+};
+
+export type MessageRelationshipCreatedEvent = {
+  __typename?: 'MessageRelationshipCreatedEvent';
+  createdRelationship: MessageConnectedRelationships;
+  event: EventType;
+  message: MessageEventPayload;
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
+};
+
+export type MessageRelationshipCreatedSubscriptionWhere = {
+  AND?: InputMaybe<Array<MessageRelationshipCreatedSubscriptionWhere>>;
+  NOT?: InputMaybe<MessageRelationshipCreatedSubscriptionWhere>;
+  OR?: InputMaybe<Array<MessageRelationshipCreatedSubscriptionWhere>>;
+  createdRelationship?: InputMaybe<MessageRelationshipsSubscriptionWhere>;
+  message?: InputMaybe<MessageSubscriptionWhere>;
+};
+
+export type MessageRelationshipDeletedEvent = {
+  __typename?: 'MessageRelationshipDeletedEvent';
+  deletedRelationship: MessageConnectedRelationships;
+  event: EventType;
+  message: MessageEventPayload;
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
+};
+
+export type MessageRelationshipDeletedSubscriptionWhere = {
+  AND?: InputMaybe<Array<MessageRelationshipDeletedSubscriptionWhere>>;
+  NOT?: InputMaybe<MessageRelationshipDeletedSubscriptionWhere>;
+  OR?: InputMaybe<Array<MessageRelationshipDeletedSubscriptionWhere>>;
+  deletedRelationship?: InputMaybe<MessageRelationshipsSubscriptionWhere>;
+  message?: InputMaybe<MessageSubscriptionWhere>;
+};
+
+export type MessageRelationshipsSubscriptionWhere = {
+  receiver?: InputMaybe<MessageReceiverRelationshipSubscriptionWhere>;
+  sender?: InputMaybe<MessageSenderRelationshipSubscriptionWhere>;
+};
+
+export type MessageSenderAggregateInput = {
+  AND?: InputMaybe<Array<MessageSenderAggregateInput>>;
+  NOT?: InputMaybe<MessageSenderAggregateInput>;
+  OR?: InputMaybe<Array<MessageSenderAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<MessageSenderNodeAggregationWhereInput>;
+};
+
+export type MessageSenderConnectFieldInput = {
+  connect?: InputMaybe<UserConnectInput>;
+  /** Whether or not to overwrite any matching relationship with the new properties. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<UserConnectWhere>;
+};
+
+export type MessageSenderConnectOrCreateFieldInput = {
+  onCreate: MessageSenderConnectOrCreateFieldInputOnCreate;
+  where: UserConnectOrCreateWhere;
+};
+
+export type MessageSenderConnectOrCreateFieldInputOnCreate = {
+  node: UserOnCreateInput;
+};
+
+export type MessageSenderConnectedRelationship = {
+  __typename?: 'MessageSenderConnectedRelationship';
+  node: UserEventPayload;
+};
+
+export type MessageSenderConnection = {
+  __typename?: 'MessageSenderConnection';
+  edges: Array<MessageSenderRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type MessageSenderConnectionSort = {
+  node?: InputMaybe<UserSort>;
+};
+
+export type MessageSenderConnectionWhere = {
+  AND?: InputMaybe<Array<MessageSenderConnectionWhere>>;
+  NOT?: InputMaybe<MessageSenderConnectionWhere>;
+  OR?: InputMaybe<Array<MessageSenderConnectionWhere>>;
+  node?: InputMaybe<UserWhere>;
+};
+
+export type MessageSenderCreateFieldInput = {
+  node: UserCreateInput;
+};
+
+export type MessageSenderDeleteFieldInput = {
+  delete?: InputMaybe<UserDeleteInput>;
+  where?: InputMaybe<MessageSenderConnectionWhere>;
+};
+
+export type MessageSenderDisconnectFieldInput = {
+  disconnect?: InputMaybe<UserDisconnectInput>;
+  where?: InputMaybe<MessageSenderConnectionWhere>;
+};
+
+export type MessageSenderFieldInput = {
+  connect?: InputMaybe<MessageSenderConnectFieldInput>;
+  connectOrCreate?: InputMaybe<MessageSenderConnectOrCreateFieldInput>;
+  create?: InputMaybe<MessageSenderCreateFieldInput>;
+};
+
+export type MessageSenderNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<MessageSenderNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<MessageSenderNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<MessageSenderNodeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type MessageSenderRelationship = {
+  __typename?: 'MessageSenderRelationship';
+  cursor: Scalars['String']['output'];
+  node: User;
+};
+
+export type MessageSenderRelationshipSubscriptionWhere = {
+  node?: InputMaybe<UserSubscriptionWhere>;
+};
+
+export type MessageSenderUpdateConnectionInput = {
+  node?: InputMaybe<UserUpdateInput>;
+};
+
+export type MessageSenderUpdateFieldInput = {
+  connect?: InputMaybe<MessageSenderConnectFieldInput>;
+  connectOrCreate?: InputMaybe<MessageSenderConnectOrCreateFieldInput>;
+  create?: InputMaybe<MessageSenderCreateFieldInput>;
+  delete?: InputMaybe<MessageSenderDeleteFieldInput>;
+  disconnect?: InputMaybe<MessageSenderDisconnectFieldInput>;
+  update?: InputMaybe<MessageSenderUpdateConnectionInput>;
+  where?: InputMaybe<MessageSenderConnectionWhere>;
+};
+
+/** Fields to sort Messages by. The order in which sorts are applied is not guaranteed when specifying many fields in one MessageSort object. */
+export type MessageSort = {
+  createdAt?: InputMaybe<SortDirection>;
+  file?: InputMaybe<SortDirection>;
+  format?: InputMaybe<SortDirection>;
+  id?: InputMaybe<SortDirection>;
+  text?: InputMaybe<SortDirection>;
+  type?: InputMaybe<SortDirection>;
+  updatedAt?: InputMaybe<SortDirection>;
+};
+
+export type MessageSubscriptionWhere = {
+  AND?: InputMaybe<Array<MessageSubscriptionWhere>>;
+  NOT?: InputMaybe<MessageSubscriptionWhere>;
+  OR?: InputMaybe<Array<MessageSubscriptionWhere>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
+  file_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  file_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  file_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  file_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<MessageFormat>;
+  format_IN?: InputMaybe<Array<MessageFormat>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  text_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  text_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<MessageType>;
+  type_IN?: InputMaybe<Array<MessageType>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export enum MessageType {
+  Chat = 'CHAT',
+  Group = 'GROUP',
+  Network = 'NETWORK'
+}
+
+export type MessageUpdateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<MessageFormat>;
+  receiver?: InputMaybe<MessageReceiverUpdateFieldInput>;
+  sender?: InputMaybe<MessageSenderUpdateFieldInput>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<MessageType>;
+};
+
+export type MessageUpdatedEvent = {
+  __typename?: 'MessageUpdatedEvent';
+  event: EventType;
+  previousState: MessageEventPayload;
+  timestamp: Scalars['Float']['output'];
+  updatedMessage: MessageEventPayload;
+};
+
+export type MessageUserReceiverAggregationSelection = {
+  __typename?: 'MessageUserReceiverAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<MessageUserReceiverNodeAggregateSelection>;
+};
+
+export type MessageUserReceiverNodeAggregateSelection = {
+  __typename?: 'MessageUserReceiverNodeAggregateSelection';
+  createdAt: DateTimeAggregateSelection;
+  email: StringAggregateSelection;
+  id: IdAggregateSelection;
+  name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
+  updatedAt: DateTimeAggregateSelection;
+  username: IdAggregateSelection;
+};
+
+export type MessageUserSenderAggregationSelection = {
+  __typename?: 'MessageUserSenderAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<MessageUserSenderNodeAggregateSelection>;
+};
+
+export type MessageUserSenderNodeAggregateSelection = {
+  __typename?: 'MessageUserSenderNodeAggregateSelection';
+  createdAt: DateTimeAggregateSelection;
+  email: StringAggregateSelection;
+  id: IdAggregateSelection;
+  name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
+  updatedAt: DateTimeAggregateSelection;
+  username: IdAggregateSelection;
+};
+
+export type MessageWhere = {
+  AND?: InputMaybe<Array<MessageWhere>>;
+  NOT?: InputMaybe<MessageWhere>;
+  OR?: InputMaybe<Array<MessageWhere>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
+  file_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  file_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  file_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  file_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<MessageFormat>;
+  format_IN?: InputMaybe<Array<MessageFormat>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  receiver?: InputMaybe<UserWhere>;
+  receiverAggregate?: InputMaybe<MessageReceiverAggregateInput>;
+  receiverConnection?: InputMaybe<MessageReceiverConnectionWhere>;
+  receiverConnection_NOT?: InputMaybe<MessageReceiverConnectionWhere>;
+  receiver_NOT?: InputMaybe<UserWhere>;
+  sender?: InputMaybe<UserWhere>;
+  senderAggregate?: InputMaybe<MessageSenderAggregateInput>;
+  senderConnection?: InputMaybe<MessageSenderConnectionWhere>;
+  senderConnection_NOT?: InputMaybe<MessageSenderConnectionWhere>;
+  sender_NOT?: InputMaybe<UserWhere>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  text_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  text_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<MessageType>;
+  type_IN?: InputMaybe<Array<MessageType>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type MessagesConnection = {
+  __typename?: 'MessagesConnection';
+  edges: Array<MessageEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createComments: CreateCommentsMutationResponse;
+  createMessages: CreateMessagesMutationResponse;
   createPosts: CreatePostsMutationResponse;
+  createPrivacySettings: CreatePrivacySettingsMutationResponse;
   createUsers: CreateUsersMutationResponse;
   deleteComments: DeleteInfo;
+  deleteMessages: DeleteInfo;
   deletePosts: DeleteInfo;
+  deletePrivacySettings: DeleteInfo;
   deleteUsers: DeleteInfo;
   updateComments: UpdateCommentsMutationResponse;
+  updateMessages: UpdateMessagesMutationResponse;
   updatePosts: UpdatePostsMutationResponse;
+  updatePrivacySettings: UpdatePrivacySettingsMutationResponse;
   updateUsers: UpdateUsersMutationResponse;
 };
 
@@ -1359,8 +2099,18 @@ export type MutationCreateCommentsArgs = {
 };
 
 
+export type MutationCreateMessagesArgs = {
+  input: Array<MessageCreateInput>;
+};
+
+
 export type MutationCreatePostsArgs = {
   input: Array<PostCreateInput>;
+};
+
+
+export type MutationCreatePrivacySettingsArgs = {
+  input: Array<PrivacySettingsCreateInput>;
 };
 
 
@@ -1375,9 +2125,20 @@ export type MutationDeleteCommentsArgs = {
 };
 
 
+export type MutationDeleteMessagesArgs = {
+  delete?: InputMaybe<MessageDeleteInput>;
+  where?: InputMaybe<MessageWhere>;
+};
+
+
 export type MutationDeletePostsArgs = {
   delete?: InputMaybe<PostDeleteInput>;
   where?: InputMaybe<PostWhere>;
+};
+
+
+export type MutationDeletePrivacySettingsArgs = {
+  where?: InputMaybe<PrivacySettingsWhere>;
 };
 
 
@@ -1398,6 +2159,17 @@ export type MutationUpdateCommentsArgs = {
 };
 
 
+export type MutationUpdateMessagesArgs = {
+  connect?: InputMaybe<MessageConnectInput>;
+  connectOrCreate?: InputMaybe<MessageConnectOrCreateInput>;
+  create?: InputMaybe<MessageRelationInput>;
+  delete?: InputMaybe<MessageDeleteInput>;
+  disconnect?: InputMaybe<MessageDisconnectInput>;
+  update?: InputMaybe<MessageUpdateInput>;
+  where?: InputMaybe<MessageWhere>;
+};
+
+
 export type MutationUpdatePostsArgs = {
   connect?: InputMaybe<PostConnectInput>;
   connectOrCreate?: InputMaybe<PostConnectOrCreateInput>;
@@ -1406,6 +2178,12 @@ export type MutationUpdatePostsArgs = {
   disconnect?: InputMaybe<PostDisconnectInput>;
   update?: InputMaybe<PostUpdateInput>;
   where?: InputMaybe<PostWhere>;
+};
+
+
+export type MutationUpdatePrivacySettingsArgs = {
+  update?: InputMaybe<PrivacySettingsUpdateInput>;
+  where?: InputMaybe<PrivacySettingsWhere>;
 };
 
 
@@ -1837,6 +2615,21 @@ export type PostCreatorOfPostNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2023,6 +2816,21 @@ export type PostLikesNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2186,6 +2994,7 @@ export type PostUserCreatorOfPostNodeAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -2202,6 +3011,7 @@ export type PostUserLikesNodeAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -2287,14 +3097,143 @@ export type PostsConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+export type PrivacySettings = {
+  __typename?: 'PrivacySettings';
+  chatVisibility?: Maybe<Array<RelationType>>;
+  isTyping: Scalars['Boolean']['output'];
+  onlineStatus?: Maybe<Array<RelationType>>;
+  profileVisibility?: Maybe<Array<RelationType>>;
+  seenReceipts: Scalars['Boolean']['output'];
+  whoCanSendMessageRequest?: Maybe<Array<RelationType>>;
+};
+
+export type PrivacySettingsAggregateSelection = {
+  __typename?: 'PrivacySettingsAggregateSelection';
+  count: Scalars['Int']['output'];
+};
+
+export type PrivacySettingsConnection = {
+  __typename?: 'PrivacySettingsConnection';
+  edges: Array<PrivacySettingsEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type PrivacySettingsCreateInput = {
+  chatVisibility?: InputMaybe<Array<RelationType>>;
+  isTyping: Scalars['Boolean']['input'];
+  onlineStatus?: InputMaybe<Array<RelationType>>;
+  profileVisibility?: InputMaybe<Array<RelationType>>;
+  seenReceipts: Scalars['Boolean']['input'];
+  whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
+};
+
+export type PrivacySettingsCreatedEvent = {
+  __typename?: 'PrivacySettingsCreatedEvent';
+  createdPrivacySettings: PrivacySettingsEventPayload;
+  event: EventType;
+  timestamp: Scalars['Float']['output'];
+};
+
+export type PrivacySettingsDeletedEvent = {
+  __typename?: 'PrivacySettingsDeletedEvent';
+  deletedPrivacySettings: PrivacySettingsEventPayload;
+  event: EventType;
+  timestamp: Scalars['Float']['output'];
+};
+
+export type PrivacySettingsEdge = {
+  __typename?: 'PrivacySettingsEdge';
+  cursor: Scalars['String']['output'];
+  node: PrivacySettings;
+};
+
+export type PrivacySettingsEventPayload = {
+  __typename?: 'PrivacySettingsEventPayload';
+  chatVisibility?: Maybe<Array<RelationType>>;
+  isTyping: Scalars['Boolean']['output'];
+  onlineStatus?: Maybe<Array<RelationType>>;
+  profileVisibility?: Maybe<Array<RelationType>>;
+  seenReceipts: Scalars['Boolean']['output'];
+  whoCanSendMessageRequest?: Maybe<Array<RelationType>>;
+};
+
+export type PrivacySettingsOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more PrivacySettingsSort objects to sort PrivacySettings by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<PrivacySettingsSort>>;
+};
+
+/** Fields to sort PrivacySettings by. The order in which sorts are applied is not guaranteed when specifying many fields in one PrivacySettingsSort object. */
+export type PrivacySettingsSort = {
+  isTyping?: InputMaybe<SortDirection>;
+  seenReceipts?: InputMaybe<SortDirection>;
+};
+
+export type PrivacySettingsSubscriptionWhere = {
+  AND?: InputMaybe<Array<PrivacySettingsSubscriptionWhere>>;
+  NOT?: InputMaybe<PrivacySettingsSubscriptionWhere>;
+  OR?: InputMaybe<Array<PrivacySettingsSubscriptionWhere>>;
+  chatVisibility?: InputMaybe<Array<RelationType>>;
+  chatVisibility_INCLUDES?: InputMaybe<RelationType>;
+  isTyping?: InputMaybe<Scalars['Boolean']['input']>;
+  onlineStatus?: InputMaybe<Array<RelationType>>;
+  onlineStatus_INCLUDES?: InputMaybe<RelationType>;
+  profileVisibility?: InputMaybe<Array<RelationType>>;
+  profileVisibility_INCLUDES?: InputMaybe<RelationType>;
+  seenReceipts?: InputMaybe<Scalars['Boolean']['input']>;
+  whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
+  whoCanSendMessageRequest_INCLUDES?: InputMaybe<RelationType>;
+};
+
+export type PrivacySettingsUpdateInput = {
+  chatVisibility?: InputMaybe<Array<RelationType>>;
+  isTyping?: InputMaybe<Scalars['Boolean']['input']>;
+  onlineStatus?: InputMaybe<Array<RelationType>>;
+  profileVisibility?: InputMaybe<Array<RelationType>>;
+  seenReceipts?: InputMaybe<Scalars['Boolean']['input']>;
+  whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
+};
+
+export type PrivacySettingsUpdatedEvent = {
+  __typename?: 'PrivacySettingsUpdatedEvent';
+  event: EventType;
+  previousState: PrivacySettingsEventPayload;
+  timestamp: Scalars['Float']['output'];
+  updatedPrivacySettings: PrivacySettingsEventPayload;
+};
+
+export type PrivacySettingsWhere = {
+  AND?: InputMaybe<Array<PrivacySettingsWhere>>;
+  NOT?: InputMaybe<PrivacySettingsWhere>;
+  OR?: InputMaybe<Array<PrivacySettingsWhere>>;
+  chatVisibility?: InputMaybe<Array<RelationType>>;
+  chatVisibility_INCLUDES?: InputMaybe<RelationType>;
+  isTyping?: InputMaybe<Scalars['Boolean']['input']>;
+  onlineStatus?: InputMaybe<Array<RelationType>>;
+  onlineStatus_INCLUDES?: InputMaybe<RelationType>;
+  profileVisibility?: InputMaybe<Array<RelationType>>;
+  profileVisibility_INCLUDES?: InputMaybe<RelationType>;
+  seenReceipts?: InputMaybe<Scalars['Boolean']['input']>;
+  whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
+  whoCanSendMessageRequest_INCLUDES?: InputMaybe<RelationType>;
+};
+
 export type Query = {
   __typename?: 'Query';
   comments: Array<Comment>;
   commentsAggregate: CommentAggregateSelection;
   commentsConnection: CommentsConnection;
+  messages: Array<Message>;
+  messagesAggregate: MessageAggregateSelection;
+  messagesConnection: MessagesConnection;
   posts: Array<Post>;
   postsAggregate: PostAggregateSelection;
   postsConnection: PostsConnection;
+  privacySettings: Array<PrivacySettings>;
+  privacySettingsAggregate: PrivacySettingsAggregateSelection;
+  privacySettingsConnection: PrivacySettingsConnection;
   users: Array<User>;
   usersAggregate: UserAggregateSelection;
   usersConnection: UsersConnection;
@@ -2320,6 +3259,25 @@ export type QueryCommentsConnectionArgs = {
 };
 
 
+export type QueryMessagesArgs = {
+  options?: InputMaybe<MessageOptions>;
+  where?: InputMaybe<MessageWhere>;
+};
+
+
+export type QueryMessagesAggregateArgs = {
+  where?: InputMaybe<MessageWhere>;
+};
+
+
+export type QueryMessagesConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<MessageSort>>>;
+  where?: InputMaybe<MessageWhere>;
+};
+
+
 export type QueryPostsArgs = {
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
@@ -2336,6 +3294,25 @@ export type QueryPostsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<PostSort>>>;
   where?: InputMaybe<PostWhere>;
+};
+
+
+export type QueryPrivacySettingsArgs = {
+  options?: InputMaybe<PrivacySettingsOptions>;
+  where?: InputMaybe<PrivacySettingsWhere>;
+};
+
+
+export type QueryPrivacySettingsAggregateArgs = {
+  where?: InputMaybe<PrivacySettingsWhere>;
+};
+
+
+export type QueryPrivacySettingsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<PrivacySettingsSort>>>;
+  where?: InputMaybe<PrivacySettingsWhere>;
 };
 
 
@@ -2388,8 +3365,7 @@ export enum RelationType {
   BestFriend = 'BEST_FRIEND',
   CloseFriend = 'CLOSE_FRIEND',
   Friend = 'FRIEND',
-  Relative = 'RELATIVE',
-  Stranger = 'STRANGER'
+  None = 'NONE'
 }
 
 export type RelationUpdateInput = {
@@ -2425,11 +3401,19 @@ export type Subscription = {
   commentRelationshipCreated: CommentRelationshipCreatedEvent;
   commentRelationshipDeleted: CommentRelationshipDeletedEvent;
   commentUpdated: CommentUpdatedEvent;
+  messageCreated: MessageCreatedEvent;
+  messageDeleted: MessageDeletedEvent;
+  messageRelationshipCreated: MessageRelationshipCreatedEvent;
+  messageRelationshipDeleted: MessageRelationshipDeletedEvent;
+  messageUpdated: MessageUpdatedEvent;
   postCreated: PostCreatedEvent;
   postDeleted: PostDeletedEvent;
   postRelationshipCreated: PostRelationshipCreatedEvent;
   postRelationshipDeleted: PostRelationshipDeletedEvent;
   postUpdated: PostUpdatedEvent;
+  privacySettingsCreated: PrivacySettingsCreatedEvent;
+  privacySettingsDeleted: PrivacySettingsDeletedEvent;
+  privacySettingsUpdated: PrivacySettingsUpdatedEvent;
   userCreated: UserCreatedEvent;
   userDeleted: UserDeletedEvent;
   userRelationshipCreated: UserRelationshipCreatedEvent;
@@ -2463,6 +3447,31 @@ export type SubscriptionCommentUpdatedArgs = {
 };
 
 
+export type SubscriptionMessageCreatedArgs = {
+  where?: InputMaybe<MessageSubscriptionWhere>;
+};
+
+
+export type SubscriptionMessageDeletedArgs = {
+  where?: InputMaybe<MessageSubscriptionWhere>;
+};
+
+
+export type SubscriptionMessageRelationshipCreatedArgs = {
+  where?: InputMaybe<MessageRelationshipCreatedSubscriptionWhere>;
+};
+
+
+export type SubscriptionMessageRelationshipDeletedArgs = {
+  where?: InputMaybe<MessageRelationshipDeletedSubscriptionWhere>;
+};
+
+
+export type SubscriptionMessageUpdatedArgs = {
+  where?: InputMaybe<MessageSubscriptionWhere>;
+};
+
+
 export type SubscriptionPostCreatedArgs = {
   where?: InputMaybe<PostSubscriptionWhere>;
 };
@@ -2485,6 +3494,21 @@ export type SubscriptionPostRelationshipDeletedArgs = {
 
 export type SubscriptionPostUpdatedArgs = {
   where?: InputMaybe<PostSubscriptionWhere>;
+};
+
+
+export type SubscriptionPrivacySettingsCreatedArgs = {
+  where?: InputMaybe<PrivacySettingsSubscriptionWhere>;
+};
+
+
+export type SubscriptionPrivacySettingsDeletedArgs = {
+  where?: InputMaybe<PrivacySettingsSubscriptionWhere>;
+};
+
+
+export type SubscriptionPrivacySettingsUpdatedArgs = {
+  where?: InputMaybe<PrivacySettingsSubscriptionWhere>;
 };
 
 
@@ -2529,10 +3553,22 @@ export type UpdateInfo = {
   relationshipsDeleted: Scalars['Int']['output'];
 };
 
+export type UpdateMessagesMutationResponse = {
+  __typename?: 'UpdateMessagesMutationResponse';
+  info: UpdateInfo;
+  messages: Array<Message>;
+};
+
 export type UpdatePostsMutationResponse = {
   __typename?: 'UpdatePostsMutationResponse';
   info: UpdateInfo;
   posts: Array<Post>;
+};
+
+export type UpdatePrivacySettingsMutationResponse = {
+  __typename?: 'UpdatePrivacySettingsMutationResponse';
+  info: UpdateInfo;
+  privacySettings: Array<PrivacySettings>;
 };
 
 export type UpdateUsersMutationResponse = {
@@ -2560,6 +3596,7 @@ export type User = {
   posts: Array<Post>;
   postsAggregate?: Maybe<UserPostPostsAggregationSelection>;
   postsConnection: UserPostsConnection;
+  profileUrl?: Maybe<Scalars['String']['output']>;
   relationWith: Array<User>;
   relationWithAggregate?: Maybe<UserUserRelationWithAggregationSelection>;
   relationWithConnection: UserRelationWithConnection;
@@ -2709,6 +3746,7 @@ export type UserAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -2928,6 +3966,7 @@ export type UserCreateInput = {
   likedPosts?: InputMaybe<UserLikedPostsFieldInput>;
   name: Scalars['String']['input'];
   posts?: InputMaybe<UserPostsFieldInput>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
   relationWith?: InputMaybe<UserRelationWithFieldInput>;
   relations?: InputMaybe<UserRelationsFieldInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2979,6 +4018,7 @@ export type UserEventPayload = {
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  profileUrl?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   username: Scalars['ID']['output'];
 };
@@ -3272,6 +4312,7 @@ export type UserOnCreateInput = {
   dob?: InputMaybe<Scalars['Date']['input']>;
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   username: Scalars['ID']['input'];
 };
@@ -3583,6 +4624,21 @@ export type UserRelationWithNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3743,6 +4799,21 @@ export type UserRelationsNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3832,6 +4903,7 @@ export type UserSort = {
   email?: InputMaybe<SortDirection>;
   id?: InputMaybe<SortDirection>;
   name?: InputMaybe<SortDirection>;
+  profileUrl?: InputMaybe<SortDirection>;
   updatedAt?: InputMaybe<SortDirection>;
   username?: InputMaybe<SortDirection>;
 };
@@ -3867,6 +4939,11 @@ export type UserSubscriptionWhere = {
   name_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
   name_IN?: InputMaybe<Array<Scalars['String']['input']>>;
   name_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  profileUrl_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3894,6 +4971,7 @@ export type UserUpdateInput = {
   likedPosts?: InputMaybe<Array<UserLikedPostsUpdateFieldInput>>;
   name?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<Array<UserPostsUpdateFieldInput>>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
   relationWith?: InputMaybe<Array<UserRelationWithUpdateFieldInput>>;
   relations?: InputMaybe<Array<UserRelationsUpdateFieldInput>>;
   username?: InputMaybe<Scalars['ID']['input']>;
@@ -3919,6 +4997,7 @@ export type UserUserRelationWithNodeAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -3935,6 +5014,7 @@ export type UserUserRelationsNodeAggregateSelection = {
   email: StringAggregateSelection;
   id: IdAggregateSelection;
   name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
   updatedAt: DateTimeAggregateSelection;
   username: IdAggregateSelection;
 };
@@ -4038,6 +5118,11 @@ export type UserWhere = {
   posts_SINGLE?: InputMaybe<PostWhere>;
   /** Return Users where some of the related Posts match this filter */
   posts_SOME?: InputMaybe<PostWhere>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  profileUrl_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   relationWithAggregate?: InputMaybe<UserRelationWithAggregateInput>;
   /** Return Users where all of the related UserRelationWithConnections match this filter */
   relationWithConnection_ALL?: InputMaybe<UserRelationWithConnectionWhere>;
@@ -4110,17 +5195,7 @@ export type Q1Query = { __typename?: 'Query', users: Array<{ __typename?: 'User'
 export type Posts2QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Posts2Query = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: string }> };
-
-export type PostCreatedSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PostCreatedSubscription = { __typename?: 'Subscription', postCreated: { __typename?: 'PostCreatedEvent', event: EventType, timestamp: number, createdPost: { __typename?: 'PostEventPayload', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null } } };
-
-export type PostUpdatedSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PostUpdatedSubscription = { __typename?: 'Subscription', postUpdated: { __typename?: 'PostUpdatedEvent', event: EventType, timestamp: number, updatedPost: { __typename?: 'PostEventPayload', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null } } };
+export type Posts2Query = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: string, createdAt?: any | null }> };
 
 export type SinglePostsQueryVariables = Exact<{
   pid: Scalars['ID']['input'];
@@ -4151,16 +5226,6 @@ export type PostCommentsQueryVariables = Exact<{
 
 
 export type PostCommentsQuery = { __typename?: 'Query', comments: Array<{ __typename?: 'Comment', id: string }>, commentsConnection: { __typename?: 'CommentsConnection', totalCount: number }, posts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null, creatorOfPost: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null } }> };
-
-export type CommentCreatedSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CommentCreatedSubscription = { __typename?: 'Subscription', commentCreated: { __typename?: 'CommentCreatedEvent', event: EventType, timestamp: number, createdComment: { __typename?: 'CommentEventPayload', id: string, text: string, indent: number, parentsOfComment: Array<string>, createdAt?: any | null, updatedAt?: any | null } } };
-
-export type CommentDeletedSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CommentDeletedSubscription = { __typename?: 'Subscription', commentDeleted: { __typename?: 'CommentDeletedEvent', event: EventType, timestamp: number, deletedComment: { __typename?: 'CommentEventPayload', id: string, text: string, indent: number, parentsOfComment: Array<string>, createdAt?: any | null, updatedAt?: any | null } } };
 
 export type CreateCommentsMutationVariables = Exact<{
   comment: Scalars['String']['input'];
@@ -4218,27 +5283,6 @@ export type CommentsQueryVariables = Exact<{
 
 export type CommentsQuery = { __typename?: 'Query', comments: Array<{ __typename?: 'Comment', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null }> };
 
-export type ReplyCommentRelationshipCreatedSubscriptionVariables = Exact<{
-  uid: Scalars['ID']['input'];
-}>;
-
-
-export type ReplyCommentRelationshipCreatedSubscription = { __typename?: 'Subscription', commentRelationshipCreated: { __typename?: 'CommentRelationshipCreatedEvent', event: EventType, timestamp: number, relationshipFieldName: string, comment: { __typename?: 'CommentEventPayload', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null }, createdRelationship: { __typename?: 'CommentConnectedRelationships', replyOfComment?: { __typename?: 'CommentReplyOfCommentConnectedRelationship', node: { __typename?: 'CommentEventPayload', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null } } | null } } };
-
-export type ReplyLikeCommentRelationshipDeletedSubscriptionVariables = Exact<{
-  username: Scalars['ID']['input'];
-}>;
-
-
-export type ReplyLikeCommentRelationshipDeletedSubscription = { __typename?: 'Subscription', commentRelationshipCreated: { __typename?: 'CommentRelationshipCreatedEvent', event: EventType, timestamp: number, relationshipFieldName: string, comment: { __typename?: 'CommentEventPayload', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null }, createdRelationship: { __typename?: 'CommentConnectedRelationships', likes?: { __typename?: 'CommentLikesConnectedRelationship', node: { __typename?: 'UserEventPayload', id: string } } | null } } };
-
-export type ReplyunLikeCommentRelationshipDeletedSubscriptionVariables = Exact<{
-  username: Scalars['ID']['input'];
-}>;
-
-
-export type ReplyunLikeCommentRelationshipDeletedSubscription = { __typename?: 'Subscription', commentRelationshipDeleted: { __typename?: 'CommentRelationshipDeletedEvent', event: EventType, timestamp: number, relationshipFieldName: string, comment: { __typename?: 'CommentEventPayload', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null }, deletedRelationship: { __typename?: 'CommentConnectedRelationships', likes?: { __typename?: 'CommentLikesConnectedRelationship', node: { __typename?: 'UserEventPayload', id: string } } | null } } };
-
 export type Q4QueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4247,15 +5291,11 @@ export type Q4Query = { __typename?: 'Query', users: Array<{ __typename?: 'User'
 
 export const CreatePostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatePosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"url"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"friend"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RelationType"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createPosts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"Variable","name":{"kind":"Name","value":"url"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"creatorOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"visibility"},"value":{"kind":"Variable","name":{"kind":"Name","value":"friend"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreatePostsMutation, CreatePostsMutationVariables>;
 export const Q1Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"q1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<Q1Query, Q1QueryVariables>;
-export const Posts2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Posts2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<Posts2Query, Posts2QueryVariables>;
-export const PostCreatedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"PostCreated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"postCreated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"createdPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<PostCreatedSubscription, PostCreatedSubscriptionVariables>;
-export const PostUpdatedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"PostUpdated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"postUpdated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"updatedPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<PostUpdatedSubscription, PostUpdatedSubscriptionVariables>;
+export const Posts2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Posts2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"sort"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"EnumValue","value":"DESC"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}}]}}]} as unknown as DocumentNode<Posts2Query, Posts2QueryVariables>;
 export const SinglePostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SinglePosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}}]}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SinglePostsQuery, SinglePostsQueryVariables>;
 export const UnLikeQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UnLikeQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updatePosts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likes"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"disconnect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UnLikeQueryMutation, UnLikeQueryMutationVariables>;
 export const LikeQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updatePosts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likes"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<LikeQueryMutation, LikeQueryMutationVariables>;
 export const PostCommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostComments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"commentOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"indent"},"value":{"kind":"IntValue","value":"0"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"sort"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"EnumValue","value":"DESC"}},{"kind":"ObjectField","name":{"kind":"Name","value":"updatedAt"},"value":{"kind":"EnumValue","value":"DESC"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"commentsConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"commentOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<PostCommentsQuery, PostCommentsQueryVariables>;
-export const CommentCreatedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"CommentCreated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"commentCreated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"createdComment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<CommentCreatedSubscription, CommentCreatedSubscriptionVariables>;
-export const CommentDeletedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"CommentDeleted"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"commentDeleted"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"deletedComment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<CommentDeletedSubscription, CommentDeletedSubscriptionVariables>;
 export const CreateCommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateComments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"comment"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"indent"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"parentsOfComment"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createComments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"text"},"value":{"kind":"Variable","name":{"kind":"Name","value":"comment"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"indent"},"value":{"kind":"Variable","name":{"kind":"Name","value":"indent"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"parentsOfComment"},"value":{"kind":"Variable","name":{"kind":"Name","value":"parentsOfComment"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"author"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"commentOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}]}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"replyOfComment"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<CreateCommentsMutation, CreateCommentsMutationVariables>;
 export const CommentReplyDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CommentReply"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<CommentReplyQuery, CommentReplyQueryVariables>;
 export const LikeCommentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeComment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateComments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likes"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<LikeCommentMutation, LikeCommentMutationVariables>;
@@ -4263,7 +5303,4 @@ export const UnLikeCommentDocument = {"kind":"Document","definitions":[{"kind":"
 export const DeleteCommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteComments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteComments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"OR"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"parentsOfComment_INCLUDES"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bookmark"}},{"kind":"Field","name":{"kind":"Name","value":"nodesDeleted"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipsDeleted"}}]}}]}}]} as unknown as DocumentNode<DeleteCommentsMutation, DeleteCommentsMutationVariables>;
 export const SingleComments2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SingleComments2"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyOfComment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SingleComments2Query, SingleComments2QueryVariables>;
 export const CommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Comments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"replyOfComment"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<CommentsQuery, CommentsQueryVariables>;
-export const ReplyCommentRelationshipCreatedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"ReplyCommentRelationshipCreated"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"uid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"commentRelationshipCreated"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"createdRelationship"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"replyOfComment"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"uid"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipFieldName"}},{"kind":"Field","name":{"kind":"Name","value":"comment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdRelationship"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"replyOfComment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<ReplyCommentRelationshipCreatedSubscription, ReplyCommentRelationshipCreatedSubscriptionVariables>;
-export const ReplyLikeCommentRelationshipDeletedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"ReplyLikeCommentRelationshipDeleted"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"commentRelationshipCreated"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"createdRelationship"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likes"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipFieldName"}},{"kind":"Field","name":{"kind":"Name","value":"comment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdRelationship"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<ReplyLikeCommentRelationshipDeletedSubscription, ReplyLikeCommentRelationshipDeletedSubscriptionVariables>;
-export const ReplyunLikeCommentRelationshipDeletedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"ReplyunLikeCommentRelationshipDeleted"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"commentRelationshipDeleted"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"deletedRelationship"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likes"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipFieldName"}},{"kind":"Field","name":{"kind":"Name","value":"comment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"deletedRelationship"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<ReplyunLikeCommentRelationshipDeletedSubscription, ReplyunLikeCommentRelationshipDeletedSubscriptionVariables>;
 export const Q4Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"q4"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<Q4Query, Q4QueryVariables>;

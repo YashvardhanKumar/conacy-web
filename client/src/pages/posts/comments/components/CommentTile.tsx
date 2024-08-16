@@ -1,5 +1,5 @@
 import Like from "../../../../assets/Icons/Like";
-import person from "../../../../assets/person.png";
+import person from "../../../../assets/avatar.png";
 import CommentReplyList from "../CommentReplyList";
 import { useSingleCommentContext } from "../Providers/SingleCommentProvider/SingleCommentProvider";
 import { motion } from "framer-motion";
