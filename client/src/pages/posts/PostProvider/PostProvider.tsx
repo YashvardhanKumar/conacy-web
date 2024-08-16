@@ -27,8 +27,8 @@ export const usePostContext = () => {
 };
 
 const PostProvider: React.FC<PostProps> = ({ children }) => {
-  const { data } = useSuspenseQuery(getPosts);
 
+  const { data } = useSuspenseQuery(getPosts);
   return (
     <Suspense
       fallback={<LoadingSpinner />}
