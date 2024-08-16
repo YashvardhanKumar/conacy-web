@@ -19,7 +19,6 @@ export async function gqlProviderFactory(configService: ConfigService): Promise<
     typeDefs,
     driver,
     // resolvers: resolvers(),
-    debug: true,
     features: {
       subscriptions: true,
       authorization: {
