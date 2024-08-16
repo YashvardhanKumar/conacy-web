@@ -84,16 +84,19 @@ export const typeDefs = gql`
       validate: [
         {
           requireAuthentication: true
-          operations: [CREATE,UPDATE,DELETE, READ],
+          operations: [CREATE,UPDATE,DELETE]
           where: {node: { creatorOfPost: {username: "$jwt.username"} }}
         },
+      ],
+      filter: [
         {
           requireAuthentication: true
           operations: [READ]
-          where: {node: { creatorOfPost: {relations_ALL: {username: "$jwt.username"}}}}
+          where: {node: { creatorOfPost: {OR: [{relations_ALL: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
         },
 
       ]
+
     ) 
     {
     id: ID! @id
@@ -112,14 +115,17 @@ export const typeDefs = gql`
       validate: [
         {
           requireAuthentication: true
-          operations: [CREATE,UPDATE,DELETE, READ],
+          operations: [CREATE,UPDATE,DELETE]
           where: {node: { author: {username: "$jwt.username"} }}
         },
+      ],
+      filter: [
         {
           requireAuthentication: true
           operations: [READ]
-          where: {node: { author: {relations_ALL: {username: "$jwt.username"}}}}
-        }
+          where: {node: { author: {OR: [{relations_ALL: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
+        },
+
       ]
     ) {
     id: ID! @id
@@ -140,7 +146,14 @@ export const typeDefs = gql`
     validate: [
       {
         requireAuthentication: true
-        operations: [CREATE,UPDATE,DELETE, READ],
+        operations: [CREATE,UPDATE,DELETE],
+        where: {node: {OR: [{ sender: {username: "$jwt.username"} }, {receiver: {username: "$jwt.username"}}]}}
+      }
+    ]
+    filter: [
+      {
+        requireAuthentication: true
+        operations: [READ],
         where: {node: {OR: [{ sender: {username: "$jwt.username"} }, {receiver: {username: "$jwt.username"}}]}}
       }
     ]
