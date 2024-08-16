@@ -2,7 +2,7 @@ import { useReplyCommentContext } from "../Providers/ReplyCommentProvider/ReplyC
 import ReplyCommentForm from "./ReplyCommentForm";
 import SingleCommentProvider from "../Providers/SingleCommentProvider/SingleCommentProvider";
 import CommentTile from "./CommentTile";
-import person from "../../../../assets/person.png";
+import person from "../../../../assets/avatar.png";
 
 const ReplyList = () => {
   const { inputRef, comment } =

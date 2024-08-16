@@ -1,4 +1,4 @@
-import person from "../../../../assets/person.png";
+import person from "../../../../assets/avatar.png";
 import { motion } from "framer-motion";
 import CircularLoader from "../../../../components/CircularLoader";
 import { useReplyCommentContext } from "../Providers/ReplyCommentProvider/ReplyCommentProvider";

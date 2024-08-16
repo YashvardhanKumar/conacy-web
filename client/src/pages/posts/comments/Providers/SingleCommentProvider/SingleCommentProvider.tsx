@@ -106,106 +106,106 @@ const getRepliesQuery = graphql(`
     }
   }
 `);
-const commentSubscription = graphql(/*graphql*/ `
-  subscription ReplyCommentRelationshipCreated($uid: ID!) {
-    commentRelationshipCreated(
-      where: { createdRelationship: { replyOfComment: { node: { id: $uid } } } }
-    ) {
-      event
-      timestamp
-      relationshipFieldName
-      comment {
-        id
-        text
-        indent
-        createdAt
-        updatedAt
-      }
-      createdRelationship {
-        replyOfComment {
-          node {
-            id
-            text
-            indent
-            createdAt
-            updatedAt
-          }
-        }
-      }
-    }
-  }
-`);
+// const commentSubscription = graphql(/*graphql*/ `
+//   subscription ReplyCommentRelationshipCreated($uid: ID!) {
+//     commentRelationshipCreated(
+//       where: { createdRelationship: { replyOfComment: { node: { id: $uid } } } }
+//     ) {
+//       event
+//       timestamp
+//       relationshipFieldName
+//       comment {
+//         id
+//         text
+//         indent
+//         createdAt
+//         updatedAt
+//       }
+//       createdRelationship {
+//         replyOfComment {
+//           node {
+//             id
+//             text
+//             indent
+//             createdAt
+//             updatedAt
+//           }
+//         }
+//       }
+//     }
+//   }
+// `);
 
-const commentLikeRelnSubs = graphql(/*graphql*/ `
-  subscription ReplyLikeCommentRelationshipDeleted($username: ID!) {
-    commentRelationshipCreated(
-      where: {
-        createdRelationship: { likes: { node: { username: $username } } }
-      }
-    ) {
-      event
-      timestamp
-      relationshipFieldName
-      comment {
-        id
-        text
-        indent
-        createdAt
-        updatedAt
-      }
-      createdRelationship {
-        likes {
-          node {
-            id
-          }
-        }
-      }
-    }
-  }
-`);
-const commentunLikeRelnSubs = graphql(/*graphql*/ `
-  subscription ReplyunLikeCommentRelationshipDeleted($username: ID!) {
-    commentRelationshipDeleted(
-      where: {
-        deletedRelationship: { likes: { node: { username: $username } } }
-      }
-    ) {
-      event
-      timestamp
-      relationshipFieldName
-      comment {
-        id
-        text
-        indent
-        createdAt
-        updatedAt
-      }
-      deletedRelationship {
-        likes {
-          node {
-            id
-          }
-        }
-      }
-    }
-  }
-`);
-const commentDeleteSub = graphql(`
-  subscription CommentDeleted {
-    commentDeleted {
-      event
-      timestamp
-      deletedComment {
-        id
-        text
-        indent
-        parentsOfComment
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`);
+// const commentLikeRelnSubs = graphql(/*graphql*/ `
+//   subscription ReplyLikeCommentRelationshipDeleted($username: ID!) {
+//     commentRelationshipCreated(
+//       where: {
+//         createdRelationship: { likes: { node: { username: $username } } }
+//       }
+//     ) {
+//       event
+//       timestamp
+//       relationshipFieldName
+//       comment {
+//         id
+//         text
+//         indent
+//         createdAt
+//         updatedAt
+//       }
+//       createdRelationship {
+//         likes {
+//           node {
+//             id
+//           }
+//         }
+//       }
+//     }
+//   }
+// `);
+// const commentunLikeRelnSubs = graphql(/*graphql*/ `
+//   subscription ReplyunLikeCommentRelationshipDeleted($username: ID!) {
+//     commentRelationshipDeleted(
+//       where: {
+//         deletedRelationship: { likes: { node: { username: $username } } }
+//       }
+//     ) {
+//       event
+//       timestamp
+//       relationshipFieldName
+//       comment {
+//         id
+//         text
+//         indent
+//         createdAt
+//         updatedAt
+//       }
+//       deletedRelationship {
+//         likes {
+//           node {
+//             id
+//           }
+//         }
+//       }
+//     }
+//   }
+// `);
+// const commentDeleteSub = graphql(`
+//   subscription CommentDeleted {
+//     commentDeleted {
+//       event
+//       timestamp
+//       deletedComment {
+//         id
+//         text
+//         indent
+//         parentsOfComment
+//         createdAt
+//         updatedAt
+//       }
+//     }
+//   }
+// `);
 
 const SingleCommentContext = createContext<
   SingleCommentContextProps | undefined
@@ -228,24 +228,40 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
   const nav = useNavigate();
   const { cid } = useParams();
   const { pointerRef, setReplier, inputRef } = useCommentInputContext();
-  const { data, subscribeToMore } = useQuery(getSingleComment, {
+  const { data } = useQuery(getSingleComment, {
     variables: {
       cid: id,
     },
   });
-  const { data: replyList, subscribeToMore: replySub } = useQuery(
+  const { data: replyList } = useQuery(
     getRepliesQuery,
     {
       variables: {
         cid: id,
       },
+      pollInterval: 10000
     }
   );
   const [showReplies, setShowReplies] = useState(false);
   const [like, setLike] = useState(false);
-  const [likeCommentFunc] = useMutation(likeComment);
-  const [unlikeCommentFunc] = useMutation(unlikeComment);
-  const [deleteCommentFunc] = useMutation(deleteComment);
+  const [likeCommentFunc] = useMutation(likeComment, {
+    refetchQueries: [
+      getRepliesQuery,
+      getSingleComment
+    ]
+  });
+  const [unlikeCommentFunc] = useMutation(unlikeComment, {
+    refetchQueries: [
+      getRepliesQuery,
+      getSingleComment
+    ]
+  });
+  const [deleteCommentFunc] = useMutation(deleteComment, {
+    refetchQueries: [
+      getRepliesQuery,
+      'PostComments'
+    ]
+  });
   const toggleReplies = () => {
     if (
       !showReplies &&
@@ -289,63 +305,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
         (like) => like.username == localStorage.getItem("username")
       ).length != 0
     );
-    subscribeToMore({
-      document: commentLikeRelnSubs,
-      variables: { username: localStorage.getItem("username")! },
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const d = subscriptionData.data.commentRelationshipCreated;
-        return Object.assign({}, prev, {
-          comments: [
-            {
-              ...d.comment,
-              likes: [d.createdRelationship.likes!.node],
-            },
-          ],
-        });
-      },
-    });
-    subscribeToMore({
-      document: commentunLikeRelnSubs,
-      variables: { username: localStorage.getItem("username")! },
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const d = subscriptionData.data.commentRelationshipDeleted;
-        return Object.assign({}, prev, {
-          comments: [
-            {
-              ...d.comment,
-              likes: [d.deletedRelationship.likes!.node],
-            },
-          ],
-        });
-      },
-    });
   }, [data]);
-  useEffect(() => {
-    replySub({
-      document: commentSubscription,
-      variables: { uid: id },
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const d = subscriptionData.data.commentRelationshipCreated.comment;
-        return Object.assign({}, prev, {
-          comments: [...prev.comments.filter((e) => e.id != d.id), d],
-        });
-      },
-    });
-
-    replySub({
-      document: commentDeleteSub,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const d = subscriptionData.data.commentDeleted.deletedComment;
-        return Object.assign({}, prev, {
-          comments: [...prev.comments.filter((e) => e.id != d.id)],
-        });
-      },
-    });
-  }, [replyList]);
 
   const handleDeleteComment = async () => {
     deleteCommentFunc({

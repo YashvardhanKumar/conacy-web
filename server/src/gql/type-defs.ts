@@ -40,10 +40,11 @@ export const typeDefs = gql`
         {
           requireAuthentication: true
           operations: [UPDATE, DELETE]
-          where: { node: { username: "$jwt.username", email: "$jwt.email" } }
+          where: { node: { username: "$jwt.username" } }
         }
       ]
-    ) {
+    ) 
+    {
     id: ID! @id
     name: String!
     email: String! @unique
@@ -80,13 +81,21 @@ export const typeDefs = gql`
   }
   type Post
     @authorization(
-      filter: [
+      validate: [
         {
           requireAuthentication: true
-          where: { node: { creatorOfPost: { username: "$jwt.username" } } }
-        }
+          operations: [CREATE,UPDATE,DELETE, READ],
+          where: {node: { creatorOfPost: {username: "$jwt.username"} }}
+        },
+        {
+          requireAuthentication: true
+          operations: [READ]
+          where: {node: { creatorOfPost: {relations_ALL: {username: "$jwt.username"}}}}
+        },
+
       ]
-    ) {
+    ) 
+    {
     id: ID! @id
     url: String!
     description: String
@@ -103,8 +112,13 @@ export const typeDefs = gql`
       validate: [
         {
           requireAuthentication: true
-          operations: [UPDATE, DELETE]
-          where: { node: { author: { username: "$jwt.username" } } }
+          operations: [CREATE,UPDATE,DELETE, READ],
+          where: {node: { author: {username: "$jwt.username"} }}
+        },
+        {
+          requireAuthentication: true
+          operations: [READ]
+          where: {node: { author: {relations_ALL: {username: "$jwt.username"}}}}
         }
       ]
     ) {
@@ -121,7 +135,17 @@ export const typeDefs = gql`
     updatedAt: DateTime @timestamp(operations: [UPDATE])
   }
 
-  type Message {
+  type Message 
+  @authorization(
+    validate: [
+      {
+        requireAuthentication: true
+        operations: [CREATE,UPDATE,DELETE, READ],
+        where: {node: {OR: [{ sender: {username: "$jwt.username"} }, {receiver: {username: "$jwt.username"}}]}}
+      }
+    ]
+  )
+  {
     id: ID! @id
     text: String
     file: String

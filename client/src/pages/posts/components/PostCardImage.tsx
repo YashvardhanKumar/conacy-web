@@ -1,5 +1,5 @@
-import { useState } from "react";
-import person from "../../../assets/person.png";
+import { useEffect, useState } from "react";
+import person from "../../../assets/avatar.png";
 import { Link } from "react-router-dom";
 import SaveIcon from "../../../assets/Icons/SaveIcon";
 import SendIcon from "../../../assets/Icons/SendIcon";
@@ -9,10 +9,15 @@ import CommentButton from "./CommentButton";
 import SinglePostProvider, {
   useSinglePostContext,
 } from "../SinglePostProvider/SinglePostProvider";
+import ToggleSettings from "../../../assets/Icons/ToggleSettings";
 
 const PostCardImage = () => {
   const [seeMore, setSeeMore] = useState(false);
   const { post } = useSinglePostContext();
+  useEffect(() => {
+    console.log(post.visibility);
+  })
+
   return (
     <SinglePostProvider
       id={post.id}
@@ -20,17 +25,17 @@ const PostCardImage = () => {
         <div className="w-[390px] max-_390:w-[95vw]">
           <div className="p-1 font-bold h-12 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <div
-                className="h-8 w-8 "
-                children={
-                  <img
-                    src={person}
-                    alt=""
-                    height={36}
-                    className="w-full h-8 rounded-md object-cover"
-                  />
-                }
-              />
+              <div className="avatar" children={
+                <div
+                  className="h-8 w-8 rounded-full"
+                  children={
+                    <img
+                      src={person}
+                      alt=""
+                      height={36}
+                    />
+                  }
+                />} />
               <div>
                 <div children={post.creatorOfPost.name} />
                 <div
@@ -42,6 +47,15 @@ const PostCardImage = () => {
             <div className="flex gap-2">
               <Link to={`/send/post?id=${post.id}`} children={<SendIcon />} />
               <Link to={`/save?id=${post.id}`} children={<SaveIcon />} />
+              <div className="dropdown dropdown-end" >
+                <div tabIndex={0} role="button" >
+                  <ToggleSettings className="h-[24px] w-[24px]" />
+                </div>
+                <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-[1] w-40 p-2 shadow">
+                  <li>Delete</li>
+                  <li><a>Item 2</a></li>
+                </ul>
+              </div>
             </div>
           </div>
           <img
@@ -57,7 +71,7 @@ const PostCardImage = () => {
               </div>
               <div
                 className="px-1 py-1 border-[1px] border-[#EC61C5] bg-[#EC61C5] bg-opacity-35 m-2 rounded-lg text-xs"
-                children="Best Friend"
+                children={""}
               />
             </div>
             {post.description && (
@@ -66,15 +80,14 @@ const PostCardImage = () => {
                 className="my-2"
                 children={
                   <div
-                    className={`text-start ${
-                      seeMore ? "" : "line-clamp-2"
-                    } font-light text-sm dark:text-gray-400`}
+                    className={`text-start ${seeMore ? "" : "line-clamp-2"
+                      } font-light text-sm dark:text-white`}
                     children={post.description}
                   />
                 }
               />
             )}
-            <div className="rounded-md dark:bg-base-300 bg-blue-50 flex flex-col gap-3 p-3">
+            <div className="rounded-md dark:bg-base-200 bg-blue-50 flex flex-col gap-3 p-3">
               <div className="inline-flex items-center gap-1">
                 <CommentIcon width="20" height="20" />
                 <span children="Comments" />

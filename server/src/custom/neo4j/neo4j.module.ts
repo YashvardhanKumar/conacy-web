@@ -9,7 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 export async function gqlProviderFactory(configService: ConfigService): Promise<
   Omit<ApolloDriverConfig, 'driver'>
 > {
-  
+
   const driver = neo4j.driver(
     configService.get<string>("NEO4J_URI"),
     neo4j.auth.basic(configService.get("NEO4J_USERNAME"), configService.get("NEO4J_PASSWORD")),
@@ -23,7 +23,7 @@ export async function gqlProviderFactory(configService: ConfigService): Promise<
       subscriptions: true,
       authorization: {
         key: {
-          url: 'http://localhost:3000/.well-known/jwks.json',
+          url: configService.get("jwksUri"),
         },
         verifyOptions: {
           algorithms: ['RS256'],
@@ -83,10 +83,10 @@ export async function gqlProviderFactory(configService: ConfigService): Promise<
           if (!value) return;
           list[name] = decodeURIComponent(value);
         });
-        let token = list?.accessToken ?? req?.cookies.accessToken;
+      let token = list?.accessToken ?? req?.cookies.accessToken;
       // console.log(list.accessToken);
       return {
-        token: token ? `Bearer ${token}`: '',
+        token: token ? `Bearer ${token}` : '',
         sessionConfig: { database: 'neo4j' },
       };
     },
@@ -103,7 +103,7 @@ export class Neo4jModule {
         GraphQLModule.forRootAsync<ApolloDriverConfig>({
           driver: ApolloDriver,
           imports: [ConfigModule],
-          useFactory: async (configService: ConfigService)=> await gqlProviderFactory(configService),
+          useFactory: async (configService: ConfigService) => await gqlProviderFactory(configService),
           inject: [ConfigService]
         }),
       ],

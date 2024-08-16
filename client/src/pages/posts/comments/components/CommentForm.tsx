@@ -1,5 +1,5 @@
 
-import person from "../../../../assets/person.png";
+import person from "../../../../assets/avatar.png";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import CircularLoader from "../../../../components/CircularLoader";

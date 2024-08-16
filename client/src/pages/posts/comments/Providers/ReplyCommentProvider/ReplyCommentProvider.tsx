@@ -6,38 +6,38 @@ import { CommentReplyPageSkeleton } from "../../../components/Skeleton";
 import { ReplyCommentContextProps, ReplyCommentProps } from "./types";
 import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
 
-const commentSubscription = graphql(/*graphql*/ `
-  subscription CommentCreated {
-    commentCreated {
-      event
-      timestamp
-      createdComment {
-        id
-        text
-        indent
-        parentsOfComment
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`);
-const commentDeleteSub = graphql(`
-  subscription CommentDeleted {
-    commentDeleted {
-      event
-      timestamp
-      deletedComment {
-        id
-        text
-        indent
-        parentsOfComment
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`);
+// const commentSubscription = graphql(/*graphql*/ `
+//   subscription CommentCreated {
+//     commentCreated {
+//       event
+//       timestamp
+//       createdComment {
+//         id
+//         text
+//         indent
+//         parentsOfComment
+//         createdAt
+//         updatedAt
+//       }
+//     }
+//   }
+// `);
+// const commentDeleteSub = graphql(`
+//   subscription CommentDeleted {
+//     commentDeleted {
+//       event
+//       timestamp
+//       deletedComment {
+//         id
+//         text
+//         indent
+//         parentsOfComment
+//         createdAt
+//         updatedAt
+//       }
+//     }
+//   }
+// `);
 
 const commentReplyMutation = graphql(/*graphql*/ `
   mutation CreateComments(
@@ -113,12 +113,17 @@ export const useReplyCommentContext = () => {
 
 const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({ children, params }) => {
   const { inputRef, pointerRef, replier, setReplier } = useCommentInputContext();
-  const { data, subscribeToMore } = useQuery(getSingleComment, {
+  const { data } = useQuery(getSingleComment, {
     variables: {
       cid: params?.cid ?? null,
     },
+    pollInterval: 10000
   });
-  const ccrm = useMutation(commentReplyMutation);
+  const ccrm = useMutation(commentReplyMutation, {
+    refetchQueries: [
+      getSingleComment,
+    ]
+  });
   const [comment, setComment] = useState("");
 
   const handleCancelReply = () => {
@@ -156,33 +161,6 @@ const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({ children, params })
       setReplier(null);
     }
   };
-
-  useEffect(() => {
-    if (!data) return;
-    subscribeToMore({
-      document: commentSubscription,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const d = subscriptionData.data.commentCreated;
-        console.log(d);
-        return Object.assign({}, prev, {
-          comments: [d, ...prev.comments],
-        });
-      },
-    });
-    subscribeToMore({
-      document: commentDeleteSub,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-
-        const newFeedItem = subscriptionData.data.commentDeleted.deletedComment;
-        console.log(newFeedItem);
-        return Object.assign({}, prev, {
-          comments: [...prev.comments.filter((p) => p.id !== newFeedItem.id)],
-        });
-      },
-    });
-  }, [data]);
   if (!data) {
     return <CommentReplyPageSkeleton />;
   }
