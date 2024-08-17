@@ -35,15 +35,15 @@ export const typeDefs = gql`
     isTyping: Boolean!
   }
   type User
-    @authorization(
-      validate: [
-        {
-          requireAuthentication: true
-          operations: [UPDATE, DELETE]
-          where: { node: { username: "$jwt.username" } }
-        }
-      ]
-    ) 
+    # @authorization(
+    #   validate: [
+    #     {
+    #       requireAuthentication: true
+    #       operations: [UPDATE, DELETE]
+    #       where: { node: { username: "$jwt.username" } }
+    #     }
+    #   ]
+    # ) 
     {
     id: ID! @id
     name: String!
@@ -92,11 +92,9 @@ export const typeDefs = gql`
         {
           requireAuthentication: true
           operations: [READ]
-          where: {node: { creatorOfPost: {OR: [{relations_ALL: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
+          where: {node: { creatorOfPost: {OR: [{relations_SINGLE: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
         },
-
       ]
-
     ) 
     {
     id: ID! @id
@@ -123,11 +121,12 @@ export const typeDefs = gql`
         {
           requireAuthentication: true
           operations: [READ]
-          where: {node: { author: {OR: [{relations_ALL: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
+          where: {node: { author: {OR: [{relations_SINGLE: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
         },
 
       ]
-    ) {
+    ) 
+    {
     id: ID! @id
     text: String!
     indent: Int! @default(value: 0)
