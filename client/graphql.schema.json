@@ -23444,7 +23444,7 @@
                 }
               }
             },
-            "defaultValue": null,
+            "defaultValue": "[PUBLIC]",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -29796,7 +29796,7 @@
                 }
               }
             },
-            "defaultValue": "[NONE]",
+            "defaultValue": "[PUBLIC]",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -29832,7 +29832,7 @@
                 }
               }
             },
-            "defaultValue": "[NONE]",
+            "defaultValue": "[PUBLIC]",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -29852,7 +29852,7 @@
                 }
               }
             },
-            "defaultValue": "[NONE]",
+            "defaultValue": "[PUBLIC]",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -29888,7 +29888,7 @@
                 }
               }
             },
-            "defaultValue": "[NONE]",
+            "defaultValue": "[PUBLIC]",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -31695,7 +31695,7 @@
                 "ofType": null
               }
             },
-            "defaultValue": "NONE",
+            "defaultValue": "PUBLIC",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -31834,12 +31834,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "ACQUAINTANCE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "BEST_FRIEND",
             "description": null,
             "isDeprecated": false,
@@ -31859,6 +31853,12 @@
           },
           {
             "name": "NONE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PUBLIC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

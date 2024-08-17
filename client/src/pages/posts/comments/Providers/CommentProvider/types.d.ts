@@ -1,4 +1,5 @@
 import { Comment, Post } from "../../../../../gql/graphql";
+import { ReplierProps } from "../ReplyCommentProvider/types";
 
 interface CommentProps {
   children: React.ReactNode;

@@ -5,6 +5,7 @@ import { CommentContextProps, CommentProps } from "./types";
 import { Comment, Post } from "../../../../../gql/graphql";
 import { CommentPageSkeleton } from "../../../components/Skeleton";
 import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
+import { ReplierProps } from "../ReplyCommentProvider/types";
 
 const getPostComments = graphql(/* GraphQL */ `
   query PostComments($pid: ID!) {
@@ -127,6 +128,7 @@ const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
           parentsOfComment: replier?.parentsOfComment ?? [],
         },
       });
+      
       // }
       setComment("");
       setReplier(null);
@@ -144,7 +146,7 @@ const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
         comments: data.comments as Comment[],
         post: data.posts[0] as Post,
         commentCount: data.commentsConnection.totalCount,
-        replier,
+        replier: replier as ReplierProps | null,
         comment,
         ccrm,
         setReplier,

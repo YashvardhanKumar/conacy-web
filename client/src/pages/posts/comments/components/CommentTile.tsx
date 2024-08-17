@@ -14,9 +14,11 @@ const CommentTile = () => {
     handleDeleteComment,
     handleReplies,
     showReplies,
+    commentRef,
+    likesNo
   } = useSingleCommentContext();
   return (
-    <div className="flex w-full h-full">
+    <div className="flex w-full h-full" ref={commentRef}>
       <div className="w-full h-full">
         <div
           className="flex p-1 justify-between w-full"
@@ -61,27 +63,39 @@ const CommentTile = () => {
                   <div />
                   <div className="inline-flex px-1">
                     <motion.button
+                      whileTap={{
+                        scale: [null, 0.7, 0.8],
+                      }}
                       className="text-gray-400 text-xs p-1 w-fit inline-flex gap-0.5 items-center "
                       onClick={toggleCommentLike}
                     >
                       <Like size={18} liked={like} />
-                      <div children={comment.likes.length} />
+                      <div children={likesNo} />
                     </motion.button>
-                    <button
+                    <motion.button
+                      whileTap={{
+                        scale: [null, 0.7, 0.8],
+                      }}
                       onClick={handleReplies}
                       className=" text-gray-400 text-xs w-fit p-1"
                       children="Reply"
                     />
                     {(comment.author.username ==
                       localStorage?.getItem("username")) && (
-                      <button
-                        className=" text-gray-400 text-xs w-fit p-1"
-                        children="Delete"
-                        onClick={handleDeleteComment}
-                      />
-                    )}
+                        <motion.button
+                          whileTap={{
+                            scale: [null, 0.7, 0.8],
+                          }}
+                          className=" text-gray-400 text-xs w-fit p-1"
+                          children="Delete"
+                          onClick={handleDeleteComment}
+                        />
+                      )}
                     {replyList && replyList.length > 0 && (
-                      <button
+                      <motion.button
+                        whileTap={{
+                          scale: [null, 0.7, 0.8],
+                        }}
                         onClick={toggleReplies}
                         className=" text-gray-400 text-xs w-fit p-1"
                         children={

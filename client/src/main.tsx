@@ -54,6 +54,7 @@ function Root() {
         </Route>
         <Route path="/profile/:username" element={<ProfilePage />} />
       </Routes>
+
     </>
   );
 }

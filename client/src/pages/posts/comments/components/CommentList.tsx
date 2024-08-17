@@ -27,13 +27,13 @@ export const CommentList = () => {
       <img src={post.url} alt="" className="max-h-[520px] object-scale-down" />
       <div
         ref={inputRef}
-        className="bg-transparent border-b-[0.5px] border-t-[0.5px] border-slate-400 flex items-center p-3 gap-3"
+        className="bg-transparent border-b-[0.5px] border-t-[0.5px] border-slate-400 flex flex-col items-stretch p-3 gap-3"
       >
         <CommentForm />
       </div>
       <div className="p-4 text-xl ">Comments ({commentCount})</div>
       {comments.map((comment) => (
-        <SingleCommentProvider id={comment.id} children={<CommentTile />} />
+        <SingleCommentProvider id={comment.id} key={comment.id} children={<CommentTile />} />
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
 import { Comment } from "../../../../../gql/graphql";
@@ -9,14 +9,18 @@ import { useCommentInputContext } from "../CommentInputProvider/CommentInputProv
 
 const likeComment = graphql(/* GraphQL */ `
   mutation LikeComment($username: ID!, $cid: ID!) {
-    updateComments(
-      where: { id: $cid }
-      update: {
-        likes: { connect: { where: { node: { username: $username } } } }
+    updateUsers(
+      where: {username: $username}
+      connect: {
+        likedComments: {
+          where: { node: { id: $cid } }
+        }
       }
     ) {
-      comments {
-        id
+      users {
+        likedComments {
+          id
+        }
       }
     }
   }
@@ -24,14 +28,18 @@ const likeComment = graphql(/* GraphQL */ `
 
 const unlikeComment = graphql(/* GraphQL */ `
   mutation unLikeComment($username: ID!, $cid: ID!) {
-    updateComments(
-      where: { id: $cid }
-      update: {
-        likes: { disconnect: { where: { node: { username: $username } } } }
+    updateUsers(
+      where: {username: $username}
+      disconnect: {
+        likedComments: {
+          where: { node: { id: $cid } }
+        }
       }
     ) {
-      comments {
-        id
+      users {
+        likedComments {
+          id
+        }
       }
     }
   }
@@ -226,6 +234,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
   id,
 }) => {
   const nav = useNavigate();
+  const commentRef = useRef(null);
   const { cid } = useParams();
   const { pointerRef, setReplier, inputRef } = useCommentInputContext();
   const { data } = useQuery(getSingleComment, {
@@ -244,6 +253,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
   );
   const [showReplies, setShowReplies] = useState(false);
   const [like, setLike] = useState(false);
+  const [likesNo, setLikesNo] = useState(0);
   const [likeCommentFunc] = useMutation(likeComment, {
     refetchQueries: [
       getRepliesQuery,
@@ -278,10 +288,31 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
   };
 
   useEffect(() => {
-    pointerRef.current?.focus({ preventScroll: true });
+    // pointerRef.current?.focus({ preventScroll: true });
   });
+
   useEffect(() => {
-    if (like) {
+    setLikesNo(data?.comments[0].likes.length ?? 0);
+    if (!data) return;
+    setLike(
+      data.comments[0]?.likes?.filter(
+        (like) => like.username == localStorage.getItem("username")
+      ).length != 0
+    );
+  }, [data?.comments[0].likes]);
+
+  const handleDeleteComment = async () => {
+    deleteCommentFunc({
+      variables: {
+        cid: id,
+      },
+    });
+  };
+  const toggleCommentLike = async () => {
+    if (like) setLikesNo(likesNo - 1);
+    else setLikesNo(likesNo + 1);
+    setLike(!like);
+    if (!like) {
       likeCommentFunc({
         variables: {
           username: localStorage?.getItem("username") ?? "",
@@ -296,26 +327,6 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
         },
       });
     }
-  }, [like]);
-  useEffect(() => {
-    console.log(data?.comments[0].likes.length);
-    if (!data) return;
-    setLike(
-      data.comments[0]?.likes?.filter(
-        (like) => like.username == localStorage.getItem("username")
-      ).length != 0
-    );
-  }, [data]);
-
-  const handleDeleteComment = async () => {
-    deleteCommentFunc({
-      variables: {
-        cid: id,
-      },
-    });
-  };
-  const toggleCommentLike = async () => {
-    setLike(!like);
   };
   const handleReplies = () => {
     inputRef.current?.scrollIntoView({
@@ -323,9 +334,12 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
       block: "center",
       inline: "nearest",
     });
+    pointerRef.current?.focus({ preventScroll: true });
 
     setReplier({
       username: data!.comments[0].author.username,
+      text: data!.comments[0].text,
+      commentRef,
       cid: id,
       indent: data!.comments[0].indent + 1,
       parentsOfComment: [...data!.comments[0].parentsOfComment, id],
@@ -341,11 +355,13 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
         showReplies,
         comment: data.comments[0] as Comment,
         replyList: (replyList?.comments ?? null) as Comment[] | null,
+        commentRef,
         toggleCommentLike,
         toggleReplies,
         handleReplies,
         handleDeleteComment,
         like,
+        likesNo
       }}
       children={children}
     />

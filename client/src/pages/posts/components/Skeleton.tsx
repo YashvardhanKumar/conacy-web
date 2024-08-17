@@ -71,3 +71,39 @@ export const CommentReplyPageSkeleton = () => {
     </div>
   );
 };
+
+export const PostSkeleton = () => {
+  return (
+    <div className="w-[390px] max-_390:w-[95vw] flex flex-col gap-2">
+      <div className="flex justify-between items-center">
+        <div className="flex gap-2 items-center">
+          <div className="skeleton rounded-full h-10 w-10"></div>
+          <div className="flex flex-col gap-2">
+            <div className="skeleton h-4 w-52"></div>
+            <div className="skeleton h-3 w-32"></div>
+          </div>
+        </div>
+        <div className="flex gap-1">
+          <div className="h-7 w-7 rounded-lg skeleton"></div>
+          <div className="h-7 w-7 rounded-lg skeleton"></div>
+          <div className="h-7 w-7 rounded-lg skeleton"></div>
+        </div>
+      </div>
+      <div className="skeleton rounded-lg w-full h-[420px]"></div>
+      <div className="flex justify-between">
+        <div className="flex gap-2">
+        <div className="h-8 w-8 rounded-lg skeleton"></div>
+        <div className="h-8 w-8 rounded-lg skeleton"></div>
+        <div className="h-8 w-8 rounded-lg skeleton"></div>
+        </div>
+        <div className="h-8 w-32 rounded-lg skeleton"></div>
+
+
+      </div>
+      <div className="skeleton rounded-lg w-full h-4"></div>
+      <div className="skeleton rounded-lg w-full h-4"></div>
+      <div className="skeleton rounded-lg w-1/2 h-4"></div>
+      <div className="skeleton rounded-lg w-full h-20"></div>
+    </div>
+  )
+}
