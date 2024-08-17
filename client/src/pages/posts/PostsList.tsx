@@ -9,7 +9,7 @@ const PostsList = () => {
       <SinglePostProvider id={e.id} key={e.id} children={<PostCardImage  />}/>
     ));
   }
-  return <div className="content-center" children="No Posts Found" />;
+  return <div className="content-center h-screen" children="No Posts Found" />;
 };
 
 export default PostsList;

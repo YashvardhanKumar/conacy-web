@@ -3,7 +3,7 @@ import { gql } from 'apollo-server';
 export const typeDefs = gql`
   enum RelationType {
     NONE
-    ACQUAINTANCE
+    PUBLIC
     FRIEND
     CLOSE_FRIEND
     BEST_FRIEND
@@ -27,23 +27,23 @@ export const typeDefs = gql`
     email: String!
   }
   type PrivacySettings {
-    chatVisibility: [RelationType!] @default(value: [NONE])
-    profileVisibility: [RelationType!] @default(value: [NONE])
-    whoCanSendMessageRequest: [RelationType!] @default(value: [NONE])
+    chatVisibility: [RelationType!] @default(value: [PUBLIC])
+    profileVisibility: [RelationType!] @default(value: [PUBLIC])
+    whoCanSendMessageRequest: [RelationType!] @default(value: [PUBLIC])
     seenReceipts: Boolean!
-    onlineStatus: [RelationType!] @default(value: [NONE])
+    onlineStatus: [RelationType!] @default(value: [PUBLIC])
     isTyping: Boolean!
   }
   type User
-    # @authorization(
-    #   validate: [
-    #     {
-    #       requireAuthentication: true
-    #       operations: [UPDATE, DELETE]
-    #       where: { node: { username: "$jwt.username" } }
-    #     }
-    #   ]
-    # ) 
+    @authorization(
+      validate: [
+        {
+          requireAuthentication: true
+          operations: [UPDATE, DELETE]
+          where: { node: { username: "$jwt.username" } }
+        }
+      ]
+    ) 
     {
     id: ID! @id
     name: String!
@@ -77,7 +77,7 @@ export const typeDefs = gql`
   }
 
   type Relation @relationshipProperties {
-    type: RelationType! @default(value: NONE)
+    type: RelationType! @default(value: PUBLIC)
   }
   type Post
     @authorization(
@@ -100,7 +100,7 @@ export const typeDefs = gql`
     id: ID! @id
     url: String!
     description: String
-    visibility: [RelationType!]
+    visibility: [RelationType!] @default(value: [PUBLIC])
     likes: [User!]! @relationship(type: "LIKED_BY", direction: IN)
     creatorOfPost: User! @relationship(type: "POSTED_BY", direction: IN)
     comments: [Comment!]! @relationship(type: "COMMENTED_AT", direction: IN)

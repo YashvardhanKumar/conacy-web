@@ -6,7 +6,7 @@ import { useSinglePostContext } from "../SinglePostProvider/SinglePostProvider";
 const CommentButton = () => {
   const {post} = useSinglePostContext();
   return (
-    <div className="flex items-center">
+    <div className="flex items-center select-none">
       <Link
         to={`post/${post.id}/comments`}
         className="p-1"

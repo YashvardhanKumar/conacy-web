@@ -1,10 +1,4 @@
 import { createContext, useContext, useRef, useState } from "react";
-interface ReplierProps {
-  username: string;
-  cid?: string;
-  indent: number;
-  parentsOfComment: string[];
-}
 interface CommentInputProps {
   children: React.ReactNode;
 }
@@ -12,7 +6,7 @@ interface CommentInputContextProps {
   inputRef: React.MutableRefObject<HTMLDivElement | null>;
   pointerRef: React.MutableRefObject<HTMLInputElement | null>;
   replier: ReplierProps | null;
-  setReplier: React.Dispatch<ReplierProps | null>;
+  setReplier: React.Dispatch<React.SetStateAction<ReplierProps | null>>
 }
 
 const CommentInputContext = createContext<CommentInputContextProps | undefined>(
@@ -30,6 +24,7 @@ export const useCommentInputContext = () => {
 };
 
 import React from "react";
+import { ReplierProps } from "../ReplyCommentProvider/types";
 
 const CommentInputProvider: React.FC<CommentInputProps> = ({ children }) => {
   const inputRef = useRef<HTMLDivElement | null>(null);

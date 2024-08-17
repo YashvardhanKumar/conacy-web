@@ -4,8 +4,10 @@ interface ReplyCommentProps {
     children: React.ReactNode;
     params: Readonly<Params<string>>
   }
-  interface ReplyReplierProps {
+  interface ReplierProps {
     username: string;
+    commentRef: React.MutableRefObject<HTMLDivElement | null>;
+    text: string;
     cid: string?;
     indent: number;
     parentsOfComment: string[];

@@ -32,7 +32,7 @@ const ReplyList = () => {
       />
       <div className="p-4 text-xl ">Comments ({comment.replies.length})</div>
       {comment.replies.map((comment) => (
-        <SingleCommentProvider id={comment.id} children={<CommentTile />} />
+        <SingleCommentProvider id={comment.id} key={comment.id} children={<CommentTile />} />
       ))}
     </div>
   );

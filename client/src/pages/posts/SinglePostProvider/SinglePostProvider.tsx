@@ -10,6 +10,7 @@ import { graphql } from "../../../gql";
 import { SinglePostContextProps, SinglePostProps } from "./types";
 import { Post } from "../../../gql/graphql";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import { PostSkeleton } from "../components/Skeleton";
 
 const singlePostQuery = graphql(/* graphql */ `
   query SinglePosts($pid: ID!) {
@@ -17,6 +18,7 @@ const singlePostQuery = graphql(/* graphql */ `
       id
       url
       description
+      visibility
       creatorOfPost {
         id
         name
@@ -53,36 +55,40 @@ const singlePostQuery = graphql(/* graphql */ `
 
 const unLikeQuery = graphql(/* graphql */ `
   mutation UnLikeQuery($id: ID!, $username: ID!) {
-    updatePosts(
-      where: { id: $id }
-      update: {
-        likes: { disconnect: { where: { node: { username: $username } } } }
+    updateUsers(
+      where: {username: $username}
+      disconnect: {
+        likedPosts: {
+          where: { node: { id: $id } }
+        }
       }
     ) {
-      posts {
-        id
-        url
-        description
-        visibility
-        createdAt
-        updatedAt
-        likes {
+      users {
+        likedPosts {
           id
-          name
-          email
-          username
-          dob
+          url
+          description
+          visibility
           createdAt
           updatedAt
-        }
-        creatorOfPost {
-          id
-          name
-          email
-          username
-          dob
-          createdAt
-          updatedAt
+          likes {
+            id
+            name
+            email
+            username
+            dob
+            createdAt
+            updatedAt
+          }
+          creatorOfPost {
+            id
+            name
+            email
+            username
+            dob
+            createdAt
+            updatedAt
+          }
         }
       }
     }
@@ -90,37 +96,41 @@ const unLikeQuery = graphql(/* graphql */ `
 `);
 
 const likeQuery = graphql(/* graphql */ `
-  mutation LikeQuery($username: ID!, $id: ID!) {
-    updatePosts(
-      update: {
-        likes: { connect: { where: { node: { username: $username } } } }
-      }
-      where: { id: $id }
-    ) {
-      posts {
-        id
-        url
-        description
-        visibility
-        createdAt
-        updatedAt
-        likes {
-          id
-          name
-          email
-          username
-          dob
-          createdAt
-          updatedAt
+  mutation LikeQuery($id: ID!, $username: ID!) {
+    updateUsers(
+      where: {username: $username}
+      connect: {
+        likedPosts: {
+          where: { node: { id: $id } }
         }
-        creatorOfPost {
+      }
+    ) {
+      users {
+        likedPosts {
           id
-          name
-          email
-          username
-          dob
+          url
+          description
+          visibility
           createdAt
           updatedAt
+          likes {
+            id
+            name
+            email
+            username
+            dob
+            createdAt
+            updatedAt
+          }
+          creatorOfPost {
+            id
+            name
+            email
+            username
+            dob
+            createdAt
+            updatedAt
+          }
         }
       }
     }
@@ -182,7 +192,7 @@ const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
   }, [spq.data?.posts[0].likes]);
   return (
     <Suspense
-      fallback={<LoadingSpinner />}
+      fallback={<PostSkeleton />}
       children={
         <SinglePostContext.Provider
           value={{

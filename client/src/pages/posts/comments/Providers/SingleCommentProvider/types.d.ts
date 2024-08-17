@@ -13,7 +13,9 @@ interface SingleCommentContextProps {
   comment: Comment;
   replyList: Comment[] | null;
   like: boolean;
-  showReplies: boolean
+  showReplies: boolean;
+  likesNo: number;
+  commentRef: React.MutableRefObject<HTMLDivElement | null>;
   toggleReplies: () => void;
   toggleCommentLike: () => Promise<void>;
   handleReplies: () => void;

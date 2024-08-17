@@ -5,6 +5,8 @@ import { PostContextProps, PostProps } from "./types";
 import { Post } from "../../../gql/graphql";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
+import { PostSkeleton } from "../components/Skeleton";
+
 export const getPosts = graphql(/* GraphQL */ `
   query Posts2 {
     posts(options: { sort: {createdAt: DESC}}) {
@@ -31,15 +33,19 @@ const PostProvider: React.FC<PostProps> = ({ children }) => {
   const { data } = useSuspenseQuery(getPosts);
   return (
     <Suspense
-      fallback={<LoadingSpinner />}
+      fallback={<PostSkeleton />}
       children={
         <PostContext.Provider
           value={{ posts: data.posts as Post[] }}
           children={children}
         />
+        // <PostSkeleton />
       }
     />
   );
 };
 
 export default PostProvider;
+
+
+

@@ -14,6 +14,7 @@ import ToggleSettings from "../../../assets/Icons/ToggleSettings";
 const PostCardImage = () => {
   const [seeMore, setSeeMore] = useState(false);
   const { post } = useSinglePostContext();
+  const [dialogOpen, setDialogOpen] = useState(false);
   useEffect(() => {
     console.log(post.visibility);
   })
@@ -52,11 +53,12 @@ const PostCardImage = () => {
                   <ToggleSettings className="h-[24px] w-[24px]" />
                 </div>
                 <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-[1] w-40 p-2 shadow">
-                  <li>Delete</li>
-                  <li><a>Item 2</a></li>
+                  <li><label htmlFor="dialogbox" className="btn">Delete Post</label></li>
+                  {/* <li><a>Item 2</a></li> */}
                 </ul>
               </div>
             </div>
+            <DeletePostDialogBox />
           </div>
           <img
             src={post.url}
@@ -71,7 +73,7 @@ const PostCardImage = () => {
               </div>
               <div
                 className="px-1 py-1 border-[1px] border-[#EC61C5] bg-[#EC61C5] bg-opacity-35 m-2 rounded-lg text-xs"
-                children={""}
+                children={(post!.visibility![0] as string) ?? ""}
               />
             </div>
             {post.description && (
@@ -130,3 +132,21 @@ const PostCardImage = () => {
 };
 
 export default PostCardImage;
+
+export const DeletePostDialogBox = () => {
+  return (
+    <>
+      <input type="checkbox" id="dialogbox" className="modal-toggle" />
+      <div className="modal" role="dialog">
+        <div className="modal-box">
+          <h3 className="text-lg font-bold">Hello!</h3>
+          <p className="py-4">This modal works with a hidden checkbox!</p>
+          <div className="modal-action">
+            <button className="btn btn-error">Delete Anyways</button>
+            <label htmlFor="dialogbox" className="btn">Cancel</label>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
