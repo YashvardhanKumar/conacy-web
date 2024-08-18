@@ -9,9 +9,9 @@ import { PostSkeleton } from "../components/Skeleton";
 
 export const getPosts = graphql(/* GraphQL */ `
   query Posts2 {
-    posts(options: { sort: {createdAt: DESC}}) {
-        id
-        createdAt
+    posts(options: { sort: { createdAt: DESC } }) {
+      id
+      createdAt
     }
   }
 `);
@@ -29,7 +29,6 @@ export const usePostContext = () => {
 };
 
 const PostProvider: React.FC<PostProps> = ({ children }) => {
-
   const { data } = useSuspenseQuery(getPosts);
   return (
     <Suspense
@@ -46,6 +45,3 @@ const PostProvider: React.FC<PostProps> = ({ children }) => {
 };
 
 export default PostProvider;
-
-
-

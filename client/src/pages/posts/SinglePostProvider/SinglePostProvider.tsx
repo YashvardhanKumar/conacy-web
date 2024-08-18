@@ -56,12 +56,8 @@ const singlePostQuery = graphql(/* graphql */ `
 const unLikeQuery = graphql(/* graphql */ `
   mutation UnLikeQuery($id: ID!, $username: ID!) {
     updateUsers(
-      where: {username: $username}
-      disconnect: {
-        likedPosts: {
-          where: { node: { id: $id } }
-        }
-      }
+      where: { username: $username }
+      disconnect: { likedPosts: { where: { node: { id: $id } } } }
     ) {
       users {
         likedPosts {
@@ -98,12 +94,8 @@ const unLikeQuery = graphql(/* graphql */ `
 const likeQuery = graphql(/* graphql */ `
   mutation LikeQuery($id: ID!, $username: ID!) {
     updateUsers(
-      where: {username: $username}
-      connect: {
-        likedPosts: {
-          where: { node: { id: $id } }
-        }
-      }
+      where: { username: $username }
+      connect: { likedPosts: { where: { node: { id: $id } } } }
     ) {
       users {
         likedPosts {

@@ -1,24 +1,28 @@
-
 import person from "../../../../assets/avatar.png";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import CircularLoader from "../../../../components/CircularLoader";
 import { useCommentContext } from "../Providers/CommentProvider/CommentProvider";
 
-const CommentForm = ({
-}) => {
-  const { handleCancelReply, replier, pointerRef, handleCommentChange, comment, handleClick, ccrm } =
-    useCommentContext();
+const CommentForm = ({}) => {
+  const {
+    handleCancelReply,
+    replier,
+    pointerRef,
+    handleCommentChange,
+    comment,
+    handleClick,
+    ccrm,
+  } = useCommentContext();
   return (
     <>
       {replier && replier?.username.length && (
         <div className="bg-base-200 p-1 rounded-md w-full">
           <div className="flex justify-between items-center">
-            <div className="flex gap-2 items-center" >
+            <div className="flex gap-2 items-center">
               <div className="text-xs text-gray-400">Reply to</div>
               <div className="text-xs overflow-clip overflow-ellipsis">
                 @{replier.username}
-
               </div>
               <div className="h-4 w-[1px] bg-slate-400" />
               <div className="text-xs text-gray-400">{replier.text}</div>
@@ -55,8 +59,6 @@ const CommentForm = ({
           className="w-8 h-8 rounded-full self-end object-cover"
         />
         <div className="flex flex-col w-full _390:gap-2">
-
-
           <input
             type="text"
             ref={pointerRef}
@@ -67,12 +69,19 @@ const CommentForm = ({
           />
         </div>
         <button
-          className={`text-web-color-2 ${ccrm.addReplyLoad || !comment ? "btn-disabled": ""}`}
+          className={`text-web-color-2 dark:text-web-color ${
+            ccrm.addReplyLoad || !comment ? "btn-disabled" : ""
+          }`}
           onClick={handleClick}
-          children={ccrm[1].loading ? <span className="loading loading-spinner loading-xs"></span> : "Post"}
+          children={
+            ccrm[1].loading ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              "Post"
+            )
+          }
         />
       </div>
-
     </>
   );
 };

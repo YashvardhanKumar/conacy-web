@@ -2,11 +2,11 @@ import { Post } from "../../../gql/graphql";
 
 interface SinglePostProps {
   children: React.ReactNode;
-  id: string
+  id: string;
 }
 
 interface SinglePostContextProps {
-  post: Post
+  post: Post;
   likeFunc: (
     options?:
       | MutationFunctionOptions<

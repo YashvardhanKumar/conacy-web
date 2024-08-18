@@ -2,7 +2,7 @@ import { graphql } from "../../../gql";
 
 import Like from "../../../assets/Icons/Like";
 
-import { motion } from "framer-motion";
+import { color, motion, transform } from "framer-motion";
 import { useSinglePostContext } from "../SinglePostProvider/SinglePostProvider";
 
 const LikeForm = () => {

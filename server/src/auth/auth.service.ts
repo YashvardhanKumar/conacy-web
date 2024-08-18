@@ -115,11 +115,11 @@ export class AuthService {
     throw new UnauthorizedException({ isAuthenticated: false });
   }
 
-  async logout(email: string, refreshToken: string) {
+  async logout(email: string, token: string) {
     const User = this.ogmService.ogm.model('User');
     await User.update({
       where: { email },
-      update: { refreshToken: null, blackList_PUSH: [refreshToken] },
+      update: { refreshToken: null, blackList_PUSH: [token] },
     });
   }
 

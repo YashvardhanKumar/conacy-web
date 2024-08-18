@@ -1,12 +1,19 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import CreateForm from "./CreateForm";
 import { CreatePostProvider } from "./CreatePostProvider/CreatePostProvider";
+import { useEffect } from "react";
+import useTitle from "../../hooks/useTitle";
 
 const Create = () => {
+  useTitle("Create | Conacy");
 
-  if (localStorage?.getItem("isAuthenticated") != "Yes") {
-    return <Navigate to={'/'} />
-  }
+  const nav = useNavigate();
+
+  useEffect(() => {
+    if (localStorage?.getItem("isAuthenticated") != "Yes") {
+      nav("/");
+    }
+  })
   return (
     <CreatePostProvider>
       <div className="h-screen flex flex-col items-center max-md:my-16 justify-center">
@@ -14,7 +21,6 @@ const Create = () => {
         <CreateForm />
       </div>
     </CreatePostProvider>
-
   );
 };
 

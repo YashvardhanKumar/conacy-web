@@ -3,7 +3,7 @@ import { ReplierProps } from "../ReplyCommentProvider/types";
 
 interface CommentProps {
   children: React.ReactNode;
-  params: Readonly<Params<string>>
+  params: Readonly<Params<string>>;
 }
 
 interface CommentContextProps {
@@ -40,5 +40,5 @@ interface CommentContextProps {
   handleCancelReply: () => void;
   handleCommentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClick: () => Promise<void>;
-  setReplier: React.Dispatch<React.SetStateAction<ReplierProps | null>>
+  setReplier: React.Dispatch<React.SetStateAction<ReplierProps | null>>;
 }

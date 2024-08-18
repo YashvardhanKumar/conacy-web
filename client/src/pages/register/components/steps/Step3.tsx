@@ -1,4 +1,3 @@
-
 import CustomDateTimePicker from "../../../../components/inputs/CustomDateTimePicker";
 export type StepInput3 = {
   dob: string;

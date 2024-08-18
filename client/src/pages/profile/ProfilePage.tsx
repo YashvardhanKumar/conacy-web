@@ -1,15 +1,17 @@
-import avatar from "../../assets/avatar.png";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import ProfileProvider from "./Provider/ProfileProvider";
+import Profile from "./Profile";
+import { useEffect } from "react";
 const ProfilePage = () => {
-    
+  const params = useParams();
+
   return (
-    <div className="md:ml-20 max-md:my-16 p-10 flex">
-      <div className="avatar">
-        <div className="w-24 rounded-full">
-          <img src={avatar} alt="avatar" />
-        </div>
-      </div>
-      <div className="text-xl">@{localStorage.getItem("username")}</div>
-    </div>
+    <ProfileProvider>
+      <div
+        className="w-full content-center flex justify-center"
+        children={<Profile />}
+      />
+    </ProfileProvider>
   );
 };
 

@@ -23,14 +23,8 @@ export default function IntroPage() {
       <div className="navbar sticky flex justify-between items-center px-10 py-5 w-full">
         {/* <div className="max-sm:hidden"></div> */}
         <div className="flex items-start">
-          <img
-            src={logo}
-            alt=""
-            className="sm:h-20 sm:w-20 h-16 w-16"
-          />
-          <div className={" font-potta_one sm:text-6xl text-4xl"}>
-            onacy
-          </div>
+          <img src={logo} alt="" className="sm:h-20 sm:w-20 h-16 w-16" />
+          <div className={" font-potta_one sm:text-6xl text-4xl"}>onacy</div>
         </div>
         <div className="max-sm:hidden">
           <GetStartedButton />

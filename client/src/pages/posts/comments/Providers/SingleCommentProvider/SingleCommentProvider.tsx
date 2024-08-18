@@ -10,12 +10,8 @@ import { useCommentInputContext } from "../CommentInputProvider/CommentInputProv
 const likeComment = graphql(/* GraphQL */ `
   mutation LikeComment($username: ID!, $cid: ID!) {
     updateUsers(
-      where: {username: $username}
-      connect: {
-        likedComments: {
-          where: { node: { id: $cid } }
-        }
-      }
+      where: { username: $username }
+      connect: { likedComments: { where: { node: { id: $cid } } } }
     ) {
       users {
         likedComments {
@@ -29,12 +25,8 @@ const likeComment = graphql(/* GraphQL */ `
 const unlikeComment = graphql(/* GraphQL */ `
   mutation unLikeComment($username: ID!, $cid: ID!) {
     updateUsers(
-      where: {username: $username}
-      disconnect: {
-        likedComments: {
-          where: { node: { id: $cid } }
-        }
-      }
+      where: { username: $username }
+      disconnect: { likedComments: { where: { node: { id: $cid } } } }
     ) {
       users {
         likedComments {
@@ -242,35 +234,23 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
       cid: id,
     },
   });
-  const { data: replyList } = useQuery(
-    getRepliesQuery,
-    {
-      variables: {
-        cid: id,
-      },
-      pollInterval: 10000
-    }
-  );
+  const { data: replyList } = useQuery(getRepliesQuery, {
+    variables: {
+      cid: id,
+    },
+    pollInterval: 10000,
+  });
   const [showReplies, setShowReplies] = useState(false);
   const [like, setLike] = useState(false);
   const [likesNo, setLikesNo] = useState(0);
   const [likeCommentFunc] = useMutation(likeComment, {
-    refetchQueries: [
-      getRepliesQuery,
-      getSingleComment
-    ]
+    refetchQueries: [getRepliesQuery, getSingleComment],
   });
   const [unlikeCommentFunc] = useMutation(unlikeComment, {
-    refetchQueries: [
-      getRepliesQuery,
-      getSingleComment
-    ]
+    refetchQueries: [getRepliesQuery, getSingleComment],
   });
   const [deleteCommentFunc] = useMutation(deleteComment, {
-    refetchQueries: [
-      getRepliesQuery,
-      'PostComments'
-    ]
+    refetchQueries: [getRepliesQuery, "PostComments"],
   });
   const toggleReplies = () => {
     if (
@@ -361,7 +341,7 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
         handleReplies,
         handleDeleteComment,
         like,
-        likesNo
+        likesNo,
       }}
       children={children}
     />

@@ -79,22 +79,17 @@ export const useCommentContext = () => {
 };
 
 const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
-  const {inputRef, pointerRef, replier, setReplier} = useCommentInputContext();
-  const { data } = useQuery(
-    getPostComments,
-    {
-      variables: {
-        pid: params?.pid ?? null,
-      },
-      pollInterval: 10000
-    }
-  );
+  const { inputRef, pointerRef, replier, setReplier } =
+    useCommentInputContext();
+  const { data } = useQuery(getPostComments, {
+    variables: {
+      pid: params?.pid ?? null,
+    },
+    pollInterval: 10000,
+  });
   // const [replier, setReplier] = useState<ReplierProps | null>(null);
-  const ccrm = useMutation(commentReplyMutation,{
-    refetchQueries: [
-      getPostComments,
-      (replier) ? 'Comments' : ''
-    ]
+  const ccrm = useMutation(commentReplyMutation, {
+    refetchQueries: [getPostComments, replier ? "Comments" : ""],
   });
   const [comment, setComment] = useState("");
 
@@ -128,7 +123,7 @@ const CommentProvider: React.FC<CommentProps> = ({ children, params }) => {
           parentsOfComment: replier?.parentsOfComment ?? [],
         },
       });
-      
+
       // }
       setComment("");
       setReplier(null);

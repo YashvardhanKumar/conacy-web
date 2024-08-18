@@ -2,9 +2,7 @@ import { Form, Formik } from "formik";
 import CustomTextArea from "../../components/inputs/CustomTextAreaInput";
 import CustomFileInput from "../../components/inputs/CustomFileInput";
 import CircularLoader from "../../components/CircularLoader";
-import {
-  useCreatePostContext,
-} from "./CreatePostProvider/CreatePostProvider";
+import { useCreatePostContext } from "./CreatePostProvider/CreatePostProvider";
 
 const CreateForm = () => {
   const {
@@ -45,7 +43,7 @@ const CreateForm = () => {
             />
             <CustomTextArea name="caption" hint="Write Caption Here" />
             <button
-              className="btn btn-block max-w-96 inline-flex gap-1 disabled:bg-slate-300 dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white disabled:text-white"
+              className="dark:text-black btn btn-block max-w-96 inline-flex gap-1 disabled:bg-slate-300 dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white disabled:text-white "
               type={"submit"}
               disabled={loading}
               children={<div>{loading ? <CircularLoader /> : "Post Now"}</div>}

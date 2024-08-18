@@ -27,7 +27,6 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
         onChange={field.onChange}
         onBlur={field.onBlur}
         value={field.value}
-        
         className={`p-2.5 dark:outline-none outline outline-1 focus:outline-[3px] rounded-lg max-xs:text-sm border ${
           meta.error && meta.touched
             ? "border-pink-500 invalid:text-pink-600 active:ring-pink-500 focus:border-pink-500 focus:ring-pink-500"

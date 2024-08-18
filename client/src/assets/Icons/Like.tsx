@@ -17,8 +17,8 @@ const Like = (props: any) => {
         </svg>
       ) : (
         <svg
-        width={props?.size ?? "28"}
-        height={props?.size ?? "28"}
+          width={props?.size ?? "28"}
+          height={props?.size ?? "28"}
           viewBox="0 0 24 24"
           fill="none"
           className="*:fill-red-500 *:stroke-red-500"

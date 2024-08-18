@@ -3,7 +3,6 @@ import logo from "../../assets/conacylogo.svg";
 import FormLogin from "./components/FormLogin";
 
 const LoginFormCard = () => {
-
   return (
     <div
       className="card flex bg-base-200 shadow-xl sm:w-[600px] w-[90vw] relative"
@@ -36,7 +35,7 @@ const LoginFormCard = () => {
             />
             <Link
               to={"/register"}
-              className="btn btn-oulined btn-block border-2 dark:border-[#4A67CB] dark:text-[#4A67CB] border-[#7b94eb] text-[#7b94eb]"
+              className="btn btn-oulined btn-block border-2 dark:border-white dark:text-white border-black text-black"
               children="Create Account"
             />
           </div>

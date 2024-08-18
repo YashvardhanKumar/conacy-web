@@ -22,9 +22,9 @@ interface CreatePostContextType {
 
 interface CreatePostProps {
   children: React.ReactNode;
-};
+}
 
 interface CreateFormProps {
   caption: string;
   image: undefined;
-};
+}
