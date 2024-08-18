@@ -37,7 +37,10 @@ const CustomFileInput: FC<CustomFileFieldProps> = ({
           imageUrl ? "" : "flex-col"
         } items-center justify-center h-full gap-2 p-5 cursor-pointer`}
       >
-        <AddCircle className={imageUrl ? "" : "h-20"} />
+        <div className="p-2 bg-black rounded-full dark:bg-white">
+        <AddCircle className={`${imageUrl ? "" : "h-20"}`} />
+
+        </div>
         <span className={imageUrl ? "" : "font-medium text-xl"}>{label}</span>
         <input
           id="image"
@@ -46,8 +49,7 @@ const CustomFileInput: FC<CustomFileFieldProps> = ({
           className="hidden"
           content={content}
           onChange={(d) => {
-            if(d.target.files?.length == 0)
-                return;
+            if (d.target.files?.length == 0) return;
             helpers.setValue(d.target.files![0]);
             if (onChange) onChange!(d);
           }}

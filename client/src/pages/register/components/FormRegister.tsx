@@ -33,7 +33,7 @@ const FormRegister = () => {
                 {page == 1 && <Step2 />}
                 {page == 2 && <Step3 />}
                 <button
-                  className="btn btn-block dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white"
+                  className="btn btn-block dark:text-black hover:bg-gray-400 dark:bg-web-color bg-web-color-2 mt-3 border-none text-white"
                   type={"submit"}
                   children={
                     loading ? (
@@ -64,7 +64,7 @@ const FormRegister = () => {
           />
           <Link
             to={"/login"}
-            className="btn btn-oulined btn-block border-2 dark:border-[#4A67CB] dark:text-[#4A67CB] border-[#7b94eb] text-[#7b94eb]"
+            className="btn btn-oulined btn-block border-2 dark:border-white dark:text-white border-black text-black"
             children="Login"
           />
         </>

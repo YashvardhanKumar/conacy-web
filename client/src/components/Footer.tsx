@@ -29,10 +29,10 @@ const Footer = () => {
   return (
     <footer className="text-gray-900 bg-gray-300 dark:bg-black dark:text-gray-300 py-12">
       <div className="container w-full flex flex-wrap justify-between items-start px-5">
-          <div className="flex m-5">
-            <img src={logo} alt="" className="h-16 w-16"/>
-            <span className={" font-potta_one text-5xl"}>onacy</span>
-          </div>
+        <div className="flex m-5">
+          <img src={logo} alt="" className="h-16 w-16" />
+          <span className={" font-potta_one text-5xl"}>onacy</span>
+        </div>
         <div className="w-full md:w-1/5 mb-8 md:mb-0 p-5">
           <h2 className="text-lg font-semibold mb-4">Follow Us</h2>
           <ul className="flex space-x-4 dark:text-gray-300 text-gray-900">
@@ -83,7 +83,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 border-t border-gray-700 pt-6 text-sm text-center">
-        <div>&copy; {new Date().getFullYear()} Conacy. All rights reserved.</div>
+        <div>
+          &copy; {new Date().getFullYear()} Conacy. All rights reserved.
+        </div>
       </div>
     </footer>
   );

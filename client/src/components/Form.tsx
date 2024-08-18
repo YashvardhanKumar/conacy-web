@@ -38,7 +38,7 @@ const Form: React.FC<FormProps> = ({
         <div className="h-[0.5px] w-full bg-white opacity-20"></div>
         {children}
         <button
-          className="btn btn-block dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white"
+          className="btn btn-block dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white dark:text-black"
           type="submit"
           onClick={handleForm}
         >

@@ -12,7 +12,7 @@ const StepsTracker: React.FC<Props> = ({ steps, page }) => {
           key={v + i}
           data-content={`${i < page ? "✓" : i + 1}`}
           className={`step ${i < page ? "step-success text-success" : ""} ${
-            i == page ? "step-primary text-primary" : ""
+            i <= page ? "step-primary dark:[--fallback-p:white] [--fallback-p:black] text-primary" : ""
           }`}
           children={v}
         />

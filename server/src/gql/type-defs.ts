@@ -52,7 +52,7 @@ export const typeDefs = gql`
     username: ID! @unique
     dob: Date
     refreshToken: String @private
-    blackList: [String!] @private
+    blackList: [String!]!
     profileUrl: String
     relations: [User!]!
       @relationship(

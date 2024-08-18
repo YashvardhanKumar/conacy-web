@@ -44,7 +44,9 @@ const createPost = graphql(/*graphql */ `
  * Post Context
  */
 
-const CreatePostContext = createContext<CreatePostContextType | undefined>(undefined);
+const CreatePostContext = createContext<CreatePostContextType | undefined>(
+  undefined
+);
 
 /**
  * Custom hook for Post Context
@@ -53,7 +55,9 @@ const CreatePostContext = createContext<CreatePostContextType | undefined>(undef
 export const useCreatePostContext = () => {
   const context = useContext(CreatePostContext);
   if (!context) {
-    throw new Error(`${useCreatePostContext.name} must be used within a ${CreatePostProvider.name}`);
+    throw new Error(
+      `${useCreatePostContext.name} must be used within a ${CreatePostProvider.name}`
+    );
   }
   return context;
 };
@@ -67,7 +71,7 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState("");
   const [createMutation] = useMutation(createPost, {
-    refetchQueries: ['Posts2']
+    refetchQueries: ["Posts2"],
   });
   const [loading, setLoading] = useState(false);
 
@@ -89,7 +93,7 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
     console.log(import.meta.env.VITE_SERVER_URL);
     return fetch(`${url}/upload`, {
       method: "POST",
-      credentials: 'include',
+      credentials: "include",
       body: formdata,
       redirect: "follow",
     })

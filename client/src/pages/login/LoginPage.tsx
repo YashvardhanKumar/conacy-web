@@ -4,7 +4,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import LoginProvider from "./LoginProvider/LoginProvider";
-import LoginFormCard from "./LoginFormCard"
+import LoginFormCard from "./LoginFormCard";
 const LoginPage = () => {
   const navigate = useNavigate();
   useEffect(() => {

@@ -1,9 +1,12 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import PostsList from "./posts/PostsList";
 import LoadingLogo from "../components/LoadingLogo";
 import PostProvider from "./posts/PostProvider/PostProvider";
+import useTitle from "../hooks/useTitle";
 
 const HomePage = () => {
+  useTitle("Home | Conacy");
+
   return (
     <Suspense fallback={<LoadingLogo />}>
       <div className="flex flex-row w-screen items-center justify-center">

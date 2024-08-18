@@ -16,7 +16,7 @@ const RegisterPage = () => {
       <div className=" animate-pulse h-10 w-10 absolute left-0 top-0 z-10 bg-orange-500 blur-3xl"></div>
       <div className="card flex bg-base-200 shadow-xl sm:w-[600px] w-[90vw] relative">
         <RegisterProvider>
-            <CombineSteps />
+          <CombineSteps />
         </RegisterProvider>
       </div>
     </div>

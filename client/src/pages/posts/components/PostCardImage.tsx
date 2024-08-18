@@ -10,14 +10,13 @@ import SinglePostProvider, {
   useSinglePostContext,
 } from "../SinglePostProvider/SinglePostProvider";
 import ToggleSettings from "../../../assets/Icons/ToggleSettings";
+import { useAnimate } from "framer-motion";
+import DialogBox from "../../../components/DialogBox";
 
 const PostCardImage = () => {
   const [seeMore, setSeeMore] = useState(false);
   const { post } = useSinglePostContext();
   const [dialogOpen, setDialogOpen] = useState(false);
-  useEffect(() => {
-    console.log(post.visibility);
-  })
 
   return (
     <SinglePostProvider
@@ -26,17 +25,15 @@ const PostCardImage = () => {
         <div className="w-[390px] max-_390:w-[95vw]">
           <div className="p-1 font-bold h-12 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <div className="avatar" children={
-                <div
-                  className="h-8 w-8 rounded-full"
-                  children={
-                    <img
-                      src={person}
-                      alt=""
-                      height={36}
-                    />
-                  }
-                />} />
+              <div
+                className="avatar"
+                children={
+                  <div
+                    className="h-8 w-8 rounded-full"
+                    children={<img src={person} alt="" height={36} />}
+                  />
+                }
+              />
               <div>
                 <div children={post.creatorOfPost.name} />
                 <div
@@ -48,17 +45,46 @@ const PostCardImage = () => {
             <div className="flex gap-2">
               <Link to={`/send/post?id=${post.id}`} children={<SendIcon />} />
               <Link to={`/save?id=${post.id}`} children={<SaveIcon />} />
-              <div className="dropdown dropdown-end" >
-                <div tabIndex={0} role="button" >
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button">
                   <ToggleSettings className="h-[24px] w-[24px]" />
                 </div>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-[1] w-40 p-2 shadow">
-                  <li><label htmlFor="dialogbox" className="btn">Delete Post</label></li>
-                  {/* <li><a>Item 2</a></li> */}
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-300 rounded-box z-[1] w-40 p-2 shadow"
+                >
+                  {post.creatorOfPost.username ==
+                    localStorage.getItem("username") && (
+                    <li>
+                      <button
+                        onClick={() => {
+                          (
+                            document.getElementById(
+                              "delete_post_modal"
+                            ) as HTMLDialogElement
+                          ).showModal();
+                        }}
+                      >
+                        Delete Post
+                      </button>
+                    </li>
+                  )}
+                  {/* <li><a></a></li> */}
                 </ul>
               </div>
             </div>
-            <DeletePostDialogBox />
+            <DialogBox
+              uid="delete_post_modal"
+              title="Delete Post"
+              description="Are you sure you want to delete your post? It cannot be undone!"
+            >
+              <button
+                className="btn btn-error text-base-100"
+                onClick={async () => {}}
+              >
+                Delete Post
+              </button>
+            </DialogBox>
           </div>
           <img
             src={post.url}
@@ -82,14 +108,18 @@ const PostCardImage = () => {
                 className="my-2"
                 children={
                   <div
-                    className={`text-start ${seeMore ? "" : "line-clamp-2"
-                      } font-light text-sm dark:text-white`}
+                    className={`text-start ${
+                      seeMore ? "" : "line-clamp-2"
+                    } font-light text-sm dark:text-white`}
                     children={post.description}
                   />
                 }
               />
             )}
-            <div className="rounded-md dark:bg-base-200 bg-blue-50 flex flex-col gap-3 p-3">
+            <Link
+              to={`/post/${post.id}/comments`}
+              className="rounded-md dark:bg-base-200 bg-blue-50 flex flex-col gap-3 p-3"
+            >
               <div className="inline-flex items-center gap-1">
                 <CommentIcon width="20" height="20" />
                 <span children="Comments" />
@@ -123,7 +153,7 @@ const PostCardImage = () => {
               ) : (
                 <div className="text-sm" children="No Comments Yet" />
               )}
-            </div>
+            </Link>
           </div>
         </div>
       }
@@ -143,10 +173,12 @@ export const DeletePostDialogBox = () => {
           <p className="py-4">This modal works with a hidden checkbox!</p>
           <div className="modal-action">
             <button className="btn btn-error">Delete Anyways</button>
-            <label htmlFor="dialogbox" className="btn">Cancel</label>
+            <label htmlFor="dialogbox" className="btn">
+              Cancel
+            </label>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};

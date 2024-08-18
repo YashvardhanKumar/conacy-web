@@ -92,18 +92,16 @@ export const PostSkeleton = () => {
       <div className="skeleton rounded-lg w-full h-[420px]"></div>
       <div className="flex justify-between">
         <div className="flex gap-2">
-        <div className="h-8 w-8 rounded-lg skeleton"></div>
-        <div className="h-8 w-8 rounded-lg skeleton"></div>
-        <div className="h-8 w-8 rounded-lg skeleton"></div>
+          <div className="h-8 w-8 rounded-lg skeleton"></div>
+          <div className="h-8 w-8 rounded-lg skeleton"></div>
+          <div className="h-8 w-8 rounded-lg skeleton"></div>
         </div>
         <div className="h-8 w-32 rounded-lg skeleton"></div>
-
-
       </div>
       <div className="skeleton rounded-lg w-full h-4"></div>
       <div className="skeleton rounded-lg w-full h-4"></div>
       <div className="skeleton rounded-lg w-1/2 h-4"></div>
       <div className="skeleton rounded-lg w-full h-20"></div>
     </div>
-  )
-}
+  );
+};

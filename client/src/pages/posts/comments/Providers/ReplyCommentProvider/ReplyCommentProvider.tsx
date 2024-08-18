@@ -111,18 +111,20 @@ export const useReplyCommentContext = () => {
   return context;
 };
 
-const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({ children, params }) => {
-  const { inputRef, pointerRef, replier, setReplier } = useCommentInputContext();
+const ReplyCommentProvider: React.FC<ReplyCommentProps> = ({
+  children,
+  params,
+}) => {
+  const { inputRef, pointerRef, replier, setReplier } =
+    useCommentInputContext();
   const { data } = useQuery(getSingleComment, {
     variables: {
       cid: params?.cid ?? null,
     },
-    pollInterval: 10000
+    pollInterval: 10000,
   });
   const ccrm = useMutation(commentReplyMutation, {
-    refetchQueries: [
-      getSingleComment,
-    ]
+    refetchQueries: [getSingleComment],
   });
   const [comment, setComment] = useState("");
 

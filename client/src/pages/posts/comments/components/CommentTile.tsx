@@ -15,7 +15,7 @@ const CommentTile = () => {
     handleReplies,
     showReplies,
     commentRef,
-    likesNo
+    likesNo,
   } = useSingleCommentContext();
   return (
     <div className="flex w-full h-full" ref={commentRef}>
@@ -43,7 +43,7 @@ const CommentTile = () => {
                   aria-hidden="true"
                   onClick={toggleReplies}
                   children={
-                    <div className="w-[1px] h-full group-hover:bg-base-300 bg-gray-300" />
+                    <div className="w-[1px] h-full group-hover:bg-gray-400 bg-gray-300" />
                   }
                 />
                 <div className="contents">
@@ -80,17 +80,17 @@ const CommentTile = () => {
                       className=" text-gray-400 text-xs w-fit p-1"
                       children="Reply"
                     />
-                    {(comment.author.username ==
-                      localStorage?.getItem("username")) && (
-                        <motion.button
-                          whileTap={{
-                            scale: [null, 0.7, 0.8],
-                          }}
-                          className=" text-gray-400 text-xs w-fit p-1"
-                          children="Delete"
-                          onClick={handleDeleteComment}
-                        />
-                      )}
+                    {comment.author.username ==
+                      localStorage?.getItem("username") && (
+                      <motion.button
+                        whileTap={{
+                          scale: [null, 0.7, 0.8],
+                        }}
+                        className=" text-gray-400 text-xs w-fit p-1"
+                        children="Delete"
+                        onClick={handleDeleteComment}
+                      />
+                    )}
                     {replyList && replyList.length > 0 && (
                       <motion.button
                         whileTap={{

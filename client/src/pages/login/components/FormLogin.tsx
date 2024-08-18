@@ -35,7 +35,7 @@ const FormLogin = () => {
                 required
               />
               <button
-                className="btn btn-block dark:bg-web-color bg-web-color-2 mt-3 hover:dark:bg-web-color-2 border-none text-white"
+                className="btn btn-block dark:text-black hover:bg-gray-400 dark:bg-web-color bg-web-color-2 mt-3 border-none text-white"
                 type="submit"
                 children={loading ? <CircularLoader /> : "Login"}
               />

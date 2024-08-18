@@ -2,12 +2,12 @@ export const handleSubmitRegister = async (value: any) => {
   const { email, password, name, username, dob } = value;
   const date = new Date(dob);
   let url = import.meta.env.VITE_SERVER_URL;
-  
+
   try {
     const res = await fetch(url + "/auth/signUp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: 'include',
+      credentials: "include",
       body: JSON.stringify({
         email,
         hash: password,

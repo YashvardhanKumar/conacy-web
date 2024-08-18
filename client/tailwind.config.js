@@ -3,9 +3,13 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      // colors: {
+      //   "web-color": "#4A67CB",
+      //   "web-color-2": "#7b94eb",
+      // },
       colors: {
-        "web-color": "#4A67CB",
-        "web-color-2": "#7b94eb",
+        "web-color": "#fff",
+        "web-color-2": "#000",
       },
       screens: {
         _390: "400px",

@@ -134,11 +134,11 @@ export class AuthController {
   @Put('logout')
   async logout(
     @Res({ passthrough: true }) res: Response,
-    @USERS() users: any,
     @Req() req: Request,
   ) {
-    const token = req.cookies['accessToken'];
-    await this.authService.logout(users.email, token);
+    const token = req.cookies['refreshToken'];
+    
+    await this.authService.logout(req['jwt'].email, token);
     res
       .clearCookie('accessToken', this.optionsAccess)
       .clearCookie('refreshToken', this.optionsRefresh)

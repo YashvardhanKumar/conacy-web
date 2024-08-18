@@ -5,12 +5,11 @@ import CommentTile from "./CommentTile";
 import person from "../../../../assets/avatar.png";
 
 const ReplyList = () => {
-  const { inputRef, comment } =
-    useReplyCommentContext();
+  const { inputRef, comment } = useReplyCommentContext();
   return (
     <div className="flex flex-col  w-full md:w-3/5 lg:w-2/5 max-_390:w-[95vw]">
       <div className="flex items-center gap-3 p-3 border-b-[0.5px] border-t-[0.5px] border-slate-400">
-      <div className="sm:h-14 sm:w-14 w-10 h-10">
+        <div className="sm:h-14 sm:w-14 w-10 h-10">
           <img
             src={person}
             alt=""
@@ -32,7 +31,11 @@ const ReplyList = () => {
       />
       <div className="p-4 text-xl ">Comments ({comment.replies.length})</div>
       {comment.replies.map((comment) => (
-        <SingleCommentProvider id={comment.id} key={comment.id} children={<CommentTile />} />
+        <SingleCommentProvider
+          id={comment.id}
+          key={comment.id}
+          children={<CommentTile />}
+        />
       ))}
     </div>
   );

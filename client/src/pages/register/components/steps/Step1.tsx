@@ -38,7 +38,6 @@ const Step1 = () => {
         type="password"
         required
       />
-      
     </>
   );
 };

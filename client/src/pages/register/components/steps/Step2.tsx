@@ -1,6 +1,5 @@
 import CustomTextField from "../../../../components/inputs/CustomTextFormInput";
 
-
 export type StepInput2 = {
   username: string;
 };

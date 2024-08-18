@@ -6,7 +6,6 @@ interface SingleCommentProps {
   // pointerRef: React.MutableRefObject<HTMLInputElement | null>;
   // inputRef: React.MutableRefObject<HTMLDivElement | null>;
   // setReplier: React.Dispatch<React.SetStateAction<ReplierProps | null>>;
-
 }
 
 interface SingleCommentContextProps {
