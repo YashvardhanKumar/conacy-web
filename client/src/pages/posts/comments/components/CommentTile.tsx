@@ -32,7 +32,7 @@ const CommentTile = () => {
                   className="w-8 h-8 p-1 rounded-full object-cover"
                 />
                 <div
-                  className="px-2 text-web-color"
+                  className="px-2 dark:text-web-color"
                   children={comment.author?.username ?? ""}
                 />
               </div>

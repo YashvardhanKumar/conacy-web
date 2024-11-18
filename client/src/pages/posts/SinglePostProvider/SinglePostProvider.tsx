@@ -146,7 +146,7 @@ export const useSinglePostContext = () => {
 const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
   const [likeFunc] = useMutation(likeQuery);
   const [unlikeFunc] = useMutation(unLikeQuery);
-  const spq = useSuspenseQuery(singlePostQuery, {
+  const spq = useQuery(singlePostQuery, {
     variables: {
       pid: id,
     },
@@ -182,22 +182,18 @@ const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
       ).length != 0
     );
   }, [spq.data?.posts[0].likes]);
+  if (spq.loading) return <LoadingSpinner />;
   return (
-    <Suspense
-      fallback={<PostSkeleton />}
-      children={
-        <SinglePostContext.Provider
-          value={{
-            post: spq.data!.posts[0] as Post,
-            likeFunc,
-            unlikeFunc,
-            liked,
-            likesNo,
-            handleLike,
-          }}
-          children={children}
-        />
-      }
+    <SinglePostContext.Provider
+      value={{
+        post: spq.data!.posts[0] as Post,
+        likeFunc,
+        unlikeFunc,
+        liked,
+        likesNo,
+        handleLike,
+      }}
+      children={children}
     />
   );
 };

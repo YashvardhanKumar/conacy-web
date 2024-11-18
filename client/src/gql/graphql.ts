@@ -1,161 +1,163 @@
 /* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** A date, represented as a 'yyyy-mm-dd' string */
-  Date: { input: any; output: any };
+  Date: { input: any; output: any; }
   /** A date and time, represented as an ISO-8601 string */
-  DateTime: { input: any; output: any };
+  DateTime: { input: any; output: any; }
 };
 
 export type Comment = {
-  __typename?: "Comment";
+  __typename?: 'Comment';
   author: User;
   authorAggregate?: Maybe<CommentUserAuthorAggregationSelection>;
   authorConnection: CommentAuthorConnection;
   commentOfPost: Post;
   commentOfPostAggregate?: Maybe<CommentPostCommentOfPostAggregationSelection>;
   commentOfPostConnection: CommentCommentOfPostConnection;
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  id: Scalars["ID"]["output"];
-  indent: Scalars["Int"]["output"];
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['ID']['output'];
+  indent: Scalars['Int']['output'];
   likes: Array<User>;
   likesAggregate?: Maybe<CommentUserLikesAggregationSelection>;
   likesConnection: CommentLikesConnection;
-  parentsOfComment: Array<Scalars["ID"]["output"]>;
+  parentsOfComment: Array<Scalars['ID']['output']>;
   replies: Array<Comment>;
   repliesAggregate?: Maybe<CommentCommentRepliesAggregationSelection>;
   repliesConnection: CommentRepliesConnection;
   replyOfComment?: Maybe<Comment>;
   replyOfCommentAggregate?: Maybe<CommentCommentReplyOfCommentAggregationSelection>;
   replyOfCommentConnection: CommentReplyOfCommentConnection;
-  text: Scalars["String"]["output"];
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  text: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
+
 export type CommentAuthorArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type CommentAuthorAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type CommentAuthorConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<CommentAuthorConnectionSort>>;
   where?: InputMaybe<CommentAuthorConnectionWhere>;
 };
 
+
 export type CommentCommentOfPostArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type CommentCommentOfPostAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type CommentCommentOfPostConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<CommentCommentOfPostConnectionSort>>;
   where?: InputMaybe<CommentCommentOfPostConnectionWhere>;
 };
 
+
 export type CommentLikesArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type CommentLikesAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type CommentLikesConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<CommentLikesConnectionSort>>;
   where?: InputMaybe<CommentLikesConnectionWhere>;
 };
 
+
 export type CommentRepliesArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type CommentRepliesAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type CommentRepliesConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<CommentRepliesConnectionSort>>;
   where?: InputMaybe<CommentRepliesConnectionWhere>;
 };
 
+
 export type CommentReplyOfCommentArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type CommentReplyOfCommentAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type CommentReplyOfCommentConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<CommentReplyOfCommentConnectionSort>>;
   where?: InputMaybe<CommentReplyOfCommentConnectionWhere>;
 };
 
 export type CommentAggregateSelection = {
-  __typename?: "CommentAggregateSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'CommentAggregateSelection';
+  count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelection;
   id: IdAggregateSelection;
   indent: IntAggregateSelection;
@@ -167,18 +169,18 @@ export type CommentAuthorAggregateInput = {
   AND?: InputMaybe<Array<CommentAuthorAggregateInput>>;
   NOT?: InputMaybe<CommentAuthorAggregateInput>;
   OR?: InputMaybe<Array<CommentAuthorAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<CommentAuthorNodeAggregationWhereInput>;
 };
 
 export type CommentAuthorConnectFieldInput = {
   connect?: InputMaybe<UserConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -192,15 +194,15 @@ export type CommentAuthorConnectOrCreateFieldInputOnCreate = {
 };
 
 export type CommentAuthorConnectedRelationship = {
-  __typename?: "CommentAuthorConnectedRelationship";
+  __typename?: 'CommentAuthorConnectedRelationship';
   node: UserEventPayload;
 };
 
 export type CommentAuthorConnection = {
-  __typename?: "CommentAuthorConnection";
+  __typename?: 'CommentAuthorConnection';
   edges: Array<CommentAuthorRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CommentAuthorConnectionSort = {
@@ -238,76 +240,76 @@ export type CommentAuthorNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<CommentAuthorNodeAggregationWhereInput>>;
   NOT?: InputMaybe<CommentAuthorNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<CommentAuthorNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentAuthorRelationship = {
-  __typename?: "CommentAuthorRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'CommentAuthorRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
@@ -333,31 +335,31 @@ export type CommentCommentOfPostAggregateInput = {
   AND?: InputMaybe<Array<CommentCommentOfPostAggregateInput>>;
   NOT?: InputMaybe<CommentCommentOfPostAggregateInput>;
   OR?: InputMaybe<Array<CommentCommentOfPostAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<CommentCommentOfPostNodeAggregationWhereInput>;
 };
 
 export type CommentCommentOfPostConnectFieldInput = {
   connect?: InputMaybe<PostConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<PostConnectWhere>;
 };
 
 export type CommentCommentOfPostConnectedRelationship = {
-  __typename?: "CommentCommentOfPostConnectedRelationship";
+  __typename?: 'CommentCommentOfPostConnectedRelationship';
   node: PostEventPayload;
 };
 
 export type CommentCommentOfPostConnection = {
-  __typename?: "CommentCommentOfPostConnection";
+  __typename?: 'CommentCommentOfPostConnection';
   edges: Array<CommentCommentOfPostRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CommentCommentOfPostConnectionSort = {
@@ -394,61 +396,61 @@ export type CommentCommentOfPostNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<CommentCommentOfPostNodeAggregationWhereInput>>;
   NOT?: InputMaybe<CommentCommentOfPostNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<CommentCommentOfPostNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  url_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  url_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  url_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  url_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type CommentCommentOfPostRelationship = {
-  __typename?: "CommentCommentOfPostRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'CommentCommentOfPostRelationship';
+  cursor: Scalars['String']['output'];
   node: Post;
 };
 
@@ -470,13 +472,13 @@ export type CommentCommentOfPostUpdateFieldInput = {
 };
 
 export type CommentCommentRepliesAggregationSelection = {
-  __typename?: "CommentCommentRepliesAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'CommentCommentRepliesAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<CommentCommentRepliesNodeAggregateSelection>;
 };
 
 export type CommentCommentRepliesNodeAggregateSelection = {
-  __typename?: "CommentCommentRepliesNodeAggregateSelection";
+  __typename?: 'CommentCommentRepliesNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   id: IdAggregateSelection;
   indent: IntAggregateSelection;
@@ -485,13 +487,13 @@ export type CommentCommentRepliesNodeAggregateSelection = {
 };
 
 export type CommentCommentReplyOfCommentAggregationSelection = {
-  __typename?: "CommentCommentReplyOfCommentAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'CommentCommentReplyOfCommentAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<CommentCommentReplyOfCommentNodeAggregateSelection>;
 };
 
 export type CommentCommentReplyOfCommentNodeAggregateSelection = {
-  __typename?: "CommentCommentReplyOfCommentNodeAggregateSelection";
+  __typename?: 'CommentCommentReplyOfCommentNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   id: IdAggregateSelection;
   indent: IntAggregateSelection;
@@ -517,7 +519,7 @@ export type CommentConnectWhere = {
 };
 
 export type CommentConnectedRelationships = {
-  __typename?: "CommentConnectedRelationships";
+  __typename?: 'CommentConnectedRelationships';
   author?: Maybe<CommentAuthorConnectedRelationship>;
   commentOfPost?: Maybe<CommentCommentOfPostConnectedRelationship>;
   likes?: Maybe<CommentLikesConnectedRelationship>;
@@ -528,20 +530,20 @@ export type CommentConnectedRelationships = {
 export type CommentCreateInput = {
   author?: InputMaybe<CommentAuthorFieldInput>;
   commentOfPost?: InputMaybe<CommentCommentOfPostFieldInput>;
-  indent?: Scalars["Int"]["input"];
+  indent?: Scalars['Int']['input'];
   likes?: InputMaybe<CommentLikesFieldInput>;
-  parentsOfComment: Array<Scalars["ID"]["input"]>;
+  parentsOfComment: Array<Scalars['ID']['input']>;
   replies?: InputMaybe<CommentRepliesFieldInput>;
   replyOfComment?: InputMaybe<CommentReplyOfCommentFieldInput>;
-  text: Scalars["String"]["input"];
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  text: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentCreatedEvent = {
-  __typename?: "CommentCreatedEvent";
+  __typename?: 'CommentCreatedEvent';
   createdComment: CommentEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type CommentDeleteInput = {
@@ -553,10 +555,10 @@ export type CommentDeleteInput = {
 };
 
 export type CommentDeletedEvent = {
-  __typename?: "CommentDeletedEvent";
+  __typename?: 'CommentDeletedEvent';
   deletedComment: CommentEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type CommentDisconnectInput = {
@@ -568,37 +570,37 @@ export type CommentDisconnectInput = {
 };
 
 export type CommentEdge = {
-  __typename?: "CommentEdge";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'CommentEdge';
+  cursor: Scalars['String']['output'];
   node: Comment;
 };
 
 export type CommentEventPayload = {
-  __typename?: "CommentEventPayload";
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  id: Scalars["ID"]["output"];
-  indent: Scalars["Int"]["output"];
-  parentsOfComment: Array<Scalars["ID"]["output"]>;
-  text: Scalars["String"]["output"];
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  __typename?: 'CommentEventPayload';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['ID']['output'];
+  indent: Scalars['Int']['output'];
+  parentsOfComment: Array<Scalars['ID']['output']>;
+  text: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type CommentLikesAggregateInput = {
   AND?: InputMaybe<Array<CommentLikesAggregateInput>>;
   NOT?: InputMaybe<CommentLikesAggregateInput>;
   OR?: InputMaybe<Array<CommentLikesAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<CommentLikesNodeAggregationWhereInput>;
 };
 
 export type CommentLikesConnectFieldInput = {
   connect?: InputMaybe<Array<UserConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -612,15 +614,15 @@ export type CommentLikesConnectOrCreateFieldInputOnCreate = {
 };
 
 export type CommentLikesConnectedRelationship = {
-  __typename?: "CommentLikesConnectedRelationship";
+  __typename?: 'CommentLikesConnectedRelationship';
   node: UserEventPayload;
 };
 
 export type CommentLikesConnection = {
-  __typename?: "CommentLikesConnection";
+  __typename?: 'CommentLikesConnection';
   edges: Array<CommentLikesRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CommentLikesConnectionSort = {
@@ -658,76 +660,76 @@ export type CommentLikesNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<CommentLikesNodeAggregationWhereInput>>;
   NOT?: InputMaybe<CommentLikesNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<CommentLikesNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentLikesRelationship = {
-  __typename?: "CommentLikesRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'CommentLikesRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
@@ -750,20 +752,20 @@ export type CommentLikesUpdateFieldInput = {
 };
 
 export type CommentOptions = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   /** Specify one or more CommentSort objects to sort Comments by. The sorts will be applied in the order in which they are arranged in the array. */
   sort?: InputMaybe<Array<CommentSort>>;
 };
 
 export type CommentPostCommentOfPostAggregationSelection = {
-  __typename?: "CommentPostCommentOfPostAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'CommentPostCommentOfPostAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<CommentPostCommentOfPostNodeAggregateSelection>;
 };
 
 export type CommentPostCommentOfPostNodeAggregateSelection = {
-  __typename?: "CommentPostCommentOfPostNodeAggregateSelection";
+  __typename?: 'CommentPostCommentOfPostNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   description: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -780,12 +782,12 @@ export type CommentRelationInput = {
 };
 
 export type CommentRelationshipCreatedEvent = {
-  __typename?: "CommentRelationshipCreatedEvent";
+  __typename?: 'CommentRelationshipCreatedEvent';
   comment: CommentEventPayload;
   createdRelationship: CommentConnectedRelationships;
   event: EventType;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type CommentRelationshipCreatedSubscriptionWhere = {
@@ -797,12 +799,12 @@ export type CommentRelationshipCreatedSubscriptionWhere = {
 };
 
 export type CommentRelationshipDeletedEvent = {
-  __typename?: "CommentRelationshipDeletedEvent";
+  __typename?: 'CommentRelationshipDeletedEvent';
   comment: CommentEventPayload;
   deletedRelationship: CommentConnectedRelationships;
   event: EventType;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type CommentRelationshipDeletedSubscriptionWhere = {
@@ -825,31 +827,31 @@ export type CommentRepliesAggregateInput = {
   AND?: InputMaybe<Array<CommentRepliesAggregateInput>>;
   NOT?: InputMaybe<CommentRepliesAggregateInput>;
   OR?: InputMaybe<Array<CommentRepliesAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<CommentRepliesNodeAggregationWhereInput>;
 };
 
 export type CommentRepliesConnectFieldInput = {
   connect?: InputMaybe<Array<CommentConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<CommentConnectWhere>;
 };
 
 export type CommentRepliesConnectedRelationship = {
-  __typename?: "CommentRepliesConnectedRelationship";
+  __typename?: 'CommentRepliesConnectedRelationship';
   node: CommentEventPayload;
 };
 
 export type CommentRepliesConnection = {
-  __typename?: "CommentRepliesConnection";
+  __typename?: 'CommentRepliesConnection';
   edges: Array<CommentRepliesRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CommentRepliesConnectionSort = {
@@ -886,66 +888,66 @@ export type CommentRepliesNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<CommentRepliesNodeAggregationWhereInput>>;
   NOT?: InputMaybe<CommentRepliesNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<CommentRepliesNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  indent_AVERAGE_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_MAX_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  indent_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_MAX_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentRepliesRelationship = {
-  __typename?: "CommentRepliesRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'CommentRepliesRelationship';
+  cursor: Scalars['String']['output'];
   node: Comment;
 };
 
@@ -970,31 +972,31 @@ export type CommentReplyOfCommentAggregateInput = {
   AND?: InputMaybe<Array<CommentReplyOfCommentAggregateInput>>;
   NOT?: InputMaybe<CommentReplyOfCommentAggregateInput>;
   OR?: InputMaybe<Array<CommentReplyOfCommentAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<CommentReplyOfCommentNodeAggregationWhereInput>;
 };
 
 export type CommentReplyOfCommentConnectFieldInput = {
   connect?: InputMaybe<CommentConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<CommentConnectWhere>;
 };
 
 export type CommentReplyOfCommentConnectedRelationship = {
-  __typename?: "CommentReplyOfCommentConnectedRelationship";
+  __typename?: 'CommentReplyOfCommentConnectedRelationship';
   node: CommentEventPayload;
 };
 
 export type CommentReplyOfCommentConnection = {
-  __typename?: "CommentReplyOfCommentConnection";
+  __typename?: 'CommentReplyOfCommentConnection';
   edges: Array<CommentReplyOfCommentRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CommentReplyOfCommentConnectionSort = {
@@ -1031,66 +1033,66 @@ export type CommentReplyOfCommentNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<CommentReplyOfCommentNodeAggregationWhereInput>>;
   NOT?: InputMaybe<CommentReplyOfCommentNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<CommentReplyOfCommentNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  indent_AVERAGE_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_MAX_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  indent_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_MAX_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentReplyOfCommentRelationship = {
-  __typename?: "CommentReplyOfCommentRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'CommentReplyOfCommentRelationship';
+  cursor: Scalars['String']['output'];
   node: Comment;
 };
 
@@ -1124,70 +1126,70 @@ export type CommentSubscriptionWhere = {
   AND?: InputMaybe<Array<CommentSubscriptionWhere>>;
   NOT?: InputMaybe<CommentSubscriptionWhere>;
   OR?: InputMaybe<Array<CommentSubscriptionWhere>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  indent?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_IN?: InputMaybe<Array<Scalars["Int"]["input"]>>;
-  indent_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  parentsOfComment?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  parentsOfComment_INCLUDES?: InputMaybe<Scalars["ID"]["input"]>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
-  text_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  text_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  text_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  text_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  indent?: InputMaybe<Scalars['Int']['input']>;
+  indent_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_IN?: InputMaybe<Array<Scalars['Int']['input']>>;
+  indent_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_LTE?: InputMaybe<Scalars['Int']['input']>;
+  parentsOfComment?: InputMaybe<Array<Scalars['ID']['input']>>;
+  parentsOfComment_INCLUDES?: InputMaybe<Scalars['ID']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  text_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  text_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  text_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentUpdateInput = {
   author?: InputMaybe<CommentAuthorUpdateFieldInput>;
   commentOfPost?: InputMaybe<CommentCommentOfPostUpdateFieldInput>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  indent?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_DECREMENT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_INCREMENT?: InputMaybe<Scalars["Int"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  indent?: InputMaybe<Scalars['Int']['input']>;
+  indent_DECREMENT?: InputMaybe<Scalars['Int']['input']>;
+  indent_INCREMENT?: InputMaybe<Scalars['Int']['input']>;
   likes?: InputMaybe<Array<CommentLikesUpdateFieldInput>>;
-  parentsOfComment?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  parentsOfComment_POP?: InputMaybe<Scalars["Int"]["input"]>;
-  parentsOfComment_PUSH?: InputMaybe<Array<Scalars["ID"]["input"]>>;
+  parentsOfComment?: InputMaybe<Array<Scalars['ID']['input']>>;
+  parentsOfComment_POP?: InputMaybe<Scalars['Int']['input']>;
+  parentsOfComment_PUSH?: InputMaybe<Array<Scalars['ID']['input']>>;
   replies?: InputMaybe<Array<CommentRepliesUpdateFieldInput>>;
   replyOfComment?: InputMaybe<CommentReplyOfCommentUpdateFieldInput>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
+  text?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CommentUpdatedEvent = {
-  __typename?: "CommentUpdatedEvent";
+  __typename?: 'CommentUpdatedEvent';
   event: EventType;
   previousState: CommentEventPayload;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
   updatedComment: CommentEventPayload;
 };
 
 export type CommentUserAuthorAggregationSelection = {
-  __typename?: "CommentUserAuthorAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'CommentUserAuthorAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<CommentUserAuthorNodeAggregateSelection>;
 };
 
 export type CommentUserAuthorNodeAggregateSelection = {
-  __typename?: "CommentUserAuthorNodeAggregateSelection";
+  __typename?: 'CommentUserAuthorNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -1198,13 +1200,13 @@ export type CommentUserAuthorNodeAggregateSelection = {
 };
 
 export type CommentUserLikesAggregationSelection = {
-  __typename?: "CommentUserLikesAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'CommentUserLikesAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<CommentUserLikesNodeAggregateSelection>;
 };
 
 export type CommentUserLikesNodeAggregateSelection = {
-  __typename?: "CommentUserLikesNodeAggregateSelection";
+  __typename?: 'CommentUserLikesNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -1228,23 +1230,23 @@ export type CommentWhere = {
   commentOfPostConnection?: InputMaybe<CommentCommentOfPostConnectionWhere>;
   commentOfPostConnection_NOT?: InputMaybe<CommentCommentOfPostConnectionWhere>;
   commentOfPost_NOT?: InputMaybe<PostWhere>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  indent?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_IN?: InputMaybe<Array<Scalars["Int"]["input"]>>;
-  indent_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  indent?: InputMaybe<Scalars['Int']['input']>;
+  indent_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_IN?: InputMaybe<Array<Scalars['Int']['input']>>;
+  indent_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_LTE?: InputMaybe<Scalars['Int']['input']>;
   likesAggregate?: InputMaybe<CommentLikesAggregateInput>;
   /** Return Comments where all of the related CommentLikesConnections match this filter */
   likesConnection_ALL?: InputMaybe<CommentLikesConnectionWhere>;
@@ -1262,8 +1264,8 @@ export type CommentWhere = {
   likes_SINGLE?: InputMaybe<UserWhere>;
   /** Return Comments where some of the related Users match this filter */
   likes_SOME?: InputMaybe<UserWhere>;
-  parentsOfComment?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  parentsOfComment_INCLUDES?: InputMaybe<Scalars["ID"]["input"]>;
+  parentsOfComment?: InputMaybe<Array<Scalars['ID']['input']>>;
+  parentsOfComment_INCLUDES?: InputMaybe<Scalars['ID']['input']>;
   repliesAggregate?: InputMaybe<CommentRepliesAggregateInput>;
   /** Return Comments where all of the related CommentRepliesConnections match this filter */
   repliesConnection_ALL?: InputMaybe<CommentRepliesConnectionWhere>;
@@ -1286,160 +1288,172 @@ export type CommentWhere = {
   replyOfCommentConnection?: InputMaybe<CommentReplyOfCommentConnectionWhere>;
   replyOfCommentConnection_NOT?: InputMaybe<CommentReplyOfCommentConnectionWhere>;
   replyOfComment_NOT?: InputMaybe<CommentWhere>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
-  text_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  text_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  text_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  text_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  text_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  text_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  text_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CommentsConnection = {
-  __typename?: "CommentsConnection";
+  __typename?: 'CommentsConnection';
   edges: Array<CommentEdge>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CreateCommentsMutationResponse = {
-  __typename?: "CreateCommentsMutationResponse";
+  __typename?: 'CreateCommentsMutationResponse';
   comments: Array<Comment>;
   info: CreateInfo;
 };
 
 /** Information about the number of nodes and relationships created during a create mutation */
 export type CreateInfo = {
-  __typename?: "CreateInfo";
+  __typename?: 'CreateInfo';
   /** @deprecated This field has been deprecated because bookmarks are now handled by the driver. */
-  bookmark?: Maybe<Scalars["String"]["output"]>;
-  nodesCreated: Scalars["Int"]["output"];
-  relationshipsCreated: Scalars["Int"]["output"];
+  bookmark?: Maybe<Scalars['String']['output']>;
+  nodesCreated: Scalars['Int']['output'];
+  relationshipsCreated: Scalars['Int']['output'];
 };
 
 export type CreateMessagesMutationResponse = {
-  __typename?: "CreateMessagesMutationResponse";
+  __typename?: 'CreateMessagesMutationResponse';
   info: CreateInfo;
   messages: Array<Message>;
 };
 
+export type CreateNotificationsMutationResponse = {
+  __typename?: 'CreateNotificationsMutationResponse';
+  info: CreateInfo;
+  notifications: Array<Notification>;
+};
+
 export type CreatePostsMutationResponse = {
-  __typename?: "CreatePostsMutationResponse";
+  __typename?: 'CreatePostsMutationResponse';
   info: CreateInfo;
   posts: Array<Post>;
 };
 
 export type CreatePrivacySettingsMutationResponse = {
-  __typename?: "CreatePrivacySettingsMutationResponse";
+  __typename?: 'CreatePrivacySettingsMutationResponse';
   info: CreateInfo;
   privacySettings: Array<PrivacySettings>;
 };
 
 export type CreateUsersMutationResponse = {
-  __typename?: "CreateUsersMutationResponse";
+  __typename?: 'CreateUsersMutationResponse';
   info: CreateInfo;
   users: Array<User>;
 };
 
 export type DateTimeAggregateSelection = {
-  __typename?: "DateTimeAggregateSelection";
-  max?: Maybe<Scalars["DateTime"]["output"]>;
-  min?: Maybe<Scalars["DateTime"]["output"]>;
+  __typename?: 'DateTimeAggregateSelection';
+  max?: Maybe<Scalars['DateTime']['output']>;
+  min?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** Information about the number of nodes and relationships deleted during a delete mutation */
 export type DeleteInfo = {
-  __typename?: "DeleteInfo";
+  __typename?: 'DeleteInfo';
   /** @deprecated This field has been deprecated because bookmarks are now handled by the driver. */
-  bookmark?: Maybe<Scalars["String"]["output"]>;
-  nodesDeleted: Scalars["Int"]["output"];
-  relationshipsDeleted: Scalars["Int"]["output"];
+  bookmark?: Maybe<Scalars['String']['output']>;
+  nodesDeleted: Scalars['Int']['output'];
+  relationshipsDeleted: Scalars['Int']['output'];
 };
 
 export enum EventType {
-  Create = "CREATE",
-  CreateRelationship = "CREATE_RELATIONSHIP",
-  Delete = "DELETE",
-  DeleteRelationship = "DELETE_RELATIONSHIP",
-  Update = "UPDATE",
+  Create = 'CREATE',
+  CreateRelationship = 'CREATE_RELATIONSHIP',
+  Delete = 'DELETE',
+  DeleteRelationship = 'DELETE_RELATIONSHIP',
+  Update = 'UPDATE'
 }
 
 export type IdAggregateSelection = {
-  __typename?: "IDAggregateSelection";
-  longest?: Maybe<Scalars["ID"]["output"]>;
-  shortest?: Maybe<Scalars["ID"]["output"]>;
+  __typename?: 'IDAggregateSelection';
+  longest?: Maybe<Scalars['ID']['output']>;
+  shortest?: Maybe<Scalars['ID']['output']>;
 };
 
 export type IntAggregateSelection = {
-  __typename?: "IntAggregateSelection";
-  average?: Maybe<Scalars["Float"]["output"]>;
-  max?: Maybe<Scalars["Int"]["output"]>;
-  min?: Maybe<Scalars["Int"]["output"]>;
-  sum?: Maybe<Scalars["Int"]["output"]>;
+  __typename?: 'IntAggregateSelection';
+  average?: Maybe<Scalars['Float']['output']>;
+  max?: Maybe<Scalars['Int']['output']>;
+  min?: Maybe<Scalars['Int']['output']>;
+  sum?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Message = {
-  __typename?: "Message";
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  file?: Maybe<Scalars["String"]["output"]>;
+  __typename?: 'Message';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  file?: Maybe<Scalars['String']['output']>;
   format: MessageFormat;
-  id: Scalars["ID"]["output"];
+  id: Scalars['ID']['output'];
   receiver: User;
   receiverAggregate?: Maybe<MessageUserReceiverAggregationSelection>;
   receiverConnection: MessageReceiverConnection;
   sender: User;
   senderAggregate?: Maybe<MessageUserSenderAggregationSelection>;
   senderConnection: MessageSenderConnection;
-  text?: Maybe<Scalars["String"]["output"]>;
+  text?: Maybe<Scalars['String']['output']>;
   type: MessageType;
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
+
 export type MessageReceiverArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type MessageReceiverAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type MessageReceiverConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<MessageReceiverConnectionSort>>;
   where?: InputMaybe<MessageReceiverConnectionWhere>;
 };
 
+
 export type MessageSenderArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type MessageSenderAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type MessageSenderConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<MessageSenderConnectionSort>>;
   where?: InputMaybe<MessageSenderConnectionWhere>;
 };
 
 export type MessageAggregateSelection = {
-  __typename?: "MessageAggregateSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'MessageAggregateSelection';
+  count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelection;
   file: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -1458,26 +1472,26 @@ export type MessageConnectOrCreateInput = {
 };
 
 export type MessageConnectedRelationships = {
-  __typename?: "MessageConnectedRelationships";
+  __typename?: 'MessageConnectedRelationships';
   receiver?: Maybe<MessageReceiverConnectedRelationship>;
   sender?: Maybe<MessageSenderConnectedRelationship>;
 };
 
 export type MessageCreateInput = {
-  file?: InputMaybe<Scalars["String"]["input"]>;
+  file?: InputMaybe<Scalars['String']['input']>;
   format: MessageFormat;
   receiver?: InputMaybe<MessageReceiverFieldInput>;
   sender?: InputMaybe<MessageSenderFieldInput>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
+  text?: InputMaybe<Scalars['String']['input']>;
   type: MessageType;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreatedEvent = {
-  __typename?: "MessageCreatedEvent";
+  __typename?: 'MessageCreatedEvent';
   createdMessage: MessageEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type MessageDeleteInput = {
@@ -1486,10 +1500,10 @@ export type MessageDeleteInput = {
 };
 
 export type MessageDeletedEvent = {
-  __typename?: "MessageDeletedEvent";
+  __typename?: 'MessageDeletedEvent';
   deletedMessage: MessageEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type MessageDisconnectInput = {
@@ -1498,34 +1512,34 @@ export type MessageDisconnectInput = {
 };
 
 export type MessageEdge = {
-  __typename?: "MessageEdge";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'MessageEdge';
+  cursor: Scalars['String']['output'];
   node: Message;
 };
 
 export type MessageEventPayload = {
-  __typename?: "MessageEventPayload";
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  file?: Maybe<Scalars["String"]["output"]>;
+  __typename?: 'MessageEventPayload';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  file?: Maybe<Scalars['String']['output']>;
   format: MessageFormat;
-  id: Scalars["ID"]["output"];
-  text?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars['ID']['output'];
+  text?: Maybe<Scalars['String']['output']>;
   type: MessageType;
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export enum MessageFormat {
-  Audio = "AUDIO",
-  Gif = "GIF",
-  Images = "IMAGES",
-  Sticker = "STICKER",
-  Text = "TEXT",
-  Video = "VIDEO",
+  Audio = 'AUDIO',
+  Gif = 'GIF',
+  Images = 'IMAGES',
+  Sticker = 'STICKER',
+  Text = 'TEXT',
+  Video = 'VIDEO'
 }
 
 export type MessageOptions = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   /** Specify one or more MessageSort objects to sort Messages by. The sorts will be applied in the order in which they are arranged in the array. */
   sort?: InputMaybe<Array<MessageSort>>;
 };
@@ -1534,18 +1548,18 @@ export type MessageReceiverAggregateInput = {
   AND?: InputMaybe<Array<MessageReceiverAggregateInput>>;
   NOT?: InputMaybe<MessageReceiverAggregateInput>;
   OR?: InputMaybe<Array<MessageReceiverAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<MessageReceiverNodeAggregationWhereInput>;
 };
 
 export type MessageReceiverConnectFieldInput = {
   connect?: InputMaybe<UserConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -1559,15 +1573,15 @@ export type MessageReceiverConnectOrCreateFieldInputOnCreate = {
 };
 
 export type MessageReceiverConnectedRelationship = {
-  __typename?: "MessageReceiverConnectedRelationship";
+  __typename?: 'MessageReceiverConnectedRelationship';
   node: UserEventPayload;
 };
 
 export type MessageReceiverConnection = {
-  __typename?: "MessageReceiverConnection";
+  __typename?: 'MessageReceiverConnection';
   edges: Array<MessageReceiverRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type MessageReceiverConnectionSort = {
@@ -1605,76 +1619,76 @@ export type MessageReceiverNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<MessageReceiverNodeAggregationWhereInput>>;
   NOT?: InputMaybe<MessageReceiverNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<MessageReceiverNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageReceiverRelationship = {
-  __typename?: "MessageReceiverRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'MessageReceiverRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
@@ -1702,12 +1716,12 @@ export type MessageRelationInput = {
 };
 
 export type MessageRelationshipCreatedEvent = {
-  __typename?: "MessageRelationshipCreatedEvent";
+  __typename?: 'MessageRelationshipCreatedEvent';
   createdRelationship: MessageConnectedRelationships;
   event: EventType;
   message: MessageEventPayload;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type MessageRelationshipCreatedSubscriptionWhere = {
@@ -1719,12 +1733,12 @@ export type MessageRelationshipCreatedSubscriptionWhere = {
 };
 
 export type MessageRelationshipDeletedEvent = {
-  __typename?: "MessageRelationshipDeletedEvent";
+  __typename?: 'MessageRelationshipDeletedEvent';
   deletedRelationship: MessageConnectedRelationships;
   event: EventType;
   message: MessageEventPayload;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type MessageRelationshipDeletedSubscriptionWhere = {
@@ -1744,18 +1758,18 @@ export type MessageSenderAggregateInput = {
   AND?: InputMaybe<Array<MessageSenderAggregateInput>>;
   NOT?: InputMaybe<MessageSenderAggregateInput>;
   OR?: InputMaybe<Array<MessageSenderAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<MessageSenderNodeAggregationWhereInput>;
 };
 
 export type MessageSenderConnectFieldInput = {
   connect?: InputMaybe<UserConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -1769,15 +1783,15 @@ export type MessageSenderConnectOrCreateFieldInputOnCreate = {
 };
 
 export type MessageSenderConnectedRelationship = {
-  __typename?: "MessageSenderConnectedRelationship";
+  __typename?: 'MessageSenderConnectedRelationship';
   node: UserEventPayload;
 };
 
 export type MessageSenderConnection = {
-  __typename?: "MessageSenderConnection";
+  __typename?: 'MessageSenderConnection';
   edges: Array<MessageSenderRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type MessageSenderConnectionSort = {
@@ -1815,76 +1829,76 @@ export type MessageSenderNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<MessageSenderNodeAggregationWhereInput>>;
   NOT?: InputMaybe<MessageSenderNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<MessageSenderNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageSenderRelationship = {
-  __typename?: "MessageSenderRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'MessageSenderRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
@@ -1921,71 +1935,71 @@ export type MessageSubscriptionWhere = {
   AND?: InputMaybe<Array<MessageSubscriptionWhere>>;
   NOT?: InputMaybe<MessageSubscriptionWhere>;
   OR?: InputMaybe<Array<MessageSubscriptionWhere>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  file?: InputMaybe<Scalars["String"]["input"]>;
-  file_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  file_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  file_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  file_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
+  file_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  file_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  file_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  file_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   format?: InputMaybe<MessageFormat>;
   format_IN?: InputMaybe<Array<MessageFormat>>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
-  text_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  text_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  text_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  text_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  text_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  text_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<MessageType>;
   type_IN?: InputMaybe<Array<MessageType>>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export enum MessageType {
-  Chat = "CHAT",
-  Group = "GROUP",
-  Network = "NETWORK",
+  Chat = 'CHAT',
+  Group = 'GROUP',
+  Network = 'NETWORK'
 }
 
 export type MessageUpdateInput = {
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  file?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
   format?: InputMaybe<MessageFormat>;
   receiver?: InputMaybe<MessageReceiverUpdateFieldInput>;
   sender?: InputMaybe<MessageSenderUpdateFieldInput>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
+  text?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<MessageType>;
 };
 
 export type MessageUpdatedEvent = {
-  __typename?: "MessageUpdatedEvent";
+  __typename?: 'MessageUpdatedEvent';
   event: EventType;
   previousState: MessageEventPayload;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
   updatedMessage: MessageEventPayload;
 };
 
 export type MessageUserReceiverAggregationSelection = {
-  __typename?: "MessageUserReceiverAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'MessageUserReceiverAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<MessageUserReceiverNodeAggregateSelection>;
 };
 
 export type MessageUserReceiverNodeAggregateSelection = {
-  __typename?: "MessageUserReceiverNodeAggregateSelection";
+  __typename?: 'MessageUserReceiverNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -1996,13 +2010,13 @@ export type MessageUserReceiverNodeAggregateSelection = {
 };
 
 export type MessageUserSenderAggregationSelection = {
-  __typename?: "MessageUserSenderAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'MessageUserSenderAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<MessageUserSenderNodeAggregateSelection>;
 };
 
 export type MessageUserSenderNodeAggregateSelection = {
-  __typename?: "MessageUserSenderNodeAggregateSelection";
+  __typename?: 'MessageUserSenderNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -2016,24 +2030,24 @@ export type MessageWhere = {
   AND?: InputMaybe<Array<MessageWhere>>;
   NOT?: InputMaybe<MessageWhere>;
   OR?: InputMaybe<Array<MessageWhere>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  file?: InputMaybe<Scalars["String"]["input"]>;
-  file_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  file_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  file_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  file_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
+  file_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  file_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  file_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  file_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   format?: InputMaybe<MessageFormat>;
   format_IN?: InputMaybe<Array<MessageFormat>>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
   receiver?: InputMaybe<UserWhere>;
   receiverAggregate?: InputMaybe<MessageReceiverAggregateInput>;
   receiverConnection?: InputMaybe<MessageReceiverConnectionWhere>;
@@ -2044,90 +2058,115 @@ export type MessageWhere = {
   senderConnection?: InputMaybe<MessageSenderConnectionWhere>;
   senderConnection_NOT?: InputMaybe<MessageSenderConnectionWhere>;
   sender_NOT?: InputMaybe<UserWhere>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
-  text_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  text_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  text_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  text_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  text_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  text_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<MessageType>;
   type_IN?: InputMaybe<Array<MessageType>>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessagesConnection = {
-  __typename?: "MessagesConnection";
+  __typename?: 'MessagesConnection';
   edges: Array<MessageEdge>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   createComments: CreateCommentsMutationResponse;
   createMessages: CreateMessagesMutationResponse;
+  createNotifications: CreateNotificationsMutationResponse;
   createPosts: CreatePostsMutationResponse;
   createPrivacySettings: CreatePrivacySettingsMutationResponse;
   createUsers: CreateUsersMutationResponse;
   deleteComments: DeleteInfo;
   deleteMessages: DeleteInfo;
+  deleteNotifications: DeleteInfo;
   deletePosts: DeleteInfo;
   deletePrivacySettings: DeleteInfo;
   deleteUsers: DeleteInfo;
   updateComments: UpdateCommentsMutationResponse;
   updateMessages: UpdateMessagesMutationResponse;
+  updateNotifications: UpdateNotificationsMutationResponse;
   updatePosts: UpdatePostsMutationResponse;
   updatePrivacySettings: UpdatePrivacySettingsMutationResponse;
   updateUsers: UpdateUsersMutationResponse;
 };
 
+
 export type MutationCreateCommentsArgs = {
   input: Array<CommentCreateInput>;
 };
+
 
 export type MutationCreateMessagesArgs = {
   input: Array<MessageCreateInput>;
 };
 
+
+export type MutationCreateNotificationsArgs = {
+  input: Array<NotificationCreateInput>;
+};
+
+
 export type MutationCreatePostsArgs = {
   input: Array<PostCreateInput>;
 };
+
 
 export type MutationCreatePrivacySettingsArgs = {
   input: Array<PrivacySettingsCreateInput>;
 };
 
+
 export type MutationCreateUsersArgs = {
   input: Array<UserCreateInput>;
 };
+
 
 export type MutationDeleteCommentsArgs = {
   delete?: InputMaybe<CommentDeleteInput>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type MutationDeleteMessagesArgs = {
   delete?: InputMaybe<MessageDeleteInput>;
   where?: InputMaybe<MessageWhere>;
 };
+
+
+export type MutationDeleteNotificationsArgs = {
+  delete?: InputMaybe<NotificationDeleteInput>;
+  where?: InputMaybe<NotificationWhere>;
+};
+
 
 export type MutationDeletePostsArgs = {
   delete?: InputMaybe<PostDeleteInput>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type MutationDeletePrivacySettingsArgs = {
   where?: InputMaybe<PrivacySettingsWhere>;
 };
+
 
 export type MutationDeleteUsersArgs = {
   delete?: InputMaybe<UserDeleteInput>;
   where?: InputMaybe<UserWhere>;
 };
+
 
 export type MutationUpdateCommentsArgs = {
   connect?: InputMaybe<CommentConnectInput>;
@@ -2139,6 +2178,7 @@ export type MutationUpdateCommentsArgs = {
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type MutationUpdateMessagesArgs = {
   connect?: InputMaybe<MessageConnectInput>;
   connectOrCreate?: InputMaybe<MessageConnectOrCreateInput>;
@@ -2148,6 +2188,18 @@ export type MutationUpdateMessagesArgs = {
   update?: InputMaybe<MessageUpdateInput>;
   where?: InputMaybe<MessageWhere>;
 };
+
+
+export type MutationUpdateNotificationsArgs = {
+  connect?: InputMaybe<NotificationConnectInput>;
+  connectOrCreate?: InputMaybe<NotificationConnectOrCreateInput>;
+  create?: InputMaybe<NotificationRelationInput>;
+  delete?: InputMaybe<NotificationDeleteInput>;
+  disconnect?: InputMaybe<NotificationDisconnectInput>;
+  update?: InputMaybe<NotificationUpdateInput>;
+  where?: InputMaybe<NotificationWhere>;
+};
+
 
 export type MutationUpdatePostsArgs = {
   connect?: InputMaybe<PostConnectInput>;
@@ -2159,10 +2211,12 @@ export type MutationUpdatePostsArgs = {
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type MutationUpdatePrivacySettingsArgs = {
   update?: InputMaybe<PrivacySettingsUpdateInput>;
   where?: InputMaybe<PrivacySettingsWhere>;
 };
+
 
 export type MutationUpdateUsersArgs = {
   connect?: InputMaybe<UserConnectInput>;
@@ -2174,94 +2228,554 @@ export type MutationUpdateUsersArgs = {
   where?: InputMaybe<UserWhere>;
 };
 
+export type Notification = {
+  __typename?: 'Notification';
+  id: Scalars['ID']['output'];
+  importance: NotificationPriority;
+  message: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  type: NotificationType;
+  users: Array<User>;
+  usersAggregate?: Maybe<NotificationUserUsersAggregationSelection>;
+  usersConnection: NotificationUsersConnection;
+};
+
+
+export type NotificationUsersArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<UserOptions>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type NotificationUsersAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type NotificationUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<NotificationUsersConnectionSort>>;
+  where?: InputMaybe<NotificationUsersConnectionWhere>;
+};
+
+export type NotificationAggregateSelection = {
+  __typename?: 'NotificationAggregateSelection';
+  count: Scalars['Int']['output'];
+  id: IdAggregateSelection;
+  message: StringAggregateSelection;
+  title: StringAggregateSelection;
+};
+
+export type NotificationConnectInput = {
+  users?: InputMaybe<Array<NotificationUsersConnectFieldInput>>;
+};
+
+export type NotificationConnectOrCreateInput = {
+  users?: InputMaybe<Array<NotificationUsersConnectOrCreateFieldInput>>;
+};
+
+export type NotificationConnectWhere = {
+  node: NotificationWhere;
+};
+
+export type NotificationConnectedRelationships = {
+  __typename?: 'NotificationConnectedRelationships';
+  users?: Maybe<NotificationUsersConnectedRelationship>;
+};
+
+export type NotificationCreateInput = {
+  importance: NotificationPriority;
+  message: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+  type: NotificationType;
+  users?: InputMaybe<NotificationUsersFieldInput>;
+};
+
+export type NotificationCreatedEvent = {
+  __typename?: 'NotificationCreatedEvent';
+  createdNotification: NotificationEventPayload;
+  event: EventType;
+  timestamp: Scalars['Float']['output'];
+};
+
+export type NotificationDeleteInput = {
+  users?: InputMaybe<Array<NotificationUsersDeleteFieldInput>>;
+};
+
+export type NotificationDeletedEvent = {
+  __typename?: 'NotificationDeletedEvent';
+  deletedNotification: NotificationEventPayload;
+  event: EventType;
+  timestamp: Scalars['Float']['output'];
+};
+
+export type NotificationDisconnectInput = {
+  users?: InputMaybe<Array<NotificationUsersDisconnectFieldInput>>;
+};
+
+export type NotificationEdge = {
+  __typename?: 'NotificationEdge';
+  cursor: Scalars['String']['output'];
+  node: Notification;
+};
+
+export type NotificationEventPayload = {
+  __typename?: 'NotificationEventPayload';
+  id: Scalars['ID']['output'];
+  importance: NotificationPriority;
+  message: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  type: NotificationType;
+};
+
+export type NotificationOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more NotificationSort objects to sort Notifications by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<NotificationSort>>;
+};
+
+export enum NotificationPriority {
+  Important = 'IMPORTANT',
+  Silent = 'SILENT'
+}
+
+export type NotificationRelationInput = {
+  users?: InputMaybe<Array<NotificationUsersCreateFieldInput>>;
+};
+
+export type NotificationRelationshipCreatedEvent = {
+  __typename?: 'NotificationRelationshipCreatedEvent';
+  createdRelationship: NotificationConnectedRelationships;
+  event: EventType;
+  notification: NotificationEventPayload;
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
+};
+
+export type NotificationRelationshipCreatedSubscriptionWhere = {
+  AND?: InputMaybe<Array<NotificationRelationshipCreatedSubscriptionWhere>>;
+  NOT?: InputMaybe<NotificationRelationshipCreatedSubscriptionWhere>;
+  OR?: InputMaybe<Array<NotificationRelationshipCreatedSubscriptionWhere>>;
+  createdRelationship?: InputMaybe<NotificationRelationshipsSubscriptionWhere>;
+  notification?: InputMaybe<NotificationSubscriptionWhere>;
+};
+
+export type NotificationRelationshipDeletedEvent = {
+  __typename?: 'NotificationRelationshipDeletedEvent';
+  deletedRelationship: NotificationConnectedRelationships;
+  event: EventType;
+  notification: NotificationEventPayload;
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
+};
+
+export type NotificationRelationshipDeletedSubscriptionWhere = {
+  AND?: InputMaybe<Array<NotificationRelationshipDeletedSubscriptionWhere>>;
+  NOT?: InputMaybe<NotificationRelationshipDeletedSubscriptionWhere>;
+  OR?: InputMaybe<Array<NotificationRelationshipDeletedSubscriptionWhere>>;
+  deletedRelationship?: InputMaybe<NotificationRelationshipsSubscriptionWhere>;
+  notification?: InputMaybe<NotificationSubscriptionWhere>;
+};
+
+export type NotificationRelationshipsSubscriptionWhere = {
+  users?: InputMaybe<NotificationUsersRelationshipSubscriptionWhere>;
+};
+
+/** Fields to sort Notifications by. The order in which sorts are applied is not guaranteed when specifying many fields in one NotificationSort object. */
+export type NotificationSort = {
+  id?: InputMaybe<SortDirection>;
+  importance?: InputMaybe<SortDirection>;
+  message?: InputMaybe<SortDirection>;
+  title?: InputMaybe<SortDirection>;
+  type?: InputMaybe<SortDirection>;
+};
+
+export type NotificationSubscriptionWhere = {
+  AND?: InputMaybe<Array<NotificationSubscriptionWhere>>;
+  NOT?: InputMaybe<NotificationSubscriptionWhere>;
+  OR?: InputMaybe<Array<NotificationSubscriptionWhere>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  importance?: InputMaybe<NotificationPriority>;
+  importance_IN?: InputMaybe<Array<NotificationPriority>>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  message_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  message_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  message_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  message_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  title_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  title_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  title_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<NotificationType>;
+  type_IN?: InputMaybe<Array<NotificationType>>;
+};
+
+export enum NotificationType {
+  Comment = 'COMMENT',
+  GroupAddReq = 'GROUP_ADD_REQ',
+  Like = 'LIKE',
+  Network = 'NETWORK',
+  NewRelation = 'NEW_RELATION',
+  Other = 'OTHER',
+  RelationRequest = 'RELATION_REQUEST',
+  Report = 'REPORT'
+}
+
+export type NotificationUpdateInput = {
+  importance?: InputMaybe<NotificationPriority>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<NotificationType>;
+  users?: InputMaybe<Array<NotificationUsersUpdateFieldInput>>;
+};
+
+export type NotificationUpdatedEvent = {
+  __typename?: 'NotificationUpdatedEvent';
+  event: EventType;
+  previousState: NotificationEventPayload;
+  timestamp: Scalars['Float']['output'];
+  updatedNotification: NotificationEventPayload;
+};
+
+export type NotificationUserUsersAggregationSelection = {
+  __typename?: 'NotificationUserUsersAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<NotificationUserUsersNodeAggregateSelection>;
+};
+
+export type NotificationUserUsersNodeAggregateSelection = {
+  __typename?: 'NotificationUserUsersNodeAggregateSelection';
+  createdAt: DateTimeAggregateSelection;
+  email: StringAggregateSelection;
+  id: IdAggregateSelection;
+  name: StringAggregateSelection;
+  profileUrl: StringAggregateSelection;
+  updatedAt: DateTimeAggregateSelection;
+  username: IdAggregateSelection;
+};
+
+export type NotificationUsersAggregateInput = {
+  AND?: InputMaybe<Array<NotificationUsersAggregateInput>>;
+  NOT?: InputMaybe<NotificationUsersAggregateInput>;
+  OR?: InputMaybe<Array<NotificationUsersAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<NotificationUsersNodeAggregationWhereInput>;
+};
+
+export type NotificationUsersConnectFieldInput = {
+  connect?: InputMaybe<Array<UserConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<UserConnectWhere>;
+};
+
+export type NotificationUsersConnectOrCreateFieldInput = {
+  onCreate: NotificationUsersConnectOrCreateFieldInputOnCreate;
+  where: UserConnectOrCreateWhere;
+};
+
+export type NotificationUsersConnectOrCreateFieldInputOnCreate = {
+  node: UserOnCreateInput;
+};
+
+export type NotificationUsersConnectedRelationship = {
+  __typename?: 'NotificationUsersConnectedRelationship';
+  node: UserEventPayload;
+};
+
+export type NotificationUsersConnection = {
+  __typename?: 'NotificationUsersConnection';
+  edges: Array<NotificationUsersRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type NotificationUsersConnectionSort = {
+  node?: InputMaybe<UserSort>;
+};
+
+export type NotificationUsersConnectionWhere = {
+  AND?: InputMaybe<Array<NotificationUsersConnectionWhere>>;
+  NOT?: InputMaybe<NotificationUsersConnectionWhere>;
+  OR?: InputMaybe<Array<NotificationUsersConnectionWhere>>;
+  node?: InputMaybe<UserWhere>;
+};
+
+export type NotificationUsersCreateFieldInput = {
+  node: UserCreateInput;
+};
+
+export type NotificationUsersDeleteFieldInput = {
+  delete?: InputMaybe<UserDeleteInput>;
+  where?: InputMaybe<NotificationUsersConnectionWhere>;
+};
+
+export type NotificationUsersDisconnectFieldInput = {
+  disconnect?: InputMaybe<UserDisconnectInput>;
+  where?: InputMaybe<NotificationUsersConnectionWhere>;
+};
+
+export type NotificationUsersFieldInput = {
+  connect?: InputMaybe<Array<NotificationUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<NotificationUsersCreateFieldInput>>;
+};
+
+export type NotificationUsersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<NotificationUsersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<NotificationUsersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<NotificationUsersNodeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type NotificationUsersRelationship = {
+  __typename?: 'NotificationUsersRelationship';
+  cursor: Scalars['String']['output'];
+  node: User;
+};
+
+export type NotificationUsersRelationshipSubscriptionWhere = {
+  node?: InputMaybe<UserSubscriptionWhere>;
+};
+
+export type NotificationUsersUpdateConnectionInput = {
+  node?: InputMaybe<UserUpdateInput>;
+};
+
+export type NotificationUsersUpdateFieldInput = {
+  connect?: InputMaybe<Array<NotificationUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<NotificationUsersCreateFieldInput>>;
+  delete?: InputMaybe<Array<NotificationUsersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<NotificationUsersDisconnectFieldInput>>;
+  update?: InputMaybe<NotificationUsersUpdateConnectionInput>;
+  where?: InputMaybe<NotificationUsersConnectionWhere>;
+};
+
+export type NotificationWhere = {
+  AND?: InputMaybe<Array<NotificationWhere>>;
+  NOT?: InputMaybe<NotificationWhere>;
+  OR?: InputMaybe<Array<NotificationWhere>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  importance?: InputMaybe<NotificationPriority>;
+  importance_IN?: InputMaybe<Array<NotificationPriority>>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  message_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  message_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  message_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  message_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  title_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  title_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  title_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<NotificationType>;
+  type_IN?: InputMaybe<Array<NotificationType>>;
+  usersAggregate?: InputMaybe<NotificationUsersAggregateInput>;
+  /** Return Notifications where all of the related NotificationUsersConnections match this filter */
+  usersConnection_ALL?: InputMaybe<NotificationUsersConnectionWhere>;
+  /** Return Notifications where none of the related NotificationUsersConnections match this filter */
+  usersConnection_NONE?: InputMaybe<NotificationUsersConnectionWhere>;
+  /** Return Notifications where one of the related NotificationUsersConnections match this filter */
+  usersConnection_SINGLE?: InputMaybe<NotificationUsersConnectionWhere>;
+  /** Return Notifications where some of the related NotificationUsersConnections match this filter */
+  usersConnection_SOME?: InputMaybe<NotificationUsersConnectionWhere>;
+  /** Return Notifications where all of the related Users match this filter */
+  users_ALL?: InputMaybe<UserWhere>;
+  /** Return Notifications where none of the related Users match this filter */
+  users_NONE?: InputMaybe<UserWhere>;
+  /** Return Notifications where one of the related Users match this filter */
+  users_SINGLE?: InputMaybe<UserWhere>;
+  /** Return Notifications where some of the related Users match this filter */
+  users_SOME?: InputMaybe<UserWhere>;
+};
+
+export type NotificationsConnection = {
+  __typename?: 'NotificationsConnection';
+  edges: Array<NotificationEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
 /** Pagination information (Relay) */
 export type PageInfo = {
-  __typename?: "PageInfo";
-  endCursor?: Maybe<Scalars["String"]["output"]>;
-  hasNextPage: Scalars["Boolean"]["output"];
-  hasPreviousPage: Scalars["Boolean"]["output"];
-  startCursor?: Maybe<Scalars["String"]["output"]>;
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']['output']>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPreviousPage: Scalars['Boolean']['output'];
+  startCursor?: Maybe<Scalars['String']['output']>;
 };
 
 export type Post = {
-  __typename?: "Post";
+  __typename?: 'Post';
   comments: Array<Comment>;
   commentsAggregate?: Maybe<PostCommentCommentsAggregationSelection>;
   commentsConnection: PostCommentsConnection;
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   creatorOfPost: User;
   creatorOfPostAggregate?: Maybe<PostUserCreatorOfPostAggregationSelection>;
   creatorOfPostConnection: PostCreatorOfPostConnection;
-  description?: Maybe<Scalars["String"]["output"]>;
-  id: Scalars["ID"]["output"];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   likes: Array<User>;
   likesAggregate?: Maybe<PostUserLikesAggregationSelection>;
   likesConnection: PostLikesConnection;
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  url: Scalars["String"]["output"];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url: Scalars['String']['output'];
   visibility?: Maybe<Array<RelationType>>;
 };
 
+
 export type PostCommentsArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type PostCommentsAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type PostCommentsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<PostCommentsConnectionSort>>;
   where?: InputMaybe<PostCommentsConnectionWhere>;
 };
 
+
 export type PostCreatorOfPostArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type PostCreatorOfPostAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type PostCreatorOfPostConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<PostCreatorOfPostConnectionSort>>;
   where?: InputMaybe<PostCreatorOfPostConnectionWhere>;
 };
 
+
 export type PostLikesArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type PostLikesAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type PostLikesConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<PostLikesConnectionSort>>;
   where?: InputMaybe<PostLikesConnectionWhere>;
 };
 
 export type PostAggregateSelection = {
-  __typename?: "PostAggregateSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'PostAggregateSelection';
+  count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelection;
   description: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -2270,13 +2784,13 @@ export type PostAggregateSelection = {
 };
 
 export type PostCommentCommentsAggregationSelection = {
-  __typename?: "PostCommentCommentsAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'PostCommentCommentsAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<PostCommentCommentsNodeAggregateSelection>;
 };
 
 export type PostCommentCommentsNodeAggregateSelection = {
-  __typename?: "PostCommentCommentsNodeAggregateSelection";
+  __typename?: 'PostCommentCommentsNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   id: IdAggregateSelection;
   indent: IntAggregateSelection;
@@ -2288,31 +2802,31 @@ export type PostCommentsAggregateInput = {
   AND?: InputMaybe<Array<PostCommentsAggregateInput>>;
   NOT?: InputMaybe<PostCommentsAggregateInput>;
   OR?: InputMaybe<Array<PostCommentsAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<PostCommentsNodeAggregationWhereInput>;
 };
 
 export type PostCommentsConnectFieldInput = {
   connect?: InputMaybe<Array<CommentConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<CommentConnectWhere>;
 };
 
 export type PostCommentsConnectedRelationship = {
-  __typename?: "PostCommentsConnectedRelationship";
+  __typename?: 'PostCommentsConnectedRelationship';
   node: CommentEventPayload;
 };
 
 export type PostCommentsConnection = {
-  __typename?: "PostCommentsConnection";
+  __typename?: 'PostCommentsConnection';
   edges: Array<PostCommentsRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type PostCommentsConnectionSort = {
@@ -2349,66 +2863,66 @@ export type PostCommentsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<PostCommentsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<PostCommentsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<PostCommentsNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  indent_AVERAGE_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_MAX_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  indent_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_MAX_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PostCommentsRelationship = {
-  __typename?: "PostCommentsRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'PostCommentsRelationship';
+  cursor: Scalars['String']['output'];
   node: Comment;
 };
 
@@ -2445,7 +2959,7 @@ export type PostConnectWhere = {
 };
 
 export type PostConnectedRelationships = {
-  __typename?: "PostConnectedRelationships";
+  __typename?: 'PostConnectedRelationships';
   comments?: Maybe<PostCommentsConnectedRelationship>;
   creatorOfPost?: Maybe<PostCreatorOfPostConnectedRelationship>;
   likes?: Maybe<PostLikesConnectedRelationship>;
@@ -2454,36 +2968,36 @@ export type PostConnectedRelationships = {
 export type PostCreateInput = {
   comments?: InputMaybe<PostCommentsFieldInput>;
   creatorOfPost?: InputMaybe<PostCreatorOfPostFieldInput>;
-  description?: InputMaybe<Scalars["String"]["input"]>;
+  description?: InputMaybe<Scalars['String']['input']>;
   likes?: InputMaybe<PostLikesFieldInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  url: Scalars["String"]["input"];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
   visibility?: InputMaybe<Array<RelationType>>;
 };
 
 export type PostCreatedEvent = {
-  __typename?: "PostCreatedEvent";
+  __typename?: 'PostCreatedEvent';
   createdPost: PostEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type PostCreatorOfPostAggregateInput = {
   AND?: InputMaybe<Array<PostCreatorOfPostAggregateInput>>;
   NOT?: InputMaybe<PostCreatorOfPostAggregateInput>;
   OR?: InputMaybe<Array<PostCreatorOfPostAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<PostCreatorOfPostNodeAggregationWhereInput>;
 };
 
 export type PostCreatorOfPostConnectFieldInput = {
   connect?: InputMaybe<UserConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -2497,15 +3011,15 @@ export type PostCreatorOfPostConnectOrCreateFieldInputOnCreate = {
 };
 
 export type PostCreatorOfPostConnectedRelationship = {
-  __typename?: "PostCreatorOfPostConnectedRelationship";
+  __typename?: 'PostCreatorOfPostConnectedRelationship';
   node: UserEventPayload;
 };
 
 export type PostCreatorOfPostConnection = {
-  __typename?: "PostCreatorOfPostConnection";
+  __typename?: 'PostCreatorOfPostConnection';
   edges: Array<PostCreatorOfPostRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type PostCreatorOfPostConnectionSort = {
@@ -2543,76 +3057,76 @@ export type PostCreatorOfPostNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<PostCreatorOfPostNodeAggregationWhereInput>>;
   NOT?: InputMaybe<PostCreatorOfPostNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<PostCreatorOfPostNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PostCreatorOfPostRelationship = {
-  __typename?: "PostCreatorOfPostRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'PostCreatorOfPostRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
@@ -2641,10 +3155,10 @@ export type PostDeleteInput = {
 };
 
 export type PostDeletedEvent = {
-  __typename?: "PostDeletedEvent";
+  __typename?: 'PostDeletedEvent';
   deletedPost: PostEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type PostDisconnectInput = {
@@ -2654,18 +3168,18 @@ export type PostDisconnectInput = {
 };
 
 export type PostEdge = {
-  __typename?: "PostEdge";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'PostEdge';
+  cursor: Scalars['String']['output'];
   node: Post;
 };
 
 export type PostEventPayload = {
-  __typename?: "PostEventPayload";
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  description?: Maybe<Scalars["String"]["output"]>;
-  id: Scalars["ID"]["output"];
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  url: Scalars["String"]["output"];
+  __typename?: 'PostEventPayload';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url: Scalars['String']['output'];
   visibility?: Maybe<Array<RelationType>>;
 };
 
@@ -2673,18 +3187,18 @@ export type PostLikesAggregateInput = {
   AND?: InputMaybe<Array<PostLikesAggregateInput>>;
   NOT?: InputMaybe<PostLikesAggregateInput>;
   OR?: InputMaybe<Array<PostLikesAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<PostLikesNodeAggregationWhereInput>;
 };
 
 export type PostLikesConnectFieldInput = {
   connect?: InputMaybe<Array<UserConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -2698,15 +3212,15 @@ export type PostLikesConnectOrCreateFieldInputOnCreate = {
 };
 
 export type PostLikesConnectedRelationship = {
-  __typename?: "PostLikesConnectedRelationship";
+  __typename?: 'PostLikesConnectedRelationship';
   node: UserEventPayload;
 };
 
 export type PostLikesConnection = {
-  __typename?: "PostLikesConnection";
+  __typename?: 'PostLikesConnection';
   edges: Array<PostLikesRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type PostLikesConnectionSort = {
@@ -2744,76 +3258,76 @@ export type PostLikesNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<PostLikesNodeAggregationWhereInput>>;
   NOT?: InputMaybe<PostLikesNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<PostLikesNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PostLikesRelationship = {
-  __typename?: "PostLikesRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'PostLikesRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
@@ -2836,8 +3350,8 @@ export type PostLikesUpdateFieldInput = {
 };
 
 export type PostOptions = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   /** Specify one or more PostSort objects to sort Posts by. The sorts will be applied in the order in which they are arranged in the array. */
   sort?: InputMaybe<Array<PostSort>>;
 };
@@ -2849,12 +3363,12 @@ export type PostRelationInput = {
 };
 
 export type PostRelationshipCreatedEvent = {
-  __typename?: "PostRelationshipCreatedEvent";
+  __typename?: 'PostRelationshipCreatedEvent';
   createdRelationship: PostConnectedRelationships;
   event: EventType;
   post: PostEventPayload;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type PostRelationshipCreatedSubscriptionWhere = {
@@ -2866,12 +3380,12 @@ export type PostRelationshipCreatedSubscriptionWhere = {
 };
 
 export type PostRelationshipDeletedEvent = {
-  __typename?: "PostRelationshipDeletedEvent";
+  __typename?: 'PostRelationshipDeletedEvent';
   deletedRelationship: PostConnectedRelationships;
   event: EventType;
   post: PostEventPayload;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type PostRelationshipDeletedSubscriptionWhere = {
@@ -2901,63 +3415,63 @@ export type PostSubscriptionWhere = {
   AND?: InputMaybe<Array<PostSubscriptionWhere>>;
   NOT?: InputMaybe<PostSubscriptionWhere>;
   OR?: InputMaybe<Array<PostSubscriptionWhere>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  description?: InputMaybe<Scalars["String"]["input"]>;
-  description_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  description_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  description_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  description_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  url?: InputMaybe<Scalars["String"]["input"]>;
-  url_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  url_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  url_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  url_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  description_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  description_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  url_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  url_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   visibility?: InputMaybe<Array<RelationType>>;
   visibility_INCLUDES?: InputMaybe<RelationType>;
 };
 
 export type PostUpdateInput = {
   comments?: InputMaybe<Array<PostCommentsUpdateFieldInput>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   creatorOfPost?: InputMaybe<PostCreatorOfPostUpdateFieldInput>;
-  description?: InputMaybe<Scalars["String"]["input"]>;
+  description?: InputMaybe<Scalars['String']['input']>;
   likes?: InputMaybe<Array<PostLikesUpdateFieldInput>>;
-  url?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars['String']['input']>;
   visibility?: InputMaybe<Array<RelationType>>;
 };
 
 export type PostUpdatedEvent = {
-  __typename?: "PostUpdatedEvent";
+  __typename?: 'PostUpdatedEvent';
   event: EventType;
   previousState: PostEventPayload;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
   updatedPost: PostEventPayload;
 };
 
 export type PostUserCreatorOfPostAggregationSelection = {
-  __typename?: "PostUserCreatorOfPostAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'PostUserCreatorOfPostAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<PostUserCreatorOfPostNodeAggregateSelection>;
 };
 
 export type PostUserCreatorOfPostNodeAggregateSelection = {
-  __typename?: "PostUserCreatorOfPostNodeAggregateSelection";
+  __typename?: 'PostUserCreatorOfPostNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -2968,13 +3482,13 @@ export type PostUserCreatorOfPostNodeAggregateSelection = {
 };
 
 export type PostUserLikesAggregationSelection = {
-  __typename?: "PostUserLikesAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'PostUserLikesAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<PostUserLikesNodeAggregateSelection>;
 };
 
 export type PostUserLikesNodeAggregateSelection = {
-  __typename?: "PostUserLikesNodeAggregateSelection";
+  __typename?: 'PostUserLikesNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -3005,27 +3519,27 @@ export type PostWhere = {
   comments_SINGLE?: InputMaybe<CommentWhere>;
   /** Return Posts where some of the related Comments match this filter */
   comments_SOME?: InputMaybe<CommentWhere>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
   creatorOfPost?: InputMaybe<UserWhere>;
   creatorOfPostAggregate?: InputMaybe<PostCreatorOfPostAggregateInput>;
   creatorOfPostConnection?: InputMaybe<PostCreatorOfPostConnectionWhere>;
   creatorOfPostConnection_NOT?: InputMaybe<PostCreatorOfPostConnectionWhere>;
   creatorOfPost_NOT?: InputMaybe<UserWhere>;
-  description?: InputMaybe<Scalars["String"]["input"]>;
-  description_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  description_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  description_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  description_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  description_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  description_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
   likesAggregate?: InputMaybe<PostLikesAggregateInput>;
   /** Return Posts where all of the related PostLikesConnections match this filter */
   likesConnection_ALL?: InputMaybe<PostLikesConnectionWhere>;
@@ -3043,92 +3557,92 @@ export type PostWhere = {
   likes_SINGLE?: InputMaybe<UserWhere>;
   /** Return Posts where some of the related Users match this filter */
   likes_SOME?: InputMaybe<UserWhere>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  url?: InputMaybe<Scalars["String"]["input"]>;
-  url_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  url_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  url_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  url_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  url_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  url_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  url_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   visibility?: InputMaybe<Array<RelationType>>;
   visibility_INCLUDES?: InputMaybe<RelationType>;
 };
 
 export type PostsConnection = {
-  __typename?: "PostsConnection";
+  __typename?: 'PostsConnection';
   edges: Array<PostEdge>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type PrivacySettings = {
-  __typename?: "PrivacySettings";
+  __typename?: 'PrivacySettings';
   chatVisibility?: Maybe<Array<RelationType>>;
-  isTyping: Scalars["Boolean"]["output"];
+  isTyping: Scalars['Boolean']['output'];
   onlineStatus?: Maybe<Array<RelationType>>;
   profileVisibility?: Maybe<Array<RelationType>>;
-  seenReceipts: Scalars["Boolean"]["output"];
+  seenReceipts: Scalars['Boolean']['output'];
   whoCanSendMessageRequest?: Maybe<Array<RelationType>>;
 };
 
 export type PrivacySettingsAggregateSelection = {
-  __typename?: "PrivacySettingsAggregateSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'PrivacySettingsAggregateSelection';
+  count: Scalars['Int']['output'];
 };
 
 export type PrivacySettingsConnection = {
-  __typename?: "PrivacySettingsConnection";
+  __typename?: 'PrivacySettingsConnection';
   edges: Array<PrivacySettingsEdge>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type PrivacySettingsCreateInput = {
   chatVisibility?: InputMaybe<Array<RelationType>>;
-  isTyping: Scalars["Boolean"]["input"];
+  isTyping: Scalars['Boolean']['input'];
   onlineStatus?: InputMaybe<Array<RelationType>>;
   profileVisibility?: InputMaybe<Array<RelationType>>;
-  seenReceipts: Scalars["Boolean"]["input"];
+  seenReceipts: Scalars['Boolean']['input'];
   whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
 };
 
 export type PrivacySettingsCreatedEvent = {
-  __typename?: "PrivacySettingsCreatedEvent";
+  __typename?: 'PrivacySettingsCreatedEvent';
   createdPrivacySettings: PrivacySettingsEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type PrivacySettingsDeletedEvent = {
-  __typename?: "PrivacySettingsDeletedEvent";
+  __typename?: 'PrivacySettingsDeletedEvent';
   deletedPrivacySettings: PrivacySettingsEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type PrivacySettingsEdge = {
-  __typename?: "PrivacySettingsEdge";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'PrivacySettingsEdge';
+  cursor: Scalars['String']['output'];
   node: PrivacySettings;
 };
 
 export type PrivacySettingsEventPayload = {
-  __typename?: "PrivacySettingsEventPayload";
+  __typename?: 'PrivacySettingsEventPayload';
   chatVisibility?: Maybe<Array<RelationType>>;
-  isTyping: Scalars["Boolean"]["output"];
+  isTyping: Scalars['Boolean']['output'];
   onlineStatus?: Maybe<Array<RelationType>>;
   profileVisibility?: Maybe<Array<RelationType>>;
-  seenReceipts: Scalars["Boolean"]["output"];
+  seenReceipts: Scalars['Boolean']['output'];
   whoCanSendMessageRequest?: Maybe<Array<RelationType>>;
 };
 
 export type PrivacySettingsOptions = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   /** Specify one or more PrivacySettingsSort objects to sort PrivacySettings by. The sorts will be applied in the order in which they are arranged in the array. */
   sort?: InputMaybe<Array<PrivacySettingsSort>>;
 };
@@ -3145,30 +3659,30 @@ export type PrivacySettingsSubscriptionWhere = {
   OR?: InputMaybe<Array<PrivacySettingsSubscriptionWhere>>;
   chatVisibility?: InputMaybe<Array<RelationType>>;
   chatVisibility_INCLUDES?: InputMaybe<RelationType>;
-  isTyping?: InputMaybe<Scalars["Boolean"]["input"]>;
+  isTyping?: InputMaybe<Scalars['Boolean']['input']>;
   onlineStatus?: InputMaybe<Array<RelationType>>;
   onlineStatus_INCLUDES?: InputMaybe<RelationType>;
   profileVisibility?: InputMaybe<Array<RelationType>>;
   profileVisibility_INCLUDES?: InputMaybe<RelationType>;
-  seenReceipts?: InputMaybe<Scalars["Boolean"]["input"]>;
+  seenReceipts?: InputMaybe<Scalars['Boolean']['input']>;
   whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
   whoCanSendMessageRequest_INCLUDES?: InputMaybe<RelationType>;
 };
 
 export type PrivacySettingsUpdateInput = {
   chatVisibility?: InputMaybe<Array<RelationType>>;
-  isTyping?: InputMaybe<Scalars["Boolean"]["input"]>;
+  isTyping?: InputMaybe<Scalars['Boolean']['input']>;
   onlineStatus?: InputMaybe<Array<RelationType>>;
   profileVisibility?: InputMaybe<Array<RelationType>>;
-  seenReceipts?: InputMaybe<Scalars["Boolean"]["input"]>;
+  seenReceipts?: InputMaybe<Scalars['Boolean']['input']>;
   whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
 };
 
 export type PrivacySettingsUpdatedEvent = {
-  __typename?: "PrivacySettingsUpdatedEvent";
+  __typename?: 'PrivacySettingsUpdatedEvent';
   event: EventType;
   previousState: PrivacySettingsEventPayload;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
   updatedPrivacySettings: PrivacySettingsEventPayload;
 };
 
@@ -3178,24 +3692,27 @@ export type PrivacySettingsWhere = {
   OR?: InputMaybe<Array<PrivacySettingsWhere>>;
   chatVisibility?: InputMaybe<Array<RelationType>>;
   chatVisibility_INCLUDES?: InputMaybe<RelationType>;
-  isTyping?: InputMaybe<Scalars["Boolean"]["input"]>;
+  isTyping?: InputMaybe<Scalars['Boolean']['input']>;
   onlineStatus?: InputMaybe<Array<RelationType>>;
   onlineStatus_INCLUDES?: InputMaybe<RelationType>;
   profileVisibility?: InputMaybe<Array<RelationType>>;
   profileVisibility_INCLUDES?: InputMaybe<RelationType>;
-  seenReceipts?: InputMaybe<Scalars["Boolean"]["input"]>;
+  seenReceipts?: InputMaybe<Scalars['Boolean']['input']>;
   whoCanSendMessageRequest?: InputMaybe<Array<RelationType>>;
   whoCanSendMessageRequest_INCLUDES?: InputMaybe<RelationType>;
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   comments: Array<Comment>;
   commentsAggregate: CommentAggregateSelection;
   commentsConnection: CommentsConnection;
   messages: Array<Message>;
   messagesAggregate: MessageAggregateSelection;
   messagesConnection: MessagesConnection;
+  notifications: Array<Notification>;
+  notificationsAggregate: NotificationAggregateSelection;
+  notificationsConnection: NotificationsConnection;
   posts: Array<Post>;
   postsAggregate: PostAggregateSelection;
   postsConnection: PostsConnection;
@@ -3207,82 +3724,116 @@ export type Query = {
   usersConnection: UsersConnection;
 };
 
+
 export type QueryCommentsArgs = {
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type QueryCommentsAggregateArgs = {
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type QueryCommentsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<CommentSort>>>;
   where?: InputMaybe<CommentWhere>;
 };
+
 
 export type QueryMessagesArgs = {
   options?: InputMaybe<MessageOptions>;
   where?: InputMaybe<MessageWhere>;
 };
 
+
 export type QueryMessagesAggregateArgs = {
   where?: InputMaybe<MessageWhere>;
 };
 
+
 export type QueryMessagesConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<MessageSort>>>;
   where?: InputMaybe<MessageWhere>;
 };
+
+
+export type QueryNotificationsArgs = {
+  options?: InputMaybe<NotificationOptions>;
+  where?: InputMaybe<NotificationWhere>;
+};
+
+
+export type QueryNotificationsAggregateArgs = {
+  where?: InputMaybe<NotificationWhere>;
+};
+
+
+export type QueryNotificationsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<NotificationSort>>>;
+  where?: InputMaybe<NotificationWhere>;
+};
+
 
 export type QueryPostsArgs = {
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type QueryPostsAggregateArgs = {
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type QueryPostsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<PostSort>>>;
   where?: InputMaybe<PostWhere>;
 };
+
 
 export type QueryPrivacySettingsArgs = {
   options?: InputMaybe<PrivacySettingsOptions>;
   where?: InputMaybe<PrivacySettingsWhere>;
 };
 
+
 export type QueryPrivacySettingsAggregateArgs = {
   where?: InputMaybe<PrivacySettingsWhere>;
 };
 
+
 export type QueryPrivacySettingsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<PrivacySettingsSort>>>;
   where?: InputMaybe<PrivacySettingsWhere>;
 };
+
 
 export type QueryUsersArgs = {
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type QueryUsersAggregateArgs = {
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type QueryUsersConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<UserSort>>>;
   where?: InputMaybe<UserWhere>;
 };
@@ -3293,7 +3844,7 @@ export type QueryUsersConnectionArgs = {
  * * User.relationWith
  */
 export type Relation = {
-  __typename?: "Relation";
+  __typename?: 'Relation';
   type: RelationType;
 };
 
@@ -3314,11 +3865,11 @@ export type RelationSubscriptionWhere = {
 };
 
 export enum RelationType {
-  BestFriend = "BEST_FRIEND",
-  CloseFriend = "CLOSE_FRIEND",
-  Friend = "FRIEND",
-  None = "NONE",
-  Public = "PUBLIC",
+  BestFriend = 'BEST_FRIEND',
+  CloseFriend = 'CLOSE_FRIEND',
+  Friend = 'FRIEND',
+  None = 'NONE',
+  Public = 'PUBLIC'
 }
 
 export type RelationUpdateInput = {
@@ -3336,19 +3887,19 @@ export type RelationWhere = {
 /** An enum for sorting in either ascending or descending order. */
 export enum SortDirection {
   /** Sort by field values in ascending order. */
-  Asc = "ASC",
+  Asc = 'ASC',
   /** Sort by field values in descending order. */
-  Desc = "DESC",
+  Desc = 'DESC'
 }
 
 export type StringAggregateSelection = {
-  __typename?: "StringAggregateSelection";
-  longest?: Maybe<Scalars["String"]["output"]>;
-  shortest?: Maybe<Scalars["String"]["output"]>;
+  __typename?: 'StringAggregateSelection';
+  longest?: Maybe<Scalars['String']['output']>;
+  shortest?: Maybe<Scalars['String']['output']>;
 };
 
 export type Subscription = {
-  __typename?: "Subscription";
+  __typename?: 'Subscription';
   commentCreated: CommentCreatedEvent;
   commentDeleted: CommentDeletedEvent;
   commentRelationshipCreated: CommentRelationshipCreatedEvent;
@@ -3359,6 +3910,11 @@ export type Subscription = {
   messageRelationshipCreated: MessageRelationshipCreatedEvent;
   messageRelationshipDeleted: MessageRelationshipDeletedEvent;
   messageUpdated: MessageUpdatedEvent;
+  notificationCreated: NotificationCreatedEvent;
+  notificationDeleted: NotificationDeletedEvent;
+  notificationRelationshipCreated: NotificationRelationshipCreatedEvent;
+  notificationRelationshipDeleted: NotificationRelationshipDeletedEvent;
+  notificationUpdated: NotificationUpdatedEvent;
   postCreated: PostCreatedEvent;
   postDeleted: PostDeletedEvent;
   postRelationshipCreated: PostRelationshipCreatedEvent;
@@ -3374,286 +3930,384 @@ export type Subscription = {
   userUpdated: UserUpdatedEvent;
 };
 
+
 export type SubscriptionCommentCreatedArgs = {
   where?: InputMaybe<CommentSubscriptionWhere>;
 };
+
 
 export type SubscriptionCommentDeletedArgs = {
   where?: InputMaybe<CommentSubscriptionWhere>;
 };
 
+
 export type SubscriptionCommentRelationshipCreatedArgs = {
   where?: InputMaybe<CommentRelationshipCreatedSubscriptionWhere>;
 };
+
 
 export type SubscriptionCommentRelationshipDeletedArgs = {
   where?: InputMaybe<CommentRelationshipDeletedSubscriptionWhere>;
 };
 
+
 export type SubscriptionCommentUpdatedArgs = {
   where?: InputMaybe<CommentSubscriptionWhere>;
 };
+
 
 export type SubscriptionMessageCreatedArgs = {
   where?: InputMaybe<MessageSubscriptionWhere>;
 };
 
+
 export type SubscriptionMessageDeletedArgs = {
   where?: InputMaybe<MessageSubscriptionWhere>;
 };
+
 
 export type SubscriptionMessageRelationshipCreatedArgs = {
   where?: InputMaybe<MessageRelationshipCreatedSubscriptionWhere>;
 };
 
+
 export type SubscriptionMessageRelationshipDeletedArgs = {
   where?: InputMaybe<MessageRelationshipDeletedSubscriptionWhere>;
 };
+
 
 export type SubscriptionMessageUpdatedArgs = {
   where?: InputMaybe<MessageSubscriptionWhere>;
 };
 
+
+export type SubscriptionNotificationCreatedArgs = {
+  where?: InputMaybe<NotificationSubscriptionWhere>;
+};
+
+
+export type SubscriptionNotificationDeletedArgs = {
+  where?: InputMaybe<NotificationSubscriptionWhere>;
+};
+
+
+export type SubscriptionNotificationRelationshipCreatedArgs = {
+  where?: InputMaybe<NotificationRelationshipCreatedSubscriptionWhere>;
+};
+
+
+export type SubscriptionNotificationRelationshipDeletedArgs = {
+  where?: InputMaybe<NotificationRelationshipDeletedSubscriptionWhere>;
+};
+
+
+export type SubscriptionNotificationUpdatedArgs = {
+  where?: InputMaybe<NotificationSubscriptionWhere>;
+};
+
+
 export type SubscriptionPostCreatedArgs = {
   where?: InputMaybe<PostSubscriptionWhere>;
 };
+
 
 export type SubscriptionPostDeletedArgs = {
   where?: InputMaybe<PostSubscriptionWhere>;
 };
 
+
 export type SubscriptionPostRelationshipCreatedArgs = {
   where?: InputMaybe<PostRelationshipCreatedSubscriptionWhere>;
 };
+
 
 export type SubscriptionPostRelationshipDeletedArgs = {
   where?: InputMaybe<PostRelationshipDeletedSubscriptionWhere>;
 };
 
+
 export type SubscriptionPostUpdatedArgs = {
   where?: InputMaybe<PostSubscriptionWhere>;
 };
+
 
 export type SubscriptionPrivacySettingsCreatedArgs = {
   where?: InputMaybe<PrivacySettingsSubscriptionWhere>;
 };
 
+
 export type SubscriptionPrivacySettingsDeletedArgs = {
   where?: InputMaybe<PrivacySettingsSubscriptionWhere>;
 };
+
 
 export type SubscriptionPrivacySettingsUpdatedArgs = {
   where?: InputMaybe<PrivacySettingsSubscriptionWhere>;
 };
 
+
 export type SubscriptionUserCreatedArgs = {
   where?: InputMaybe<UserSubscriptionWhere>;
 };
+
 
 export type SubscriptionUserDeletedArgs = {
   where?: InputMaybe<UserSubscriptionWhere>;
 };
 
+
 export type SubscriptionUserRelationshipCreatedArgs = {
   where?: InputMaybe<UserRelationshipCreatedSubscriptionWhere>;
 };
 
+
 export type SubscriptionUserRelationshipDeletedArgs = {
   where?: InputMaybe<UserRelationshipDeletedSubscriptionWhere>;
 };
+
 
 export type SubscriptionUserUpdatedArgs = {
   where?: InputMaybe<UserSubscriptionWhere>;
 };
 
 export type UpdateCommentsMutationResponse = {
-  __typename?: "UpdateCommentsMutationResponse";
+  __typename?: 'UpdateCommentsMutationResponse';
   comments: Array<Comment>;
   info: UpdateInfo;
 };
 
 /** Information about the number of nodes and relationships created and deleted during an update mutation */
 export type UpdateInfo = {
-  __typename?: "UpdateInfo";
+  __typename?: 'UpdateInfo';
   /** @deprecated This field has been deprecated because bookmarks are now handled by the driver. */
-  bookmark?: Maybe<Scalars["String"]["output"]>;
-  nodesCreated: Scalars["Int"]["output"];
-  nodesDeleted: Scalars["Int"]["output"];
-  relationshipsCreated: Scalars["Int"]["output"];
-  relationshipsDeleted: Scalars["Int"]["output"];
+  bookmark?: Maybe<Scalars['String']['output']>;
+  nodesCreated: Scalars['Int']['output'];
+  nodesDeleted: Scalars['Int']['output'];
+  relationshipsCreated: Scalars['Int']['output'];
+  relationshipsDeleted: Scalars['Int']['output'];
 };
 
 export type UpdateMessagesMutationResponse = {
-  __typename?: "UpdateMessagesMutationResponse";
+  __typename?: 'UpdateMessagesMutationResponse';
   info: UpdateInfo;
   messages: Array<Message>;
 };
 
+export type UpdateNotificationsMutationResponse = {
+  __typename?: 'UpdateNotificationsMutationResponse';
+  info: UpdateInfo;
+  notifications: Array<Notification>;
+};
+
 export type UpdatePostsMutationResponse = {
-  __typename?: "UpdatePostsMutationResponse";
+  __typename?: 'UpdatePostsMutationResponse';
   info: UpdateInfo;
   posts: Array<Post>;
 };
 
 export type UpdatePrivacySettingsMutationResponse = {
-  __typename?: "UpdatePrivacySettingsMutationResponse";
+  __typename?: 'UpdatePrivacySettingsMutationResponse';
   info: UpdateInfo;
   privacySettings: Array<PrivacySettings>;
 };
 
 export type UpdateUsersMutationResponse = {
-  __typename?: "UpdateUsersMutationResponse";
+  __typename?: 'UpdateUsersMutationResponse';
   info: UpdateInfo;
   users: Array<User>;
 };
 
 export type User = {
-  __typename?: "User";
+  __typename?: 'User';
   authorOfComments: Array<Comment>;
   authorOfCommentsAggregate?: Maybe<UserCommentAuthorOfCommentsAggregationSelection>;
   authorOfCommentsConnection: UserAuthorOfCommentsConnection;
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  dob?: Maybe<Scalars["Date"]["output"]>;
-  email: Scalars["String"]["output"];
-  id: Scalars["ID"]["output"];
+  blackList: Array<Maybe<Scalars['String']['output']>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  dob?: Maybe<Scalars['Date']['output']>;
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   likedComments: Array<Comment>;
   likedCommentsAggregate?: Maybe<UserCommentLikedCommentsAggregationSelection>;
   likedCommentsConnection: UserLikedCommentsConnection;
   likedPosts: Array<Post>;
   likedPostsAggregate?: Maybe<UserPostLikedPostsAggregationSelection>;
   likedPostsConnection: UserLikedPostsConnection;
-  name: Scalars["String"]["output"];
+  name: Scalars['String']['output'];
+  notifications: Array<Notification>;
+  notificationsAggregate?: Maybe<UserNotificationNotificationsAggregationSelection>;
+  notificationsConnection: UserNotificationsConnection;
   posts: Array<Post>;
   postsAggregate?: Maybe<UserPostPostsAggregationSelection>;
   postsConnection: UserPostsConnection;
-  profileUrl?: Maybe<Scalars["String"]["output"]>;
+  profileUrl?: Maybe<Scalars['String']['output']>;
   relationWith: Array<User>;
   relationWithAggregate?: Maybe<UserUserRelationWithAggregationSelection>;
   relationWithConnection: UserRelationWithConnection;
   relations: Array<User>;
   relationsAggregate?: Maybe<UserUserRelationsAggregationSelection>;
   relationsConnection: UserRelationsConnection;
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  username: Scalars["ID"]["output"];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  username: Scalars['ID']['output'];
 };
 
+
 export type UserAuthorOfCommentsArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type UserAuthorOfCommentsAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type UserAuthorOfCommentsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<UserAuthorOfCommentsConnectionSort>>;
   where?: InputMaybe<UserAuthorOfCommentsConnectionWhere>;
 };
 
+
 export type UserLikedCommentsArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<CommentOptions>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type UserLikedCommentsAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CommentWhere>;
 };
 
+
 export type UserLikedCommentsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<UserLikedCommentsConnectionSort>>;
   where?: InputMaybe<UserLikedCommentsConnectionWhere>;
 };
 
+
 export type UserLikedPostsArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type UserLikedPostsAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type UserLikedPostsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<UserLikedPostsConnectionSort>>;
   where?: InputMaybe<UserLikedPostsConnectionWhere>;
 };
 
+
+export type UserNotificationsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<NotificationOptions>;
+  where?: InputMaybe<NotificationWhere>;
+};
+
+
+export type UserNotificationsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<NotificationWhere>;
+};
+
+
+export type UserNotificationsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<UserNotificationsConnectionSort>>;
+  where?: InputMaybe<UserNotificationsConnectionWhere>;
+};
+
+
 export type UserPostsArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<PostOptions>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type UserPostsAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PostWhere>;
 };
 
+
 export type UserPostsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<UserPostsConnectionSort>>;
   where?: InputMaybe<UserPostsConnectionWhere>;
 };
 
+
 export type UserRelationWithArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type UserRelationWithAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type UserRelationWithConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<UserRelationWithConnectionSort>>;
   where?: InputMaybe<UserRelationWithConnectionWhere>;
 };
 
+
 export type UserRelationsArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type UserRelationsAggregateArgs = {
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
+
 export type UserRelationsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<UserRelationsConnectionSort>>;
   where?: InputMaybe<UserRelationsConnectionWhere>;
 };
 
 export type UserAggregateSelection = {
-  __typename?: "UserAggregateSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserAggregateSelection';
+  count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -3667,31 +4321,31 @@ export type UserAuthorOfCommentsAggregateInput = {
   AND?: InputMaybe<Array<UserAuthorOfCommentsAggregateInput>>;
   NOT?: InputMaybe<UserAuthorOfCommentsAggregateInput>;
   OR?: InputMaybe<Array<UserAuthorOfCommentsAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<UserAuthorOfCommentsNodeAggregationWhereInput>;
 };
 
 export type UserAuthorOfCommentsConnectFieldInput = {
   connect?: InputMaybe<Array<CommentConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<CommentConnectWhere>;
 };
 
 export type UserAuthorOfCommentsConnectedRelationship = {
-  __typename?: "UserAuthorOfCommentsConnectedRelationship";
+  __typename?: 'UserAuthorOfCommentsConnectedRelationship';
   node: CommentEventPayload;
 };
 
 export type UserAuthorOfCommentsConnection = {
-  __typename?: "UserAuthorOfCommentsConnection";
+  __typename?: 'UserAuthorOfCommentsConnection';
   edges: Array<UserAuthorOfCommentsRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type UserAuthorOfCommentsConnectionSort = {
@@ -3728,66 +4382,66 @@ export type UserAuthorOfCommentsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<UserAuthorOfCommentsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<UserAuthorOfCommentsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<UserAuthorOfCommentsNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  indent_AVERAGE_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_MAX_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  indent_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_MAX_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type UserAuthorOfCommentsRelationship = {
-  __typename?: "UserAuthorOfCommentsRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserAuthorOfCommentsRelationship';
+  cursor: Scalars['String']['output'];
   node: Comment;
 };
 
@@ -3809,13 +4463,13 @@ export type UserAuthorOfCommentsUpdateFieldInput = {
 };
 
 export type UserCommentAuthorOfCommentsAggregationSelection = {
-  __typename?: "UserCommentAuthorOfCommentsAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserCommentAuthorOfCommentsAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<UserCommentAuthorOfCommentsNodeAggregateSelection>;
 };
 
 export type UserCommentAuthorOfCommentsNodeAggregateSelection = {
-  __typename?: "UserCommentAuthorOfCommentsNodeAggregateSelection";
+  __typename?: 'UserCommentAuthorOfCommentsNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   id: IdAggregateSelection;
   indent: IntAggregateSelection;
@@ -3824,13 +4478,13 @@ export type UserCommentAuthorOfCommentsNodeAggregateSelection = {
 };
 
 export type UserCommentLikedCommentsAggregationSelection = {
-  __typename?: "UserCommentLikedCommentsAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserCommentLikedCommentsAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<UserCommentLikedCommentsNodeAggregateSelection>;
 };
 
 export type UserCommentLikedCommentsNodeAggregateSelection = {
-  __typename?: "UserCommentLikedCommentsNodeAggregateSelection";
+  __typename?: 'UserCommentLikedCommentsNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   id: IdAggregateSelection;
   indent: IntAggregateSelection;
@@ -3842,6 +4496,7 @@ export type UserConnectInput = {
   authorOfComments?: InputMaybe<Array<UserAuthorOfCommentsConnectFieldInput>>;
   likedComments?: InputMaybe<Array<UserLikedCommentsConnectFieldInput>>;
   likedPosts?: InputMaybe<Array<UserLikedPostsConnectFieldInput>>;
+  notifications?: InputMaybe<Array<UserNotificationsConnectFieldInput>>;
   posts?: InputMaybe<Array<UserPostsConnectFieldInput>>;
   relationWith?: InputMaybe<Array<UserRelationWithConnectFieldInput>>;
   relations?: InputMaybe<Array<UserRelationsConnectFieldInput>>;
@@ -3861,10 +4516,11 @@ export type UserConnectWhere = {
 };
 
 export type UserConnectedRelationships = {
-  __typename?: "UserConnectedRelationships";
+  __typename?: 'UserConnectedRelationships';
   authorOfComments?: Maybe<UserAuthorOfCommentsConnectedRelationship>;
   likedComments?: Maybe<UserLikedCommentsConnectedRelationship>;
   likedPosts?: Maybe<UserLikedPostsConnectedRelationship>;
+  notifications?: Maybe<UserNotificationsConnectedRelationship>;
   posts?: Maybe<UserPostsConnectedRelationship>;
   relationWith?: Maybe<UserRelationWithConnectedRelationship>;
   relations?: Maybe<UserRelationsConnectedRelationship>;
@@ -3872,100 +4528,103 @@ export type UserConnectedRelationships = {
 
 export type UserCreateInput = {
   authorOfComments?: InputMaybe<UserAuthorOfCommentsFieldInput>;
-  dob?: InputMaybe<Scalars["Date"]["input"]>;
-  email: Scalars["String"]["input"];
+  blackList: Array<InputMaybe<Scalars['String']['input']>>;
+  dob?: InputMaybe<Scalars['Date']['input']>;
+  email: Scalars['String']['input'];
   likedComments?: InputMaybe<UserLikedCommentsFieldInput>;
   likedPosts?: InputMaybe<UserLikedPostsFieldInput>;
-  name: Scalars["String"]["input"];
+  name: Scalars['String']['input'];
+  notifications?: InputMaybe<UserNotificationsFieldInput>;
   posts?: InputMaybe<UserPostsFieldInput>;
-  profileUrl?: InputMaybe<Scalars["String"]["input"]>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
   relationWith?: InputMaybe<UserRelationWithFieldInput>;
   relations?: InputMaybe<UserRelationsFieldInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  username: Scalars["ID"]["input"];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  username: Scalars['ID']['input'];
 };
 
 export type UserCreatedEvent = {
-  __typename?: "UserCreatedEvent";
+  __typename?: 'UserCreatedEvent';
   createdUser: UserEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type UserDeleteInput = {
   authorOfComments?: InputMaybe<Array<UserAuthorOfCommentsDeleteFieldInput>>;
   likedComments?: InputMaybe<Array<UserLikedCommentsDeleteFieldInput>>;
   likedPosts?: InputMaybe<Array<UserLikedPostsDeleteFieldInput>>;
+  notifications?: InputMaybe<Array<UserNotificationsDeleteFieldInput>>;
   posts?: InputMaybe<Array<UserPostsDeleteFieldInput>>;
   relationWith?: InputMaybe<Array<UserRelationWithDeleteFieldInput>>;
   relations?: InputMaybe<Array<UserRelationsDeleteFieldInput>>;
 };
 
 export type UserDeletedEvent = {
-  __typename?: "UserDeletedEvent";
+  __typename?: 'UserDeletedEvent';
   deletedUser: UserEventPayload;
   event: EventType;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
 };
 
 export type UserDisconnectInput = {
-  authorOfComments?: InputMaybe<
-    Array<UserAuthorOfCommentsDisconnectFieldInput>
-  >;
+  authorOfComments?: InputMaybe<Array<UserAuthorOfCommentsDisconnectFieldInput>>;
   likedComments?: InputMaybe<Array<UserLikedCommentsDisconnectFieldInput>>;
   likedPosts?: InputMaybe<Array<UserLikedPostsDisconnectFieldInput>>;
+  notifications?: InputMaybe<Array<UserNotificationsDisconnectFieldInput>>;
   posts?: InputMaybe<Array<UserPostsDisconnectFieldInput>>;
   relationWith?: InputMaybe<Array<UserRelationWithDisconnectFieldInput>>;
   relations?: InputMaybe<Array<UserRelationsDisconnectFieldInput>>;
 };
 
 export type UserEdge = {
-  __typename?: "UserEdge";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserEdge';
+  cursor: Scalars['String']['output'];
   node: User;
 };
 
 export type UserEventPayload = {
-  __typename?: "UserEventPayload";
-  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
-  dob?: Maybe<Scalars["Date"]["output"]>;
-  email: Scalars["String"]["output"];
-  id: Scalars["ID"]["output"];
-  name: Scalars["String"]["output"];
-  profileUrl?: Maybe<Scalars["String"]["output"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  username: Scalars["ID"]["output"];
+  __typename?: 'UserEventPayload';
+  blackList: Array<Maybe<Scalars['String']['output']>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  dob?: Maybe<Scalars['Date']['output']>;
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  profileUrl?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  username: Scalars['ID']['output'];
 };
 
 export type UserLikedCommentsAggregateInput = {
   AND?: InputMaybe<Array<UserLikedCommentsAggregateInput>>;
   NOT?: InputMaybe<UserLikedCommentsAggregateInput>;
   OR?: InputMaybe<Array<UserLikedCommentsAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<UserLikedCommentsNodeAggregationWhereInput>;
 };
 
 export type UserLikedCommentsConnectFieldInput = {
   connect?: InputMaybe<Array<CommentConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<CommentConnectWhere>;
 };
 
 export type UserLikedCommentsConnectedRelationship = {
-  __typename?: "UserLikedCommentsConnectedRelationship";
+  __typename?: 'UserLikedCommentsConnectedRelationship';
   node: CommentEventPayload;
 };
 
 export type UserLikedCommentsConnection = {
-  __typename?: "UserLikedCommentsConnection";
+  __typename?: 'UserLikedCommentsConnection';
   edges: Array<UserLikedCommentsRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type UserLikedCommentsConnectionSort = {
@@ -4002,66 +4661,66 @@ export type UserLikedCommentsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<UserLikedCommentsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<UserLikedCommentsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<UserLikedCommentsNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  indent_AVERAGE_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_AVERAGE_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  indent_MAX_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MAX_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_MIN_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  indent_SUM_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  indent_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  indent_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  indent_MAX_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MAX_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_MIN_LTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_GTE?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LT?: InputMaybe<Scalars['Int']['input']>;
+  indent_SUM_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  text_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  text_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  text_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type UserLikedCommentsRelationship = {
-  __typename?: "UserLikedCommentsRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserLikedCommentsRelationship';
+  cursor: Scalars['String']['output'];
   node: Comment;
 };
 
@@ -4086,31 +4745,31 @@ export type UserLikedPostsAggregateInput = {
   AND?: InputMaybe<Array<UserLikedPostsAggregateInput>>;
   NOT?: InputMaybe<UserLikedPostsAggregateInput>;
   OR?: InputMaybe<Array<UserLikedPostsAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<UserLikedPostsNodeAggregationWhereInput>;
 };
 
 export type UserLikedPostsConnectFieldInput = {
   connect?: InputMaybe<Array<PostConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<PostConnectWhere>;
 };
 
 export type UserLikedPostsConnectedRelationship = {
-  __typename?: "UserLikedPostsConnectedRelationship";
+  __typename?: 'UserLikedPostsConnectedRelationship';
   node: PostEventPayload;
 };
 
 export type UserLikedPostsConnection = {
-  __typename?: "UserLikedPostsConnection";
+  __typename?: 'UserLikedPostsConnection';
   edges: Array<UserLikedPostsRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type UserLikedPostsConnectionSort = {
@@ -4147,61 +4806,61 @@ export type UserLikedPostsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<UserLikedPostsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<UserLikedPostsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<UserLikedPostsNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  url_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  url_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  url_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  url_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type UserLikedPostsRelationship = {
-  __typename?: "UserLikedPostsRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserLikedPostsRelationship';
+  cursor: Scalars['String']['output'];
   node: Post;
 };
 
@@ -4222,30 +4881,164 @@ export type UserLikedPostsUpdateFieldInput = {
   where?: InputMaybe<UserLikedPostsConnectionWhere>;
 };
 
+export type UserNotificationNotificationsAggregationSelection = {
+  __typename?: 'UserNotificationNotificationsAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<UserNotificationNotificationsNodeAggregateSelection>;
+};
+
+export type UserNotificationNotificationsNodeAggregateSelection = {
+  __typename?: 'UserNotificationNotificationsNodeAggregateSelection';
+  id: IdAggregateSelection;
+  message: StringAggregateSelection;
+  title: StringAggregateSelection;
+};
+
+export type UserNotificationsAggregateInput = {
+  AND?: InputMaybe<Array<UserNotificationsAggregateInput>>;
+  NOT?: InputMaybe<UserNotificationsAggregateInput>;
+  OR?: InputMaybe<Array<UserNotificationsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<UserNotificationsNodeAggregationWhereInput>;
+};
+
+export type UserNotificationsConnectFieldInput = {
+  connect?: InputMaybe<Array<NotificationConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<NotificationConnectWhere>;
+};
+
+export type UserNotificationsConnectedRelationship = {
+  __typename?: 'UserNotificationsConnectedRelationship';
+  node: NotificationEventPayload;
+};
+
+export type UserNotificationsConnection = {
+  __typename?: 'UserNotificationsConnection';
+  edges: Array<UserNotificationsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type UserNotificationsConnectionSort = {
+  node?: InputMaybe<NotificationSort>;
+};
+
+export type UserNotificationsConnectionWhere = {
+  AND?: InputMaybe<Array<UserNotificationsConnectionWhere>>;
+  NOT?: InputMaybe<UserNotificationsConnectionWhere>;
+  OR?: InputMaybe<Array<UserNotificationsConnectionWhere>>;
+  node?: InputMaybe<NotificationWhere>;
+};
+
+export type UserNotificationsCreateFieldInput = {
+  node: NotificationCreateInput;
+};
+
+export type UserNotificationsDeleteFieldInput = {
+  delete?: InputMaybe<NotificationDeleteInput>;
+  where?: InputMaybe<UserNotificationsConnectionWhere>;
+};
+
+export type UserNotificationsDisconnectFieldInput = {
+  disconnect?: InputMaybe<NotificationDisconnectInput>;
+  where?: InputMaybe<UserNotificationsConnectionWhere>;
+};
+
+export type UserNotificationsFieldInput = {
+  connect?: InputMaybe<Array<UserNotificationsConnectFieldInput>>;
+  create?: InputMaybe<Array<UserNotificationsCreateFieldInput>>;
+};
+
+export type UserNotificationsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<UserNotificationsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<UserNotificationsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<UserNotificationsNodeAggregationWhereInput>>;
+  message_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  message_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  title_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  title_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  title_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  title_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  title_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  title_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  title_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  title_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  title_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  title_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  title_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  title_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  title_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  title_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  title_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type UserNotificationsRelationship = {
+  __typename?: 'UserNotificationsRelationship';
+  cursor: Scalars['String']['output'];
+  node: Notification;
+};
+
+export type UserNotificationsRelationshipSubscriptionWhere = {
+  node?: InputMaybe<NotificationSubscriptionWhere>;
+};
+
+export type UserNotificationsUpdateConnectionInput = {
+  node?: InputMaybe<NotificationUpdateInput>;
+};
+
+export type UserNotificationsUpdateFieldInput = {
+  connect?: InputMaybe<Array<UserNotificationsConnectFieldInput>>;
+  create?: InputMaybe<Array<UserNotificationsCreateFieldInput>>;
+  delete?: InputMaybe<Array<UserNotificationsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<UserNotificationsDisconnectFieldInput>>;
+  update?: InputMaybe<UserNotificationsUpdateConnectionInput>;
+  where?: InputMaybe<UserNotificationsConnectionWhere>;
+};
+
 export type UserOnCreateInput = {
-  dob?: InputMaybe<Scalars["Date"]["input"]>;
-  email: Scalars["String"]["input"];
-  name: Scalars["String"]["input"];
-  profileUrl?: InputMaybe<Scalars["String"]["input"]>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  username: Scalars["ID"]["input"];
+  blackList: Array<InputMaybe<Scalars['String']['input']>>;
+  dob?: InputMaybe<Scalars['Date']['input']>;
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  username: Scalars['ID']['input'];
 };
 
 export type UserOptions = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   /** Specify one or more UserSort objects to sort Users by. The sorts will be applied in the order in which they are arranged in the array. */
   sort?: InputMaybe<Array<UserSort>>;
 };
 
 export type UserPostLikedPostsAggregationSelection = {
-  __typename?: "UserPostLikedPostsAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserPostLikedPostsAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<UserPostLikedPostsNodeAggregateSelection>;
 };
 
 export type UserPostLikedPostsNodeAggregateSelection = {
-  __typename?: "UserPostLikedPostsNodeAggregateSelection";
+  __typename?: 'UserPostLikedPostsNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   description: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -4254,13 +5047,13 @@ export type UserPostLikedPostsNodeAggregateSelection = {
 };
 
 export type UserPostPostsAggregationSelection = {
-  __typename?: "UserPostPostsAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserPostPostsAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<UserPostPostsNodeAggregateSelection>;
 };
 
 export type UserPostPostsNodeAggregateSelection = {
-  __typename?: "UserPostPostsNodeAggregateSelection";
+  __typename?: 'UserPostPostsNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   description: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -4272,31 +5065,31 @@ export type UserPostsAggregateInput = {
   AND?: InputMaybe<Array<UserPostsAggregateInput>>;
   NOT?: InputMaybe<UserPostsAggregateInput>;
   OR?: InputMaybe<Array<UserPostsAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<UserPostsNodeAggregationWhereInput>;
 };
 
 export type UserPostsConnectFieldInput = {
   connect?: InputMaybe<Array<PostConnectInput>>;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<PostConnectWhere>;
 };
 
 export type UserPostsConnectedRelationship = {
-  __typename?: "UserPostsConnectedRelationship";
+  __typename?: 'UserPostsConnectedRelationship';
   node: PostEventPayload;
 };
 
 export type UserPostsConnection = {
-  __typename?: "UserPostsConnection";
+  __typename?: 'UserPostsConnection';
   edges: Array<UserPostsRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type UserPostsConnectionSort = {
@@ -4333,61 +5126,61 @@ export type UserPostsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<UserPostsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<UserPostsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<UserPostsNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  url_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  url_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  url_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  url_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  url_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  url_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  url_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  url_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  url_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type UserPostsRelationship = {
-  __typename?: "UserPostsRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserPostsRelationship';
+  cursor: Scalars['String']['output'];
   node: Post;
 };
 
@@ -4412,6 +5205,7 @@ export type UserRelationInput = {
   authorOfComments?: InputMaybe<Array<UserAuthorOfCommentsCreateFieldInput>>;
   likedComments?: InputMaybe<Array<UserLikedCommentsCreateFieldInput>>;
   likedPosts?: InputMaybe<Array<UserLikedPostsCreateFieldInput>>;
+  notifications?: InputMaybe<Array<UserNotificationsCreateFieldInput>>;
   posts?: InputMaybe<Array<UserPostsCreateFieldInput>>;
   relationWith?: InputMaybe<Array<UserRelationWithCreateFieldInput>>;
   relations?: InputMaybe<Array<UserRelationsCreateFieldInput>>;
@@ -4421,11 +5215,11 @@ export type UserRelationWithAggregateInput = {
   AND?: InputMaybe<Array<UserRelationWithAggregateInput>>;
   NOT?: InputMaybe<UserRelationWithAggregateInput>;
   OR?: InputMaybe<Array<UserRelationWithAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<UserRelationWithNodeAggregationWhereInput>;
 };
 
@@ -4433,7 +5227,7 @@ export type UserRelationWithConnectFieldInput = {
   connect?: InputMaybe<Array<UserConnectInput>>;
   edge: RelationCreateInput;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -4448,16 +5242,16 @@ export type UserRelationWithConnectOrCreateFieldInputOnCreate = {
 };
 
 export type UserRelationWithConnectedRelationship = {
-  __typename?: "UserRelationWithConnectedRelationship";
+  __typename?: 'UserRelationWithConnectedRelationship';
   node: UserEventPayload;
   type: RelationType;
 };
 
 export type UserRelationWithConnection = {
-  __typename?: "UserRelationWithConnection";
+  __typename?: 'UserRelationWithConnection';
   edges: Array<UserRelationWithRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type UserRelationWithConnectionSort = {
@@ -4490,9 +5284,7 @@ export type UserRelationWithDisconnectFieldInput = {
 
 export type UserRelationWithFieldInput = {
   connect?: InputMaybe<Array<UserRelationWithConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<
-    Array<UserRelationWithConnectOrCreateFieldInput>
-  >;
+  connectOrCreate?: InputMaybe<Array<UserRelationWithConnectOrCreateFieldInput>>;
   create?: InputMaybe<Array<UserRelationWithCreateFieldInput>>;
 };
 
@@ -4500,76 +5292,76 @@ export type UserRelationWithNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<UserRelationWithNodeAggregationWhereInput>>;
   NOT?: InputMaybe<UserRelationWithNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<UserRelationWithNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type UserRelationWithRelationship = {
-  __typename?: "UserRelationWithRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserRelationWithRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
   properties: Relation;
 };
@@ -4586,9 +5378,7 @@ export type UserRelationWithUpdateConnectionInput = {
 
 export type UserRelationWithUpdateFieldInput = {
   connect?: InputMaybe<Array<UserRelationWithConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<
-    Array<UserRelationWithConnectOrCreateFieldInput>
-  >;
+  connectOrCreate?: InputMaybe<Array<UserRelationWithConnectOrCreateFieldInput>>;
   create?: InputMaybe<Array<UserRelationWithCreateFieldInput>>;
   delete?: InputMaybe<Array<UserRelationWithDeleteFieldInput>>;
   disconnect?: InputMaybe<Array<UserRelationWithDisconnectFieldInput>>;
@@ -4600,11 +5390,11 @@ export type UserRelationsAggregateInput = {
   AND?: InputMaybe<Array<UserRelationsAggregateInput>>;
   NOT?: InputMaybe<UserRelationsAggregateInput>;
   OR?: InputMaybe<Array<UserRelationsAggregateInput>>;
-  count?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  count_LTE?: InputMaybe<Scalars["Int"]["input"]>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
   node?: InputMaybe<UserRelationsNodeAggregationWhereInput>;
 };
 
@@ -4612,7 +5402,7 @@ export type UserRelationsConnectFieldInput = {
   connect?: InputMaybe<Array<UserConnectInput>>;
   edge: RelationCreateInput;
   /** Whether or not to overwrite any matching relationship with the new properties. */
-  overwrite?: Scalars["Boolean"]["input"];
+  overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<UserConnectWhere>;
 };
 
@@ -4627,16 +5417,16 @@ export type UserRelationsConnectOrCreateFieldInputOnCreate = {
 };
 
 export type UserRelationsConnectedRelationship = {
-  __typename?: "UserRelationsConnectedRelationship";
+  __typename?: 'UserRelationsConnectedRelationship';
   node: UserEventPayload;
   type: RelationType;
 };
 
 export type UserRelationsConnection = {
-  __typename?: "UserRelationsConnection";
+  __typename?: 'UserRelationsConnection';
   edges: Array<UserRelationsRelationship>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type UserRelationsConnectionSort = {
@@ -4677,76 +5467,76 @@ export type UserRelationsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<UserRelationsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<UserRelationsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<UserRelationsNodeAggregationWhereInput>>;
-  createdAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars["Float"]["input"]>;
-  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars["Int"]["input"]>;
-  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars["Int"]["input"]>;
-  updatedAt_MAX_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MAX_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_EQUAL?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_MIN_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  profileUrl_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  profileUrl_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type UserRelationsRelationship = {
-  __typename?: "UserRelationsRelationship";
-  cursor: Scalars["String"]["output"];
+  __typename?: 'UserRelationsRelationship';
+  cursor: Scalars['String']['output'];
   node: User;
   properties: Relation;
 };
@@ -4772,11 +5562,11 @@ export type UserRelationsUpdateFieldInput = {
 };
 
 export type UserRelationshipCreatedEvent = {
-  __typename?: "UserRelationshipCreatedEvent";
+  __typename?: 'UserRelationshipCreatedEvent';
   createdRelationship: UserConnectedRelationships;
   event: EventType;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
   user: UserEventPayload;
 };
 
@@ -4789,11 +5579,11 @@ export type UserRelationshipCreatedSubscriptionWhere = {
 };
 
 export type UserRelationshipDeletedEvent = {
-  __typename?: "UserRelationshipDeletedEvent";
+  __typename?: 'UserRelationshipDeletedEvent';
   deletedRelationship: UserConnectedRelationships;
   event: EventType;
-  relationshipFieldName: Scalars["String"]["output"];
-  timestamp: Scalars["Float"]["output"];
+  relationshipFieldName: Scalars['String']['output'];
+  timestamp: Scalars['Float']['output'];
   user: UserEventPayload;
 };
 
@@ -4809,6 +5599,7 @@ export type UserRelationshipsSubscriptionWhere = {
   authorOfComments?: InputMaybe<UserAuthorOfCommentsRelationshipSubscriptionWhere>;
   likedComments?: InputMaybe<UserLikedCommentsRelationshipSubscriptionWhere>;
   likedPosts?: InputMaybe<UserLikedPostsRelationshipSubscriptionWhere>;
+  notifications?: InputMaybe<UserNotificationsRelationshipSubscriptionWhere>;
   posts?: InputMaybe<UserPostsRelationshipSubscriptionWhere>;
   relationWith?: InputMaybe<UserRelationWithRelationshipSubscriptionWhere>;
   relations?: InputMaybe<UserRelationsRelationshipSubscriptionWhere>;
@@ -4830,87 +5621,93 @@ export type UserSubscriptionWhere = {
   AND?: InputMaybe<Array<UserSubscriptionWhere>>;
   NOT?: InputMaybe<UserSubscriptionWhere>;
   OR?: InputMaybe<Array<UserSubscriptionWhere>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  dob?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_GT?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_GTE?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_IN?: InputMaybe<Array<InputMaybe<Scalars["Date"]["input"]>>>;
-  dob_LT?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_LTE?: InputMaybe<Scalars["Date"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-  email_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  email_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  email_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  email_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  name?: InputMaybe<Scalars["String"]["input"]>;
-  name_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  name_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  name_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  name_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  profileUrl_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  username?: InputMaybe<Scalars["ID"]["input"]>;
-  username_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  username_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  username_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  username_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
+  blackList?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  blackList_INCLUDES?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  dob?: InputMaybe<Scalars['Date']['input']>;
+  dob_GT?: InputMaybe<Scalars['Date']['input']>;
+  dob_GTE?: InputMaybe<Scalars['Date']['input']>;
+  dob_IN?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  dob_LT?: InputMaybe<Scalars['Date']['input']>;
+  dob_LTE?: InputMaybe<Scalars['Date']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  email_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  email_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  email_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  email_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  name_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  name_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  name_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  profileUrl_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  username?: InputMaybe<Scalars['ID']['input']>;
+  username_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  username_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  username_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  username_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type UserUniqueWhere = {
-  email?: InputMaybe<Scalars["String"]["input"]>;
-  username?: InputMaybe<Scalars["ID"]["input"]>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  username?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type UserUpdateInput = {
   authorOfComments?: InputMaybe<Array<UserAuthorOfCommentsUpdateFieldInput>>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  dob?: InputMaybe<Scalars["Date"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
+  blackList?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  blackList_POP?: InputMaybe<Scalars['Int']['input']>;
+  blackList_PUSH?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  dob?: InputMaybe<Scalars['Date']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
   likedComments?: InputMaybe<Array<UserLikedCommentsUpdateFieldInput>>;
   likedPosts?: InputMaybe<Array<UserLikedPostsUpdateFieldInput>>;
-  name?: InputMaybe<Scalars["String"]["input"]>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  notifications?: InputMaybe<Array<UserNotificationsUpdateFieldInput>>;
   posts?: InputMaybe<Array<UserPostsUpdateFieldInput>>;
-  profileUrl?: InputMaybe<Scalars["String"]["input"]>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
   relationWith?: InputMaybe<Array<UserRelationWithUpdateFieldInput>>;
   relations?: InputMaybe<Array<UserRelationsUpdateFieldInput>>;
-  username?: InputMaybe<Scalars["ID"]["input"]>;
+  username?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type UserUpdatedEvent = {
-  __typename?: "UserUpdatedEvent";
+  __typename?: 'UserUpdatedEvent';
   event: EventType;
   previousState: UserEventPayload;
-  timestamp: Scalars["Float"]["output"];
+  timestamp: Scalars['Float']['output'];
   updatedUser: UserEventPayload;
 };
 
 export type UserUserRelationWithAggregationSelection = {
-  __typename?: "UserUserRelationWithAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserUserRelationWithAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<UserUserRelationWithNodeAggregateSelection>;
 };
 
 export type UserUserRelationWithNodeAggregateSelection = {
-  __typename?: "UserUserRelationWithNodeAggregateSelection";
+  __typename?: 'UserUserRelationWithNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -4921,13 +5718,13 @@ export type UserUserRelationWithNodeAggregateSelection = {
 };
 
 export type UserUserRelationsAggregationSelection = {
-  __typename?: "UserUserRelationsAggregationSelection";
-  count: Scalars["Int"]["output"];
+  __typename?: 'UserUserRelationsAggregationSelection';
+  count: Scalars['Int']['output'];
   node?: Maybe<UserUserRelationsNodeAggregateSelection>;
 };
 
 export type UserUserRelationsNodeAggregateSelection = {
-  __typename?: "UserUserRelationsNodeAggregateSelection";
+  __typename?: 'UserUserRelationsNodeAggregateSelection';
   createdAt: DateTimeAggregateSelection;
   email: StringAggregateSelection;
   id: IdAggregateSelection;
@@ -4958,28 +5755,30 @@ export type UserWhere = {
   authorOfComments_SINGLE?: InputMaybe<CommentWhere>;
   /** Return Users where some of the related Comments match this filter */
   authorOfComments_SOME?: InputMaybe<CommentWhere>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  createdAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  createdAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  dob?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_GT?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_GTE?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_IN?: InputMaybe<Array<InputMaybe<Scalars["Date"]["input"]>>>;
-  dob_LT?: InputMaybe<Scalars["Date"]["input"]>;
-  dob_LTE?: InputMaybe<Scalars["Date"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-  email_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  email_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  email_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  email_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  id_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  id_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  id_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  id_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
+  blackList?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  blackList_INCLUDES?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  dob?: InputMaybe<Scalars['Date']['input']>;
+  dob_GT?: InputMaybe<Scalars['Date']['input']>;
+  dob_GTE?: InputMaybe<Scalars['Date']['input']>;
+  dob_IN?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  dob_LT?: InputMaybe<Scalars['Date']['input']>;
+  dob_LTE?: InputMaybe<Scalars['Date']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  email_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  email_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  email_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  email_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
   likedCommentsAggregate?: InputMaybe<UserLikedCommentsAggregateInput>;
   /** Return Users where all of the related UserLikedCommentsConnections match this filter */
   likedCommentsConnection_ALL?: InputMaybe<UserLikedCommentsConnectionWhere>;
@@ -5014,11 +5813,28 @@ export type UserWhere = {
   likedPosts_SINGLE?: InputMaybe<PostWhere>;
   /** Return Users where some of the related Posts match this filter */
   likedPosts_SOME?: InputMaybe<PostWhere>;
-  name?: InputMaybe<Scalars["String"]["input"]>;
-  name_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  name_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  name_IN?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  name_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  name_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  name_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  name_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  notificationsAggregate?: InputMaybe<UserNotificationsAggregateInput>;
+  /** Return Users where all of the related UserNotificationsConnections match this filter */
+  notificationsConnection_ALL?: InputMaybe<UserNotificationsConnectionWhere>;
+  /** Return Users where none of the related UserNotificationsConnections match this filter */
+  notificationsConnection_NONE?: InputMaybe<UserNotificationsConnectionWhere>;
+  /** Return Users where one of the related UserNotificationsConnections match this filter */
+  notificationsConnection_SINGLE?: InputMaybe<UserNotificationsConnectionWhere>;
+  /** Return Users where some of the related UserNotificationsConnections match this filter */
+  notificationsConnection_SOME?: InputMaybe<UserNotificationsConnectionWhere>;
+  /** Return Users where all of the related Notifications match this filter */
+  notifications_ALL?: InputMaybe<NotificationWhere>;
+  /** Return Users where none of the related Notifications match this filter */
+  notifications_NONE?: InputMaybe<NotificationWhere>;
+  /** Return Users where one of the related Notifications match this filter */
+  notifications_SINGLE?: InputMaybe<NotificationWhere>;
+  /** Return Users where some of the related Notifications match this filter */
+  notifications_SOME?: InputMaybe<NotificationWhere>;
   postsAggregate?: InputMaybe<UserPostsAggregateInput>;
   /** Return Users where all of the related UserPostsConnections match this filter */
   postsConnection_ALL?: InputMaybe<UserPostsConnectionWhere>;
@@ -5036,11 +5852,11 @@ export type UserWhere = {
   posts_SINGLE?: InputMaybe<PostWhere>;
   /** Return Users where some of the related Posts match this filter */
   posts_SOME?: InputMaybe<PostWhere>;
-  profileUrl?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl_CONTAINS?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl_ENDS_WITH?: InputMaybe<Scalars["String"]["input"]>;
-  profileUrl_IN?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  profileUrl_STARTS_WITH?: InputMaybe<Scalars["String"]["input"]>;
+  profileUrl?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  profileUrl_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  profileUrl_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   relationWithAggregate?: InputMaybe<UserRelationWithAggregateInput>;
   /** Return Users where all of the related UserRelationWithConnections match this filter */
   relationWithConnection_ALL?: InputMaybe<UserRelationWithConnectionWhere>;
@@ -5075,2819 +5891,186 @@ export type UserWhere = {
   relations_SINGLE?: InputMaybe<UserWhere>;
   /** Return Users where some of the related Users match this filter */
   relations_SOME?: InputMaybe<UserWhere>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_GTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  updatedAt_LT?: InputMaybe<Scalars["DateTime"]["input"]>;
-  updatedAt_LTE?: InputMaybe<Scalars["DateTime"]["input"]>;
-  username?: InputMaybe<Scalars["ID"]["input"]>;
-  username_CONTAINS?: InputMaybe<Scalars["ID"]["input"]>;
-  username_ENDS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
-  username_IN?: InputMaybe<Array<Scalars["ID"]["input"]>>;
-  username_STARTS_WITH?: InputMaybe<Scalars["ID"]["input"]>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_IN?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  username?: InputMaybe<Scalars['ID']['input']>;
+  username_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  username_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  username_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  username_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type UsersConnection = {
-  __typename?: "UsersConnection";
+  __typename?: 'UsersConnection';
   edges: Array<UserEdge>;
   pageInfo: PageInfo;
-  totalCount: Scalars["Int"]["output"];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CreatePostsMutationVariables = Exact<{
-  url: Scalars["String"]["input"];
-  description: Scalars["String"]["input"];
-  username: Scalars["ID"]["input"];
+  url: Scalars['String']['input'];
+  description: Scalars['String']['input'];
+  username: Scalars['ID']['input'];
   friend: Array<RelationType> | RelationType;
 }>;
 
-export type CreatePostsMutation = {
-  __typename?: "Mutation";
-  createPosts: {
-    __typename?: "CreatePostsMutationResponse";
-    posts: Array<{
-      __typename?: "Post";
-      id: string;
-      url: string;
-      description?: string | null;
-      creatorOfPost: {
-        __typename?: "User";
-        id: string;
-        name: string;
-        email: string;
-        username: string;
-        dob?: any | null;
-      };
-    }>;
-  };
-};
 
-export type Q1QueryVariables = Exact<{ [key: string]: never }>;
+export type CreatePostsMutation = { __typename?: 'Mutation', createPosts: { __typename?: 'CreatePostsMutationResponse', posts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, creatorOfPost: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null } }> } };
 
-export type Q1Query = {
-  __typename?: "Query";
-  users: Array<{
-    __typename?: "User";
-    id: string;
-    email: string;
-    username: string;
-  }>;
-};
+export type Q1QueryVariables = Exact<{ [key: string]: never; }>;
 
-export type Posts2QueryVariables = Exact<{ [key: string]: never }>;
 
-export type Posts2Query = {
-  __typename?: "Query";
-  posts: Array<{ __typename?: "Post"; id: string; createdAt?: any | null }>;
-};
+export type Q1Query = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, email: string, username: string }> };
+
+export type Posts2QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Posts2Query = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: string, createdAt?: any | null }> };
 
 export type SinglePostsQueryVariables = Exact<{
-  pid: Scalars["ID"]["input"];
+  pid: Scalars['ID']['input'];
 }>;
 
-export type SinglePostsQuery = {
-  __typename?: "Query";
-  posts: Array<{
-    __typename?: "Post";
-    id: string;
-    url: string;
-    description?: string | null;
-    visibility?: Array<RelationType> | null;
-    creatorOfPost: {
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-    };
-    likes: Array<{
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    }>;
-    comments: Array<{
-      __typename?: "Comment";
-      id: string;
-      text: string;
-      author: {
-        __typename?: "User";
-        id: string;
-        name: string;
-        email: string;
-        username: string;
-        dob?: any | null;
-      };
-      replies: Array<{ __typename?: "Comment"; id: string }>;
-    }>;
-  }>;
-};
+
+export type SinglePostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, creatorOfPost: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null }, likes: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }>, comments: Array<{ __typename?: 'Comment', id: string, text: string, author: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null }, replies: Array<{ __typename?: 'Comment', id: string }> }> }> };
 
 export type UnLikeQueryMutationVariables = Exact<{
-  id: Scalars["ID"]["input"];
-  username: Scalars["ID"]["input"];
+  id: Scalars['ID']['input'];
+  username: Scalars['ID']['input'];
 }>;
 
-export type UnLikeQueryMutation = {
-  __typename?: "Mutation";
-  updateUsers: {
-    __typename?: "UpdateUsersMutationResponse";
-    users: Array<{
-      __typename?: "User";
-      likedPosts: Array<{
-        __typename?: "Post";
-        id: string;
-        url: string;
-        description?: string | null;
-        visibility?: Array<RelationType> | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        likes: Array<{
-          __typename?: "User";
-          id: string;
-          name: string;
-          email: string;
-          username: string;
-          dob?: any | null;
-          createdAt?: any | null;
-          updatedAt?: any | null;
-        }>;
-        creatorOfPost: {
-          __typename?: "User";
-          id: string;
-          name: string;
-          email: string;
-          username: string;
-          dob?: any | null;
-          createdAt?: any | null;
-          updatedAt?: any | null;
-        };
-      }>;
-    }>;
-  };
-};
+
+export type UnLikeQueryMutation = { __typename?: 'Mutation', updateUsers: { __typename?: 'UpdateUsersMutationResponse', users: Array<{ __typename?: 'User', likedPosts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null, likes: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }>, creatorOfPost: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null } }> }> } };
 
 export type LikeQueryMutationVariables = Exact<{
-  id: Scalars["ID"]["input"];
-  username: Scalars["ID"]["input"];
+  id: Scalars['ID']['input'];
+  username: Scalars['ID']['input'];
 }>;
 
-export type LikeQueryMutation = {
-  __typename?: "Mutation";
-  updateUsers: {
-    __typename?: "UpdateUsersMutationResponse";
-    users: Array<{
-      __typename?: "User";
-      likedPosts: Array<{
-        __typename?: "Post";
-        id: string;
-        url: string;
-        description?: string | null;
-        visibility?: Array<RelationType> | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        likes: Array<{
-          __typename?: "User";
-          id: string;
-          name: string;
-          email: string;
-          username: string;
-          dob?: any | null;
-          createdAt?: any | null;
-          updatedAt?: any | null;
-        }>;
-        creatorOfPost: {
-          __typename?: "User";
-          id: string;
-          name: string;
-          email: string;
-          username: string;
-          dob?: any | null;
-          createdAt?: any | null;
-          updatedAt?: any | null;
-        };
-      }>;
-    }>;
-  };
-};
+
+export type LikeQueryMutation = { __typename?: 'Mutation', updateUsers: { __typename?: 'UpdateUsersMutationResponse', users: Array<{ __typename?: 'User', likedPosts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null, likes: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }>, creatorOfPost: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null } }> }> } };
 
 export type PostCommentsQueryVariables = Exact<{
-  pid: Scalars["ID"]["input"];
+  pid: Scalars['ID']['input'];
 }>;
 
-export type PostCommentsQuery = {
-  __typename?: "Query";
-  comments: Array<{ __typename?: "Comment"; id: string }>;
-  commentsConnection: { __typename?: "CommentsConnection"; totalCount: number };
-  posts: Array<{
-    __typename?: "Post";
-    id: string;
-    url: string;
-    description?: string | null;
-    visibility?: Array<RelationType> | null;
-    createdAt?: any | null;
-    updatedAt?: any | null;
-    creatorOfPost: {
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    };
-  }>;
-};
+
+export type PostCommentsQuery = { __typename?: 'Query', comments: Array<{ __typename?: 'Comment', id: string }>, commentsConnection: { __typename?: 'CommentsConnection', totalCount: number }, posts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null, creatorOfPost: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null } }> };
 
 export type CreateCommentsMutationVariables = Exact<{
-  comment: Scalars["String"]["input"];
-  indent: Scalars["Int"]["input"];
-  parentsOfComment: Array<Scalars["ID"]["input"]> | Scalars["ID"]["input"];
-  username: Scalars["ID"]["input"];
-  pid: Scalars["ID"]["input"];
-  cid?: InputMaybe<Scalars["ID"]["input"]>;
+  comment: Scalars['String']['input'];
+  indent: Scalars['Int']['input'];
+  parentsOfComment: Array<Scalars['ID']['input']> | Scalars['ID']['input'];
+  username: Scalars['ID']['input'];
+  pid: Scalars['ID']['input'];
+  cid?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
-export type CreateCommentsMutation = {
-  __typename?: "Mutation";
-  createComments: {
-    __typename?: "CreateCommentsMutationResponse";
-    comments: Array<{ __typename?: "Comment"; id: string }>;
-  };
-};
+
+export type CreateCommentsMutation = { __typename?: 'Mutation', createComments: { __typename?: 'CreateCommentsMutationResponse', comments: Array<{ __typename?: 'Comment', id: string }> } };
 
 export type CommentReplyQueryVariables = Exact<{
-  cid: Scalars["ID"]["input"];
+  cid: Scalars['ID']['input'];
 }>;
 
-export type CommentReplyQuery = {
-  __typename?: "Query";
-  comments: Array<{
-    __typename?: "Comment";
-    id: string;
-    text: string;
-    indent: number;
-    parentsOfComment: Array<string>;
-    createdAt?: any | null;
-    updatedAt?: any | null;
-    likes: Array<{
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    }>;
-    author: {
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    };
-    replies: Array<{ __typename?: "Comment"; id: string }>;
-  }>;
-};
+
+export type CommentReplyQuery = { __typename?: 'Query', comments: Array<{ __typename?: 'Comment', id: string, text: string, indent: number, parentsOfComment: Array<string>, createdAt?: any | null, updatedAt?: any | null, likes: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }>, author: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }, replies: Array<{ __typename?: 'Comment', id: string }> }> };
 
 export type LikeCommentMutationVariables = Exact<{
-  username: Scalars["ID"]["input"];
-  cid: Scalars["ID"]["input"];
+  username: Scalars['ID']['input'];
+  cid: Scalars['ID']['input'];
 }>;
 
-export type LikeCommentMutation = {
-  __typename?: "Mutation";
-  updateUsers: {
-    __typename?: "UpdateUsersMutationResponse";
-    users: Array<{
-      __typename?: "User";
-      likedComments: Array<{ __typename?: "Comment"; id: string }>;
-    }>;
-  };
-};
+
+export type LikeCommentMutation = { __typename?: 'Mutation', updateUsers: { __typename?: 'UpdateUsersMutationResponse', users: Array<{ __typename?: 'User', likedComments: Array<{ __typename?: 'Comment', id: string }> }> } };
 
 export type UnLikeCommentMutationVariables = Exact<{
-  username: Scalars["ID"]["input"];
-  cid: Scalars["ID"]["input"];
+  username: Scalars['ID']['input'];
+  cid: Scalars['ID']['input'];
 }>;
 
-export type UnLikeCommentMutation = {
-  __typename?: "Mutation";
-  updateUsers: {
-    __typename?: "UpdateUsersMutationResponse";
-    users: Array<{
-      __typename?: "User";
-      likedComments: Array<{ __typename?: "Comment"; id: string }>;
-    }>;
-  };
-};
+
+export type UnLikeCommentMutation = { __typename?: 'Mutation', updateUsers: { __typename?: 'UpdateUsersMutationResponse', users: Array<{ __typename?: 'User', likedComments: Array<{ __typename?: 'Comment', id: string }> }> } };
 
 export type DeleteCommentsMutationVariables = Exact<{
-  cid: Scalars["ID"]["input"];
+  cid: Scalars['ID']['input'];
 }>;
 
-export type DeleteCommentsMutation = {
-  __typename?: "Mutation";
-  deleteComments: {
-    __typename?: "DeleteInfo";
-    bookmark?: string | null;
-    nodesDeleted: number;
-    relationshipsDeleted: number;
-  };
-};
+
+export type DeleteCommentsMutation = { __typename?: 'Mutation', deleteComments: { __typename?: 'DeleteInfo', bookmark?: string | null, nodesDeleted: number, relationshipsDeleted: number } };
 
 export type SingleComments2QueryVariables = Exact<{
-  cid: Scalars["ID"]["input"];
+  cid: Scalars['ID']['input'];
 }>;
 
-export type SingleComments2Query = {
-  __typename?: "Query";
-  comments: Array<{
-    __typename?: "Comment";
-    id: string;
-    text: string;
-    indent: number;
-    parentsOfComment: Array<string>;
-    createdAt?: any | null;
-    updatedAt?: any | null;
-    likes: Array<{
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    }>;
-    author: {
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    };
-    replyOfComment?: {
-      __typename?: "Comment";
-      id: string;
-      text: string;
-      indent: number;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-      author: {
-        __typename?: "User";
-        id: string;
-        name: string;
-        email: string;
-        username: string;
-        dob?: any | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-      };
-    } | null;
-  }>;
-};
+
+export type SingleComments2Query = { __typename?: 'Query', comments: Array<{ __typename?: 'Comment', id: string, text: string, indent: number, parentsOfComment: Array<string>, createdAt?: any | null, updatedAt?: any | null, likes: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }>, author: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null }, replyOfComment?: { __typename?: 'Comment', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null, author: { __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, createdAt?: any | null, updatedAt?: any | null } } | null }> };
 
 export type CommentsQueryVariables = Exact<{
-  cid: Scalars["ID"]["input"];
+  cid: Scalars['ID']['input'];
 }>;
 
-export type CommentsQuery = {
-  __typename?: "Query";
-  comments: Array<{
-    __typename?: "Comment";
-    id: string;
-    text: string;
-    indent: number;
-    createdAt?: any | null;
-    updatedAt?: any | null;
-  }>;
-};
+
+export type CommentsQuery = { __typename?: 'Query', comments: Array<{ __typename?: 'Comment', id: string, text: string, indent: number, createdAt?: any | null, updatedAt?: any | null }> };
 
 export type UsersQueryVariables = Exact<{
-  username: Scalars["ID"]["input"];
+  username: Scalars['ID']['input'];
 }>;
 
-export type UsersQuery = {
-  __typename?: "Query";
-  users: Array<{
-    __typename?: "User";
-    id: string;
-    name: string;
-    email: string;
-    username: string;
-    dob?: any | null;
-    profileUrl?: string | null;
-    createdAt?: any | null;
-    updatedAt?: any | null;
-    relations: Array<{
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      profileUrl?: string | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    }>;
-    relationWith: Array<{
-      __typename?: "User";
-      id: string;
-      name: string;
-      email: string;
-      username: string;
-      dob?: any | null;
-      profileUrl?: string | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    }>;
-    posts: Array<{
-      __typename?: "Post";
-      id: string;
-      url: string;
-      description?: string | null;
-      visibility?: Array<RelationType> | null;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-    }>;
-    authorOfComments: Array<{
-      __typename?: "Comment";
-      id: string;
-      text: string;
-      indent: number;
-      parentsOfComment: Array<string>;
-      createdAt?: any | null;
-      updatedAt?: any | null;
-      commentOfPost: {
-        __typename?: "Post";
-        id: string;
-        url: string;
-        description?: string | null;
-        visibility?: Array<RelationType> | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-      };
-    }>;
-  }>;
-};
 
-export type Q4QueryVariables = Exact<{ [key: string]: never }>;
+export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, profileUrl?: string | null, createdAt?: any | null, updatedAt?: any | null, relations: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, profileUrl?: string | null, createdAt?: any | null, updatedAt?: any | null }>, relationWith: Array<{ __typename?: 'User', id: string, name: string, email: string, username: string, dob?: any | null, profileUrl?: string | null, createdAt?: any | null, updatedAt?: any | null }>, posts: Array<{ __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null }>, authorOfComments: Array<{ __typename?: 'Comment', id: string, text: string, indent: number, parentsOfComment: Array<string>, createdAt?: any | null, updatedAt?: any | null, commentOfPost: { __typename?: 'Post', id: string, url: string, description?: string | null, visibility?: Array<RelationType> | null, createdAt?: any | null, updatedAt?: any | null, creatorOfPost: { __typename?: 'User', name: string, username: string } } }> }> };
 
-export type Q4Query = {
-  __typename?: "Query";
-  users: Array<{
-    __typename?: "User";
-    id: string;
-    email: string;
-    username: string;
-  }>;
-};
+export type AddRelationMutationVariables = Exact<{
+  cur: Scalars['ID']['input'];
+  user: Scalars['ID']['input'];
+  type: RelationType;
+}>;
 
-export const CreatePostsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CreatePosts" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "url" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "description" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "friend" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "RelationType" },
-                },
-              },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "createPosts" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "input" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "url" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "url" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "description" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "description" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "creatorOfPost" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "connect" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "where" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "node" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "username",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "username",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "visibility" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "friend" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "posts" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "url" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "description" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "creatorOfPost" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "email" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "username" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "dob" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CreatePostsMutation, CreatePostsMutationVariables>;
-export const Q1Document = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "q1" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "users" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "email" } },
-                { kind: "Field", name: { kind: "Name", value: "username" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<Q1Query, Q1QueryVariables>;
-export const Posts2Document = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "Posts2" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "posts" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "options" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "sort" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "createdAt" },
-                            value: { kind: "EnumValue", value: "DESC" },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<Posts2Query, Posts2QueryVariables>;
-export const SinglePostsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "SinglePosts" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "pid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "posts" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "pid" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "url" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "visibility" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "creatorOfPost" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "likes" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "comments" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "text" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "author" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "email" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "username" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "dob" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "replies" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SinglePostsQuery, SinglePostsQueryVariables>;
-export const UnLikeQueryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UnLikeQuery" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUsers" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "username" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "username" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "disconnect" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "likedPosts" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "node" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "id" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: { kind: "Name", value: "id" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "users" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "likedPosts" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "description" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "visibility" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "createdAt" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "updatedAt" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "likes" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "email" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "username" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "dob" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "createdAt" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "updatedAt" },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "creatorOfPost" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "email" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "username" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "dob" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "createdAt" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "updatedAt" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UnLikeQueryMutation, UnLikeQueryMutationVariables>;
-export const LikeQueryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "LikeQuery" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUsers" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "username" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "username" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "connect" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "likedPosts" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "node" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "id" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: { kind: "Name", value: "id" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "users" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "likedPosts" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "description" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "visibility" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "createdAt" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "updatedAt" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "likes" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "email" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "username" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "dob" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "createdAt" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "updatedAt" },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "creatorOfPost" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "email" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "username" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "dob" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "createdAt" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "updatedAt" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<LikeQueryMutation, LikeQueryMutationVariables>;
-export const PostCommentsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "PostComments" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "pid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "comments" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "commentOfPost" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "id" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "pid" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "indent" },
-                      value: { kind: "IntValue", value: "0" },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "options" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "sort" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "createdAt" },
-                            value: { kind: "EnumValue", value: "DESC" },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "updatedAt" },
-                            value: { kind: "EnumValue", value: "DESC" },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "commentsConnection" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "commentOfPost" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "id" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "pid" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "totalCount" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "posts" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "pid" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "url" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "visibility" } },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "creatorOfPost" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<PostCommentsQuery, PostCommentsQueryVariables>;
-export const CreateCommentsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CreateComments" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "comment" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "indent" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "parentsOfComment" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "ID" },
-                },
-              },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "pid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "createComments" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "input" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "text" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "comment" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "indent" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "indent" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "parentsOfComment" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "parentsOfComment" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "author" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "connect" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "where" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "node" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "username",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "username",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "commentOfPost" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "connect" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "where" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "node" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "id",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "pid",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "replyOfComment" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "connect" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "where" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "node" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "id",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "cid",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "comments" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CreateCommentsMutation,
-  CreateCommentsMutationVariables
->;
-export const CommentReplyDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "CommentReply" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "comments" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "cid" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "text" } },
-                { kind: "Field", name: { kind: "Name", value: "indent" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "parentsOfComment" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "likes" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "author" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "replies" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CommentReplyQuery, CommentReplyQueryVariables>;
-export const LikeCommentDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "LikeComment" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUsers" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "username" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "username" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "connect" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "likedComments" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "node" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "id" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: { kind: "Name", value: "cid" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "users" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "likedComments" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<LikeCommentMutation, LikeCommentMutationVariables>;
-export const UnLikeCommentDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "unLikeComment" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUsers" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "username" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "username" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "disconnect" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "likedComments" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "node" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "id" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: { kind: "Name", value: "cid" },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "users" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "likedComments" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UnLikeCommentMutation,
-  UnLikeCommentMutationVariables
->;
-export const DeleteCommentsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "DeleteComments" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteComments" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "OR" },
-                      value: {
-                        kind: "ListValue",
-                        values: [
-                          {
-                            kind: "ObjectValue",
-                            fields: [
-                              {
-                                kind: "ObjectField",
-                                name: { kind: "Name", value: "id" },
-                                value: {
-                                  kind: "Variable",
-                                  name: { kind: "Name", value: "cid" },
-                                },
-                              },
-                            ],
-                          },
-                          {
-                            kind: "ObjectValue",
-                            fields: [
-                              {
-                                kind: "ObjectField",
-                                name: {
-                                  kind: "Name",
-                                  value: "parentsOfComment_INCLUDES",
-                                },
-                                value: {
-                                  kind: "Variable",
-                                  name: { kind: "Name", value: "cid" },
-                                },
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "bookmark" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "nodesDeleted" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "relationshipsDeleted" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteCommentsMutation,
-  DeleteCommentsMutationVariables
->;
-export const SingleComments2Document = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "SingleComments2" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "comments" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "cid" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "text" } },
-                { kind: "Field", name: { kind: "Name", value: "indent" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "parentsOfComment" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "likes" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "author" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "replyOfComment" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "text" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "indent" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "author" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "email" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "username" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "dob" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "createdAt" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "updatedAt" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  SingleComments2Query,
-  SingleComments2QueryVariables
->;
-export const CommentsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "Comments" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "cid" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "comments" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "replyOfComment" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "id" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "cid" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "text" } },
-                { kind: "Field", name: { kind: "Name", value: "indent" } },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CommentsQuery, CommentsQueryVariables>;
-export const UsersDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "Users" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "username" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "users" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "username" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "username" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "email" } },
-                { kind: "Field", name: { kind: "Name", value: "username" } },
-                { kind: "Field", name: { kind: "Name", value: "dob" } },
-                { kind: "Field", name: { kind: "Name", value: "profileUrl" } },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "relations" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "profileUrl" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "relationWith" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "email" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "username" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "dob" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "profileUrl" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "posts" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "url" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "description" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "visibility" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "authorOfComments" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "text" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "indent" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "parentsOfComment" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "createdAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updatedAt" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "commentOfPost" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "description" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "visibility" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "createdAt" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "updatedAt" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UsersQuery, UsersQueryVariables>;
-export const Q4Document = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "q4" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "users" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "email" } },
-                { kind: "Field", name: { kind: "Name", value: "username" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<Q4Query, Q4QueryVariables>;
+
+export type AddRelationMutation = { __typename?: 'Mutation', updateUsers: { __typename?: 'UpdateUsersMutationResponse', users: Array<{ __typename?: 'User', username: string, name: string, relations: Array<{ __typename?: 'User', username: string, name: string }> }> } };
+
+export type RemoveRelationMutationVariables = Exact<{
+  cur: Scalars['ID']['input'];
+  user: Scalars['ID']['input'];
+}>;
+
+
+export type RemoveRelationMutation = { __typename?: 'Mutation', updateUsers: { __typename?: 'UpdateUsersMutationResponse', users: Array<{ __typename?: 'User', username: string, name: string, relations: Array<{ __typename?: 'User', username: string, name: string }> }> } };
+
+export type Q4QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Q4Query = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, email: string, username: string }> };
+
+export type QQueryVariables = Exact<{
+  susername: Scalars['ID']['input'];
+  sname: Scalars['String']['input'];
+}>;
+
+
+export type QQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', username: string, name: string }> };
+
+
+export const CreatePostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatePosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"url"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"friend"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RelationType"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createPosts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"Variable","name":{"kind":"Name","value":"url"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"creatorOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"visibility"},"value":{"kind":"Variable","name":{"kind":"Name","value":"friend"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreatePostsMutation, CreatePostsMutationVariables>;
+export const Q1Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"q1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<Q1Query, Q1QueryVariables>;
+export const Posts2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Posts2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"sort"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"EnumValue","value":"DESC"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}}]}}]} as unknown as DocumentNode<Posts2Query, Posts2QueryVariables>;
+export const SinglePostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SinglePosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}}]}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SinglePostsQuery, SinglePostsQueryVariables>;
+export const UnLikeQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UnLikeQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"disconnect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likedPosts"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likedPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UnLikeQueryMutation, UnLikeQueryMutationVariables>;
+export const LikeQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likedPosts"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likedPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<LikeQueryMutation, LikeQueryMutationVariables>;
+export const PostCommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostComments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"commentOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"indent"},"value":{"kind":"IntValue","value":"0"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"sort"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"EnumValue","value":"DESC"}},{"kind":"ObjectField","name":{"kind":"Name","value":"updatedAt"},"value":{"kind":"EnumValue","value":"DESC"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"commentsConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"commentOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<PostCommentsQuery, PostCommentsQueryVariables>;
+export const CreateCommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateComments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"comment"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"indent"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"parentsOfComment"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createComments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"text"},"value":{"kind":"Variable","name":{"kind":"Name","value":"comment"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"indent"},"value":{"kind":"Variable","name":{"kind":"Name","value":"indent"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"parentsOfComment"},"value":{"kind":"Variable","name":{"kind":"Name","value":"parentsOfComment"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"author"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}]}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"commentOfPost"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pid"}}}]}}]}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"replyOfComment"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<CreateCommentsMutation, CreateCommentsMutationVariables>;
+export const CommentReplyDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CommentReply"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<CommentReplyQuery, CommentReplyQueryVariables>;
+export const LikeCommentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeComment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likedComments"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likedComments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<LikeCommentMutation, LikeCommentMutationVariables>;
+export const UnLikeCommentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"unLikeComment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"disconnect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"likedComments"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likedComments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UnLikeCommentMutation, UnLikeCommentMutationVariables>;
+export const DeleteCommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteComments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteComments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"OR"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"parentsOfComment_INCLUDES"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bookmark"}},{"kind":"Field","name":{"kind":"Name","value":"nodesDeleted"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipsDeleted"}}]}}]}}]} as unknown as DocumentNode<DeleteCommentsMutation, DeleteCommentsMutationVariables>;
+export const SingleComments2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SingleComments2"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyOfComment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SingleComments2Query, SingleComments2QueryVariables>;
+export const CommentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Comments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"replyOfComment"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cid"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<CommentsQuery, CommentsQueryVariables>;
+export const UsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Users"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"profileUrl"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"relations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"profileUrl"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"relationWith"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"dob"}},{"kind":"Field","name":{"kind":"Name","value":"profileUrl"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"authorOfComments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"indent"}},{"kind":"Field","name":{"kind":"Name","value":"parentsOfComment"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"commentOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"visibility"}},{"kind":"Field","name":{"kind":"Name","value":"creatorOfPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UsersQuery, UsersQueryVariables>;
+export const AddRelationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddRelation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cur"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"user"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RelationType"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cur"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"relations"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"connect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"edge"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"user"}}}]}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"relations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<AddRelationMutation, AddRelationMutationVariables>;
+export const RemoveRelationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RemoveRelation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cur"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"user"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cur"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"relations"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"disconnect"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"node"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"user"}}}]}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"relations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<RemoveRelationMutation, RemoveRelationMutationVariables>;
+export const Q4Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"q4"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<Q4Query, Q4QueryVariables>;
+export const QDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"q"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"susername"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sname"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"OR"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name_STARTS_WITH"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sname"}}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username_STARTS_WITH"},"value":{"kind":"Variable","name":{"kind":"Name","value":"susername"}}}]}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<QQuery, QQueryVariables>;

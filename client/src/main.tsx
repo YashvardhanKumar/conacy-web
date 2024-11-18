@@ -4,10 +4,12 @@ import App from "./App.tsx";
 import "./index.css";
 import {
   createBrowserRouter,
+  Navigate,
   Route,
   RouterProvider,
   Routes,
   useNavigate,
+  useParams,
 } from "react-router-dom";
 import RegisterPage from "./pages/register/Register.tsx";
 import { ApolloWrapper } from "./components/apollo-wrapper.tsx";
@@ -21,6 +23,7 @@ import CommentReplyPage from "./pages/posts/comments/CommentReplyPage.tsx";
 import ProfilePage from "./pages/profile/ProfilePage.tsx";
 import { handleValid } from "./apis/submitActions.ts";
 import SinglePostPage from "./pages/posts/SinglePostPage.tsx";
+import Search from "./pages/search/Search.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,16 +44,21 @@ const router = createBrowserRouter([
 ]);
 
 function Root() {
+  const p = useParams();
   const nav = useNavigate();
 
   useEffect(() => {
-    handleValid();
-    if (localStorage?.getItem("isAuthenticated") == "Yes") {
-      handleValid().then(() => {
-        if (localStorage?.getItem("isAuthenticated") != "Yes") nav("/");
-      });
+    try {
+      handleValid();
+    } catch (error) {
+      console.error(error);
     }
-  }, [localStorage?.getItem("isAuthenticated")]);
+    localStorage.setItem("redirectUrl", p["*"] ?? "")
+  });
+
+  if(localStorage?.getItem("isAuthenticated") != "Yes") {
+    return <Navigate to={'/'}/>
+  }
   return (
     <>
       <NavBar />
@@ -58,6 +66,7 @@ function Root() {
         {/* ⬆️ Home route lifted up to the data router */}
         <Route path="/create" element={<Create />} />
         <Route path="/messages" element={<Messages />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/post/:pid">
           <Route path="" element={<SinglePostPage />} />
           <Route path="comments">

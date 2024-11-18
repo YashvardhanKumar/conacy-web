@@ -26,6 +26,39 @@ export const typeDefs = gql`
     username: ID!
     email: String!
   }
+
+  type Notification 
+  @authorization(
+      filter: [
+        {
+          requireAuthentication: true
+          operations: [READ]
+          where: { node: {users_SINGLE: { username: "$jwt.username" } }}
+        }
+      ]
+    ){
+    id: ID! @id
+    users: [User!]! @relationship(type: "NOTIFY_TO", direction: IN)
+    title: String!
+    message: String!
+    importance: NotificationPriority!
+    type: NotificationType!
+  }
+  enum NotificationPriority {
+    SILENT
+    IMPORTANT
+  }
+  enum NotificationType {
+    GROUP_ADD_REQ
+    NETWORK
+    LIKE
+    COMMENT
+    RELATION_REQUEST
+    NEW_RELATION
+    REPORT
+    OTHER
+  }
+
   type PrivacySettings {
     chatVisibility: [RelationType!] @default(value: [PUBLIC])
     profileVisibility: [RelationType!] @default(value: [PUBLIC])
@@ -43,8 +76,7 @@ export const typeDefs = gql`
           where: { node: { username: "$jwt.username" } }
         }
       ]
-    ) 
-    {
+    ) {
     id: ID! @id
     name: String!
     email: String! @unique
@@ -52,7 +84,7 @@ export const typeDefs = gql`
     username: ID! @unique
     dob: Date
     refreshToken: String @private
-    blackList: [String!]!
+    blackList: [String]!
     profileUrl: String
     relations: [User!]!
       @relationship(
@@ -72,6 +104,8 @@ export const typeDefs = gql`
       @relationship(type: "COMMENT_LIKED_BY", direction: OUT)
     authorOfComments: [Comment!]!
       @relationship(type: "COMMENTED_BY", direction: OUT)
+    notifications: [Notification!]!
+      @relationship(type: "NOTIFY_OF", direction: OUT)
     createdAt: DateTime @timestamp(operations: [CREATE])
     updatedAt: DateTime @timestamp(operations: [UPDATE])
   }
@@ -84,19 +118,27 @@ export const typeDefs = gql`
       validate: [
         {
           requireAuthentication: true
-          operations: [CREATE,UPDATE,DELETE]
-          where: {node: { creatorOfPost: {username: "$jwt.username"} }}
-        },
-      ],
+          operations: [CREATE, UPDATE, DELETE]
+          where: { node: { creatorOfPost: { username: "$jwt.username" } } }
+        }
+      ]
       filter: [
         {
           requireAuthentication: true
           operations: [READ]
-          where: {node: { creatorOfPost: {OR: [{relations_SINGLE: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
-        },
+          where: {
+            node: {
+              creatorOfPost: {
+                OR: [
+                  { relations_SINGLE: { username: "$jwt.username" } }
+                  { username: "$jwt.username" }
+                ]
+              }
+            }
+          }
+        }
       ]
-    ) 
-    {
+    ) {
     id: ID! @id
     url: String!
     description: String
@@ -113,20 +155,27 @@ export const typeDefs = gql`
       validate: [
         {
           requireAuthentication: true
-          operations: [CREATE,UPDATE,DELETE]
-          where: {node: { author: {username: "$jwt.username"} }}
-        },
-      ],
+          operations: [CREATE, UPDATE, DELETE]
+          where: { node: { author: { username: "$jwt.username" } } }
+        }
+      ]
       filter: [
         {
           requireAuthentication: true
           operations: [READ]
-          where: {node: { author: {OR: [{relations_SINGLE: {username: "$jwt.username"}},{username: "$jwt.username"} ]}}}
-        },
-
+          where: {
+            node: {
+              author: {
+                OR: [
+                  { relations_SINGLE: { username: "$jwt.username" } }
+                  { username: "$jwt.username" }
+                ]
+              }
+            }
+          }
+        }
       ]
-    ) 
-    {
+    ) {
     id: ID! @id
     text: String!
     indent: Int! @default(value: 0)
@@ -140,31 +189,44 @@ export const typeDefs = gql`
     updatedAt: DateTime @timestamp(operations: [UPDATE])
   }
 
-  type Message 
-  @authorization(
-    validate: [
-      {
-        requireAuthentication: true
-        operations: [CREATE,UPDATE,DELETE],
-        where: {node: {OR: [{ sender: {username: "$jwt.username"} }, {receiver: {username: "$jwt.username"}}]}}
-      }
-    ]
-    filter: [
-      {
-        requireAuthentication: true
-        operations: [READ],
-        where: {node: {OR: [{ sender: {username: "$jwt.username"} }, {receiver: {username: "$jwt.username"}}]}}
-      }
-    ]
-  )
-  {
+  type Message
+    @authorization(
+      validate: [
+        {
+          requireAuthentication: true
+          operations: [CREATE, UPDATE, DELETE]
+          where: {
+            node: {
+              OR: [
+                { sender: { username: "$jwt.username" } }
+                { receiver: { username: "$jwt.username" } }
+              ]
+            }
+          }
+        }
+      ]
+      filter: [
+        {
+          requireAuthentication: true
+          operations: [READ]
+          where: {
+            node: {
+              OR: [
+                { sender: { username: "$jwt.username" } }
+                { receiver: { username: "$jwt.username" } }
+              ]
+            }
+          }
+        }
+      ]
+    ) {
     id: ID! @id
     text: String
     file: String
     type: MessageType!
     format: MessageFormat!
     sender: User! @relationship(type: "MESSAGE_SENT_BY", direction: IN)
-    receiver: User! @relationship(type: "MESSAGE_RECEIVED_BY", direction: IN),
+    receiver: User! @relationship(type: "MESSAGE_RECEIVED_BY", direction: IN)
     createdAt: DateTime @timestamp(operations: [CREATE])
     updatedAt: DateTime @timestamp(operations: [UPDATE])
   }

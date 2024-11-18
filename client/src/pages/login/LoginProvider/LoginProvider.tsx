@@ -74,7 +74,7 @@ const LoginProvider: React.FC<LoginProps> = ({ children }) => {
             h.setFieldError("email", data.message);
             return;
           } else {
-            nav("/");
+            nav("/" + localStorage.getItem("redirectUrl"));
           }
           return;
         }

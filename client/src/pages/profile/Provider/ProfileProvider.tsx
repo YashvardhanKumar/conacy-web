@@ -3,7 +3,7 @@ import { graphql } from "../../../gql";
 import { useMutation, useQuery, useSuspenseQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { ProfileContextProps, ProfileProps } from "./types";
-import { User } from "../../../gql/graphql";
+import { RelationType, User } from "../../../gql/graphql";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const profileQuery = graphql(`
@@ -57,8 +57,56 @@ const profileQuery = graphql(`
           url
           description
           visibility
+          creatorOfPost {
+            name
+            username
+          }
           createdAt
           updatedAt
+        }
+      }
+    }
+  }
+`);
+
+const addRelation = graphql(`
+  mutation AddRelation($cur: ID!, $user: ID!, $type: RelationType!) {
+    updateUsers(
+      where: { username: $cur }
+      update: {
+        relations: {
+          connect: {
+            edge: { type: $type }
+            where: { node: { username: $user } }
+          }
+        }
+      }
+    ) {
+      users {
+        username
+        name
+        relations {
+          username
+          name
+        }
+      }
+    }
+  }
+`);
+const removeRelation = graphql(`
+  mutation RemoveRelation($cur: ID!, $user: ID!) {
+    updateUsers(
+      where: { username: $cur }
+      update: {
+        relations: { disconnect: { where: { node: { username: $user } } } }
+      }
+    ) {
+      users {
+        username
+        name
+        relations {
+          username
+          name
         }
       }
     }
@@ -87,11 +135,41 @@ const ProfileProvider: React.FC<ProfileProps> = ({ children }) => {
     },
     pollInterval: 10000,
   });
-  if (loading) return <LoadingSpinner/>;
+  const addRel = useMutation(addRelation, {
+    refetchQueries: [
+      { query: profileQuery, variables: { username: username ?? "" } },
+    ],
+  });
+  const remRel = useMutation(removeRelation, {
+    refetchQueries: [
+      { query: profileQuery, variables: { username: username ?? "" } },
+    ],
+  });
+  const handleRelation = (isntAdded: boolean) => {
+    if (isntAdded) {
+      remRel[0]({
+        variables: {
+          cur: localStorage.getItem("username")!,
+          user: username!,
+        },
+      });
+    } else {
+      addRel[0]({
+        variables: {
+          cur: localStorage.getItem("username")!,
+          user: username!,
+          type: RelationType.Public,
+        },
+      });
+    }
+  };
+
+  if (loading) return <LoadingSpinner />;
   return (
     <ProfileContext.Provider
       value={{
         user: data?.users[0] as User,
+        handleRelation,
       }}
       children={children}
     />
