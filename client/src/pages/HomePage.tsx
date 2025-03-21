@@ -12,7 +12,7 @@ const HomePage = () => {
   return (
     <Suspense fallback={<LoadingLogo />}>
       <div className="flex flex-row w-screen items-center justify-center">
-        <div className="flex flex-col md:ml-20 items-center gap-10 w-full scroll-m-0 box-border m-auto">
+        <div className="flex flex-col md:my-20 items-center gap-10 w-full scroll-m-0 box-border m-auto pb-20">
           <div className="fixed w-full z-40 bg-base-100 p-3">
             <div
               role="tablist"

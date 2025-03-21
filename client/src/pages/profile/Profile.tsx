@@ -33,7 +33,7 @@ const Profile = () => {
     <UserReplies />,
   ];
   return (
-    <div className="md:ml-20 p-10 flex w-full lg:max-w-5xl flex-col justify-between items-center gap-5">
+    <div className="md:ml-20 pb-20 p-10 flex w-full lg:max-w-5xl flex-col justify-between items-center gap-5">
       <div className="flex sm:items-center gap-4 w-full justify-evenly max-w-5xl">
         <div className="avatar">
           <div className="sm:w-32 sm:h-32 h-20 w-20 rounded-full">

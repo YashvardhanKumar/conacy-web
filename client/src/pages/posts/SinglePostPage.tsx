@@ -21,7 +21,7 @@ const SinglePostPage = () => {
       
       children={
         <div
-          className="flex md:ml-20 justify-center w-screen scroll-m-0 box-border p-2"
+          className="flex md:ml-20 justify-center w-screen scroll-m-0 box-border p-2 pb-20"
           children={<SinglePost />}
         />
       }

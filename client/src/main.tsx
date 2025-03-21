@@ -62,6 +62,8 @@ function Root() {
   return (
     <>
       <NavBar />
+
+
       <Routes>
         {/* ⬆️ Home route lifted up to the data router */}
         <Route path="/create" element={<Create />} />
