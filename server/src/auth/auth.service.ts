@@ -54,7 +54,7 @@ export class AuthService {
       // console.log({ email, name, username, hash: hsh, dob });
 
       const data = await User.create({
-        input: [{ email, name, username, hash: hsh, dob }],
+        input: [{ email, name, username, hash: hsh, dob, blackList: [] }],
       });
       const { accessToken, refreshToken } = await this.sign(
         data.users[0].username,
