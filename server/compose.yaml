@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    environment:
+      - NEO4J_AUTH=neo4j/testneo4j  # Set your desired password here
+    ports:
+      - "7474:7474"  # HTTP interface
+      - "7687:7687"  # Bolt protocol
+    volumes:
+      - neo4j-data:/data  # Persistent data storage
+    networks:
+      - neo4j-network
+
+volumes:
+  neo4j-data:
+
+networks:
+  neo4j-network:
+    driver: bridge
