@@ -48,10 +48,10 @@ const CommentTile = () => {
                 />
                 <div className="contents">
                   <div />
-                  <div className="px-2 inline-flex gap-1 w-full">
+                  <div className="px-2 gap-1 w-full">
                     {comment.replyOfComment && (
                       <div
-                        className=" font-bold"
+                        className="inline font-bold"
                         children={`@${comment.replyOfComment!.author.username}`}
                       />
                     )}
