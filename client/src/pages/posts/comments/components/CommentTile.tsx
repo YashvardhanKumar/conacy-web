@@ -56,7 +56,7 @@ const CommentTile = () => {
                       />
                     )}
 
-                    <div children={comment.text} />
+                    <div className="inline" children={comment.text} />
                   </div>
                 </div>
                 <div className="contents">

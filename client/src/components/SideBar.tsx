@@ -21,7 +21,7 @@ const NavBar = () => {
     <>
       <Link
         to={"/create"}
-        className=" btn dark:bg-white bg-black w-12 p-0  my-20 mx-5 md:m-10 md:w-16 hover:bg-gray-400 rounded-full shadow-lg border-none md:h-16 group fixed bottom-0 right-0"
+        className=" btn dark:bg-white bg-black w-12 p-0  my-20 mx-5 md:m-10 md:w-16 hover:bg-gray-400 rounded-full shadow-lg border-none md:h-16 group fixed bottom-0 right-0 z-50"
       >
         <AddCircle className="dark:*:fill-black" />
       </Link>
