@@ -16,7 +16,7 @@ const Create = () => {
   })
   return (
     <CreatePostProvider>
-      <div className="h-screen flex flex-col items-center max-md:my-16 justify-center">
+      <div className="h-screen flex flex-col items-center justify-center">
         <div></div>
         <CreateForm />
       </div>

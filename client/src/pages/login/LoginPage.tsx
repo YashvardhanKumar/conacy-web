@@ -1,17 +1,14 @@
 // import { FormValidationProvider } from "../../lib/provider/FormProvider";
 // import CombineSteps from "./CombineSteps";
 // import { PageProvider } from "@/lib/provider/PageProvider";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import LoginProvider from "./LoginProvider/LoginProvider";
 import LoginFormCard from "./LoginFormCard";
 const LoginPage = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("isAuthenticated") == "Yes") {
-      navigate("/");
-    }
-  });
+  if (localStorage.getItem("isAuthenticated") == "Yes") {
+    return <Navigate to={"/" + localStorage.getItem("redirectUrl")}/>;
+  }
   return (
     <LoginProvider>
       <div className="flex max-lg:flex-col items-center justify-center py-2.5 min-h-screen">

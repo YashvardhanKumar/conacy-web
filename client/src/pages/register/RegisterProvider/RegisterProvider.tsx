@@ -99,7 +99,7 @@ const RegisterProvider: React.FC<RegisterProps> = ({ children }) => {
     const data = await handleSubmitRegister(values);
     setLoading(false);
     if (data.isAuthenticated) {
-      nav("/");
+      nav("/" + localStorage.getItem("redirectUrl"));
     } else {
       alert(data.error);
     }

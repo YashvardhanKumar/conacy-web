@@ -1,15 +1,14 @@
 import CombineSteps from "./components/CombineSteps";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import RegisterProvider from "./RegisterProvider/RegisterProvider";
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("isAuthenticated") == "Yes") {
-      navigate("/");
-    }
-  });
+
+  if (localStorage.getItem("isAuthenticated") == "Yes") {
+    return <Navigate to={"/" + localStorage.getItem("redirectUrl")}/>;
+  }
+
   return (
     <div className="flex max-lg:flex-col items-center justify-center h-screen p-2.5 min-h-screen">
       <div className=" animate-pulse h-[450px] sm:w-[450px] w-screen absolute bg-web-color blur-3xl"></div>

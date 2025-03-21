@@ -11,15 +11,17 @@ import SaveIcon from "../../assets/Icons/SaveIcon";
 import ToggleSettings from "../../assets/Icons/ToggleSettings";
 import { Link, useParams } from "react-router-dom";
 import person from "../../assets/avatar.png";
+import DialogBox from "../../components/DialogBox";
 
 const SinglePostPage = () => {
   const param = useParams();
   return (
     <SinglePostProvider
       id={param.pid ?? ""}
+      
       children={
         <div
-          className="w-full flex justify-center p-10"
+          className="flex md:ml-20 justify-center w-screen scroll-m-0 box-border p-2"
           children={<SinglePost />}
         />
       }
@@ -28,8 +30,6 @@ const SinglePostPage = () => {
 };
 export default SinglePostPage;
 
-import React from "react";
-import DialogBox from "../../components/DialogBox";
 
 const SinglePost = () => {
   const [seeMore, setSeeMore] = useState(false);
@@ -52,7 +52,7 @@ const SinglePost = () => {
             }
           />
           <div>
-            <div children={post.creatorOfPost.name} />
+            <div className="max-sm:text-sm w-fit text-wrap text-" children={post.creatorOfPost.name} />
             <div
               className=" text-xs text-gray-400"
               children={"@" + post.creatorOfPost.username}
@@ -160,7 +160,7 @@ const SinglePost = () => {
                   />
                   <span className="flex flex-col text-sm text-start justify-self-start">
                     <div
-                      className="px-2 text-web-color"
+                      className="px-2 dark:text-web-color"
                       children={`@${post.comments[0].author.username}`}
                     />
                     <div className="px-2" children={post.comments[0].text} />

@@ -69,10 +69,10 @@ const CommentForm = ({}) => {
           />
         </div>
         <button
-          className={`text-web-color-2 dark:text-web-color ${
-            ccrm.addReplyLoad || !comment ? "btn-disabled" : ""
-          }`}
+          className={`dark:text-web-color enabled:cursor-pointer disabled:text-gray-300 disabled:dark:text-gray-600
+          `}
           onClick={handleClick}
+          disabled={(ccrm.addReplyLoad || !comment)}
           children={
             ccrm[1].loading ? (
               <span className="loading loading-spinner loading-xs"></span>

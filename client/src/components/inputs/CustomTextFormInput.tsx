@@ -19,7 +19,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
   const [field, meta, helpers] = useField(name);
   return (
     <label htmlFor={name} className="flex flex-col">
-      <div className=" text-xs my-1">{label}</div>
+      {label && <div className=" text-xs my-1">{label}</div>}
       <input
         type={type}
         name={name}

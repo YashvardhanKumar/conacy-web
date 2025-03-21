@@ -13,7 +13,7 @@ const CommentsPage = () => {
   // }
   return (
     <CommentInputProvider>
-      <div className="flex md:ml-20 max-md:my-16 justify-center w-screen scroll-m-0 box-border p-2">
+      <div className="flex md:ml-20 justify-center w-screen scroll-m-0 box-border p-2">
         <CommentProvider params={params}>
           <CommentList />
         </CommentProvider>
