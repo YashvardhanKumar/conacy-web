@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import neo4j from 'neo4j-driver';
-import { typeDefs } from 'src/gql/type-defs';
+import { typeDefs } from '../../gql/type-defs';
 import { Neo4jGraphQL } from '@neo4j/graphql';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 

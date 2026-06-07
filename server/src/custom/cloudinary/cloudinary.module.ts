@@ -1,7 +1,8 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Global, Module, OnModuleInit } from '@nestjs/common';
 import { CloudinaryService } from './cloudinary.service';
 import { ConfigurableModuleClass } from './cloudinary.module-definition';
 
+@Global()
 @Module({
   providers: [CloudinaryService],
   exports: [CloudinaryService],

@@ -1,5 +1,5 @@
 import { ConfigurableModuleBuilder } from '@nestjs/common';
-import { CloudinaryModuleOptions } from './cloudinary-options';
+import type { CloudinaryModuleOptions } from './cloudinary-options';
 
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
   new ConfigurableModuleBuilder<CloudinaryModuleOptions>({

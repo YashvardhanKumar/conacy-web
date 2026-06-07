@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { IOGM, MODULE_OPTIONS_TOKEN } from './ogm.module-definition';
+import { MODULE_OPTIONS_TOKEN } from './ogm.module-definition';
+import type { IOGM } from './ogm.module-definition';
 import { Model, OGM } from '@neo4j/graphql-ogm';
 import { auth, driver } from 'neo4j-driver';
 import { ModelMap } from './ogm-types';

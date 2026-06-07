@@ -35,17 +35,6 @@ const LoginProvider: React.FC<LoginProps> = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const nav = useNavigate();
 
-  const { data } = useQuery(
-    graphql(`
-      query q1 {
-        users {
-          id
-          email
-          username
-        }
-      }
-    `)
-  );
   const validationSchema = yup.object().shape({
     email: yup.string().required("Email is required").email("Email Not Valid"),
     password: yup.string().required("Password is required"),
@@ -62,28 +51,20 @@ const LoginProvider: React.FC<LoginProps> = ({ children }) => {
     try {
       h.setSubmitting(false);
 
-      const users = data?.users ?? [];
-      for (let u of users) {
-        if (u.email == values.email) {
-          let data = await handleSubmitLogin(values);
-          setLoading(false);
-
-          if (!data?.isAuthenticated) {
-            console.log(data);
-            setLoading(false);
-            h.setFieldError("email", data.message);
-            return;
-          } else {
-            nav("/" + localStorage.getItem("redirectUrl"));
-          }
-          return;
-        }
-      }
+      let data = await handleSubmitLogin(values);
       setLoading(false);
-      h.setFieldError("email", "User not found");
+
+      if (!data?.isAuthenticated) {
+        console.log(data);
+        h.setFieldError("email", data?.message || "Invalid email or password");
+        return;
+      } else {
+        nav("/" + localStorage.getItem("redirectUrl"));
+      }
     } catch (error) {
       setLoading(false);
       console.error(error);
+      h.setFieldError("email", "An unexpected error occurred");
     }
   };
   return (

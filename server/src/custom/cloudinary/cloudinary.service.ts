@@ -1,8 +1,8 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { MODULE_OPTIONS_TOKEN } from './cloudinary.module-definition';
-import {
+import { defaultCreateSignedUploadUrlOptions } from './cloudinary-options';
+import type {
   CloudinaryModuleOptions,
-  defaultCreateSignedUploadUrlOptions,
   ISignedUploadUrlOptions,
 } from './cloudinary-options';
 import {

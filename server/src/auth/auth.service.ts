@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
-import { OgmService } from 'src/custom/ogm/ogm.service';
+import { OgmService } from '../custom/ogm/ogm.service';
 import * as argon2 from 'argon2';
 import { gql } from 'apollo-server';
 import { DocumentNode } from 'graphql';
@@ -79,7 +79,7 @@ export class AuthService {
     const data = await User.find({
       where: { email },
     });
-    if (data) {
+    if (data && data.length > 0) {
       const verifyPass = await argon2.verify(data[0].hash, password);
       if (!verifyPass) {
         throw new UnauthorizedException('Invalid email or password');

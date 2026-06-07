@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   // appType: 'mpa', // disable history fallback
   server: {
-    // host: '0.0.0.0', // Allows external access to the dev server.
+    host: '0.0.0.0', // Allows external access to the dev server.
     port: 3000,
     // proxy: {
     //   '/api': {
