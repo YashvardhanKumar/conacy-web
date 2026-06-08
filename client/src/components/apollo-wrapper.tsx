@@ -1,21 +1,28 @@
+import React from "react";
 import { createHttpLink, from, split } from "@apollo/client";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { getMainDefinition } from "@apollo/client/utilities";
-import { handleValid } from "../apis/submitActions";
+import { handleValid } from "@apis/submitActions";
 import { onError } from "@apollo/client/link/error";
 
+const serverUrl = import.meta.env.VITE_SERVER_URL || "";
 const httpLink = createHttpLink({
-  uri: `${import.meta.env.VITE_SERVER_URL}/graphql`,
+  uri: serverUrl ? `${serverUrl}/graphql` : "/graphql",
   credentials: "include",
   fetchOptions: { cache: "no-store" },
 });
 
+const wsProtocol = typeof window !== "undefined" && window.location.protocol === "https:" ? "wss:" : "ws:";
+const wsHost = typeof window !== "undefined" ? window.location.host : "localhost";
+const defaultWsUrl = `${wsProtocol}//${wsHost}`;
+const wsUrl = import.meta.env.VITE_WS || defaultWsUrl;
+
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: `${import.meta.env.VITE_WS}/graphql`,
+    url: `${wsUrl}/graphql`,
   })
 );
 
@@ -61,6 +68,6 @@ const client = new ApolloClient({
   link: from([authLink, errorLink, splitLink]),
 });
 
-export function ApolloWrapper(props: any) {
-  return <ApolloProvider client={client}>{props.children}</ApolloProvider>;
+export function ApolloWrapper({ children }: { children: React.ReactNode }) {
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }

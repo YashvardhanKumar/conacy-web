@@ -1,11 +1,10 @@
-import { createContext, Suspense, useContext, useEffect } from "react";
+import { createContext, Suspense, useContext } from "react";
 import { graphql } from "../../../gql";
 import { useSuspenseQuery } from "@apollo/client";
-import { PostContextProps, PostProps } from "./types";
-import { Post } from "../../../gql/graphql";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import { PostContextProps, PostProps } from "@pages/posts/PostProvider/types";
+import { Post } from "@gql/graphql";
 
-import { PostSkeleton } from "../components/Skeleton";
+import { PostSkeleton } from "@pages/posts/components/Skeleton";
 
 export const getPosts = graphql(/* GraphQL */ `
   query Posts2 {

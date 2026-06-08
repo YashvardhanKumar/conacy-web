@@ -27,16 +27,16 @@ export const typeDefs = gql`
     email: String!
   }
 
-  type Notification 
-  @authorization(
+  type Notification
+    @authorization(
       filter: [
         {
           requireAuthentication: true
           operations: [READ]
-          where: { node: {users_SINGLE: { username: "$jwt.username" } }}
+          where: { node: { users_SINGLE: { username: "$jwt.username" } } }
         }
       ]
-    ){
+    ) {
     id: ID! @id
     users: [User!]! @relationship(type: "NOTIFY_TO", direction: IN)
     title: String!

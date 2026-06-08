@@ -108,6 +108,14 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
+    "moduleNameMapper": {
+      "^@auth/(.*)$": "<rootDir>/auth/$1",
+      "^@custom/(.*)$": "<rootDir>/custom/$1",
+      "^@generated/(.*)$": "<rootDir>/generated/$1",
+      "^@gql/(.*)$": "<rootDir>/gql/$1",
+      "^@gql$": "<rootDir>/gql/index",
+      "^@posts/(.*)$": "<rootDir>/posts/$1"
+    },
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],

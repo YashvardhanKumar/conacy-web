@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import SinglePostProvider, {
   useSinglePostContext,
-} from "./SinglePostProvider/SinglePostProvider";
-import CommentButton from "./components/CommentButton";
-import LikeForm from "./components/LikeForm";
-import { DeletePostDialogBox } from "./components/PostCardImage";
-import CommentIcon from "../../assets/Icons/CommentIcon";
-import SendIcon from "../../assets/Icons/SendIcon";
-import SaveIcon from "../../assets/Icons/SaveIcon";
-import ToggleSettings from "../../assets/Icons/ToggleSettings";
+} from "@pages/posts/SinglePostProvider/SinglePostProvider";
+import LikeForm from "@pages/posts/components/LikeForm";
+import CommentIcon from "@assets/Icons/CommentIcon";
+import SendIcon from "@assets/Icons/SendIcon";
+import SaveIcon from "@assets/Icons/SaveIcon";
+import ToggleSettings from "@assets/Icons/ToggleSettings";
 import { Link, useParams } from "react-router-dom";
-import person from "../../assets/avatar.png";
-import DialogBox from "../../components/DialogBox";
+import person from "@assets/avatar.png";
+import DialogBox from "@components/DialogBox";
 
 const SinglePostPage = () => {
   const param = useParams();
@@ -34,7 +32,6 @@ export default SinglePostPage;
 const SinglePost = () => {
   const [seeMore, setSeeMore] = useState(false);
   const { post } = useSinglePostContext();
-  const [dialogOpen, setDialogOpen] = useState(false);
   useEffect(() => {
     console.log(post.visibility);
   });

@@ -1,4 +1,6 @@
-const CommentIcon = (props: any) => {
+import { IconProps } from "@assets/Icons/IconProps";
+
+const CommentIcon = (props: IconProps) => {
   return (
     <>
       <svg

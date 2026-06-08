@@ -1,4 +1,4 @@
-import feed from "../assets/feed.png";
+import feed from "@assets/feed.png";
 
 const ScreenshotPhone = () => {
   return (

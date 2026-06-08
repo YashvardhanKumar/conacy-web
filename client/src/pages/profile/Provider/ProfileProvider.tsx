@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 import { graphql } from "../../../gql";
-import { useMutation, useQuery, useSuspenseQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-import { ProfileContextProps, ProfileProps } from "./types";
-import { RelationType, User } from "../../../gql/graphql";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import { ProfileContextProps, ProfileProps } from "@pages/profile/Provider/types";
+import { RelationType, User } from "@gql/graphql";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const profileQuery = graphql(`
   query Users($username: ID!) {

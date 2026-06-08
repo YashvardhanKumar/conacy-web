@@ -1,8 +1,8 @@
 import { Form, Formik } from "formik";
-import CustomTextArea from "../../components/inputs/CustomTextAreaInput";
-import CustomFileInput from "../../components/inputs/CustomFileInput";
-import CircularLoader from "../../components/CircularLoader";
-import { useCreatePostContext } from "./CreatePostProvider/CreatePostProvider";
+import CustomTextArea from "@components/inputs/CustomTextAreaInput";
+import CustomFileInput from "@components/inputs/CustomFileInput";
+import CircularLoader from "@components/CircularLoader";
+import { useCreatePostContext } from "@pages/create/CreatePostProvider/CreatePostProvider";
 
 const CreateForm = () => {
   const {

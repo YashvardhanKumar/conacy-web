@@ -1,4 +1,4 @@
-import logo from "../assets/conacylogo.svg";
+import logo from "@assets/conacylogo.svg";
 const LoadingLogo = () => {
   return (
     <div className="flex h-screen w-screen absolute z-50 backdrop-blur-lg bg-black top-0 left-0 bg-opacity-30 items-center justify-center ">

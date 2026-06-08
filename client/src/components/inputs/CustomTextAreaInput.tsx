@@ -1,6 +1,6 @@
 "use client";
 import { useField } from "formik";
-import React, { useEffect, useState } from "react";
+import React from "react";
 type CustomTextAreaProps = {
   name: string;
   hint?: string;
@@ -12,7 +12,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
   hint,
   required,
 }) => {
-  const [field, meta, helpers] = useField(name);
+  const [field, meta] = useField(name);
   return (
     <div className=" max-w-96 w-full p-2 flex flex-col gap-1">
       <label

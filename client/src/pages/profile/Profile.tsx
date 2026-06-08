@@ -1,20 +1,15 @@
-import React, { FC, ReactNode, useEffect, useState } from "react";
-import avatar from "../../assets/avatar.png";
-import { useProfiletContext } from "./Provider/ProfileProvider";
-import useTitle from "../../hooks/useTitle";
+import React, { useEffect, useState } from "react";
+import avatar from "@assets/avatar.png";
+import { useProfiletContext } from "@pages/profile/Provider/ProfileProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBirthdayCake,
-  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import { faCalendar } from "@fortawesome/free-regular-svg-icons";
-import ToggleSettings from "../../assets/Icons/ToggleSettings";
 import { motion } from "framer-motion";
-import LogoutIcon from "../../assets/Icons/LogoutIcon";
-import { handleLogout } from "../../apis/submitActions";
+import LogoutIcon from "@assets/Icons/LogoutIcon";
+import { handleLogout } from "@apis/submitActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import DialogBox from "../../components/DialogBox";
-import { RelationType } from "../../gql/graphql";
+import DialogBox from "@components/DialogBox";
 
 const Profile = () => {
   const { user } = useProfiletContext();
@@ -26,7 +21,7 @@ const Profile = () => {
     document.title = user
       ? `${user?.name.split(" ")[0]} | @${user?.username}`
       : "Loading...";
-  }, [user]);
+  }, [user, nav]);
   const tabs = ["Posts", "Replies"];
   const tabPages = [
     <UserPostGrid/>,
@@ -80,16 +75,17 @@ const Profile = () => {
 
 export default Profile;
 
-const UserDetailRow = (props: any) => {
+const UserDetailRow = (props: { className?: string }) => {
   const { username } = useParams();
   const { user, handleRelation } = useProfiletContext();
-  let curUser = localStorage.getItem("username");
+  const curUser = localStorage.getItem("username");
+  const nav = useNavigate();
   const [curRel, setCurRel] = useState(
     user?.relationWith.find((e) => e.username == curUser)
   );
   useEffect(() => {
     setCurRel(user?.relationWith.find((e) => e.username == curUser));
-  }, [user]);
+  }, [user, curUser]);
   return (
     <div className={"flex gap-3 w-full " + props.className}>
       <div className="flex flex-wrap w-full justify-between items-stretch gap-3 flex-1">
@@ -148,7 +144,7 @@ const UserDetailRow = (props: any) => {
                 className="btn btn-error text-white"
                 onClick={async () => {
                   await handleLogout();
-                  const nav = useNavigate();
+                  nav("/");
                 }}
               >
                 Logout

@@ -1,11 +1,11 @@
-import logo from "../assets/conacylogo.svg";
-import messaging from "../assets/messaging.svg";
-import timer from "../assets/timer.svg";
-import view from "../assets/view.svg";
-import usersecurity from "../assets/security.svg";
-import ScreenshotPhone from "../components/ScreenshotPhone";
-import Footer from "../components/Footer";
-import ArrowForward from "../assets/Icons/ArrowForward";
+import logo from "@assets/conacylogo.svg";
+import messaging from "@assets/messaging.svg";
+import timer from "@assets/timer.svg";
+import view from "@assets/view.svg";
+import usersecurity from "@assets/security.svg";
+import ScreenshotPhone from "@components/ScreenshotPhone";
+import Footer from "@components/Footer";
+import ArrowForward from "@assets/Icons/ArrowForward";
 import { Link } from "react-router-dom";
 export default function IntroPage() {
   const features = [

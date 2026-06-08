@@ -1,8 +1,8 @@
-import { useReplyCommentContext } from "../Providers/ReplyCommentProvider/ReplyCommentProvider";
-import ReplyCommentForm from "./ReplyCommentForm";
-import SingleCommentProvider from "../Providers/SingleCommentProvider/SingleCommentProvider";
-import CommentTile from "./CommentTile";
-import person from "../../../../assets/avatar.png";
+import { useReplyCommentContext } from "@pages/posts/comments/Providers/ReplyCommentProvider/ReplyCommentProvider";
+import ReplyCommentForm from "@pages/posts/comments/components/ReplyCommentForm";
+import SingleCommentProvider from "@pages/posts/comments/Providers/SingleCommentProvider/SingleCommentProvider";
+import CommentTile from "@pages/posts/comments/components/CommentTile";
+import person from "@assets/avatar.png";
 
 const ReplyList = () => {
   const { inputRef, comment } = useReplyCommentContext();

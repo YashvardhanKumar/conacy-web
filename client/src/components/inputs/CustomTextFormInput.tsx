@@ -16,7 +16,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
   type,
   required,
 }) => {
-  const [field, meta, helpers] = useField(name);
+  const [field, meta] = useField(name);
   return (
     <label htmlFor={name} className="flex flex-col">
       {label && <div className=" text-xs my-1">{label}</div>}

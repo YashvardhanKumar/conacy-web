@@ -1,8 +1,8 @@
-import { Suspense, useEffect, useState } from "react";
-import PostsList from "./posts/PostsList";
-import LoadingLogo from "../components/LoadingLogo";
-import PostProvider from "./posts/PostProvider/PostProvider";
-import useTitle from "../hooks/useTitle";
+import { Suspense, useState } from "react";
+import PostsList from "@pages/posts/PostsList";
+import LoadingLogo from "@components/LoadingLogo";
+import PostProvider from "@pages/posts/PostProvider/PostProvider";
+import useTitle from "@hooks/useTitle";
 
 const HomePage = () => {
   useTitle("Home | Conacy");

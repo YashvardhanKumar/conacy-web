@@ -1,12 +1,12 @@
-// import RegisterForm1 from "./steps/RegisterForm1";
-// import RegisterForm2 from "./steps/RegisterForm2";
-// import RegisterForm3 from "./steps/RegisterForm3";
-import logo from "../../../assets/conacylogo.svg";
-import StepsTracker from "./StepsTracker";
+// import RegisterForm1 from "@pages/register/components/steps/RegisterForm1";
+// import RegisterForm2 from "@pages/register/components/steps/RegisterForm2";
+// import RegisterForm3 from "@pages/register/components/steps/RegisterForm3";
+import logo from "@assets/conacylogo.svg";
+import StepsTracker from "@pages/register/components/StepsTracker";
 
-import FormRegister from "./FormRegister";
+import FormRegister from "@pages/register/components/FormRegister";
 import { Link } from "react-router-dom";
-import { useRegisterContext } from "../RegisterProvider/RegisterProvider";
+import { useRegisterContext } from "@pages/register/RegisterProvider/RegisterProvider";
 
 const CombineSteps = () => {
   const { page } = useRegisterContext();

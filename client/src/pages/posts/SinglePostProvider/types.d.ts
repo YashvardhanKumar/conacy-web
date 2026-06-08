@@ -1,4 +1,4 @@
-import { Post } from "../../../gql/graphql";
+import { Post } from "@gql/graphql";
 
 interface SinglePostProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface SinglePostContextProps {
             id: Scalars["ID"]["input"];
           }>,
           DefaultContext,
-          ApolloCache<any>
+          ApolloCache<unknown>
         >
       | undefined
   ) => Promise<FetchResult<LikeQueryMutation>>;
@@ -29,7 +29,7 @@ interface SinglePostContextProps {
             username: Scalars["ID"]["input"];
           }>,
           DefaultContext,
-          ApolloCache<any>
+          ApolloCache<unknown>
         >
       | undefined
   ) => Promise<FetchResult<UnLikeQueryMutation>>;

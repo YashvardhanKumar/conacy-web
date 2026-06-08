@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { graphql } from "../../../gql";
 import { FormikHelpers } from "formik";
-import { handleSubmitRegister } from "../api";
+import { handleSubmitRegister } from "@pages/register/api";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { parse } from "date-fns";
@@ -56,7 +56,7 @@ const RegisterProvider: React.FC<RegisterProps> = ({ children }) => {
     h.setSubmitting(false);
     console.log(error);
     const users = data?.users ?? [];
-    for (let u of users) {
+    for (const u of users) {
       if (u.email == values.email) {
         h.setFieldError("email", "Email already exists");
         return;
@@ -77,7 +77,7 @@ const RegisterProvider: React.FC<RegisterProps> = ({ children }) => {
 
     const users = data?.users ?? [];
 
-    for (let u of users) {
+    for (const u of users) {
       if (u.username == values.username) {
         h.setFieldError("username", "Username already exists");
         return;

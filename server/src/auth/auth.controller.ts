@@ -10,13 +10,11 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { CreateUserDTO } from './dto/create-user.dto';
-import { AuthService } from './auth.service';
+import { CreateUserDTO } from '@auth/dto/create-user.dto';
+import { AuthService } from '@auth/auth.service';
 import { CookieOptions, Request, Response } from 'express';
-import { USERS } from './decorator/email.decorator';
-import { CustomAuthGuard } from './auth.guard';
+import { CustomAuthGuard } from '@auth/auth.guard';
 import { AuthGuard } from '@nestjs/passport';
-import { LocalStrategy } from './local.strategy';
 
 @Controller('auth')
 export class AuthController {
@@ -24,12 +22,12 @@ export class AuthController {
   private optionsAccess: CookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'none'
+    sameSite: 'none',
   };
   private optionsRefresh: CookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'none'
+    sameSite: 'none',
   };
   @HttpCode(HttpStatus.OK)
   @Post('signUp')
@@ -40,13 +38,7 @@ export class AuthController {
     const { email, hash, dob, name, username } = createUserDTO;
     // console.log(createUserDTO);
 
-    const a = await this.authService.signUp(
-      email,
-      name,
-      username,
-      hash,
-      dob,
-    );
+    const a = await this.authService.signUp(email, name, username, hash, dob);
 
     if (a.isAuthenticated) {
       const { accessToken, refreshToken, isAuthenticated, username } = a;
@@ -71,7 +63,6 @@ export class AuthController {
     const { accessToken, refreshToken, isAuthenticated, username } =
       await this.authService.login(body.email, req.user);
 
-
     if (isAuthenticated) {
       res
         .cookie('accessToken', accessToken, this.optionsAccess)
@@ -87,15 +78,12 @@ export class AuthController {
   ) {
     const accessToken = request.cookies['accessToken'];
     const refreshToken = request.cookies['refreshToken'];
-    
 
-    const { isAuthenticated, token, message, username } = await this.authService.verify(
-      accessToken,
-      refreshToken,
-    );
+    const { isAuthenticated, token, message, username } =
+      await this.authService.verify(accessToken, refreshToken);
     if (isAuthenticated) {
       // console.log("verify is authenticated");
-      
+
       res.status(200).cookie('accessToken', token, this.optionsAccess);
       return { isAuthenticated, username };
     }
@@ -132,12 +120,9 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(CustomAuthGuard)
   @Put('logout')
-  async logout(
-    @Res({ passthrough: true }) res: Response,
-    @Req() req: Request,
-  ) {
+  async logout(@Res({ passthrough: true }) res: Response, @Req() req: Request) {
     const token = req.cookies['refreshToken'];
-    
+
     await this.authService.logout(req['jwt'].email, token);
     res
       .clearCookie('accessToken', this.optionsAccess)

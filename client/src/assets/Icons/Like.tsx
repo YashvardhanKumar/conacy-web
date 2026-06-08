@@ -1,4 +1,9 @@
-const Like = (props: any) => {
+interface LikeProps {
+  liked?: boolean;
+  size?: string | number;
+}
+
+const Like = (props: LikeProps) => {
   return (
     <>
       {!props.liked ? (

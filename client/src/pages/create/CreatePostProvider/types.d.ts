@@ -16,7 +16,7 @@ interface CreatePostContextType {
   handleSubmit: (
     values: CreateFormProps,
     formikHelpers: FormikHelpers<CreateFormProps>
-  ) => void | Promise<any>;
+  ) => void | Promise<unknown>;
   loading: boolean;
 }
 

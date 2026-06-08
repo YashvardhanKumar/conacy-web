@@ -24,7 +24,7 @@ export const useCommentInputContext = () => {
 };
 
 import React from "react";
-import { ReplierProps } from "../ReplyCommentProvider/types";
+import { ReplierProps } from "@pages/posts/comments/Providers/ReplyCommentProvider/types";
 
 const CommentInputProvider: React.FC<CommentInputProps> = ({ children }) => {
   const inputRef = useRef<HTMLDivElement | null>(null);

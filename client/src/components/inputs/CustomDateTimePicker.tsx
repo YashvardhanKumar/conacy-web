@@ -1,6 +1,6 @@
 "use client";
 import { useField } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 type CustomDateTimePickerProps = {
   label?: string;
   name: string;
@@ -17,20 +17,20 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
   required,
   //   value,
 }) => {
-  const [field, meta, helpers] = useField(name);
+  const [field, meta] = useField(name);
   const [date, setDate] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     field.onChange(e);
-    var input = e.target.value;
+    let input = e.target.value;
     if (/\D\/$/.test(input)) input = input.slice(0, input.length - 3);
 
-    var values = input.split("/").map(function (v) {
+    const values = input.split("/").map(function (v) {
       return v.replace(/\D/g, "");
     });
     if (values[0]) values[0] = checkValue(values[0], 31);
     if (values[1] && values[0]) {
       values[1] = checkValue(values[1], 12);
-      let month31 = [1, 3, 5, 7, 8, 10, 12];
+      const month31 = [1, 3, 5, 7, 8, 10, 12];
       if (!month31.find((v) => v == Number(values[1]).valueOf())) {
         if (parseInt(values[1]) == 2) values[0] = checkValue(values[0], 29);
         else values[0] = checkValue(values[0], 30);
@@ -46,7 +46,7 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
         }
       }
     }
-    var output = values.map(function (v, i) {
+    const output = values.map(function (v, i) {
       return v.length == 2 && i < 2 ? v + " / " : v;
     });
     setDate(() => output.join("").slice(0, 14));
@@ -54,7 +54,7 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
 
   const checkValue = (str: string, max: number) => {
     if (str.charAt(0) !== "0" || str == "00") {
-      var num = parseInt(str);
+      let num = parseInt(str);
       if (isNaN(num) || num <= 0) str = "";
       if (num > max) num = max;
       str =

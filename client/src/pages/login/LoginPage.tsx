@@ -1,10 +1,9 @@
-// import { FormValidationProvider } from "../../lib/provider/FormProvider";
-// import CombineSteps from "./CombineSteps";
+// import { FormValidationProvider } from "@lib/provider/FormProvider";
+// import CombineSteps from "@pages/login/CombineSteps";
 // import { PageProvider } from "@/lib/provider/PageProvider";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import LoginProvider from "./LoginProvider/LoginProvider";
-import LoginFormCard from "./LoginFormCard";
+import { Navigate } from "react-router-dom";
+import LoginProvider from "@pages/login/LoginProvider/LoginProvider";
+import LoginFormCard from "@pages/login/LoginFormCard";
 const LoginPage = () => {
   if (localStorage.getItem("isAuthenticated") == "Yes") {
     return <Navigate to={"/" + localStorage.getItem("redirectUrl")}/>;

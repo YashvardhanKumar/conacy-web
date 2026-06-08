@@ -1,5 +1,5 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import useTitle from "../../hooks/useTitle";
+import { useNavigate } from "react-router-dom";
+import useTitle from "@hooks/useTitle";
 import { useEffect } from "react";
 
 const Messages = () => {

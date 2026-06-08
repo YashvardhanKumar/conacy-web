@@ -1,7 +1,6 @@
-import CombineSteps from "./components/CombineSteps";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import RegisterProvider from "./RegisterProvider/RegisterProvider";
+import CombineSteps from "@pages/register/components/CombineSteps";
+import { Navigate } from "react-router-dom";
+import RegisterProvider from "@pages/register/RegisterProvider/RegisterProvider";
 
 const RegisterPage = () => {
 

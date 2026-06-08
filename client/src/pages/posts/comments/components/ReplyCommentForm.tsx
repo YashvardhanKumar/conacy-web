@@ -1,9 +1,9 @@
-import person from "../../../../assets/avatar.png";
+import person from "@assets/avatar.png";
 import { motion } from "framer-motion";
-import CircularLoader from "../../../../components/CircularLoader";
-import { useReplyCommentContext } from "../Providers/ReplyCommentProvider/ReplyCommentProvider";
+import CircularLoader from "@components/CircularLoader";
+import { useReplyCommentContext } from "@pages/posts/comments/Providers/ReplyCommentProvider/ReplyCommentProvider";
 
-const ReplyCommentForm = ({}) => {
+const ReplyCommentForm = () => {
   const {
     handleCancelReply,
     replier,

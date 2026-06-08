@@ -1,4 +1,4 @@
-import { Comment } from "../../../../../gql/graphql";
+import { Comment } from "@gql/graphql";
 
 interface ReplyCommentProps {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ interface ReplyCommentContextProps {
       indent: Scalars["Int"]["input"];
     }>,
     DefaultContext,
-    ApolloCache<any>
+    ApolloCache<unknown>
   >;
   reply: string;
   handleCancelReply: () => void;

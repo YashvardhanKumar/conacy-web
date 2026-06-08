@@ -1,9 +1,7 @@
-import { useQuery } from "@apollo/client";
 import { createContext, useContext, useState } from "react";
 import * as yup from "yup";
-import { graphql } from "../../../gql";
 import { FormikHelpers } from "formik";
-import { handleSubmitLogin } from "../../../apis/submitActions";
+import { handleSubmitLogin } from "@apis/submitActions";
 import { useNavigate } from "react-router-dom";
 /**
  * Custom hook for Post Context
@@ -51,7 +49,7 @@ const LoginProvider: React.FC<LoginProps> = ({ children }) => {
     try {
       h.setSubmitting(false);
 
-      let data = await handleSubmitLogin(values);
+      const data = await handleSubmitLogin(values);
       setLoading(false);
 
       if (!data?.isAuthenticated) {

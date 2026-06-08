@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { graphql } from "../../../gql";
+import { graphql } from "@gql";
 import * as yup from "yup";
-import { RelationType } from "../../../gql/graphql";
+import { RelationType } from "@gql/graphql";
 import { FormikHelpers } from "formik";
 /**
  * GraphQL Queries
@@ -89,7 +89,7 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const handleUploadImage = async (file: File) => {
     const formdata = new FormData();
     formdata.append("file", file, file.name);
-    let url = import.meta.env.VITE_SERVER_URL;
+    const url = import.meta.env.VITE_SERVER_URL || "";
     console.log(import.meta.env.VITE_SERVER_URL);
     return fetch(`${url}/upload`, {
       method: "POST",
@@ -135,8 +135,7 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
             },
           });
 
-          if (res.data) {
-          } else {
+          if (!res.data) {
             console.log(res.errors);
           }
 

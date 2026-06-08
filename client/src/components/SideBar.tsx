@@ -1,18 +1,13 @@
-import logo from "../assets/conacylogo.svg";
-import DashboardIcon from "../assets/Icons/DashboardIcon";
-import MessageIcon from "../assets/Icons/MessageIcon";
-import GroupIcon from "../assets/Icons/GroupIcon";
-import SearchIcon from "../assets/Icons/SearchIcon";
-import NotificationIcon from "../assets/Icons/NotificationIcon";
-import AddCircle from "../assets/Icons/AddCircle";
-import ToggleSettings from "../assets/Icons/ToggleSettings";
-import PersonIcon from "../assets/Icons/PersonIcon";
+import logo from "@assets/conacylogo.svg";
+import DashboardIcon from "@assets/Icons/DashboardIcon";
+import MessageIcon from "@assets/Icons/MessageIcon";
+import SearchIcon from "@assets/Icons/SearchIcon";
+import NotificationIcon from "@assets/Icons/NotificationIcon";
+import AddCircle from "@assets/Icons/AddCircle";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import LogoutIcon from "../assets/Icons/LogoutIcon";
-import DialogBox from "./DialogBox";
-import { handleLogout } from "../apis/submitActions";
-import person from "../assets/avatar.png";
+import DialogBox from "@components/DialogBox";
+import { handleLogout } from "@apis/submitActions";
+import person from "@assets/avatar.png";
 
 const NavBar = () => {
   const nav = useNavigate();

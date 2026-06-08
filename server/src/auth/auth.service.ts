@@ -1,17 +1,9 @@
-import {
-  BadRequestException,
-  ForbiddenException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as jwt from 'jsonwebtoken';
-import { OgmService } from '../custom/ogm/ogm.service';
+import { OgmService } from '@custom/ogm/ogm.service';
 import * as argon2 from 'argon2';
 import { gql } from 'apollo-server';
-import { DocumentNode } from 'graphql';
 import { JwtService } from '@nestjs/jwt';
-import { Model } from '@neo4j/graphql-ogm';
 @Injectable()
 export class AuthService {
   private selectionSet = `
@@ -84,8 +76,15 @@ export class AuthService {
       if (!verifyPass) {
         throw new UnauthorizedException('Invalid email or password');
       }
-      const { hash, refreshToken, ...res } = data[0];
-      return { ...res, verifyPass };
+      const user = data[0];
+      return {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        username: user.username,
+        dob: user.dob,
+        verifyPass,
+      };
     } else {
       throw new UnauthorizedException('Invalid email or password');
     }
@@ -163,7 +162,7 @@ export class AuthService {
     if (!_refreshToken) {
       return { isAuthenticated: false, message: 'Invalid Request' };
     }
-    let { username, email, exp } =
+    const { username, email, exp } =
       this.jwtService.decode(_refreshToken, {
         complete: true,
         json: true,
@@ -207,7 +206,7 @@ export class AuthService {
       }
 
       try {
-        const { exp } = await this.jwtService.verifyAsync(accessToken);
+        await this.jwtService.verifyAsync(accessToken);
         // console.log(exp - time);
       } catch (e) {
         if (e.message !== 'invalid signature') {

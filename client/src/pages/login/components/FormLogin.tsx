@@ -1,8 +1,8 @@
 import { Form, Formik } from "formik";
 
-import { useLoginContext } from "../LoginProvider/LoginProvider";
-import CircularLoader from "../../../components/CircularLoader";
-import CustomTextField from "../../../components/inputs/CustomTextFormInput";
+import { useLoginContext } from "@pages/login/LoginProvider/LoginProvider";
+import CircularLoader from "@components/CircularLoader";
+import CustomTextField from "@components/inputs/CustomTextFormInput";
 
 const FormLogin = () => {
   const { loading, initialValues, validationSchema, handleSubmit } =

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import CommentIcon from "../../../assets/Icons/CommentIcon";
-import { Post } from "../../../gql/graphql";
-import { useSinglePostContext } from "../SinglePostProvider/SinglePostProvider";
+import CommentIcon from "@assets/Icons/CommentIcon";
+import { useSinglePostContext } from "@pages/posts/SinglePostProvider/SinglePostProvider";
 
 const CommentButton = () => {
   const { post } = useSinglePostContext();

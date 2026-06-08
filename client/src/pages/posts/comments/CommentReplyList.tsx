@@ -1,8 +1,8 @@
-import CommentTile from "./components/CommentTile";
+import CommentTile from "@pages/posts/comments/components/CommentTile";
 import SingleCommentProvider, {
   useSingleCommentContext,
-} from "./Providers/SingleCommentProvider/SingleCommentProvider";
-import { CommentTileSkeleton } from "../components/Skeleton";
+} from "@pages/posts/comments/Providers/SingleCommentProvider/SingleCommentProvider";
+import { CommentTileSkeleton } from "@pages/posts/components/Skeleton";
 
 const CommentReplyList = () => {
   const { replyList } = useSingleCommentContext();

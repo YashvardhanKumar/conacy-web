@@ -1,4 +1,4 @@
-import { Comment } from "../../../../../gql/graphql";
+import { Comment } from "@gql/graphql";
 
 interface SingleCommentProps {
   children: React.ReactNode;

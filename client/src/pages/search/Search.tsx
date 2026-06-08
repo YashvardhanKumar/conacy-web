@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchIcon from "../../assets/Icons/SearchIcon";
+import SearchIcon from "@assets/Icons/SearchIcon";
 import { BiSearchAlt } from "react-icons/bi";
 import { graphql } from "../../gql";
 import { useQuery } from "@apollo/client";

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IconProps } from "./IconProps";
+import { IconProps } from "@assets/Icons/IconProps";
 
 const SearchIcon: FC<IconProps> = () => {
   return (

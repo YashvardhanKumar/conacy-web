@@ -9,8 +9,8 @@ services:
       - NEO4J_PLUGINS=["apoc"]
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
     ports:
-      - "7474:7474"  # HTTP Neo4j Browser
-      - "7687:7687"  # Bolt protocol
+      - "127.0.0.1:7474:7474"  # HTTP Neo4j Browser (Local only)
+      - "127.0.0.1:7687:7687"  # Bolt protocol (Local only)
     volumes:
       - neo4j-data:/data
       - neo4j-logs:/logs
@@ -21,7 +21,7 @@ services:
     image: redis:alpine
     container_name: conacy-redis
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
     volumes:
       - redis-data:/data
     networks:
@@ -31,15 +31,15 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-      target: development
+      target: ${SERVER_BUILD_TARGET:-runner}
     container_name: conacy-server
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=${NODE_ENV:-production}
       - PORT=3001
       - NEO4J_URI=bolt://neo4j:7687
       - NEO4J_USERNAME=neo4j
       - NEO4J_PASSWORD=${NEO4J_PASSWORD:-testneo4j}
-      - CLIENT_URL=http://localhost
+      - CLIENT_URL=${CLIENT_URL:-http://localhost}
       - CLOUDINARY_NAME=${CLOUDINARY_NAME}
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
@@ -49,10 +49,10 @@ services:
       - PRIVATE_KEY=${PRIVATE_KEY}
       - PUBLIC_KEY=${PUBLIC_KEY}
     volumes:
-      - ./server:/app
-      - /app/node_modules
+      - ${SERVER_VOLUME:-server-data}:/app
+      - ${SERVER_NODE_MODULES:-server-node-modules}:/app/node_modules
     ports:
-      - "3001:3001"
+      - "127.0.0.1:3001:3001"
     depends_on:
       - neo4j
       - redis
@@ -63,17 +63,20 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-      target: development
+      target: ${CLIENT_BUILD_TARGET:-runner}
+      args:
+        - VITE_SERVER_URL=${VITE_SERVER_URL:-}
+        - VITE_WS=${VITE_WS:-}
     container_name: conacy-client
     environment:
-      - NODE_ENV=development
-      - VITE_SERVER_URL=http://localhost
-      - VITE_WS=ws://localhost
+      - NODE_ENV=${NODE_ENV:-production}
+      - VITE_SERVER_URL=${VITE_SERVER_URL:-}
+      - VITE_WS=${VITE_WS:-}
     volumes:
-      - ./client:/app
-      - /app/node_modules
+      - ${CLIENT_VOLUME:-client-data}:/app
+      - ${CLIENT_NODE_MODULES:-client-node-modules}:/app/node_modules
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       - conacy-network
 
@@ -94,6 +97,10 @@ volumes:
   neo4j-data:
   neo4j-logs:
   redis-data:
+  server-data:
+  server-node-modules:
+  client-data:
+  client-node-modules:
 
 networks:
   conacy-network:

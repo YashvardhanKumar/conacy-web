@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/conacylogo.svg";
-import FormLogin from "./components/FormLogin";
+import logo from "@assets/conacylogo.svg";
+import FormLogin from "@pages/login/components/FormLogin";
 
 const LoginFormCard = () => {
   return (

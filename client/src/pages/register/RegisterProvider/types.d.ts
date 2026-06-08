@@ -10,15 +10,15 @@ interface RegisterContextProps {
     (
       values: RegisterStep1FormProps,
       h: FormikHelpers<RegisterStep1FormProps>
-    ) => Promise<any>,
+    ) => Promise<unknown>,
     (
       values: RegisterStep2FormProps,
       h: FormikHelpers<RegisterStep2FormProps>
-    ) => Promise<any>,
+    ) => Promise<unknown>,
     (
       values: RegisterStep3FormProps,
       h: FormikHelpers<RegisterStep3FormProps>
-    ) => Promise<any>
+    ) => Promise<unknown>
   ];
   validationSchema: [
     yup.ObjectSchema<

@@ -3404,8 +3404,8 @@ export type ResolversParentTypes = {
 
 export type CommentResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['Comment'] = ResolversParentTypes['Comment'],
+  ParentType extends ResolversParentTypes['Comment'] =
+    ResolversParentTypes['Comment'],
 > = {
   __resolveType: TypeResolveFn<
     'PostComment' | 'ReplyComment',
@@ -3442,8 +3442,8 @@ export type CommentResolvers<
 
 export type CommentAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentAggregateSelection'] = ResolversParentTypes['CommentAggregateSelection'],
+  ParentType extends ResolversParentTypes['CommentAggregateSelection'] =
+    ResolversParentTypes['CommentAggregateSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   id?: Resolver<
@@ -3461,8 +3461,8 @@ export type CommentAggregateSelectionResolvers<
 
 export type CommentAuthorConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentAuthorConnection'] = ResolversParentTypes['CommentAuthorConnection'],
+  ParentType extends ResolversParentTypes['CommentAuthorConnection'] =
+    ResolversParentTypes['CommentAuthorConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['CommentAuthorRelationship']>,
@@ -3476,8 +3476,8 @@ export type CommentAuthorConnectionResolvers<
 
 export type CommentAuthorRelationshipResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentAuthorRelationship'] = ResolversParentTypes['CommentAuthorRelationship'],
+  ParentType extends ResolversParentTypes['CommentAuthorRelationship'] =
+    ResolversParentTypes['CommentAuthorRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
@@ -3486,8 +3486,8 @@ export type CommentAuthorRelationshipResolvers<
 
 export type CommentEdgeResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentEdge'] = ResolversParentTypes['CommentEdge'],
+  ParentType extends ResolversParentTypes['CommentEdge'] =
+    ResolversParentTypes['CommentEdge'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
@@ -3496,8 +3496,8 @@ export type CommentEdgeResolvers<
 
 export type CommentRepliesConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentRepliesConnection'] = ResolversParentTypes['CommentRepliesConnection'],
+  ParentType extends ResolversParentTypes['CommentRepliesConnection'] =
+    ResolversParentTypes['CommentRepliesConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['CommentRepliesRelationship']>,
@@ -3511,8 +3511,8 @@ export type CommentRepliesConnectionResolvers<
 
 export type CommentRepliesRelationshipResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentRepliesRelationship'] = ResolversParentTypes['CommentRepliesRelationship'],
+  ParentType extends ResolversParentTypes['CommentRepliesRelationship'] =
+    ResolversParentTypes['CommentRepliesRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
@@ -3521,8 +3521,8 @@ export type CommentRepliesRelationshipResolvers<
 
 export type CommentsConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CommentsConnection'] = ResolversParentTypes['CommentsConnection'],
+  ParentType extends ResolversParentTypes['CommentsConnection'] =
+    ResolversParentTypes['CommentsConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['CommentEdge']>,
@@ -3536,8 +3536,8 @@ export type CommentsConnectionResolvers<
 
 export type CreateInfoResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CreateInfo'] = ResolversParentTypes['CreateInfo'],
+  ParentType extends ResolversParentTypes['CreateInfo'] =
+    ResolversParentTypes['CreateInfo'],
 > = {
   bookmark?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   nodesCreated?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -3552,7 +3552,8 @@ export type CreateInfoResolvers<
 export type CreatePostCommentsMutationResponseResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['CreatePostCommentsMutationResponse'] = ResolversParentTypes['CreatePostCommentsMutationResponse'],
+    ResolversParentTypes['CreatePostCommentsMutationResponse'] =
+    ResolversParentTypes['CreatePostCommentsMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
   postComments?: Resolver<
@@ -3565,8 +3566,8 @@ export type CreatePostCommentsMutationResponseResolvers<
 
 export type CreatePostsMutationResponseResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CreatePostsMutationResponse'] = ResolversParentTypes['CreatePostsMutationResponse'],
+  ParentType extends ResolversParentTypes['CreatePostsMutationResponse'] =
+    ResolversParentTypes['CreatePostsMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
   posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
@@ -3576,7 +3577,8 @@ export type CreatePostsMutationResponseResolvers<
 export type CreateReplyCommentsMutationResponseResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['CreateReplyCommentsMutationResponse'] = ResolversParentTypes['CreateReplyCommentsMutationResponse'],
+    ResolversParentTypes['CreateReplyCommentsMutationResponse'] =
+    ResolversParentTypes['CreateReplyCommentsMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
   replyComments?: Resolver<
@@ -3589,23 +3591,25 @@ export type CreateReplyCommentsMutationResponseResolvers<
 
 export type CreateUsersMutationResponseResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['CreateUsersMutationResponse'] = ResolversParentTypes['CreateUsersMutationResponse'],
+  ParentType extends ResolversParentTypes['CreateUsersMutationResponse'] =
+    ResolversParentTypes['CreateUsersMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['CreateInfo'], ParentType, ContextType>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export interface DateTimeScalarConfig
-  extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<
+  ResolversTypes['DateTime'],
+  any
+> {
   name: 'DateTime';
 }
 
 export type DateTimeAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['DateTimeAggregateSelection'] = ResolversParentTypes['DateTimeAggregateSelection'],
+  ParentType extends ResolversParentTypes['DateTimeAggregateSelection'] =
+    ResolversParentTypes['DateTimeAggregateSelection'],
 > = {
   max?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   min?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
@@ -3614,8 +3618,8 @@ export type DateTimeAggregateSelectionResolvers<
 
 export type DeleteInfoResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['DeleteInfo'] = ResolversParentTypes['DeleteInfo'],
+  ParentType extends ResolversParentTypes['DeleteInfo'] =
+    ResolversParentTypes['DeleteInfo'],
 > = {
   bookmark?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   nodesDeleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -3629,8 +3633,8 @@ export type DeleteInfoResolvers<
 
 export type MutationResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation'],
+  ParentType extends ResolversParentTypes['Mutation'] =
+    ResolversParentTypes['Mutation'],
 > = {
   createPostComments?: Resolver<
     ResolversTypes['CreatePostCommentsMutationResponse'],
@@ -3714,8 +3718,8 @@ export type MutationResolvers<
 
 export type PageInfoResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo'],
+  ParentType extends ResolversParentTypes['PageInfo'] =
+    ResolversParentTypes['PageInfo'],
 > = {
   endCursor?: Resolver<
     Maybe<ResolversTypes['String']>,
@@ -3738,8 +3742,8 @@ export type PageInfoResolvers<
 
 export type PostResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['Post'] = ResolversParentTypes['Post'],
+  ParentType extends ResolversParentTypes['Post'] =
+    ResolversParentTypes['Post'],
 > = {
   comments?: Resolver<
     Array<ResolversTypes['Comment']>,
@@ -3789,8 +3793,8 @@ export type PostResolvers<
 
 export type PostAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostAggregateSelection'] = ResolversParentTypes['PostAggregateSelection'],
+  ParentType extends ResolversParentTypes['PostAggregateSelection'] =
+    ResolversParentTypes['PostAggregateSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   description?: Resolver<
@@ -3813,8 +3817,8 @@ export type PostAggregateSelectionResolvers<
 
 export type PostCommentResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostComment'] = ResolversParentTypes['PostComment'],
+  ParentType extends ResolversParentTypes['PostComment'] =
+    ResolversParentTypes['PostComment'],
 > = {
   author?: Resolver<
     ResolversTypes['User'],
@@ -3877,8 +3881,8 @@ export type PostCommentResolvers<
 
 export type PostCommentAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostCommentAggregateSelection'] = ResolversParentTypes['PostCommentAggregateSelection'],
+  ParentType extends ResolversParentTypes['PostCommentAggregateSelection'] =
+    ResolversParentTypes['PostCommentAggregateSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   id?: Resolver<
@@ -3897,7 +3901,8 @@ export type PostCommentAggregateSelectionResolvers<
 export type PostCommentCommentOfPostConnectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentCommentOfPostConnection'] = ResolversParentTypes['PostCommentCommentOfPostConnection'],
+    ResolversParentTypes['PostCommentCommentOfPostConnection'] =
+    ResolversParentTypes['PostCommentCommentOfPostConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['PostCommentCommentOfPostRelationship']>,
@@ -3912,7 +3917,8 @@ export type PostCommentCommentOfPostConnectionResolvers<
 export type PostCommentCommentOfPostRelationshipResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentCommentOfPostRelationship'] = ResolversParentTypes['PostCommentCommentOfPostRelationship'],
+    ResolversParentTypes['PostCommentCommentOfPostRelationship'] =
+    ResolversParentTypes['PostCommentCommentOfPostRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
@@ -3922,7 +3928,8 @@ export type PostCommentCommentOfPostRelationshipResolvers<
 export type PostCommentCommentRepliesAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'] = ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'],
+    ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'] =
+    ResolversParentTypes['PostCommentCommentRepliesAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -3936,7 +3943,8 @@ export type PostCommentCommentRepliesAggregationSelectionResolvers<
 export type PostCommentCommentRepliesNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'] = ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'],
+    ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'] =
+    ResolversParentTypes['PostCommentCommentRepliesNodeAggregateSelection'],
 > = {
   id?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -3954,7 +3962,8 @@ export type PostCommentCommentRepliesNodeAggregateSelectionResolvers<
 export type PostCommentCommentsAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentCommentsAggregationSelection'] = ResolversParentTypes['PostCommentCommentsAggregationSelection'],
+    ResolversParentTypes['PostCommentCommentsAggregationSelection'] =
+    ResolversParentTypes['PostCommentCommentsAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -3968,7 +3977,8 @@ export type PostCommentCommentsAggregationSelectionResolvers<
 export type PostCommentCommentsNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'] = ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'],
+    ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'] =
+    ResolversParentTypes['PostCommentCommentsNodeAggregateSelection'],
 > = {
   id?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -3985,8 +3995,8 @@ export type PostCommentCommentsNodeAggregateSelectionResolvers<
 
 export type PostCommentEdgeResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostCommentEdge'] = ResolversParentTypes['PostCommentEdge'],
+  ParentType extends ResolversParentTypes['PostCommentEdge'] =
+    ResolversParentTypes['PostCommentEdge'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['PostComment'], ParentType, ContextType>;
@@ -3996,7 +4006,8 @@ export type PostCommentEdgeResolvers<
 export type PostCommentPostCommentOfPostAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'] = ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'],
+    ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'] =
+    ResolversParentTypes['PostCommentPostCommentOfPostAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4010,7 +4021,8 @@ export type PostCommentPostCommentOfPostAggregationSelectionResolvers<
 export type PostCommentPostCommentOfPostNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'] = ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'],
+    ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'] =
+    ResolversParentTypes['PostCommentPostCommentOfPostNodeAggregateSelection'],
 > = {
   description?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -4033,7 +4045,8 @@ export type PostCommentPostCommentOfPostNodeAggregateSelectionResolvers<
 export type PostCommentUserAuthorAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentUserAuthorAggregationSelection'] = ResolversParentTypes['PostCommentUserAuthorAggregationSelection'],
+    ResolversParentTypes['PostCommentUserAuthorAggregationSelection'] =
+    ResolversParentTypes['PostCommentUserAuthorAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4047,7 +4060,8 @@ export type PostCommentUserAuthorAggregationSelectionResolvers<
 export type PostCommentUserAuthorNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'] = ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'],
+    ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'] =
+    ResolversParentTypes['PostCommentUserAuthorNodeAggregateSelection'],
 > = {
   dob?: Resolver<
     ResolversTypes['DateTimeAggregateSelection'],
@@ -4079,8 +4093,8 @@ export type PostCommentUserAuthorNodeAggregateSelectionResolvers<
 
 export type PostCommentsConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostCommentsConnection'] = ResolversParentTypes['PostCommentsConnection'],
+  ParentType extends ResolversParentTypes['PostCommentsConnection'] =
+    ResolversParentTypes['PostCommentsConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['PostCommentsRelationship']>,
@@ -4094,8 +4108,8 @@ export type PostCommentsConnectionResolvers<
 
 export type PostCommentsRelationshipResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostCommentsRelationship'] = ResolversParentTypes['PostCommentsRelationship'],
+  ParentType extends ResolversParentTypes['PostCommentsRelationship'] =
+    ResolversParentTypes['PostCommentsRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
@@ -4104,8 +4118,8 @@ export type PostCommentsRelationshipResolvers<
 
 export type PostCreatorOfPostConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostCreatorOfPostConnection'] = ResolversParentTypes['PostCreatorOfPostConnection'],
+  ParentType extends ResolversParentTypes['PostCreatorOfPostConnection'] =
+    ResolversParentTypes['PostCreatorOfPostConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['PostCreatorOfPostRelationship']>,
@@ -4119,8 +4133,8 @@ export type PostCreatorOfPostConnectionResolvers<
 
 export type PostCreatorOfPostRelationshipResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostCreatorOfPostRelationship'] = ResolversParentTypes['PostCreatorOfPostRelationship'],
+  ParentType extends ResolversParentTypes['PostCreatorOfPostRelationship'] =
+    ResolversParentTypes['PostCreatorOfPostRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
@@ -4129,8 +4143,8 @@ export type PostCreatorOfPostRelationshipResolvers<
 
 export type PostEdgeResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostEdge'] = ResolversParentTypes['PostEdge'],
+  ParentType extends ResolversParentTypes['PostEdge'] =
+    ResolversParentTypes['PostEdge'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
@@ -4140,7 +4154,8 @@ export type PostEdgeResolvers<
 export type PostUserCreatorOfPostAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'] = ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'],
+    ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'] =
+    ResolversParentTypes['PostUserCreatorOfPostAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4154,7 +4169,8 @@ export type PostUserCreatorOfPostAggregationSelectionResolvers<
 export type PostUserCreatorOfPostNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'] = ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'],
+    ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'] =
+    ResolversParentTypes['PostUserCreatorOfPostNodeAggregateSelection'],
 > = {
   dob?: Resolver<
     ResolversTypes['DateTimeAggregateSelection'],
@@ -4186,8 +4202,8 @@ export type PostUserCreatorOfPostNodeAggregateSelectionResolvers<
 
 export type PostsConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostsConnection'] = ResolversParentTypes['PostsConnection'],
+  ParentType extends ResolversParentTypes['PostsConnection'] =
+    ResolversParentTypes['PostsConnection'],
 > = {
   edges?: Resolver<Array<ResolversTypes['PostEdge']>, ParentType, ContextType>;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
@@ -4197,8 +4213,8 @@ export type PostsConnectionResolvers<
 
 export type QueryResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['Query'] = ResolversParentTypes['Query'],
+  ParentType extends ResolversParentTypes['Query'] =
+    ResolversParentTypes['Query'],
 > = {
   comments?: Resolver<
     Array<ResolversTypes['Comment']>,
@@ -4294,8 +4310,8 @@ export type QueryResolvers<
 
 export type ReplyCommentResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['ReplyComment'] = ResolversParentTypes['ReplyComment'],
+  ParentType extends ResolversParentTypes['ReplyComment'] =
+    ResolversParentTypes['ReplyComment'],
 > = {
   author?: Resolver<
     ResolversTypes['User'],
@@ -4360,8 +4376,8 @@ export type ReplyCommentResolvers<
 
 export type ReplyCommentAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['ReplyCommentAggregateSelection'] = ResolversParentTypes['ReplyCommentAggregateSelection'],
+  ParentType extends ResolversParentTypes['ReplyCommentAggregateSelection'] =
+    ResolversParentTypes['ReplyCommentAggregateSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   id?: Resolver<
@@ -4380,7 +4396,8 @@ export type ReplyCommentAggregateSelectionResolvers<
 export type ReplyCommentCommentRepliesAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'] = ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'],
+    ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'] =
+    ResolversParentTypes['ReplyCommentCommentRepliesAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4394,7 +4411,8 @@ export type ReplyCommentCommentRepliesAggregationSelectionResolvers<
 export type ReplyCommentCommentRepliesNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'],
+    ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'] =
+    ResolversParentTypes['ReplyCommentCommentRepliesNodeAggregateSelection'],
 > = {
   id?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -4412,7 +4430,8 @@ export type ReplyCommentCommentRepliesNodeAggregateSelectionResolvers<
 export type ReplyCommentCommentReplyOfCommentAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'] = ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'],
+    ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'] =
+    ResolversParentTypes['ReplyCommentCommentReplyOfCommentAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4428,7 +4447,8 @@ export type ReplyCommentCommentReplyOfCommentAggregationSelectionResolvers<
 export type ReplyCommentCommentReplyOfCommentNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'],
+    ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'] =
+    ResolversParentTypes['ReplyCommentCommentReplyOfCommentNodeAggregateSelection'],
 > = {
   id?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -4445,8 +4465,8 @@ export type ReplyCommentCommentReplyOfCommentNodeAggregateSelectionResolvers<
 
 export type ReplyCommentEdgeResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['ReplyCommentEdge'] = ResolversParentTypes['ReplyCommentEdge'],
+  ParentType extends ResolversParentTypes['ReplyCommentEdge'] =
+    ResolversParentTypes['ReplyCommentEdge'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['ReplyComment'], ParentType, ContextType>;
@@ -4456,7 +4476,8 @@ export type ReplyCommentEdgeResolvers<
 export type ReplyCommentReplyOfCommentConnectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentReplyOfCommentConnection'] = ResolversParentTypes['ReplyCommentReplyOfCommentConnection'],
+    ResolversParentTypes['ReplyCommentReplyOfCommentConnection'] =
+    ResolversParentTypes['ReplyCommentReplyOfCommentConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['ReplyCommentReplyOfCommentRelationship']>,
@@ -4471,7 +4492,8 @@ export type ReplyCommentReplyOfCommentConnectionResolvers<
 export type ReplyCommentReplyOfCommentRelationshipResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'] = ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'],
+    ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'] =
+    ResolversParentTypes['ReplyCommentReplyOfCommentRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
@@ -4481,7 +4503,8 @@ export type ReplyCommentReplyOfCommentRelationshipResolvers<
 export type ReplyCommentUserAuthorAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'] = ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'],
+    ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'] =
+    ResolversParentTypes['ReplyCommentUserAuthorAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4495,7 +4518,8 @@ export type ReplyCommentUserAuthorAggregationSelectionResolvers<
 export type ReplyCommentUserAuthorNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'] = ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'],
+    ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'] =
+    ResolversParentTypes['ReplyCommentUserAuthorNodeAggregateSelection'],
 > = {
   dob?: Resolver<
     ResolversTypes['DateTimeAggregateSelection'],
@@ -4527,8 +4551,8 @@ export type ReplyCommentUserAuthorNodeAggregateSelectionResolvers<
 
 export type ReplyCommentsConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['ReplyCommentsConnection'] = ResolversParentTypes['ReplyCommentsConnection'],
+  ParentType extends ResolversParentTypes['ReplyCommentsConnection'] =
+    ResolversParentTypes['ReplyCommentsConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['ReplyCommentEdge']>,
@@ -4542,8 +4566,8 @@ export type ReplyCommentsConnectionResolvers<
 
 export type StringAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['StringAggregateSelection'] = ResolversParentTypes['StringAggregateSelection'],
+  ParentType extends ResolversParentTypes['StringAggregateSelection'] =
+    ResolversParentTypes['StringAggregateSelection'],
 > = {
   longest?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   shortest?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -4552,8 +4576,8 @@ export type StringAggregateSelectionResolvers<
 
 export type UpdateInfoResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UpdateInfo'] = ResolversParentTypes['UpdateInfo'],
+  ParentType extends ResolversParentTypes['UpdateInfo'] =
+    ResolversParentTypes['UpdateInfo'],
 > = {
   bookmark?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   nodesCreated?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -4574,7 +4598,8 @@ export type UpdateInfoResolvers<
 export type UpdatePostCommentsMutationResponseResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['UpdatePostCommentsMutationResponse'] = ResolversParentTypes['UpdatePostCommentsMutationResponse'],
+    ResolversParentTypes['UpdatePostCommentsMutationResponse'] =
+    ResolversParentTypes['UpdatePostCommentsMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
   postComments?: Resolver<
@@ -4587,8 +4612,8 @@ export type UpdatePostCommentsMutationResponseResolvers<
 
 export type UpdatePostsMutationResponseResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UpdatePostsMutationResponse'] = ResolversParentTypes['UpdatePostsMutationResponse'],
+  ParentType extends ResolversParentTypes['UpdatePostsMutationResponse'] =
+    ResolversParentTypes['UpdatePostsMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
   posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
@@ -4598,7 +4623,8 @@ export type UpdatePostsMutationResponseResolvers<
 export type UpdateReplyCommentsMutationResponseResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['UpdateReplyCommentsMutationResponse'] = ResolversParentTypes['UpdateReplyCommentsMutationResponse'],
+    ResolversParentTypes['UpdateReplyCommentsMutationResponse'] =
+    ResolversParentTypes['UpdateReplyCommentsMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
   replyComments?: Resolver<
@@ -4611,8 +4637,8 @@ export type UpdateReplyCommentsMutationResponseResolvers<
 
 export type UpdateUsersMutationResponseResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UpdateUsersMutationResponse'] = ResolversParentTypes['UpdateUsersMutationResponse'],
+  ParentType extends ResolversParentTypes['UpdateUsersMutationResponse'] =
+    ResolversParentTypes['UpdateUsersMutationResponse'],
 > = {
   info?: Resolver<ResolversTypes['UpdateInfo'], ParentType, ContextType>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
@@ -4621,8 +4647,8 @@ export type UpdateUsersMutationResponseResolvers<
 
 export type UserResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['User'] = ResolversParentTypes['User'],
+  ParentType extends ResolversParentTypes['User'] =
+    ResolversParentTypes['User'],
 > = {
   authorOfComments?: Resolver<
     Array<ResolversTypes['Comment']>,
@@ -4670,8 +4696,8 @@ export type UserResolvers<
 
 export type UserAggregateSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserAggregateSelection'] = ResolversParentTypes['UserAggregateSelection'],
+  ParentType extends ResolversParentTypes['UserAggregateSelection'] =
+    ResolversParentTypes['UserAggregateSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   dob?: Resolver<
@@ -4704,8 +4730,8 @@ export type UserAggregateSelectionResolvers<
 
 export type UserAuthorOfCommentsConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserAuthorOfCommentsConnection'] = ResolversParentTypes['UserAuthorOfCommentsConnection'],
+  ParentType extends ResolversParentTypes['UserAuthorOfCommentsConnection'] =
+    ResolversParentTypes['UserAuthorOfCommentsConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['UserAuthorOfCommentsRelationship']>,
@@ -4719,8 +4745,8 @@ export type UserAuthorOfCommentsConnectionResolvers<
 
 export type UserAuthorOfCommentsRelationshipResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserAuthorOfCommentsRelationship'] = ResolversParentTypes['UserAuthorOfCommentsRelationship'],
+  ParentType extends ResolversParentTypes['UserAuthorOfCommentsRelationship'] =
+    ResolversParentTypes['UserAuthorOfCommentsRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
@@ -4730,7 +4756,8 @@ export type UserAuthorOfCommentsRelationshipResolvers<
 export type UserCommentAuthorOfCommentsAggregationSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'] = ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'],
+    ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'] =
+    ResolversParentTypes['UserCommentAuthorOfCommentsAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4744,7 +4771,8 @@ export type UserCommentAuthorOfCommentsAggregationSelectionResolvers<
 export type UserCommentAuthorOfCommentsNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'] = ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'],
+    ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'] =
+    ResolversParentTypes['UserCommentAuthorOfCommentsNodeAggregateSelection'],
 > = {
   id?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -4761,8 +4789,8 @@ export type UserCommentAuthorOfCommentsNodeAggregateSelectionResolvers<
 
 export type UserEdgeResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserEdge'] = ResolversParentTypes['UserEdge'],
+  ParentType extends ResolversParentTypes['UserEdge'] =
+    ResolversParentTypes['UserEdge'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
@@ -4771,8 +4799,8 @@ export type UserEdgeResolvers<
 
 export type UserPostPostsAggregationSelectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserPostPostsAggregationSelection'] = ResolversParentTypes['UserPostPostsAggregationSelection'],
+  ParentType extends ResolversParentTypes['UserPostPostsAggregationSelection'] =
+    ResolversParentTypes['UserPostPostsAggregationSelection'],
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   node?: Resolver<
@@ -4786,7 +4814,8 @@ export type UserPostPostsAggregationSelectionResolvers<
 export type UserPostPostsNodeAggregateSelectionResolvers<
   ContextType = any,
   ParentType extends
-    ResolversParentTypes['UserPostPostsNodeAggregateSelection'] = ResolversParentTypes['UserPostPostsNodeAggregateSelection'],
+    ResolversParentTypes['UserPostPostsNodeAggregateSelection'] =
+    ResolversParentTypes['UserPostPostsNodeAggregateSelection'],
 > = {
   description?: Resolver<
     ResolversTypes['StringAggregateSelection'],
@@ -4808,8 +4837,8 @@ export type UserPostPostsNodeAggregateSelectionResolvers<
 
 export type UserPostsConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserPostsConnection'] = ResolversParentTypes['UserPostsConnection'],
+  ParentType extends ResolversParentTypes['UserPostsConnection'] =
+    ResolversParentTypes['UserPostsConnection'],
 > = {
   edges?: Resolver<
     Array<ResolversTypes['UserPostsRelationship']>,
@@ -4823,8 +4852,8 @@ export type UserPostsConnectionResolvers<
 
 export type UserPostsRelationshipResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UserPostsRelationship'] = ResolversParentTypes['UserPostsRelationship'],
+  ParentType extends ResolversParentTypes['UserPostsRelationship'] =
+    ResolversParentTypes['UserPostsRelationship'],
 > = {
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
@@ -4833,8 +4862,8 @@ export type UserPostsRelationshipResolvers<
 
 export type UsersConnectionResolvers<
   ContextType = any,
-  ParentType extends
-    ResolversParentTypes['UsersConnection'] = ResolversParentTypes['UsersConnection'],
+  ParentType extends ResolversParentTypes['UsersConnection'] =
+    ResolversParentTypes['UsersConnection'],
 > = {
   edges?: Resolver<Array<ResolversTypes['UserEdge']>, ParentType, ContextType>;
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;

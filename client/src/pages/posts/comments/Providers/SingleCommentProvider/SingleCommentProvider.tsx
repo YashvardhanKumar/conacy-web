@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
-import { Comment } from "../../../../../gql/graphql";
-import { SingleCommentContextProps, SingleCommentProps } from "./types";
-import { CommentTileSkeleton } from "../../../components/Skeleton";
+import { Comment } from "@gql/graphql";
+import { SingleCommentContextProps, SingleCommentProps } from "@pages/posts/comments/Providers/SingleCommentProvider/types";
+import { CommentTileSkeleton } from "@pages/posts/components/Skeleton";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
+import { useCommentInputContext } from "@pages/posts/comments/Providers/CommentInputProvider/CommentInputProvider";
 
 const likeComment = graphql(/* GraphQL */ `
   mutation LikeComment($username: ID!, $cid: ID!) {
@@ -271,15 +271,16 @@ const SingleCommentProvider: React.FC<SingleCommentProps> = ({
     // pointerRef.current?.focus({ preventScroll: true });
   });
 
+  const comment0Likes = data?.comments[0]?.likes;
   useEffect(() => {
-    setLikesNo(data?.comments[0].likes.length ?? 0);
-    if (!data) return;
+    setLikesNo(comment0Likes?.length ?? 0);
+    if (!comment0Likes) return;
     setLike(
-      data.comments[0]?.likes?.filter(
+      comment0Likes.filter(
         (like) => like.username == localStorage.getItem("username")
       ).length != 0
     );
-  }, [data?.comments[0].likes]);
+  }, [comment0Likes]);
 
   const handleDeleteComment = async () => {
     deleteCommentFunc({

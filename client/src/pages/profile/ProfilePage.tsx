@@ -1,9 +1,6 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import ProfileProvider from "./Provider/ProfileProvider";
-import Profile from "./Profile";
-import { useEffect } from "react";
+import ProfileProvider from "@pages/profile/Provider/ProfileProvider";
+import Profile from "@pages/profile/Profile";
 const ProfilePage = () => {
-  const params = useParams();
 
   return (
     <ProfileProvider>

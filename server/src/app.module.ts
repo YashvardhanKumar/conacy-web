@@ -1,15 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Neo4jModule } from './custom/neo4j/neo4j.module';
-import { typeDefs } from './gql/type-defs';
-import { AuthModule } from './auth/auth.module';
-import { OgmModule } from './custom/ogm/ogm.module';
+import { Neo4jModule } from '@custom/neo4j/neo4j.module';
+import { typeDefs } from '@gql/type-defs';
+import { AuthModule } from '@auth/auth.module';
+import { OgmModule } from '@custom/ogm/ogm.module';
 import { AppController } from './app.controller';
 
-import { PostsModule } from './posts/posts.module';
-import { CloudinaryModule } from './custom/cloudinary/cloudinary.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
+import { PostsModule } from '@posts/posts.module';
+import { CloudinaryModule } from '@custom/cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -23,10 +21,10 @@ import { join } from 'path';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         typeDefs,
-        neo4jUrl: configService.get("NEO4J_URI"),
-        neo4jUsername: configService.get("NEO4J_USERNAME"),
-        neo4jPassword: configService.get("NEO4J_PASSWORD"),
-      })
+        neo4jUrl: configService.get('NEO4J_URI'),
+        neo4jUsername: configService.get('NEO4J_USERNAME'),
+        neo4jPassword: configService.get('NEO4J_PASSWORD'),
+      }),
     }),
 
     AuthModule,
@@ -34,9 +32,9 @@ import { join } from 'path';
       isGlobal: true,
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        cloud_name: configService.get("CLOUDINARY_NAME"),
-        api_key: configService.get("CLOUDINARY_API_KEY"),
-        api_secret: configService.get("CLOUDINARY_API_SECRET"),
+        cloud_name: configService.get('CLOUDINARY_NAME'),
+        api_key: configService.get('CLOUDINARY_API_KEY'),
+        api_secret: configService.get('CLOUDINARY_API_SECRET'),
       }),
       inject: [ConfigService],
     }),

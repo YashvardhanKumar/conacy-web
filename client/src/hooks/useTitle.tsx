@@ -9,10 +9,11 @@ const useTitle = (title: string) => {
 
     if (document.title !== title) document.title = title;
 
+    const original = originalTitle.current;
     return () => {
-      document.title = originalTitle.current ?? "Conacy";
+      document.title = original ?? "Conacy";
     };
-  }, []);
+  }, [documentDefined, title]);
 };
 
 export default useTitle;

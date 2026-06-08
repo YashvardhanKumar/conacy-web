@@ -1,4 +1,4 @@
-import { Post } from "../../../gql/graphql";
+import { Post } from "@gql/graphql";
 
 interface PostProps {
   children: React.ReactNode;

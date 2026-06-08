@@ -1,4 +1,4 @@
-import { User } from "../../../gql/graphql";
+import { User } from "@gql/graphql";
 
 interface ProfileContextProps {
   user: User | null;

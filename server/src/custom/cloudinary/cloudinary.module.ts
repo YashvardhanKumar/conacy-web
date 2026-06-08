@@ -1,6 +1,6 @@
 import { Global, Module, OnModuleInit } from '@nestjs/common';
-import { CloudinaryService } from './cloudinary.service';
-import { ConfigurableModuleClass } from './cloudinary.module-definition';
+import { CloudinaryService } from '@custom/cloudinary/cloudinary.service';
+import { ConfigurableModuleClass } from '@custom/cloudinary/cloudinary.module-definition';
 
 @Global()
 @Module({

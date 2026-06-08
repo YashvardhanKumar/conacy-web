@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
-import person from "../../../assets/avatar.png";
+import { useState } from "react";
+import person from "@assets/avatar.png";
 import { Link } from "react-router-dom";
-import SaveIcon from "../../../assets/Icons/SaveIcon";
-import SendIcon from "../../../assets/Icons/SendIcon";
-import CommentIcon from "../../../assets/Icons/CommentIcon";
-import LikeForm from "./LikeForm";
-import CommentButton from "./CommentButton";
+import SaveIcon from "@assets/Icons/SaveIcon";
+import SendIcon from "@assets/Icons/SendIcon";
+import CommentIcon from "@assets/Icons/CommentIcon";
+import LikeForm from "@pages/posts/components/LikeForm";
+import CommentButton from "@pages/posts/components/CommentButton";
 import SinglePostProvider, {
   useSinglePostContext,
-} from "../SinglePostProvider/SinglePostProvider";
-import ToggleSettings from "../../../assets/Icons/ToggleSettings";
-import { useAnimate } from "framer-motion";
-import DialogBox from "../../../components/DialogBox";
+} from "@pages/posts/SinglePostProvider/SinglePostProvider";
+import ToggleSettings from "@assets/Icons/ToggleSettings";
+import DialogBox from "@components/DialogBox";
 
 const PostCardImage = () => {
   const [seeMore, setSeeMore] = useState(false);
   const { post } = useSinglePostContext();
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <SinglePostProvider

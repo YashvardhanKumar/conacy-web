@@ -1,0 +1,126 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - from-separate-to-monorepo-docker
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Client Dependencies
+        run: |
+          cd client
+          bun install --frozen-lockfile
+
+      - name: Install Server Dependencies
+        run: |
+          cd server
+          bun install --frozen-lockfile
+
+      - name: Client Type Check & Build
+        run: |
+          cd client
+          bun run check-types
+          bun run build
+
+      - name: Server Build & Compile
+        run: |
+          cd server
+          bun run build
+
+      - name: Client Unit Tests
+        run: |
+          cd client
+          bun run test
+
+      - name: Server Unit Tests
+        run: |
+          cd server
+          bun run test
+
+      - name: Client Lint Check
+        run: |
+          cd client
+          bun run lint
+
+      - name: Server Lint Check
+        run: |
+          cd server
+          bun run lint
+
+  deploy:
+    name: Deploy to EC2
+    needs: code-quality
+    if: github.event_name == 'release' && github.event.action == 'published'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Get Runner Public IP
+        id: ip
+        run: |
+          RUNNER_IP=$(curl -s https://api.ipify.org)
+          echo "ip=$RUNNER_IP" >> $GITHUB_OUTPUT
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Add runner IP to Security Group
+        run: |
+          aws ec2 authorize-security-group-ingress \
+            --group-id ${{ secrets.AWS_SG_ID }} \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.ip.outputs.ip }}/32
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ secrets.EC2_PORT || 22 }}
+          script: |
+            echo "Starting deployment..."
+            # Navigate to deployment directory
+            cd ${{ secrets.EC2_DEPLOY_DIR || '~/conacy-web' }}
+            
+            # Fetch latest changes and checkout release tag
+            git fetch --all
+            git checkout ${{ github.event.release.tag_name }}
+            
+            # Make the script executable and run the optimized deployment script
+            chmod +x scripts/deploy.sh
+            ./scripts/deploy.sh
+            echo "Deployment finished successfully!"
+
+      - name: Revoke runner IP from Security Group
+        if: always()
+        run: |
+          aws ec2 revoke-security-group-ingress \
+            --group-id ${{ secrets.AWS_SG_ID }} \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.ip.outputs.ip }}/32

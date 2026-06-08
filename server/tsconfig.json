@@ -10,6 +10,14 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@auth/*": ["src/auth/*"],
+      "@custom/*": ["src/custom/*"],
+      "@generated/*": ["src/generated/*"],
+      "@gql/*": ["src/gql/*"],
+      "@gql": ["src/gql/index"],
+      "@posts/*": ["src/posts/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

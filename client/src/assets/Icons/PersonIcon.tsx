@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IconProps } from "./IconProps";
+import { IconProps } from "@assets/Icons/IconProps";
 
 const PersonIcon: FC<IconProps> = () => {
   return (

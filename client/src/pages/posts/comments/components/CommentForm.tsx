@@ -1,10 +1,8 @@
-import person from "../../../../assets/avatar.png";
+import person from "@assets/avatar.png";
 import { motion } from "framer-motion";
-import { useParams } from "react-router-dom";
-import CircularLoader from "../../../../components/CircularLoader";
-import { useCommentContext } from "../Providers/CommentProvider/CommentProvider";
+import { useCommentContext } from "@pages/posts/comments/Providers/CommentProvider/CommentProvider";
 
-const CommentForm = ({}) => {
+const CommentForm = () => {
   const {
     handleCancelReply,
     replier,

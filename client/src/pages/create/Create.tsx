@@ -1,8 +1,8 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import CreateForm from "./CreateForm";
-import { CreatePostProvider } from "./CreatePostProvider/CreatePostProvider";
+import { useNavigate } from "react-router-dom";
+import CreateForm from "@pages/create/CreateForm";
+import { CreatePostProvider } from "@pages/create/CreatePostProvider/CreatePostProvider";
 import { useEffect } from "react";
-import useTitle from "../../hooks/useTitle";
+import useTitle from "@hooks/useTitle";
 
 const Create = () => {
   useTitle("Create | Conacy");

@@ -1,11 +1,11 @@
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import * as yup from "yup";
-import { useRegisterContext } from "../RegisterProvider/RegisterProvider";
-import Step1 from "./steps/Step1";
-import Step2 from "./steps/Step2";
-import Step3 from "./steps/Step3";
+import { useRegisterContext } from "@pages/register/RegisterProvider/RegisterProvider";
+import Step1 from "@pages/register/components/steps/Step1";
+import Step2 from "@pages/register/components/steps/Step2";
+import Step3 from "@pages/register/components/steps/Step3";
 import { Link } from "react-router-dom";
-import CircularLoader from "../../../components/CircularLoader";
+import CircularLoader from "@components/CircularLoader";
 
 const FormRegister = () => {
   const { initialValues, validationSchema, handleSubmit, page, loading } =
@@ -15,9 +15,12 @@ const FormRegister = () => {
   return (
     <>
       <Formik
-        initialValues={initialValues[page] as any}
+        initialValues={initialValues[page] as Record<string, string | undefined>}
         validationSchema={yup.object().shape(validationSchema[page])}
-        onSubmit={handleSubmit[page] as any}
+        onSubmit={handleSubmit[page] as unknown as (
+          values: Record<string, string | undefined>,
+          h: FormikHelpers<Record<string, string | undefined>>
+        ) => Promise<unknown>}
         children={
           <Form
             noValidate

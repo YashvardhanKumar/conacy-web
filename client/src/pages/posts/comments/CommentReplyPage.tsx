@@ -1,7 +1,7 @@
-import ReplyCommentProvider from "./Providers/ReplyCommentProvider/ReplyCommentProvider";
+import ReplyCommentProvider from "@pages/posts/comments/Providers/ReplyCommentProvider/ReplyCommentProvider";
 import { useParams } from "react-router-dom";
-import ReplyList from "./components/ReplyList";
-import CommentInputProvider from "./Providers/CommentInputProvider/CommentInputProvider";
+import ReplyList from "@pages/posts/comments/components/ReplyList";
+import CommentInputProvider from "@pages/posts/comments/Providers/CommentInputProvider/CommentInputProvider";
 
 const CommentReplyPage = () => {
   const params = useParams();

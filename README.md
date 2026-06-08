@@ -1,52 +1,166 @@
-# About Conacy: A Privacy-Focused Social Media Platform
+# Conacy: A Privacy-Focused Social Media Platform
 
-Conacy is a revolutionary social media platform designed to prioritize user privacy and provide a seamless, engaging experience. Our platform offers a unique level of control over profile visibility, allowing users to customize who can access their personal information.
+Conacy is a social media platform designed to prioritize user privacy. The platform offers a unique level of control over profile visibility, allowing users to customize who can access their personal information.
 
-# Links
+---
 
-- [Web App](https://conacy.netlify.app/)
-- [Server Link](conacy-web-1.onrender.com/)
+## 🛠️ Prerequisites & Installation (For New PCs)
 
-# Key Features:
+If you are setting up this project on a brand new PC, follow these steps to install the required tools:
 
-- Granular Profile Visibility: Users can precisely define who can view their profile, from close friends to a custom list of individuals.
-- Robust Content Creation: Easily share photos, videos, and thoughts with your community.
-- Intuitive Nested Commenting: Engage in meaningful discussions with our user-friendly nested commenting system.
-- Personalized Recommendations: Our advanced recommendation algorithm, powered by Neo4J, suggests relevant content and users based on your preferences.
+### 1. Install Git & Bun
+* **macOS:**
+  ```bash
+  # Install Homebrew (if not installed)
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Technical Stack:
+  # Install Git & Bun
+  brew install git
+  curl -fsSL https://bun.sh/install | bash
+  ```
+* **Windows (via PowerShell):**
+  * Install Git: Download from [git-scm.com](https://git-scm.com/)
+  * Install Bun:
+    ```powershell
+    powershell -c "irm bun.sh/install.ps1 | iex"
+    ```
+* **Linux:**
+  ```bash
+  sudo apt update && sudo apt install -y git curl unzip
+  curl -fsSL https://bun.sh/install | bash
+  ```
 
-- Backend: NestJS, a progressive Node.js framework for building efficient and scalable server-side applications.
-- Frontend: React, a popular JavaScript library for building dynamic and interactive user interfaces.
-- Database: Neo4J, a graph database optimized for handling complex relationships and efficient data retrieval.
-- API: GraphQL, a query language for APIs that provides a flexible and efficient way to fetch data.
-- Authentication: JWT (JSON Web Token) and Passport.js for secure user authentication and authorization.
-- Image Hosting: Cloudinary for reliable and scalable image storage and delivery.
-- Styling: Tailwind CSS for rapid and efficient styling without the need for extensive CSS files.
+### 2. Install Docker & Docker Compose
+* **macOS (Lightweight CLI Option using Colima - Recommended):**
+  We recommend using **Colima** instead of Docker Desktop on macOS as it is lightweight, faster, and open-source.
+  ```bash
+  # Install Colima, Docker CLI, and Docker Compose
+  brew install colima docker docker-compose
 
-# Benefits of Our Technical Stack:
+  # Start Colima container engine
+  colima start
+  ```
+* **Windows / Linux:**
+  * **Windows:** Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
+  * **Linux:** Follow the official guide to install [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
-- Efficiency and Scalability: Neo4J's graph database capabilities enable lightning-fast data retrieval and analysis, ensuring a smooth user experience even as the platform grows.
-- Flexibility and Customization: GraphQL's declarative nature allows for tailored API responses, meeting the specific needs of different clients.
-- Developer Productivity: NestJS's modular architecture and TypeScript support streamline development, leading to cleaner, more maintainable code.
-- Performance and User Experience: React's component-based approach and Tailwind CSS's utility-first methodology contribute to a fast and visually appealing interface.
-- By leveraging these cutting-edge technologies, Conacy delivers a social media platform that is not only privacy-focused but also highly efficient, scalable, and enjoyable for users.
+---
 
-# Desktop Screenshots
+## 🚀 Local Setup & Configuration
 
-![Screenshot 2024-08-23 at 1 11 34 AM](https://github.com/user-attachments/assets/ebee3b59-7bc3-4925-a059-80b889470b6e)
-![Screenshot 2024-08-23 at 1 12 22 AM](https://github.com/user-attachments/assets/6ba2bbd6-66d6-4042-a2cd-ccb5e8d8fe2a)
-![Screenshot 2024-08-23 at 1 13 07 AM](https://github.com/user-attachments/assets/687c3e66-086c-480e-936d-bd4030d3b2fc)
-![Screenshot 2024-08-23 at 1 14 17 AM](https://github.com/user-attachments/assets/de084e9b-6daa-4dd1-95b5-31a9fbea040b)
-![Screenshot 2024-08-23 at 1 14 49 AM](https://github.com/user-attachments/assets/3a686d54-c2b4-427f-b6bc-069bdf150616)
-![Screenshot 2024-08-23 at 1 15 03 AM](https://github.com/user-attachments/assets/718b30d7-1051-4c78-8d68-dd55f0ecf5f3)
-![Screenshot 2024-08-23 at 1 15 18 AM](https://github.com/user-attachments/assets/8435b97b-ae9a-47c7-a899-eefd42fe8db1)
+### 1. Configure Environment Variables
+Copy the template environment file in the repository root to create your active configuration:
+```bash
+cp .env.example .env
+```
+Open `.env` and fill in your keys:
+* Configure your Neo4j password (e.g. `NEO4J_PASSWORD`).
+* Add your Cloudinary credentials (`CLOUDINARY_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`).
+* Add your authentication cryptographic RSA keypairs (`PRIVATE_KEY`, `PUBLIC_KEY`).
 
-# Mobile Screenshots
+### 2. Run in Local Development Mode
+To run locally with live hot-reloading and source code syncing:
+1. Open `.env` and **uncomment** the development overrides block at the bottom:
+   ```env
+   NODE_ENV=development
+   SERVER_BUILD_TARGET=development
+   CLIENT_BUILD_TARGET=development
+   SERVER_VOLUME=./server
+   CLIENT_VOLUME=./client
+   SERVER_NODE_MODULES=/app/node_modules
+   CLIENT_NODE_MODULES=/app/node_modules
+   ```
+2. Build and start the development containers:
+   ```bash
+   docker compose up --build
+   ```
+3. Access points:
+   * **Web Application:** [http://localhost](http://localhost) (proxied through Nginx)
+   * **GraphQL Engine:** [http://localhost/graphql](http://localhost/graphql)
+   * **Neo4j Browser:** [http://localhost:7474](http://localhost:7474) (Credentials: user `neo4j` / your password)
 
-![WhatsApp Image 2024-08-23 at 01 18 55](https://github.com/user-attachments/assets/9cb565aa-f611-41b1-92f2-f27670885549)
-![WhatsApp Image 2024-08-23 at 01 18 56](https://github.com/user-attachments/assets/a7baf3c7-3bfa-43d7-b1e8-b26751a41cb9)
-![WhatsApp Image 2024-08-23 at 01 18 56 (1)](https://github.com/user-attachments/assets/ffbf0210-6d90-4809-9744-65526e10c016)
-![WhatsApp Image 2024-08-23 at 01 18 58](https://github.com/user-attachments/assets/fe1a6d1c-4a48-439f-8ce5-e9f1bfb91a56)
-![WhatsApp Image 2024-08-23 at 01 18 59](https://github.com/user-attachments/assets/a0d50f19-f609-4e01-87b3-0387ac5f18c2)
-![WhatsApp Image 2024-08-23 at 01 19 00](https://github.com/user-attachments/assets/4cbff89a-2e98-4f08-8d99-dc2957fe72d7)
+---
+
+## 🔍 Code Quality & Automated Git Hooks
+
+This repository has a built-in automated **pre-commit hook** to ensure only compiling, tested, and linted code gets committed.
+
+### 1. Activate Git Hooks
+To activate the hook in your local clone, run this command once:
+```bash
+git config core.hooksPath .githooks
+```
+
+### 2. How the Hook Works
+When you run `git commit`, the hook:
+* Finds only the files you have staged (`git add`).
+* Typechecks the TypeScript build if client files are staged.
+* Runs tests inside the modified modules (`Vitest` for client, `Jest` for server).
+* Runs `eslint` only on the modified files.
+* Aborts the commit if any checks or tests fail.
+
+### 3. Run Tests Manually
+If you want to run your tests manually without committing:
+* **Client App Unit Tests:**
+  ```bash
+  cd client && bun run test
+  ```
+* **Server App Unit Tests:**
+  ```bash
+  cd server && bun run test
+  ```
+
+---
+
+## 🌐 Production Deployment (EC2)
+
+The repository is configured for production by default. 
+
+### 1. Security Lockdowns
+In production:
+* Only port `80` (Nginx Gateway) is exposed to the public internet.
+* Database ports (Neo4j on `7474`/`7687` and Redis on `6379`) and app container ports (`3000`/`3001`) are bound to loopback `127.0.0.1` and are inaccessible from the outside.
+
+### 2. Configure Production Environment
+Make sure the development overrides block in `.env` is **commented out** (which is the default). 
+Configure your public domain or public IP:
+```env
+CLIENT_URL=http://your-ec2-ip-or-domain.com
+```
+
+### 3. CI/CD Deployment Trigger
+The GitHub Actions workflow (`.github/workflows/deploy.yml`) handles CD.
+1. Run quality tests on every Push and Pull Request.
+2. **Deployment only happens when you publish a new Release in GitHub.**
+3. Add these repository secrets under **Settings ➔ Secrets and variables ➔ Actions**:
+   * `EC2_HOST`: EC2 instance public IP/domain.
+   * `EC2_USER`: SSH login user (e.g. `ubuntu`).
+   * `EC2_SSH_KEY`: Private key (`.pem` file content).
+   * `EC2_DEPLOY_DIR`: (Optional) Deployment folder path on server (defaults to `~/conacy-web`).
+
+### 4. Low-resource Optimization (`scripts/deploy.sh`)
+When a release is triggered, the deployment script executes optimizations designed for **1GB RAM, 1 vCPU, 20GB Disk** instances (like AWS `t2.micro`):
+* Automatically provisions a **2GB swapfile** to prevent compilers from crashing the server with Out of Memory (OOM) errors.
+* Runs aggressive docker pruning *before* building to keep storage within 20GB.
+* Temporarily stops services (`docker compose down`) to free up memory for the build.
+* Performs sequential container builds (`server` ➔ `client` ➔ `nginx`) instead of concurrent builds to minimize peak RAM load.
+
+---
+
+## 🎨 Technical Stack
+* **Frontend:** React, Vite, Tailwind CSS, Apollo Client
+* **Backend:** NestJS, GraphQL, Apollo Server
+* **Database:** Neo4j (Graph Database), Redis (Caching)
+* **Reverse Proxy:** Nginx
+
+---
+
+## 📸 Screenshots
+
+### Desktop
+![Screenshot 1](https://github.com/user-attachments/assets/ebee3b59-7bc3-4925-a059-80b889470b6e)
+![Screenshot 2](https://github.com/user-attachments/assets/6ba2bbd6-66d6-4042-a2cd-ccb5e8d8fe2a)
+
+### Mobile
+![WhatsApp Image 1](https://github.com/user-attachments/assets/9cb565aa-f611-41b1-92f2-f27670885549)
+![WhatsApp Image 2](https://github.com/user-attachments/assets/a7baf3c7-3bfa-43d7-b1e8-b26751a41cb9)

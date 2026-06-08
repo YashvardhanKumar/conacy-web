@@ -1,5 +1,5 @@
-import { Comment, Post } from "../../../../../gql/graphql";
-import { ReplierProps } from "../ReplyCommentProvider/types";
+import { Comment, Post } from "@gql/graphql";
+import { ReplierProps } from "@pages/posts/comments/Providers/ReplyCommentProvider/types";
 
 interface CommentProps {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ interface CommentContextProps {
   //     pid: Scalars["ID"]["input"];
   //   }>,
   //   DefaultContext,
-  //   ApolloCache<any>
+  //   ApolloCache<unknown>
   // >;
   ccrm: MutationTuple<
     CreateComments2Mutation,
@@ -34,7 +34,7 @@ interface CommentContextProps {
       indent: Scalars["Int"]["input"];
     }>,
     DefaultContext,
-    ApolloCache<any>
+    ApolloCache<unknown>
   >;
   comment: string;
   handleCancelReply: () => void;

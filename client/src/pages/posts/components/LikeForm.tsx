@@ -1,9 +1,8 @@
-import { graphql } from "../../../gql";
 
-import Like from "../../../assets/Icons/Like";
+import Like from "@assets/Icons/Like";
 
-import { color, motion, transform } from "framer-motion";
-import { useSinglePostContext } from "../SinglePostProvider/SinglePostProvider";
+import { motion } from "framer-motion";
+import { useSinglePostContext } from "@pages/posts/SinglePostProvider/SinglePostProvider";
 
 const LikeForm = () => {
   const { liked, likesNo, handleLike } = useSinglePostContext();

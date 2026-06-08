@@ -1,8 +1,8 @@
-import { useCommentContext } from "../Providers/CommentProvider/CommentProvider";
-import CommentForm from "./CommentForm";
-import CommentTile from "./CommentTile";
-import person from "../../../../assets/avatar.png";
-import SingleCommentProvider from "../Providers/SingleCommentProvider/SingleCommentProvider";
+import { useCommentContext } from "@pages/posts/comments/Providers/CommentProvider/CommentProvider";
+import CommentForm from "@pages/posts/comments/components/CommentForm";
+import CommentTile from "@pages/posts/comments/components/CommentTile";
+import person from "@assets/avatar.png";
+import SingleCommentProvider from "@pages/posts/comments/Providers/SingleCommentProvider/SingleCommentProvider";
 
 export const CommentList = () => {
   const { comments, post, inputRef, commentCount } = useCommentContext();

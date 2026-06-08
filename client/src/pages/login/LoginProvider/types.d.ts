@@ -5,7 +5,7 @@ interface LoginContextProps {
   handleSubmit: (
     values: LoginFormProps,
     h: FormikHelpers<LoginFormProps>
-  ) => Promise<any>;
+  ) => Promise<unknown>;
   validationSchema: yup.ObjectSchema<
     LoginFormProps,
     yup.AnyObject,

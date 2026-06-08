@@ -1,6 +1,6 @@
 // import * as jwt from 'jsonwebtoken';
 // import { Injectable, NestMiddleware } from '@nestjs/common';
-// import { AuthService } from './auth.service';
+// import { AuthService } from '@auth/auth.service';
 // import * as neo4j from 'neo4j-driver';
 // import { ConfigService } from '@nestjs/config';
 // import { OGM } from '@neo4j/graphql-ogm';

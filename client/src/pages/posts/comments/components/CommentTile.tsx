@@ -1,7 +1,7 @@
-import Like from "../../../../assets/Icons/Like";
-import person from "../../../../assets/avatar.png";
-import CommentReplyList from "../CommentReplyList";
-import { useSingleCommentContext } from "../Providers/SingleCommentProvider/SingleCommentProvider";
+import Like from "@assets/Icons/Like";
+import person from "@assets/avatar.png";
+import CommentReplyList from "@pages/posts/comments/CommentReplyList";
+import { useSingleCommentContext } from "@pages/posts/comments/Providers/SingleCommentProvider/SingleCommentProvider";
 import { motion } from "framer-motion";
 
 const CommentTile = () => {

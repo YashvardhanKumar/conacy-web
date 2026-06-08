@@ -1,9 +1,19 @@
-import { redirect } from "react-router-dom";
+export interface LoginPayload {
+  email?: string;
+  password?: string;
+}
 
-export const handleSubmitLogin = async (value: any): Promise<any> => {
+export interface LoginResponse {
+  isAuthenticated: boolean;
+  username?: string;
+  message?: string;
+  error?: string;
+}
+
+export const handleSubmitLogin = async (value: LoginPayload): Promise<LoginResponse> => {
   const { email, password } = value;
   try {
-    let url = import.meta.env.VITE_SERVER_URL;
+    const url = import.meta.env.VITE_SERVER_URL || "";
     const res = await fetch(url + "/auth/login", {
       method: "PUT",
       credentials: "include",
@@ -25,7 +35,7 @@ export const handleSubmitLogin = async (value: any): Promise<any> => {
 };
 
 export const handleValid = async () => {
-  let url = import.meta.env.VITE_SERVER_URL;
+  const url = import.meta.env.VITE_SERVER_URL || "";
   console.log(import.meta.env.VITE_SERVER_URL);
 
   try {
@@ -55,7 +65,7 @@ export const handleValid = async () => {
 };
 
 export const handleLogout = async () => {
-  let url = import.meta.env.VITE_SERVER_URL;
+  const url = import.meta.env.VITE_SERVER_URL || "";
   console.log(import.meta.env.VITE_SERVER_URL);
 
   try {

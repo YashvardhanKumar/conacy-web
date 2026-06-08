@@ -1,8 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { v2 as cloudinary } from 'cloudinary';
-import { DateTime } from 'neo4j-driver';
-import { CloudinaryService } from '../custom/cloudinary/cloudinary.service';
-import * as streamifier from 'streamifier';
+import { CloudinaryService } from '@custom/cloudinary/cloudinary.service';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,

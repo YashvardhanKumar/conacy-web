@@ -1,10 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
-import { Comment } from "../../../../../gql/graphql";
-import { CommentReplyPageSkeleton } from "../../../components/Skeleton";
-import { ReplyCommentContextProps, ReplyCommentProps } from "./types";
-import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
+import { Comment } from "@gql/graphql";
+import { CommentReplyPageSkeleton } from "@pages/posts/components/Skeleton";
+import { ReplyCommentContextProps, ReplyCommentProps } from "@pages/posts/comments/Providers/ReplyCommentProvider/types";
+import { useCommentInputContext } from "@pages/posts/comments/Providers/CommentInputProvider/CommentInputProvider";
 
 // const commentSubscription = graphql(/*graphql*/ `
 //   subscription CommentCreated {

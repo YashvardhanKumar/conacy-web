@@ -1,16 +1,14 @@
-import { useMutation, useQuery, useSuspenseQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   createContext,
-  Suspense,
   useContext,
   useEffect,
   useState,
 } from "react";
 import { graphql } from "../../../gql";
-import { SinglePostContextProps, SinglePostProps } from "./types";
-import { Post } from "../../../gql/graphql";
-import LoadingSpinner from "../../../components/LoadingSpinner";
-import { PostSkeleton } from "../components/Skeleton";
+import { SinglePostContextProps, SinglePostProps } from "@pages/posts/SinglePostProvider/types";
+import { Post } from "@gql/graphql";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const singlePostQuery = graphql(/* graphql */ `
   query SinglePosts($pid: ID!) {
@@ -174,14 +172,15 @@ const SinglePostProvider: React.FC<SinglePostProps> = ({ children, id }) => {
       });
     }
   }
+  const post0Likes = spq.data?.posts[0]?.likes;
   useEffect(() => {
-    setLikesNo(spq.data?.posts[0].likes.length ?? 0);
+    setLikesNo(post0Likes?.length ?? 0);
     setLiked(
-      spq.data?.posts[0].likes?.filter(
+      post0Likes?.filter(
         (like) => like.username == localStorage.getItem("username")
       ).length != 0
     );
-  }, [spq.data?.posts[0].likes]);
+  }, [post0Likes]);
   if (spq.loading) return <LoadingSpinner />;
   return (
     <SinglePostContext.Provider

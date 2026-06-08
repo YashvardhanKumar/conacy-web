@@ -1,7 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
-import CommentProvider from "./Providers/CommentProvider/CommentProvider";
-import { CommentList } from "./components/CommentList";
-import CommentInputProvider from "./Providers/CommentInputProvider/CommentInputProvider";
+import CommentProvider from "@pages/posts/comments/Providers/CommentProvider/CommentProvider";
+import { CommentList } from "@pages/posts/comments/components/CommentList";
+import CommentInputProvider from "@pages/posts/comments/Providers/CommentInputProvider/CommentInputProvider";
 
 const CommentsPage = () => {
   const params = useParams();

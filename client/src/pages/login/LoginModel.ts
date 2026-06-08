@@ -1,5 +1,5 @@
 // import * as yup from "yup";
-// import LoginComponent from "./components/LoginComponent";
+// import LoginComponent from "@pages/login/components/LoginComponent";
 
 // export const loginModel = {
 //     component: LoginComponent,

@@ -1,10 +1,10 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { MODULE_OPTIONS_TOKEN } from './cloudinary.module-definition';
-import { defaultCreateSignedUploadUrlOptions } from './cloudinary-options';
+import { MODULE_OPTIONS_TOKEN } from '@custom/cloudinary/cloudinary.module-definition';
+import { defaultCreateSignedUploadUrlOptions } from '@custom/cloudinary/cloudinary-options';
 import type {
   CloudinaryModuleOptions,
   ISignedUploadUrlOptions,
-} from './cloudinary-options';
+} from '@custom/cloudinary/cloudinary-options';
 import {
   ResourceType,
   UploadApiErrorResponse,
@@ -12,7 +12,7 @@ import {
   UploadApiResponse,
   v2,
 } from 'cloudinary';
-import { IFile, ISharpInputOptions } from './interface';
+import { IFile, ISharpInputOptions } from '@custom/cloudinary/interface';
 import { Readable } from 'stream';
 import sharp from 'sharp';
 

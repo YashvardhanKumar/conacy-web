@@ -1,4 +1,4 @@
-import AddCircle from "../../assets/Icons/AddCircle";
+import AddCircle from "@assets/Icons/AddCircle";
 import { useField } from "formik";
 import React, { FC } from "react";
 
@@ -10,7 +10,7 @@ type CustomFileFieldProps = {
   required?: boolean;
   imageUrl?: string;
   content?: string;
-  value?: any;
+  value?: unknown;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 const CustomFileInput: FC<CustomFileFieldProps> = ({
@@ -20,7 +20,7 @@ const CustomFileInput: FC<CustomFileFieldProps> = ({
   content,
   onChange,
 }) => {
-  const [field, meta, helpers] = useField(name);
+  const [, meta, helpers] = useField(name);
   return (
     <div
       className={`rounded-md border-dashed border-2 m-4 ${

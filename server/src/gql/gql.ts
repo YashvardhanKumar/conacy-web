@@ -1,11 +1,11 @@
-import { Neo4jGraphQL } from '@neo4j/graphql';
-import * as neo4j from 'neo4j-driver';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import path from 'path';
-import fs from 'fs';
-import { OGM } from '@neo4j/graphql-ogm';
-import { GraphQLSchema } from 'graphql';
-import { typeDefs } from './type-defs';
+// import { Neo4jGraphQL } from '@neo4j/graphql';
+// import * as neo4j from 'neo4j-driver';
+// import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+// import path from 'path';
+// import fs from 'fs';
+// import { OGM } from '@neo4j/graphql-ogm';
+// import { GraphQLSchema } from 'graphql';
+// import { typeDefs } from '@gql/type-defs';
 
 // export const gqlProviderFactory = async () => {
 //   const {

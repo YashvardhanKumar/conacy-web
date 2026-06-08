@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { graphql } from "../../../../../gql";
 import { useMutation, useQuery } from "@apollo/client";
-import { CommentContextProps, CommentProps } from "./types";
-import { Comment, Post } from "../../../../../gql/graphql";
-import { CommentPageSkeleton } from "../../../components/Skeleton";
-import { useCommentInputContext } from "../CommentInputProvider/CommentInputProvider";
-import { ReplierProps } from "../ReplyCommentProvider/types";
+import { CommentContextProps, CommentProps } from "@pages/posts/comments/Providers/CommentProvider/types";
+import { Comment, Post } from "@gql/graphql";
+import { CommentPageSkeleton } from "@pages/posts/components/Skeleton";
+import { useCommentInputContext } from "@pages/posts/comments/Providers/CommentInputProvider/CommentInputProvider";
+import { ReplierProps } from "@pages/posts/comments/Providers/ReplyCommentProvider/types";
 
 const getPostComments = graphql(/* GraphQL */ `
   query PostComments($pid: ID!) {
