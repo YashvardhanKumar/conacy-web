@@ -15,7 +15,7 @@ const FormRegister = () => {
   return (
     <>
       <Formik
-        initialValues={initialValues[page] as Record<string, string | undefined>}
+        initialValues={initialValues[page] as unknown as Record<string, string | undefined>}
         validationSchema={yup.object().shape(validationSchema[page])}
         onSubmit={handleSubmit[page] as unknown as (
           values: Record<string, string | undefined>,
