@@ -24,7 +24,7 @@ FROM oven/bun:1-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY package.json bun.lock ./
+COPY package.json bun.lock tsconfig.json ./
 # Install production-only dependencies
 RUN bun install --frozen-lockfile --production
 
