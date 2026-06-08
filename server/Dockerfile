@@ -25,6 +25,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package.json bun.lock tsconfig.json ./
+RUN sed -i 's/"src\//"dist\//g' tsconfig.json
 # Install production-only dependencies
 RUN bun install --frozen-lockfile --production
 
