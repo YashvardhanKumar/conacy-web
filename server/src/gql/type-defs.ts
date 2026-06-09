@@ -36,6 +36,14 @@ export const typeDefs = gql`
           where: { node: { users_SINGLE: { username: "$jwt.username" } } }
         }
       ]
+    )
+    @subscriptionsAuthorization(
+      filter: [
+        {
+          requireAuthentication: true
+          where: { node: { users_SINGLE: { username: "$jwt.username" } } }
+        }
+      ]
     ) {
     id: ID! @id
     users: [User!]! @relationship(type: "NOTIFY_TO", direction: IN)
@@ -73,6 +81,14 @@ export const typeDefs = gql`
         {
           requireAuthentication: true
           operations: [UPDATE, DELETE]
+          where: { node: { username: "$jwt.username" } }
+        }
+      ]
+    )
+    @subscriptionsAuthorization(
+      filter: [
+        {
+          requireAuthentication: true
           where: { node: { username: "$jwt.username" } }
         }
       ]
@@ -138,6 +154,23 @@ export const typeDefs = gql`
           }
         }
       ]
+    )
+    @subscriptionsAuthorization(
+      filter: [
+        {
+          requireAuthentication: true
+          where: {
+            node: {
+              creatorOfPost: {
+                OR: [
+                  { relations_SINGLE: { username: "$jwt.username" } }
+                  { username: "$jwt.username" }
+                ]
+              }
+            }
+          }
+        }
+      ]
     ) {
     id: ID! @id
     url: String!
@@ -163,6 +196,23 @@ export const typeDefs = gql`
         {
           requireAuthentication: true
           operations: [READ]
+          where: {
+            node: {
+              author: {
+                OR: [
+                  { relations_SINGLE: { username: "$jwt.username" } }
+                  { username: "$jwt.username" }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    )
+    @subscriptionsAuthorization(
+      filter: [
+        {
+          requireAuthentication: true
           where: {
             node: {
               author: {
@@ -209,6 +259,21 @@ export const typeDefs = gql`
         {
           requireAuthentication: true
           operations: [READ]
+          where: {
+            node: {
+              OR: [
+                { sender: { username: "$jwt.username" } }
+                { receiver: { username: "$jwt.username" } }
+              ]
+            }
+          }
+        }
+      ]
+    )
+    @subscriptionsAuthorization(
+      filter: [
+        {
+          requireAuthentication: true
           where: {
             node: {
               OR: [
