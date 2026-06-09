@@ -41,7 +41,6 @@ export const typeDefs = gql`
       filter: [
         {
           requireAuthentication: true
-          where: { node: { users_SINGLE: { username: "$jwt.username" } } }
         }
       ]
     ) {
@@ -159,16 +158,6 @@ export const typeDefs = gql`
       filter: [
         {
           requireAuthentication: true
-          where: {
-            node: {
-              creatorOfPost: {
-                OR: [
-                  { relations_SINGLE: { username: "$jwt.username" } }
-                  { username: "$jwt.username" }
-                ]
-              }
-            }
-          }
         }
       ]
     ) {
@@ -213,16 +202,6 @@ export const typeDefs = gql`
       filter: [
         {
           requireAuthentication: true
-          where: {
-            node: {
-              author: {
-                OR: [
-                  { relations_SINGLE: { username: "$jwt.username" } }
-                  { username: "$jwt.username" }
-                ]
-              }
-            }
-          }
         }
       ]
     ) {
@@ -274,14 +253,6 @@ export const typeDefs = gql`
       filter: [
         {
           requireAuthentication: true
-          where: {
-            node: {
-              OR: [
-                { sender: { username: "$jwt.username" } }
-                { receiver: { username: "$jwt.username" } }
-              ]
-            }
-          }
         }
       ]
     ) {
