@@ -39,13 +39,7 @@ fi
 echo "🧹 Cleaning up unused Docker resources, caches, and volumes to free up disk space..."
 docker system prune -af --volumes
 
-# 3. Stop running containers to free up RAM before building
-# NestJS and Vite compilation peak memory usage is very high. 
-# Stopping containers temporarily frees up maximum RAM.
-echo "🛑 Temporarily stopping services to free up RAM..."
-docker compose down || true
-
-# 4. Sequential Building (Crucial for 1GB RAM)
+# 3. Sequential Building (Crucial for 1GB RAM)
 # Running 'docker compose build' builds services in parallel, which will OOM.
 # We build them one by one.
 echo "🏗️ Building server container (Stage 1)..."
@@ -57,11 +51,11 @@ docker compose build client
 echo "🏗️ Building nginx reverse proxy container (Stage 3)..."
 docker compose build nginx
 
-# 5. Start the services
+# 4. Start the services
 echo "▶️ Starting all services in detached mode..."
 docker compose up -d
 
-# 6. Post-deployment cleanup
+# 5. Post-deployment cleanup
 # Clean up any build caches generated during the compilation
 echo "🧹 Performing post-build cleanup..."
 docker builder prune -f
