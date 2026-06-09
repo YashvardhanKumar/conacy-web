@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { Observable } from 'rxjs';
 
 @Injectable()

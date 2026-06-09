@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDTO } from '@auth/dto/create-user.dto';
 import { AuthService } from '@auth/auth.service';
-import { CookieOptions, Request, Response } from 'express';
+import type { CookieOptions, Request, Response } from 'express';
 import { CustomAuthGuard } from '@auth/auth.guard';
 import { AuthGuard } from '@nestjs/passport';
 
