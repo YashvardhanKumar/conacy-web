@@ -2,7 +2,7 @@
 
 Conacy is a social media platform designed to prioritize user privacy. The platform offers a unique level of control over profile visibility, allowing users to customize who can access their personal information.
 
-[App Link](https://conacy.codeflip.co.in/)
+[App Link](https://conacy.netlify.app/)
 
 ---
 
