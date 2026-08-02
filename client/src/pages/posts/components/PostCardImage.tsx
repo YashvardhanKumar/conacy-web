@@ -115,7 +115,7 @@ const PostCardImage = () => {
               />
             )}
             <Link
-              to={`/post/${post.id}/comments`}
+              to={`/post/${post.id}`}
               className="rounded-md dark:bg-base-200 bg-blue-50 flex flex-col gap-3 p-3"
             >
               <div className="inline-flex items-center gap-1">
@@ -137,7 +137,7 @@ const PostCardImage = () => {
                       />
                       <span className="flex flex-col text-sm text-start justify-self-start">
                         <div
-                          className="px-2 text-web-color"
+                          className="px-2 text-web-color-2 dark:text-white font-semibold"
                           children={`@${post.comments[0].author.username}`}
                         />
                         <div

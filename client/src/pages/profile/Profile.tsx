@@ -177,7 +177,7 @@ const UserReplies = () => {
                 />
                 <span className="flex flex-col gap-1 text-sm text-start justify-self-start">
                   <div
-                    className="px-2 dark:text-web-color"
+                    className="px-2 text-web-color-2 dark:text-white font-semibold"
                     children={`@${user.username}`}
                   />
                   <div className="px-2" children={e.text} />
@@ -197,7 +197,7 @@ const UserReplies = () => {
                   />
                   <span className="flex flex-col gap-0 text-sm text-start justify-self-start">
                     <div
-                      className="px-2 dark:text-web-color"
+                      className="px-2 text-web-color-2 dark:text-white font-semibold"
                       children={`@${e.commentOfPost.creatorOfPost.username}`}
                     />
                     {/* <div

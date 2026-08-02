@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import DialogBox from "@components/DialogBox";
 import { handleLogout } from "@apis/submitActions";
 import person from "@assets/avatar.png";
+import { ThemeToggle } from "@components/ThemeToggle";
 
 const NavBar = () => {
   const nav = useNavigate();
@@ -52,6 +53,9 @@ const NavBar = () => {
               }
             />
           </Link>
+          <div className="flex items-center justify-center p-0.5">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
       <DialogBox

@@ -64,13 +64,8 @@ Open `.env` and fill in your keys:
 To run locally with live hot-reloading and source code syncing:
 1. Open `.env` and **uncomment** the development overrides block at the bottom:
    ```env
+   # To run in local development mode with hot-reloading, uncomment this line:
    NODE_ENV=development
-   SERVER_BUILD_TARGET=development
-   CLIENT_BUILD_TARGET=development
-   SERVER_VOLUME=./server
-   CLIENT_VOLUME=./client
-   SERVER_NODE_MODULES=/app/node_modules
-   CLIENT_NODE_MODULES=/app/node_modules
    ```
 2. Build and start the development containers:
    ```bash

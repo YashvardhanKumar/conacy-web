@@ -11,7 +11,7 @@ const likeComment = graphql(/* GraphQL */ `
   mutation LikeComment($username: ID!, $cid: ID!) {
     updateUsers(
       where: { username: $username }
-      connect: { likedComments: { where: { node: { id: $cid } } } }
+      update: { likedComments: [{ connect: [{ where: { node: { id: $cid } } }] }] }
     ) {
       users {
         likedComments {
@@ -26,7 +26,7 @@ const unlikeComment = graphql(/* GraphQL */ `
   mutation unLikeComment($username: ID!, $cid: ID!) {
     updateUsers(
       where: { username: $username }
-      disconnect: { likedComments: { where: { node: { id: $cid } } } }
+      update: { likedComments: [{ disconnect: [{ where: { node: { id: $cid } } }] }] }
     ) {
       users {
         likedComments {
@@ -73,6 +73,7 @@ const getSingleComment = graphql(/*graphql*/ `
         email
         username
         dob
+        profileUrl
         createdAt
         updatedAt
       }
@@ -88,6 +89,7 @@ const getSingleComment = graphql(/*graphql*/ `
           email
           username
           dob
+          profileUrl
           createdAt
           updatedAt
         }
@@ -103,6 +105,11 @@ const getRepliesQuery = graphql(`
       indent
       createdAt
       updatedAt
+      author {
+        id
+        username
+        profileUrl
+      }
     }
   }
 `);

@@ -15,7 +15,7 @@ async function bootstrap() {
     app.use(cookieParser());
     await app.listen(3001, '0.0.0.0');
   } catch (err) {
-    console.error("FATAL BOOTSTRAP ERROR:");
+    console.error('FATAL BOOTSTRAP ERROR:');
     console.error(err);
     process.exit(1);
   }

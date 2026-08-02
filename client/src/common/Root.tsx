@@ -5,7 +5,6 @@ import Create from "@pages/create/Create.tsx";
 import Messages from "@pages/messages/Messages.tsx";
 import Search from "@pages/search/Search.tsx";
 import SinglePostPage from "@pages/posts/SinglePostPage.tsx";
-import CommentsPage from "@pages/posts/comments/CommentsPage.tsx";
 import CommentReplyPage from "@pages/posts/comments/CommentReplyPage.tsx";
 import ProfilePage from "@pages/profile/ProfilePage.tsx";
 import { handleValid } from "@apis/submitActions.ts";
@@ -34,10 +33,7 @@ export default function Root() {
         <Route path="/search" element={<Search />} />
         <Route path="/post/:pid">
           <Route path="" element={<SinglePostPage />} />
-          <Route path="comments">
-            <Route path="" element={<CommentsPage />} />
-            <Route path=":cid" element={<CommentReplyPage />} />
-          </Route>
+          <Route path=":cid" element={<CommentReplyPage />} />
         </Route>
         <Route path="/u/:username" element={<ProfilePage />} />
       </Routes>

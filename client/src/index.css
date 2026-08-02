@@ -27,7 +27,7 @@
   }
   
   body {
-    color: rgb(var(--foreground-rgb));
+    @apply bg-base-100 text-base-content min-h-screen transition-colors duration-300;
   }
   
   @layer utilities {

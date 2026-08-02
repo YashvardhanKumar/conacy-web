@@ -1,14 +1,20 @@
-interface CreatePostContextType {
+import { RelationType } from "@gql/graphql";
+import { FormikHelpers } from "formik";
+import * as yup from "yup";
+
+export interface CreatePostContextType {
   image: File | null;
   imageUrl: string;
   initialValues: CreateFormProps;
   validationSchema: yup.ObjectSchema<
     {
       caption: string | undefined;
+      visibility: string;
     },
     yup.AnyObject,
     {
       caption: undefined;
+      visibility: undefined;
     },
     ""
   >;
@@ -20,11 +26,12 @@ interface CreatePostContextType {
   loading: boolean;
 }
 
-interface CreatePostProps {
+export interface CreatePostProps {
   children: React.ReactNode;
 }
 
-interface CreateFormProps {
+export interface CreateFormProps {
   caption: string;
   image: undefined;
+  visibility: RelationType;
 }

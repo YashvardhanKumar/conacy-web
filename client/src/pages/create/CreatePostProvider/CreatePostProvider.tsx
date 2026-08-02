@@ -5,6 +5,7 @@ import { graphql } from "@gql";
 import * as yup from "yup";
 import { RelationType } from "@gql/graphql";
 import { FormikHelpers } from "formik";
+import { CreatePostContextType, CreatePostProps, CreateFormProps } from "./types";
 /**
  * GraphQL Queries
  */
@@ -14,14 +15,14 @@ const createPost = graphql(/*graphql */ `
     $url: String!
     $description: String!
     $username: ID!
-    $friend: [RelationType!]!
+    $visibility: [RelationType!]!
   ) {
     createPosts(
       input: {
         url: $url
         description: $description
         creatorOfPost: { connect: { where: { node: { username: $username } } } }
-        visibility: $friend
+        visibility: $visibility
       }
     ) {
       posts {
@@ -78,12 +79,16 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
   const initialValues: CreateFormProps = {
     caption: "",
     image: undefined,
+    visibility: RelationType.Public,
   };
 
   const validationSchema = yup.object().shape({
     caption: yup
       .string()
       .max(1000, "Your caption should not exceed 1000 characters"),
+    visibility: yup
+      .string()
+      .required("Visibility is required"),
   });
 
   const handleUploadImage = async (file: File) => {
@@ -131,7 +136,7 @@ export const CreatePostProvider: React.FC<CreatePostProps> = ({ children }) => {
               url: secure_url,
               description: values.caption,
               username: localStorage.getItem("username")!,
-              friend: [RelationType.Friend],
+              visibility: [values.visibility],
             },
           });
 

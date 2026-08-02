@@ -24,4 +24,10 @@ describe('PostsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should throw BadRequestException if no file is provided', async () => {
+    await expect(controller.uploadImage(undefined)).rejects.toThrow(
+      'No file uploaded.',
+    );
+  });
 });

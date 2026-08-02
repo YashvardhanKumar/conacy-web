@@ -37,13 +37,7 @@ export const typeDefs = gql`
         }
       ]
     )
-    @subscriptionsAuthorization(
-      filter: [
-        {
-          requireAuthentication: true
-        }
-      ]
-    ) {
+    @subscriptionsAuthorization(filter: [{ requireAuthentication: true }]) {
     id: ID! @id
     users: [User!]! @relationship(type: "NOTIFY_TO", direction: IN)
     title: String!
@@ -143,24 +137,23 @@ export const typeDefs = gql`
           operations: [READ]
           where: {
             node: {
-              creatorOfPost: {
-                OR: [
-                  { relations_SINGLE: { username: "$jwt.username" } }
-                  { username: "$jwt.username" }
-                ]
-              }
+              OR: [
+                { visibility_INCLUDES: PUBLIC }
+                {
+                  creatorOfPost: {
+                    OR: [
+                      { relations_SINGLE: { username: "$jwt.username" } }
+                      { username: "$jwt.username" }
+                    ]
+                  }
+                }
+              ]
             }
           }
         }
       ]
     )
-    @subscriptionsAuthorization(
-      filter: [
-        {
-          requireAuthentication: true
-        }
-      ]
-    ) {
+    @subscriptionsAuthorization(filter: [{ requireAuthentication: true }]) {
     id: ID! @id
     url: String!
     description: String
@@ -198,13 +191,7 @@ export const typeDefs = gql`
         }
       ]
     )
-    @subscriptionsAuthorization(
-      filter: [
-        {
-          requireAuthentication: true
-        }
-      ]
-    ) {
+    @subscriptionsAuthorization(filter: [{ requireAuthentication: true }]) {
     id: ID! @id
     text: String!
     indent: Int! @default(value: 0)
@@ -249,13 +236,7 @@ export const typeDefs = gql`
         }
       ]
     )
-    @subscriptionsAuthorization(
-      filter: [
-        {
-          requireAuthentication: true
-        }
-      ]
-    ) {
+    @subscriptionsAuthorization(filter: [{ requireAuthentication: true }]) {
     id: ID! @id
     text: String
     file: String

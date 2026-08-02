@@ -2,9 +2,21 @@
 # Exit on any error
 set -e
 
+# Resolve the project root directory (one level up from this script's location)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+echo "📂 Changing to project root: $PROJECT_ROOT"
+cd "$PROJECT_ROOT"
+
 echo "====================================================="
 echo "🚀 Starting Optimized Deployment (1GB RAM / 1 vCPU / 20GB Disk)"
 echo "====================================================="
+
+# Ensure production Dockerfiles are always used on the server.
+# Unset DOCKERFILE_SUFFIX so compose.yaml resolves to 'Dockerfile' (not 'Dockerfile.local').
+unset DOCKERFILE_SUFFIX
+export DOCKERFILE_SUFFIX=""
 
 # 1. Check/Enable Swap Space
 # 1GB RAM is not enough for building Vite and NestJS concurrently.
@@ -43,17 +55,17 @@ docker system prune -af --volumes
 # Running 'docker compose build' builds services in parallel, which will OOM.
 # We build them one by one.
 echo "🏗️ Building server container (Stage 1)..."
-docker compose build server
+docker compose -f "$PROJECT_ROOT/compose.yaml" build server
 
 echo "🏗️ Building client container (Stage 2)..."
-docker compose build client
+docker compose -f "$PROJECT_ROOT/compose.yaml" build client
 
 echo "🏗️ Building nginx reverse proxy container (Stage 3)..."
-docker compose build nginx
+docker compose -f "$PROJECT_ROOT/compose.yaml" build nginx
 
 # 4. Start the services
 echo "▶️ Starting all services in detached mode..."
-docker compose up -d
+docker compose -f "$PROJECT_ROOT/compose.yaml" up -d
 
 # 5. Post-deployment cleanup
 # Clean up any build caches generated during the compilation

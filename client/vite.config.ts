@@ -19,8 +19,11 @@ export default defineConfig({
   },
   // appType: 'mpa', // disable history fallback
   server: {
-    host: '0.0.0.0', // Allows external access to the dev server.
+    host: '0.0.0.0',
     port: 3000,
+    watch: {
+      usePolling: true,
+    },
     // proxy: {
     //   '/api': {
     //     target: "https://conacy-web-1.onrender.com/",

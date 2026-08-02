@@ -7,7 +7,7 @@ const CommentButton = () => {
   return (
     <div className="flex items-center select-none">
       <Link
-        to={`/post/${post.id}/comments`}
+        to={`/post/${post.id}`}
         className="p-1"
         children={<CommentIcon width={28} height={28} />}
       />

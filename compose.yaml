@@ -28,8 +28,7 @@ services:
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile
-      target: ${NODE_ENV:-production}
+      dockerfile: Dockerfile${DOCKERFILE_SUFFIX:-}
     container_name: conacy-server
     restart: unless-stopped
     environment:
@@ -61,11 +60,7 @@ services:
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile
-      target: ${NODE_ENV:-production}
-      args:
-        - VITE_SERVER_URL=${VITE_SERVER_URL:-}
-        - VITE_WS=${VITE_WS:-}
+      dockerfile: Dockerfile${DOCKERFILE_SUFFIX:-}
     container_name: conacy-client
     environment:
       - NODE_ENV=${NODE_ENV:-production}

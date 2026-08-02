@@ -17,6 +17,8 @@ export async function gqlProviderFactory(
     ),
   );
 
+  const jwksUri = configService.get<string>('jwksUri');
+
   const neoSchema = new Neo4jGraphQL({
     typeDefs,
     driver,
@@ -25,7 +27,7 @@ export async function gqlProviderFactory(
       subscriptions: true,
       authorization: {
         key: {
-          url: configService.get('jwksUri'),
+          url: jwksUri,
         },
         verifyOptions: {
           algorithms: ['RS256'],
@@ -34,49 +36,54 @@ export async function gqlProviderFactory(
     },
   });
 
-  const schema = await neoSchema.getSchema();
+  try {
+    const schema = await neoSchema.getSchema();
 
-  await neoSchema.assertIndexesAndConstraints({
-    options: { create: true },
-  });
+    await neoSchema.assertIndexesAndConstraints({
+      options: { create: true },
+    });
 
-  return {
-    playground: true,
-    schema,
-    installSubscriptionHandlers: true,
-    subscriptions: {
-      'graphql-ws': {
-        path: '/graphql',
-        connectionInitWaitTimeout: Infinity,
-        onConnect: () => {
-          console.log('connected!');
-          return true;
-        },
-        onDisconnect() {
-          console.log('disconnected!');
+    return {
+      playground: true,
+      schema,
+      installSubscriptionHandlers: true,
+      subscriptions: {
+        'graphql-ws': {
+          path: '/graphql',
+          connectionInitWaitTimeout: Infinity,
+          onConnect: () => {
+            console.log('connected!');
+            return true;
+          },
+          onDisconnect() {
+            console.log('disconnected!');
+          },
         },
       },
-    },
-    context: async ({ req, extra }) => {
-      const list: any = {};
+      context: async ({ req, extra }) => {
+        const list: any = {};
 
-      const cookieHeader = extra?.request.headers.cookie;
-      if (cookieHeader)
-        cookieHeader.split(`;`).forEach(function (cookie) {
-          const [rawName, ...rest] = cookie.split(`=`);
-          const name = rawName?.trim();
-          if (!name) return;
-          const value = rest.join(`=`).trim();
-          if (!value) return;
-          list[name] = decodeURIComponent(value);
-        });
-      const token = list?.accessToken ?? req?.cookies.accessToken;
-      return {
-        token: token ? `Bearer ${token}` : '',
-        sessionConfig: { database: 'neo4j' },
-      };
-    },
-  };
+        const cookieHeader = extra?.request.headers.cookie;
+        if (cookieHeader)
+          cookieHeader.split(`;`).forEach(function (cookie) {
+            const [rawName, ...rest] = cookie.split(`=`);
+            const name = rawName?.trim();
+            if (!name) return;
+            const value = rest.join(`=`).trim();
+            if (!value) return;
+            list[name] = decodeURIComponent(value);
+          });
+        const token = list?.accessToken ?? req?.cookies.accessToken;
+        return {
+          token: token ? `Bearer ${token}` : '',
+          sessionConfig: { database: 'neo4j' },
+        };
+      },
+    };
+  } catch (error) {
+    console.error('[Neo4j] Schema initialization failed:', error);
+    throw error;
+  }
 }
 
 @Module({})
